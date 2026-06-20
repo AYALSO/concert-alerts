@@ -69,6 +69,18 @@ Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `re
 ### Artist-name unification (`core/artist_names.py`)
 `clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
 
+### AI classification (Cloudflare Workers AI — free, no per-use cost)
+The Worker's `/classify` endpoint (model `@cf/meta/llama-3.3-70b-instruct-fp8-fast`,
+`env.AI` binding) turns each artist name into `{is_artist, name, category}` where
+category ∈ music/standup/theater. Results are cached in KV (`cls2:<hash>`, only
+successful results cached). `scan.classify_artists()` annotates `artists.json`
+incrementally (capped per run, so it stays within the free daily allowance).
+`make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
+adds music/standup/theater filter chips. The model uses its training knowledge
+(no live web), so a few are wrong (e.g. bare "קובי מימון" → music); `data/overrides.json`
+( `{"<display>": {"category","is_artist"}}` ) fixes those at page-build time.
+To re-classify everything, bump the `cls2:` cache prefix in the Worker.
+
 ## Known gotchas
 - **grayclub returned HTTP 403** when fetched from some datacenter networks (anti-bot).
   If Actions logs show 403, adjust request headers (realistic User-Agent / Accept-Language)
