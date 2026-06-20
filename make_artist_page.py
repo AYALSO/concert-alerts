@@ -75,8 +75,8 @@ a.follow{flex:none;background:#2563eb;color:#fff;text-decoration:none;
   background:#2563eb;color:#fff}
 </style></head><body>
 <header>
-  <h1>\U0001F3B5 בחר אמנים לעקוב אחריהם</h1>
-  <input id="q" placeholder="\U0001F50E חיפוש אמן…" autocomplete="off">
+  <h1>🎵 בחר אמנים לעקוב אחריהם</h1>
+  <input id="q" placeholder="🔎 חיפוש אמן…" autocomplete="off">
   <div id="count"></div>
   <div id="hint"></div>
 </header>
