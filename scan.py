@@ -17,14 +17,20 @@ import scrapers  # noqa: F401  (importing registers all scrapers)
 from core.engine import run_scan
 from scrapers.base import all_scrapers
 
-ISRAEL_TZ = timezone(timedelta(hours=3))  # good enough for weekday gating
+try:                                   # DST-aware Israel time (needs tzdata pkg)
+    from zoneinfo import ZoneInfo
+    ISRAEL_TZ = ZoneInfo("Asia/Jerusalem")
+except Exception:                      # fallback: fixed +3 (off by 1h in winter)
+    ISRAEL_TZ = timezone(timedelta(hours=3))
+
+# Active window: every day, 07:00–00:00 Israel time (i.e. skip 01:00–06:00).
+ACTIVE_HOURS = set(range(7, 24)) | {0}
 
 
-def should_scan_today() -> bool:
-    if os.environ.get("SKIP_SATURDAY", "true").lower() != "true":
+def should_scan_now() -> bool:
+    if os.environ.get("FORCE_SCAN", "").lower() == "true":   # manual run
         return True
-    now_il = datetime.now(timezone.utc).astimezone(ISRAEL_TZ)
-    return now_il.weekday() != 5  # Mon=0 .. Sat=5 .. Sun=6
+    return datetime.now(ISRAEL_TZ).hour in ACTIVE_HOURS
 
 
 def notify_worker(new_shows) -> None:
@@ -48,8 +54,8 @@ def notify_worker(new_shows) -> None:
 
 
 def main():
-    if not should_scan_today():
-        print("Saturday in Israel — skipping scan.")
+    if not should_scan_now():
+        print("Outside active hours (07:00–00:00 Israel) — skipping scan.")
         return
 
     new_shows, new_artists = run_scan(all_scrapers())
