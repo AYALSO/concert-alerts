@@ -1,19 +1,26 @@
 """Telegram interaction, processed once per scan run.
 
 No always-on server: every scheduled run calls process_updates(), which reads
-any commands the user sent since last time and updates the followed-artists
-list. Confirmations arrive on that run (trigger a manual run for instant).
+any commands/button taps the user sent since last time and updates the
+followed-artists list. Confirmations arrive on that run (trigger a manual run
+for instant).
 
 Commands:
   /start | /help          register this chat and show help
-  /artists                numbered list of discovered artists + follow state
-  /follow <number|name>   follow (by the number from /artists, or by name)
+  /artists                tap-to-follow buttons (paginated) for discovered artists
+  /follow <number|name>   follow by name (buttons are easier; kept for power users)
   /unfollow <number|name>
   /following              show who you currently follow
+  /upcoming               upcoming shows for the artists you follow
+
+Button taps arrive as callback_query updates and toggle follow in place,
+re-rendering the same message's keyboard.
 """
 from __future__ import annotations
 
+import hashlib
 import os
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -21,6 +28,10 @@ from core import storage
 from core.models import normalize_artist
 
 TELEGRAM_API = "https://api.telegram.org/bot{token}/{method}"
+
+ISRAEL_TZ = timezone(timedelta(hours=3))
+PAGE_SIZE = 8            # artist buttons per page
+TG_LIMIT = 3500         # safe chunk size (Telegram hard limit is 4096)
 
 
 def _token():
@@ -40,14 +51,77 @@ def _api(method, **payload):
         return None
 
 
-def _send(chat_id, text):
-    _api("sendMessage", chat_id=chat_id, text=text,
-         parse_mode="HTML", disable_web_page_preview=True)
+def _send(chat_id, text, reply_markup=None):
+    payload = dict(chat_id=chat_id, text=text, parse_mode="HTML",
+                   disable_web_page_preview=True)
+    if reply_markup is not None:
+        payload["reply_markup"] = reply_markup
+    _api("sendMessage", **payload)
 
 
+def _answer_callback(cq_id, text=None):
+    payload = {"callback_query_id": cq_id}
+    if text:
+        payload["text"] = text
+    _api("answerCallbackQuery", **payload)
+
+
+def _chunks(text):
+    """Split on line boundaries so no message exceeds Telegram's limit."""
+    out, buf = [], ""
+    for ln in text.split("\n"):
+        if buf and len(buf) + len(ln) + 1 > TG_LIMIT:
+            out.append(buf)
+            buf = ln
+        else:
+            buf = ln if not buf else f"{buf}\n{ln}"
+    if buf:
+        out.append(buf)
+    return out
+
+
+def _send_long(chat_id, text):
+    for chunk in _chunks(text):
+        _send(chat_id, chunk)
+
+
+# ---------------------------------------------------------------------------
+# Artist list + inline keyboard
+# ---------------------------------------------------------------------------
 def _numbered_artists():
     artists = storage.load("artists.json", {})
     return sorted(artists.items(), key=lambda kv: kv[1]["display"].lower())
+
+
+def _artist_hash(key):
+    """Short stable id for callback_data (artist keys can be long Hebrew)."""
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:12]
+
+
+def _build_keyboard(items, follows, page):
+    pages = max(1, (len(items) + PAGE_SIZE - 1) // PAGE_SIZE)
+    page = max(0, min(page, pages - 1))
+    start = page * PAGE_SIZE
+    rows = []
+    for key, info in items[start:start + PAGE_SIZE]:
+        mark = "✅" if key in follows else "⬜"
+        rows.append([{
+            "text": f"{mark} {info['display']}",
+            "callback_data": f"t:{page}:{_artist_hash(key)}",
+        }])
+    nav = []
+    if page > 0:
+        nav.append({"text": "« הקודם", "callback_data": f"p:{page-1}"})
+    nav.append({"text": f"{page+1}/{pages}", "callback_data": "x"})
+    if page < pages - 1:
+        nav.append({"text": "הבא »", "callback_data": f"p:{page+1}"})
+    rows.append(nav)
+    return {"inline_keyboard": rows}
+
+
+def _edit_keyboard(chat_id, message_id, items, follows, page):
+    _api("editMessageReplyMarkup", chat_id=chat_id, message_id=message_id,
+         reply_markup=_build_keyboard(items, follows, page))
 
 
 def _resolve(arg, items):
@@ -67,6 +141,45 @@ def _resolve(arg, items):
     return None
 
 
+# ---------------------------------------------------------------------------
+# Update handlers
+# ---------------------------------------------------------------------------
+def _handle_callback(cq, subs):
+    data = cq.get("data") or ""
+    msg = cq.get("message") or {}
+    chat_id = str(msg.get("chat", {}).get("id"))
+    message_id = msg.get("message_id")
+    cq_id = cq.get("id")
+    sub = subs["subscribers"].setdefault(chat_id, {"follows": []})
+    items = _numbered_artists()
+
+    if data.startswith("p:"):
+        page = int(data[2:] or 0)
+        _edit_keyboard(chat_id, message_id, items, set(sub["follows"]), page)
+        _answer_callback(cq_id)
+        return
+
+    if data.startswith("t:"):
+        _, page_s, h = data.split(":", 2)
+        page = int(page_s)
+        key = next((k for k, _ in items if _artist_hash(k) == h), None)
+        if not key:
+            _answer_callback(cq_id, "הרשימה התעדכנה, נסה /artists")
+            return
+        display = dict(items)[key]["display"]
+        if key in sub["follows"]:
+            sub["follows"].remove(key)
+            note = f"⬜ הוסר: {display}"
+        else:
+            sub["follows"].append(key)
+            note = f"✅ עוקב אחרי: {display}"
+        _edit_keyboard(chat_id, message_id, items, set(sub["follows"]), page)
+        _answer_callback(cq_id, note)
+        return
+
+    _answer_callback(cq_id)   # "x" page indicator / unknown
+
+
 def _handle_command(chat_id, text, subs):
     sub = subs["subscribers"].setdefault(chat_id, {"follows": []})
     cmd, _, arg = text.partition(" ")
@@ -74,54 +187,77 @@ def _handle_command(chat_id, text, subs):
 
     if cmd in ("/start", "/help"):
         _send(chat_id,
-              "\u05d1\u05e8\u05d5\u05da \u05d4\u05d1\u05d0! \U0001F3B6\n"
-              "\u05d0\u05ea\u05e8\u05d9\u05e2 \u05dc\u05da \u05e2\u05dc \u05d4\u05d5\u05e4\u05e2\u05d5\u05ea \u05d7\u05d3\u05e9\u05d5\u05ea \u05e9\u05dc \u05d4\u05d0\u05de\u05e0\u05d9\u05dd \u05e9\u05ea\u05d1\u05d7\u05e8.\n\n"
-              "/artists \u2013 \u05e8\u05e9\u05d9\u05de\u05ea \u05d4\u05d0\u05de\u05e0\u05d9\u05dd \u05e9\u05d4\u05ea\u05d2\u05dc\u05d5\n"
-              "/follow <\u05de\u05e1\u05e4\u05e8 \u05d0\u05d5 \u05e9\u05dd> \u2013 \u05e2\u05e7\u05d5\u05d1\n"
-              "/unfollow <\u05de\u05e1\u05e4\u05e8 \u05d0\u05d5 \u05e9\u05dd> \u2013 \u05d4\u05e4\u05e1\u05e7 \u05de\u05e2\u05e7\u05d1\n"
-              "/following \u2013 \u05de\u05d9 \u05e9\u05d0\u05ea\u05d4 \u05e2\u05d5\u05e7\u05d1 \u05d0\u05d7\u05e8\u05d9\u05d5")
+              "ברוך הבא! \U0001F3B6\n"
+              "אתריע לך על הופעות חדשות של האמנים שתבחר.\n\n"
+              "/artists – רשימת אמנים עם כפתורי מעקב\n"
+              "/following – מי שאתה עוקב אחריו\n"
+              "/upcoming – הופעות קרובות של האמנים שלך\n"
+              "/follow <שם> – מעקב לפי שם (או פשוט לחץ על כפתור)\n"
+              "/unfollow <שם> – הפסק מעקב")
         return
 
     items = _numbered_artists()
 
     if cmd == "/artists":
         if not items:
-            _send(chat_id, "\u05e2\u05d5\u05d3 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5 \u05d0\u05de\u05e0\u05d9\u05dd. \u05d4\u05e1\u05e8\u05d9\u05e7\u05d4 \u05d4\u05e8\u05d0\u05e9\u05d5\u05e0\u05d4 \u05ea\u05de\u05dc\u05d0 \u05d0\u05ea \u05d4\u05e8\u05e9\u05d9\u05de\u05d4.")
+            _send(chat_id, "עוד לא נמצאו אמנים. הסריקה הראשונה תמלא את הרשימה.")
             return
-        lines = ["\U0001F3A4 <b>\u05d0\u05de\u05e0\u05d9\u05dd \u05e9\u05d4\u05ea\u05d2\u05dc\u05d5:</b>"]
-        for i, (key, info) in enumerate(items, 1):
-            mark = "\u2705" if key in sub["follows"] else "\u2B1C\uFE0F"
-            lines.append(f"{i}. {mark} {info['display']}")
-        lines.append("\n\u05dc\u05de\u05e2\u05e7\u05d1: /follow <\u05de\u05e1\u05e4\u05e8>")
-        _send(chat_id, "\n".join(lines))
+        _send(chat_id,
+              "\U0001F3A4 <b>אמנים שהתגלו</b> — לחץ כדי לעקוב/לבטל:",
+              reply_markup=_build_keyboard(items, set(sub["follows"]), 0))
         return
 
     if cmd in ("/follow", "/unfollow"):
         key = _resolve(arg, items)
         if not key:
-            _send(chat_id, f"\u05dc\u05d0 \u05de\u05e6\u05d0\u05ea\u05d9: {arg}\n\u05e0\u05e1\u05d4 /artists")
+            _send(chat_id, f"לא מצאתי: {arg}\nנסה /artists")
             return
         display = dict(items).get(key, {}).get("display", arg)
         if cmd == "/follow":
             if key not in sub["follows"]:
                 sub["follows"].append(key)
-            _send(chat_id, f"\u2705 \u05e2\u05d5\u05e7\u05d1 \u05d0\u05d7\u05e8\u05d9 {display}")
+            _send(chat_id, f"✅ עוקב אחרי {display}")
         else:
             if key in sub["follows"]:
                 sub["follows"].remove(key)
-            _send(chat_id, f"\u2B1C\uFE0F \u05d4\u05d5\u05e4\u05e1\u05e7 \u05de\u05e2\u05e7\u05d1 \u05d0\u05d7\u05e8\u05d9 {display}")
+            _send(chat_id, f"⬜ הופסק מעקב אחרי {display}")
         return
 
     if cmd == "/following":
         if not sub["follows"]:
-            _send(chat_id, "\u05d0\u05d9\u05e0\u05da \u05e2\u05d5\u05e7\u05d1 \u05d0\u05d7\u05e8\u05d9 \u05d0\u05e3 \u05d0\u05de\u05df \u05e2\u05d3\u05d9\u05d9\u05df. /artists")
+            _send(chat_id, "אינך עוקב אחרי אף אמן עדיין. /artists")
             return
         follow_set = set(sub["follows"])
         names = [info["display"] for key, info in items if key in follow_set]
-        _send(chat_id, "\u05d0\u05ea\u05d4 \u05e2\u05d5\u05e7\u05d1 \u05d0\u05d7\u05e8\u05d9:\n" + "\n".join(f"\u2022 {n}" for n in names))
+        _send_long(chat_id, "אתה עוקב אחרי:\n" +
+                   "\n".join(f"• {n}" for n in names))
         return
 
-    _send(chat_id, "\u05dc\u05d0 \u05d4\u05d1\u05e0\u05ea\u05d9. \u05e0\u05e1\u05d4 /help")
+    if cmd == "/upcoming":
+        follow_set = set(sub["follows"])
+        if not follow_set:
+            _send(chat_id, "אינך עוקב אחרי אף אמן עדיין. /artists")
+            return
+        today = datetime.now(ISRAEL_TZ).strftime("%Y-%m-%d")
+        shows = storage.load("shows.json", {})
+        mine = [
+            s for s in shows.values()
+            if s.get("artist_key") in follow_set
+            and (not s.get("date_iso") or s["date_iso"] >= today)
+        ]
+        if not mine:
+            _send(chat_id, "אין כרגע הופעות קרובות לאמנים שאתה עוקב אחריהם.")
+            return
+        mine.sort(key=lambda s: s.get("date_iso") or s.get("date_raw") or "")
+        lines = ["\U0001F3B6 <b>הופעות קרובות:</b>"]
+        for s in mine:
+            lines.append(
+                f"• <b>{s['artist']}</b> — {s['date_raw']} · {s['venue']}\n  {s['url']}"
+            )
+        _send_long(chat_id, "\n".join(lines))
+        return
+
+    _send(chat_id, "לא הבנתי. נסה /help")
 
 
 def process_updates():
@@ -139,6 +275,9 @@ def process_updates():
 
     for upd in resp.get("result", []):
         offset = max(offset, upd["update_id"] + 1)
+        if "callback_query" in upd:
+            _handle_callback(upd["callback_query"], subs)
+            continue
         msg = upd.get("message") or upd.get("edited_message")
         if not msg:
             continue

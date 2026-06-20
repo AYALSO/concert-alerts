@@ -39,11 +39,18 @@ Each site = one module subclassing `Scraper` (see `scrapers/base.py`), returning
 
 | Source | Status | Notes |
 |---|---|---|
-| `example` | demo, ON | Fake data to prove the flow. Turn off with repo variable `EXAMPLE_SCRAPER=off`. |
-| `grayclub` | ✅ built | Parses grayclub.co.il homepage (carousels already contain all upcoming shows; the "load more" button only affects one list). Dedupe by `/event/<a>/<b>/` URL. **Verified 76 upcoming shows** against a live fetch on 2026-06-20. |
-| `barby` | ⏳ TODO | barby.co.il is a JavaScript SPA — homepage HTML is empty, shows load from an **API that must be discovered**. Needs direct network access to inspect. |
-| `zappa` | ⏳ TODO | "כל ההופעות החיות" page: `https://www.zappa-club.co.il/events/הופעות-חיות-51/`. Site **blocks automated access (robots)** from some fetchers; needs direct access / a real browser UA. |
+| `example` | demo, **OFF by default** | Fake data to prove the flow. Now off (workflow default `EXAMPLE_SCRAPER` flipped to `off` since a real scraper exists). Turn on with repo variable `EXAMPLE_SCRAPER=on`. |
+| `barby` | ✅ **built & verified** | `scrapers/barby.py`. Not HTML — hits the JSON API `GET https://barby.co.il/api/shows/find` → `returnShow.show[]` (`showId`, `showName`, `showDate` DD/MM/YYYY, `showTime`). Behind Cloudflare: must send full browser headers (UA + **Origin/Referer** are the key). URL = `https://www.barby.co.il/show/<showId>`. Verified **78 shows** live on 2026-06-20. |
+| `grayclub` | ⚠️ built but **temporarily disabled** | `scrapers/grayclub.py` works but its heading-walk mislabels ~30/80 entries with **city names** (תלאביב/יהוד/מודיעין) and a newsletter heading instead of the artist. Import is commented out in `scrapers/__init__.py` until the title selector is fixed against the live DOM. ~50 of 80 entries are correct. |
+| `zappa` | 🔬 **API cracked, paused** | zappa-club.co.il runs on **Eventim** infra and blocks plain curl/requests/WebFetch at the TLS layer (conn reset / tarpit). Bypass: `curl_cffi` with `impersonate="chrome"`. Don't scrape HTML (SSR only renders page 1 = 31 of ~170). Use the Eventim API — see recipe below. Build paused at user's request. |
 | `kupot_ta` + others | later | Kupot Tel Aviv etc., after the first three are solid. |
+
+### zappa / Eventim API recipe (for when we resume)
+Fetch with `curl_cffi` (`pip install curl_cffi`, `requests.get(url, impersonate="chrome")`) — plain `requests` is reset at the edge.
+- **Individual events** (what we want): `GET https://public-api.eventim.com/websearch/search/api/exploration/v1/products`
+  params: `webId=web__eventim-co-il`, `language=he`, `categories=הופעות חיות` (the category **name**, NOT the URL's "51"), `page=N` (1-indexed). ~20/page, `totalPages`/`totalResults` in the response.
+- Each product has: `attractions[0].name` (clean **artist**), `name` (event title), `link` (event URL on eventim.co.il), `productId` (stable id), `typeAttributes.liveEntertainment.location.{name,city}` (**venue**), `startDate` (confirm field when building).
+- `webId=web__eventim-co-il` is **all Eventim Israel** live shows (superset of zappa-club). To scope to just zappa-club, filter by `retail_partner=ZPE` (the site's affiliate) — **confirm it actually narrows results** before relying on it. Broadening to all Eventim Israel = more coverage but a scope change → ask the user first.
 
 ## Known gotchas
 - **grayclub returned HTTP 403** when fetched from some datacenter networks (anti-bot).
@@ -62,11 +69,28 @@ SKIP_SATURDAY=false python scan.py     # local test; prints instead of sending i
 ```
 Secrets/vars (GitHub → Settings → Secrets and variables → Actions):
 - secret `TELEGRAM_BOT_TOKEN` (required)
-- variable `EXAMPLE_SCRAPER=off` (optional, disables demo data)
+- variable `EXAMPLE_SCRAPER=on` (optional, re-enables demo data; default is now off)
+
+### Local dev environment (this Windows machine)
+- `python` is NOT on PATH (Store stub only). Real interpreter:
+  `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
+- Run scripts with `PYTHONUTF8=1` and `PYTHONPATH` = repo root so Hebrew prints and
+  `scrapers`/`core` import. Deps installed: requests, bs4, lxml, **curl_cffi** (for zappa).
+- Telegram token is only a GitHub Actions secret; not available locally. For a local
+  end-to-end run, put it in a gitignored `.env` and export it before `scan.py`.
+
+## Test / first-run notes
+- First scan with an empty `shows.json` treats **every** show as new, but alerts go
+  ONLY to followers — so with no subscribers it sends nothing and just populates data.
+- To demo an alert in one run: seed `artists.json` (so the user can `/follow` first) and
+  keep `shows.json` empty → the first scan's shows are "new" → the followed artist alerts.
+- The bot is not always-on: a `/command` or button tap is only processed during the next
+  workflow run (manual "Run workflow" = instant).
 
 ## Next steps
-1. Get direct access to barby + zappa (open network access locally, or verify from
-   Actions logs), then build `scrapers/barby.py` and `scrapers/zappa.py` the same way
-   as grayclub, verifying the extracted data each time.
-2. Optional: normalize tribute-show names for cleaner artist grouping.
-3. Add more sites (Kupot Tel Aviv, etc.).
+1. **End-to-end test in progress** (barby only, GitHub Actions). Confirm an alert lands.
+2. Fix `grayclub` title selector (skip city-section headings) and re-enable its import.
+3. Build `scrapers/zappa.py` from the Eventim API recipe above (curl_cffi). Decide with
+   the user: zappa-only (`retail_partner=ZPE`) vs all Eventim Israel.
+4. Optional: normalize tribute-show names for cleaner artist grouping.
+5. Add more sites (Kupot Tel Aviv, etc.).

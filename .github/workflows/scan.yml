@@ -27,7 +27,7 @@ jobs:
       - name: Run scan
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          EXAMPLE_SCRAPER: ${{ vars.EXAMPLE_SCRAPER || 'on' }}
+          EXAMPLE_SCRAPER: ${{ vars.EXAMPLE_SCRAPER || 'off' }}
           SKIP_SATURDAY: "true"
         run: python scan.py
 
