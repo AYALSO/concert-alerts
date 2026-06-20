@@ -141,6 +141,33 @@ def _resolve(arg, items):
     return None
 
 
+SEARCH_LIMIT = 24       # max artist buttons shown for one search
+
+
+def _search(query, items):
+    """Artists whose key/display contains the query; prefix matches first."""
+    q = normalize_artist(query)
+    if not q:
+        return []
+    starts, contains = [], []
+    for key, info in items:
+        disp = normalize_artist(info["display"])
+        if key.startswith(q) or disp.startswith(q):
+            starts.append((key, info))
+        elif q in key or q in disp:
+            contains.append((key, info))
+    return starts + contains
+
+
+def _build_search_kb(matches, follows):
+    rows = []
+    for key, info in matches[:SEARCH_LIMIT]:
+        mark = "✅" if key in follows else "⬜"
+        rows.append([{"text": f"{mark} {info['display']}",
+                      "callback_data": f"s:{_artist_hash(key)}"}])
+    return {"inline_keyboard": rows}
+
+
 # ---------------------------------------------------------------------------
 # Update handlers
 # ---------------------------------------------------------------------------
@@ -177,6 +204,25 @@ def _handle_callback(cq, subs):
         _answer_callback(cq_id, note)
         return
 
+    if data.startswith("s:"):                 # toggle from a search-result list
+        key = next((k for k, _ in items if _artist_hash(k) == data[2:]), None)
+        if not key:
+            _answer_callback(cq_id, "הרשימה התעדכנה, חפש שוב")
+            return
+        display = dict(items)[key]["display"]
+        if key in sub["follows"]:
+            sub["follows"].remove(key)
+            note = f"⬜ הוסר: {display}"
+        else:
+            sub["follows"].append(key)
+            note = f"✅ עוקב אחרי: {display}"
+        matches = _search(sub.get("last_query", ""), items)
+        if matches:                            # re-render same search, updated marks
+            _api("editMessageReplyMarkup", chat_id=chat_id, message_id=message_id,
+                 reply_markup=_build_search_kb(matches, set(sub["follows"])))
+        _answer_callback(cq_id, note)
+        return
+
     _answer_callback(cq_id)   # "x" page indicator / unknown
 
 
@@ -186,17 +232,17 @@ def _handle_command(chat_id, text, subs):
     cmd = cmd.lower()
 
     if cmd == "/start":
-        # Greet + immediately open the artist picker so the user can choose who
-        # to follow right away (the main thing the bot is for).
+        # Greet + explain search (the catalogue is too big to page through) and
+        # still offer the browsable list.
         _send(chat_id,
               "ברוך הבא! \U0001F3B6\n"
-              "בחר מהרשימה את האמנים שתרצה לעקוב אחריהם — "
-              "ואתריע לך על כל הופעה חדשה שלהם.\n"
-              "(/help לכל הפקודות)")
+              "אתריע לך על כל הופעה חדשה של האמנים שתבחר.\n\n"
+              "\U0001F50E פשוט הקלד שם של אמן (או חלק ממנו) כדי לחפש — "
+              "לחיצה על תוצאה = מעקב/ביטול.")
         items = _numbered_artists()
         if items:
             _send(chat_id,
-                  "\U0001F3A4 <b>אמנים שהתגלו</b> — לחץ כדי לעקוב/לבטל:",
+                  f"\U0001F3A4 {len(items)} אמנים בקטלוג. הקלד שם לחיפוש, או דפדף:",
                   reply_markup=_build_keyboard(items, set(sub["follows"]), 0))
         else:
             _send(chat_id, "עוד לא נמצאו אמנים. הסריקה הראשונה תמלא את הרשימה.")
@@ -206,11 +252,11 @@ def _handle_command(chat_id, text, subs):
         _send(chat_id,
               "ברוך הבא! \U0001F3B6\n"
               "אתריע לך על הופעות חדשות של האמנים שתבחר.\n\n"
-              "/artists – רשימת אמנים עם כפתורי מעקב\n"
+              "\U0001F50E הקלד שם של אמן כדי לחפש ולעקוב (הדרך המהירה)\n"
+              "/artists – דפדוף בכל האמנים\n"
               "/following – מי שאתה עוקב אחריו\n"
               "/upcoming – הופעות קרובות של האמנים שלך\n"
-              "/follow <שם> – מעקב לפי שם (או פשוט לחץ על כפתור)\n"
-              "/unfollow <שם> – הפסק מעקב")
+              "/follow <שם> · /unfollow <שם> – מעקב לפי שם")
         return
 
     items = _numbered_artists()
@@ -276,7 +322,20 @@ def _handle_command(chat_id, text, subs):
         _send_long(chat_id, "\n".join(lines))
         return
 
-    _send(chat_id, "לא הבנתי. נסה /help")
+    # Any other plain text is treated as an artist search.
+    if text and not text.startswith("/"):
+        sub["last_query"] = text
+        matches = _search(text, items)
+        if not matches:
+            _send(chat_id, f"\U0001F50E לא נמצאו אמנים עבור \"{text}\". נסה שם אחר.")
+            return
+        more = "" if len(matches) <= SEARCH_LIMIT else f" (מציג {SEARCH_LIMIT} ראשונים)"
+        _send(chat_id,
+              f"\U0001F50E תוצאות עבור \"{text}\"{more} — לחץ כדי לעקוב/לבטל:",
+              reply_markup=_build_search_kb(matches, set(sub["follows"])))
+        return
+
+    _send(chat_id, "הקלד שם של אמן כדי לחפש, או /help")
 
 
 def process_updates():
