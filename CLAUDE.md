@@ -8,30 +8,43 @@ project is, the decisions already made, what's done, and what's left.
 Alert the user on Telegram whenever artists they follow announce **new** shows on
 Israeli ticketing/venue sites. Runs free, automatically, in the cloud.
 
-## How it works (pipeline)
-Every hour (GitHub Actions cron, **skips Saturday** by Israel time):
-1. `bot.process_updates()` — apply any `/follow` `/unfollow` the user sent on Telegram.
-2. `engine.run_scan()` — run every registered scraper, dedupe, detect shows not seen
-   in the previous scan, and grow the artist catalogue (deduped by normalized name).
-3. For each new show, send a Telegram alert **only** to users following that artist.
-4. The workflow commits the updated `data/*.json` back to the repo (this is the memory).
+## How it works (architecture) — two free cloud pieces
+**1. Hourly scan — GitHub Actions** (`.github/workflows/scan.yml`; cron, skips Saturday
+unless a manual run passes `force=true`). Runs `scan.py`:
+- `engine.run_scan()` runs every registered scraper, dedupes by `show_id`, detects shows
+  not seen in the previous scan, grows the artist catalogue, commits `data/*.json`.
+- New shows are POSTed to the Cloudflare Worker `/notify`, which alerts followers.
+- `make_artist_page.py` regenerates `docs/index.html` (the Mini App), committed too.
+
+**2. Real-time bot — Cloudflare Worker** (`worker/src/index.js`, a Telegram webhook —
+instant, because an Actions cron can't reply in real time):
+- Instant `/start`, in-chat search, and the **Mini App** (opened via an inline button)
+  for picking artists. `/clear` resets follows.
+- Follows live in Cloudflare **KV** (key `subscribers`), NOT the repo. The Mini App reads
+  / writes them via `/api/follows` (GET/POST), authenticated by Telegram `initData` (HMAC).
+- `/notify` (called by the scan) pushes alerts to followers.
+- The catalogue is read from the public repo's raw `data/*.json`. Mini App is served by
+  **GitHub Pages** (`/docs`, repo is public). Bot username: `@Tunaconcerts_bot`.
 
 ## Locked decisions (do not relitigate without asking the user)
-- **Notifications: Telegram only.** Works identically on iPhone + Android, free push.
-  (Push-app and email were intentionally dropped to stay simple/free.)
-- **Hosting: GitHub Actions only**, free. Hourly cron + manual "Run workflow" button.
-- **One user-facing setting:** follow/unfollow artists via the Telegram bot. The artist
-  list grows automatically as new artists are discovered; no other config.
-- **Artist grouping:** each artist is stored once (by `artist_key` = normalized name);
-  every show is a separate record under it. So an artist with 2 dates appears once in
-  the list, and the user gets alerts for every new date. This is already implemented.
+- **Notifications: Telegram only.**
+- **Hosting: free tier only.** Scan = GitHub Actions; bot = Cloudflare Worker (always-on
+  webhook); Mini App = GitHub Pages; follows = Cloudflare KV.
+- **One user flow:** open the bot → pick artists in the Mini App (or type to search) →
+  get a push for each new show. Catalogue grows automatically.
+- **Artist grouping:** stored once per `artist_key` (normalized, *cleaned* name); every
+  show is a separate record. `core/artist_names.clean_artist` extracts the artist from
+  marketing titles (e.g. "טיפקס- מופע צהרים" → "טיפקס"); full title kept in `Show.title`.
 
 ## Data model (`core/models.py`)
-`Show`: artist, date_raw, venue, url, source, date_iso (optional), scraped_at.
-- `artist_key` = lowercased, punctuation-stripped name → used for grouping/dedupe.
-- `show_id` = stable hash of (artist_key, date, venue, source) → used to detect "new".
-Storage (`data/`): `shows.json` (known shows), `artists.json` (catalogue),
-`favorites.json` (subscribers + their follows), `state.json` (telegram offset).
+`Show`: artist (clean), date_raw, venue, url, source, date_iso, `title` (full show name),
+scraped_at.
+- `artist_key` = normalized cleaned name → grouping + the bot's follow keys.
+- `show_id` = stable hash of **(source, event URL)** → detects "new" (URL is unique +
+  stable per show). Kupat multi-date shows append `#<date>` to the url so each date is
+  distinct. (Hash in `core/models.py` must match the JS `artistHash` in the Worker.)
+Storage: repo `data/shows.json` + `data/artists.json` (committed by the scan). Follows
+live in **Cloudflare KV** — the repo's `favorites.json`/`state.json` are legacy/unused.
 
 ## Scrapers (`scrapers/`)
 Each site = one module subclassing `Scraper` (see `scrapers/base.py`), returning
@@ -43,7 +56,8 @@ Each site = one module subclassing `Scraper` (see `scrapers/base.py`), returning
 | `barby` | ✅ **built & verified** | `scrapers/barby.py`. Not HTML — hits the JSON API `GET https://barby.co.il/api/shows/find` → `returnShow.show[]` (`showId`, `showName`, `showDate` DD/MM/YYYY, `showTime`). Behind Cloudflare: must send full browser headers (UA + **Origin/Referer** are the key). URL = `https://www.barby.co.il/show/<showId>`. Artist name is cleaned via `core/artist_names.clean_artist`; full title kept in `Show.title`. Verified **78 shows / 52 artists** live on 2026-06-20. |
 | `eventim` | ✅ **built & verified** | `scrapers/eventim.py`. Covers zappa-club **and all Eventim Israel venues** (זאפה, היכל התרבות, אמפי קיסריה, …). zappa-club is an Eventim white-label; both block plain HTTP at the TLS layer → use `curl_cffi` `impersonate="chrome"`. Reads the Eventim API (recipe below); `attractions[0].name` is already a clean artist. Verified **269 shows / 155 artists** live on 2026-06-20. |
 | `grayclub` | ✅ **built & verified** | `scrapers/grayclub.py`. Card-based: iterates `div.article-list` (each card = `<h3>` title + DD.MM.YYYY date + one `/event/<a>/<b>/` link). Drives off `<h3>` (the title), NOT the city-section `<h2>` (תלאביב/יהוד/מודיעין) — that was the old bug. Dedupe by event path; `clean_artist` applied. Verified **75 shows / 69 artists** live on 2026-06-20. |
-| `kupot_ta` + others | later | Kupot Tel Aviv etc., after the first three are solid. |
+| `kupat` | ✅ **built & verified** | `scrapers/kupat.py`. Kupat Tel Aviv (WordPress aggregator). Homepage cards (`article.item-show`, skip `external_url` promos) → each show's detail page (`ul.show-details-list`). Handles single-date (labelled "תאריך"/"מיקום") and multi-date layouts (one "DD/MM venue" row per date). A tour under ONE url with many dates/cities → a Show per date+venue (e.g. כשאמא באה הנה = 10); url gets `#<date>` so each is distinct. Years inferred; fetched fresh each scan (~46 detail fetches). Verified **70 date-events / 44 artists** on 2026-06-20. |
+| (others) | not planned | **Cross-source dedup deferred:** a live check found 0 same-artist+same-date overlaps across barby/eventim/gray/kupat, so nothing to merge yet. Kupat's linked sites (comy/brennerock/amphi) are NOT scraped — their shows already appear on Kupat's page. |
 
 ### Eventim API recipe (as built in `scrapers/eventim.py`)
 Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `requests` is reset at the edge.
@@ -72,32 +86,36 @@ Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `re
 ## Commands
 ```bash
 pip install -r requirements.txt
-SKIP_SATURDAY=false python scan.py     # local test; prints instead of sending if no token
+SKIP_SATURDAY=false PYTHONPATH=. python scan.py   # local scan (POSTs new shows to the Worker if WORKER_NOTIFY_URL+NOTIFY_SECRET are set)
+python make_reports.py        # reports/<source>.html — eyeball scraped data (gitignored)
+python make_artist_page.py    # regenerate docs/index.html (the Mini App)
 ```
-Secrets/vars (GitHub → Settings → Secrets and variables → Actions):
-- secret `TELEGRAM_BOT_TOKEN` (required)
-- variable `EXAMPLE_SCRAPER=on` (optional, re-enables demo data; default is now off)
+GitHub Actions (repo → Settings → Secrets and variables → Actions):
+- secret `NOTIFY_SECRET` (shared with the Worker) + variable `WORKER_NOTIFY_URL` (Worker `/notify`).
+- variable `EXAMPLE_SCRAPER=on` to re-enable demo data (default off).
+- The Telegram **bot token lives on the Worker**, not Actions.
 
-### Local dev environment (this Windows machine)
-- `python` is NOT on PATH (Store stub only). Real interpreter:
-  `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
-- Run scripts with `PYTHONUTF8=1` and `PYTHONPATH` = repo root so Hebrew prints and
-  `scrapers`/`core` import. Deps installed: requests, bs4, lxml, **curl_cffi** (for zappa).
-- Telegram token is only a GitHub Actions secret; not available locally. For a local
-  end-to-end run, put it in a gitignored `.env` and export it before `scan.py`.
+### Cloud deployment / Worker ops
+- **Worker** `concert-alerts-bot` (Cloudflare acct `Ayalsolav@gmail.com`, id `0d00c270…`),
+  URL `https://concert-alerts-bot.tunaconcerts.workers.dev`. Deploy: `cd worker && npx wrangler deploy`
+  with `CLOUDFLARE_API_TOKEN` in env. KV namespace `SUBS` holds follows (key `subscribers`).
+- **Worker secrets** (`wrangler secret put NAME`, pipe value via `printf '%s'` — a trailing
+  newline breaks them!): `BOT_TOKEN`, `WEBHOOK_SECRET`, `NOTIFY_SECRET`.
+- **Telegram webhook** → `…/tg` with `secret_token=WEBHOOK_SECRET` (Bot API `setWebhook`).
+- **GitHub Pages** serves `/docs` (Mini App). Bot opens it via an **inline** web_app button
+  AND a persistent **menu button** (set via `setChatMenuButton`) — both pass `initData`
+  (a reply-keyboard web_app does NOT, which is why those are avoided). The page calls
+  `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
 
-## Test / first-run notes
-- First scan with an empty `shows.json` treats **every** show as new, but alerts go
-  ONLY to followers — so with no subscribers it sends nothing and just populates data.
-- To demo an alert in one run: seed `artists.json` (so the user can `/follow` first) and
-  keep `shows.json` empty → the first scan's shows are "new" → the followed artist alerts.
-- The bot is not always-on: a `/command` or button tap is only processed during the next
-  workflow run (manual "Run workflow" = instant).
+### Local dev (this Windows machine)
+- `python` not on PATH → `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
+  Node `C:\Program Files\nodejs`; `gh` `C:\Program Files\GitHub CLI\gh.exe`.
+- Run with `PYTHONUTF8=1` + `PYTHONPATH`=repo root (Hebrew output + `scrapers`/`core` imports).
+- **The PowerShell tool is blocked by antivirus** (`EPERM uv_spawn powershell.exe`) — use Bash.
+- Local secrets in a gitignored `.env`: `TELEGRAM_BOT_TOKEN`, `CLOUDFLARE_API_TOKEN`.
 
-## Next steps
-1. **End-to-end test in progress** (barby only, GitHub Actions). Confirm an alert lands.
-2. Fix `grayclub` title selector (skip city-section headings) and re-enable its import.
-3. Build `scrapers/zappa.py` from the Eventim API recipe above (curl_cffi). Decide with
-   the user: zappa-only (`retail_partner=ZPE`) vs all Eventim Israel.
-4. Optional: normalize tribute-show names for cleaner artist grouping.
-5. Add more sites (Kupot Tel Aviv, etc.).
+## Next steps (optional)
+1. **Artist-list cleanup via Claude** (the planned cheap pass): drop non-artist events
+   (plays/festivals, "מי רצח את…") and perfect tricky names. Needs an Anthropic API key.
+2. Cross-source dedup only if real overlaps appear (a live check found none today).
+3. More sources only if they add dated, non-duplicate coverage.
