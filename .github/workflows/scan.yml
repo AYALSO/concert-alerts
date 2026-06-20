@@ -37,10 +37,13 @@ jobs:
           SKIP_SATURDAY: ${{ inputs.force && 'false' || 'true' }}
         run: python scan.py
 
-      - name: Commit data changes
+      - name: Build searchable artist page
+        run: python make_artist_page.py
+
+      - name: Commit data + page changes
         run: |
           git config user.name "concert-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data
-          git diff --staged --quiet || git commit -m "update data [skip ci]"
+          git add data docs
+          git diff --staged --quiet || git commit -m "update data + page [skip ci]"
           git push

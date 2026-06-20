@@ -232,6 +232,16 @@ def _handle_command(chat_id, text, subs):
     cmd = cmd.lower()
 
     if cmd == "/start":
+        if arg.startswith("f_"):            # follow deep-link from the web page
+            items = _numbered_artists()
+            key = next((k for k, _ in items if _artist_hash(k) == arg[2:]), None)
+            if key:
+                if key not in sub["follows"]:
+                    sub["follows"].append(key)
+                _send(chat_id, f"✅ עוקב אחרי {dict(items)[key]['display']}")
+            else:
+                _send(chat_id, "לא מצאתי את האמן — נסה שוב מהאתר.")
+            return
         # Greet + explain search (the catalogue is too big to page through) and
         # still offer the browsable list.
         _send(chat_id,
