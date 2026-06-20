@@ -45,6 +45,9 @@ def clean_artist(raw: str, extra_strip: tuple[str, ...] = ()) -> str:
     s = (raw or "").translate({ord(c): None for c in _ZW})
     s = re.sub(r"\s+", " ", s).strip()
 
+    # drop a leading anniversary prefix: "15 שנות אלון עדר" -> "אלון עדר"
+    s = re.sub(r"^\d+\s+(?:שנות|שנים|שנה)\b\s*ל?\s*", "", s)
+
     m = _SEP.search(s)
     if m:
         s = s[:m.start()]
