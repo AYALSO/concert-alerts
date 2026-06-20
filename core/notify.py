@@ -40,10 +40,12 @@ def send_message(chat_id, text: str, disable_preview: bool = False) -> bool:
 
 
 def format_show(show: Show) -> str:
-    return "\n".join([
-        f"\U0001F3B5 <b>{show.artist}</b> \u2014 \u05d4\u05d5\u05e4\u05e2\u05d4 \u05d7\u05d3\u05e9\u05d4!",
+    lines = [f"\U0001F3B5 <b>{show.artist}</b> \u2014 \u05d4\u05d5\u05e4\u05e2\u05d4 \u05d7\u05d3\u05e9\u05d4!"]
+    if show.title and show.title != show.artist:
+        lines.append(show.title)                       # full show title, for context
+    lines += [
         f"\U0001F4C5 {show.date_raw}",
         f"\U0001F4CD {show.venue}",
         f"\U0001F517 {show.url}",
-        f"\u05de\u05e7\u05d5\u05e8: {show.source}",
-    ])
+    ]
+    return "\n".join(lines)

@@ -268,8 +268,10 @@ def _handle_command(chat_id, text, subs):
         mine.sort(key=lambda s: s.get("date_iso") or s.get("date_raw") or "")
         lines = ["\U0001F3B6 <b>הופעות קרובות:</b>"]
         for s in mine:
+            title = s.get("title")
+            extra = f"\n  {title}" if title and title != s["artist"] else ""
             lines.append(
-                f"• <b>{s['artist']}</b> — {s['date_raw']} · {s['venue']}\n  {s['url']}"
+                f"• <b>{s['artist']}</b>{extra}\n  {s['date_raw']} · {s['venue']}\n  {s['url']}"
             )
         _send_long(chat_id, "\n".join(lines))
         return

@@ -40,25 +40,32 @@ Each site = one module subclassing `Scraper` (see `scrapers/base.py`), returning
 | Source | Status | Notes |
 |---|---|---|
 | `example` | demo, **OFF by default** | Fake data to prove the flow. Now off (workflow default `EXAMPLE_SCRAPER` flipped to `off` since a real scraper exists). Turn on with repo variable `EXAMPLE_SCRAPER=on`. |
-| `barby` | ✅ **built & verified** | `scrapers/barby.py`. Not HTML — hits the JSON API `GET https://barby.co.il/api/shows/find` → `returnShow.show[]` (`showId`, `showName`, `showDate` DD/MM/YYYY, `showTime`). Behind Cloudflare: must send full browser headers (UA + **Origin/Referer** are the key). URL = `https://www.barby.co.il/show/<showId>`. Verified **78 shows** live on 2026-06-20. |
+| `barby` | ✅ **built & verified** | `scrapers/barby.py`. Not HTML — hits the JSON API `GET https://barby.co.il/api/shows/find` → `returnShow.show[]` (`showId`, `showName`, `showDate` DD/MM/YYYY, `showTime`). Behind Cloudflare: must send full browser headers (UA + **Origin/Referer** are the key). URL = `https://www.barby.co.il/show/<showId>`. Artist name is cleaned via `core/artist_names.clean_artist`; full title kept in `Show.title`. Verified **78 shows / 52 artists** live on 2026-06-20. |
+| `eventim` | ✅ **built & verified** | `scrapers/eventim.py`. Covers zappa-club **and all Eventim Israel venues** (זאפה, היכל התרבות, אמפי קיסריה, …). zappa-club is an Eventim white-label; both block plain HTTP at the TLS layer → use `curl_cffi` `impersonate="chrome"`. Reads the Eventim API (recipe below); `attractions[0].name` is already a clean artist. Verified **269 shows / 155 artists** live on 2026-06-20. |
 | `grayclub` | ⚠️ built but **temporarily disabled** | `scrapers/grayclub.py` works but its heading-walk mislabels ~30/80 entries with **city names** (תלאביב/יהוד/מודיעין) and a newsletter heading instead of the artist. Import is commented out in `scrapers/__init__.py` until the title selector is fixed against the live DOM. ~50 of 80 entries are correct. |
-| `zappa` | 🔬 **API cracked, paused** | zappa-club.co.il runs on **Eventim** infra and blocks plain curl/requests/WebFetch at the TLS layer (conn reset / tarpit). Bypass: `curl_cffi` with `impersonate="chrome"`. Don't scrape HTML (SSR only renders page 1 = 31 of ~170). Use the Eventim API — see recipe below. Build paused at user's request. |
 | `kupot_ta` + others | later | Kupot Tel Aviv etc., after the first three are solid. |
 
-### zappa / Eventim API recipe (for when we resume)
-Fetch with `curl_cffi` (`pip install curl_cffi`, `requests.get(url, impersonate="chrome")`) — plain `requests` is reset at the edge.
-- **Individual events** (what we want): `GET https://public-api.eventim.com/websearch/search/api/exploration/v1/products`
-  params: `webId=web__eventim-co-il`, `language=he`, `categories=הופעות חיות` (the category **name**, NOT the URL's "51"), `page=N` (1-indexed). ~20/page, `totalPages`/`totalResults` in the response.
-- Each product has: `attractions[0].name` (clean **artist**), `name` (event title), `link` (event URL on eventim.co.il), `productId` (stable id), `typeAttributes.liveEntertainment.location.{name,city}` (**venue**), `startDate` (confirm field when building).
-- `webId=web__eventim-co-il` is **all Eventim Israel** live shows (superset of zappa-club). To scope to just zappa-club, filter by `retail_partner=ZPE` (the site's affiliate) — **confirm it actually narrows results** before relying on it. Broadening to all Eventim Israel = more coverage but a scope change → ask the user first.
+### Eventim API recipe (as built in `scrapers/eventim.py`)
+Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `requests` is reset at the edge.
+- **Individual events**: `GET https://public-api.eventim.com/websearch/search/api/exploration/v1/products`
+  params: `webId=web__eventim-co-il`, `language=he`, `categories=הופעות חיות` (the category **name**, NOT the URL's "51"), `page=N` (1-indexed, ~20/page). `totalPages` is unreliable — paginate until a page adds no new `productId`.
+- Each product: `attractions[0].name` (clean **artist**), `name` (event title → `Show.title`), `link` (event URL), `productId` (stable id), `typeAttributes.liveEntertainment.location.{name,city}` (**venue**), `typeAttributes.liveEntertainment.startDate` (ISO datetime).
+- `web__eventim-co-il` = **all Eventim Israel** live shows (we chose this over zappa-only for max coverage). To narrow to just zappa-club, add `retail_partner=ZPE` — confirm it actually narrows before relying on it.
+
+### Artist-name unification (`core/artist_names.py`)
+`clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
 
 ## Known gotchas
 - **grayclub returned HTTP 403** when fetched from some datacenter networks (anti-bot).
   If Actions logs show 403, adjust request headers (realistic User-Agent / Accept-Language)
   before assuming the scraper is broken. The engine already isolates per-scraper errors,
   so one failing site never stops the others.
-- Tribute/cover shows (מחווה / "FEVER", "Moonlight", etc.) come through as the **show
-  name**, not the underlying artist. Grouping still works; a later pass can clean names.
+- `clean_artist` (above) now extracts the artist from most show titles, but genuine
+  edge cases (festivals, tributes like "35 שנים ל…", "15 שנות X") have no single
+  artist and pass through as-is. Acceptable; the full title is preserved in `Show.title`.
+- **Review tool:** `python make_reports.py` writes `reports/<source>.html` (one row per
+  show: clean artist · full title · date · venue · link) so scraped data can be eyeballed.
+  Run it whenever adding/fixing a scraper. (`reports/` is gitignored.)
 - Sites change layout → scrapers break. When adding/fixing a scraper, fetch the live
   page first and confirm selectors before committing.
 

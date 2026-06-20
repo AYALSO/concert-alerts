@@ -20,6 +20,7 @@ from typing import List
 
 import requests
 
+from core.artist_names import clean_artist
 from core.models import Show
 from scrapers.base import Scraper, register
 
@@ -78,13 +79,15 @@ class BarbyScraper(Scraper):
 
             if show_id in shows:
                 continue
+            artist = clean_artist(name)
             shows[show_id] = Show(
-                artist=name,
+                artist=artist,
                 date_raw=date_raw,
                 venue=VENUE,
                 url=f"https://www.barby.co.il/show/{show_id}",
                 source=self.name,
                 date_iso=date_iso,
+                title=name if name != artist else None,
             )
 
         return list(shows.values())

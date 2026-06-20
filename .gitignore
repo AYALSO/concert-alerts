@@ -4,3 +4,6 @@ __pycache__/
 
 # Local Claude Code settings (machine-specific; not shared)
 .claude/settings.local.json
+
+# Generated review reports
+reports/
