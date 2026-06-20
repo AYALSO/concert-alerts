@@ -33,6 +33,12 @@ export default {
     }
     // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
     if (url.pathname === "/api/follows") return handleApi(request, url, env);
+    // Title classifier for the scan (Workers AI, cached). Secret-protected.
+    if (url.pathname === "/classify" && request.method === "POST") {
+      const b = await request.json().catch(() => ({}));
+      if (b.secret !== env.NOTIFY_SECRET) return new Response("unauthorized", { status: 401 });
+      return Response.json(await classifyTitles(b.titles || [], env));
+    }
     return new Response("concert-alerts bot up");
   },
 };
@@ -152,6 +158,65 @@ async function upcomingText(followSet) {
     lines.push(`• <b>${esc(s.artist)}</b>${extra}\n  ${esc(s.date_raw)} · ${esc(s.venue)}\n  ${s.url}`);
   }
   return lines.join("\n");
+}
+
+// ---- title classification (Workers AI, cached in KV) ------------------------
+const AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const CLS_CATS = ["music", "standup", "theater"];
+const CLS_SYS =
+  "You classify Israeli live-event titles (mostly Hebrew) for a concert-alert app. " +
+  "Use what you know about the actual performer/show. For EACH numbered title return " +
+  "one JSON object with: " +
+  '"is_artist" (true if it is a show by a specific named performer — a musician/singer/' +
+  "band, a stand-up comedian, or a named theater/dance/ballet/children's act; false for " +
+  'festivals, expos, conferences, parties, generic or venue events like "אקספו מכביה סיטי"), ' +
+  '"name" (the real performer/show name ONLY, cleaned of tour/album/venue/extra words, ' +
+  'in the original language), ' +
+  '"category" exactly one of: "music" (concerts, singers, bands), "standup" (stand-up ' +
+  'comedy), "theater" (plays, musicals, ballet, dance, and children\'s shows). ' +
+  "Reply with ONLY a JSON array of these objects, in the same order, nothing else.";
+
+async function classifyTitles(titles, env) {
+  const out = {};
+  const todo = [];
+  for (const t of titles) {
+    if (!t) continue;
+    const cached = await env.SUBS.get("cls2:" + (await artistHash(t)), "json");
+    if (cached) out[t] = cached;
+    else if (!todo.includes(t)) todo.push(t);
+  }
+  for (let i = 0; i < todo.length; i += 12) {
+    const batch = todo.slice(i, i + 12);
+    const list = batch.map((t, j) => `${j + 1}. ${t.replace(/\s+/g, " ").slice(0, 140)}`).join("\n");
+    let arr = [];
+    try {
+      const r = await env.AI.run(AI_MODEL, {
+        messages: [{ role: "system", content: CLS_SYS }, { role: "user", content: list }],
+        max_tokens: 2400, temperature: 0,
+      });
+      const resp = r.response;                       // may be a parsed array OR a string
+      if (Array.isArray(resp)) arr = resp;
+      else if (resp && Array.isArray(resp.result)) arr = resp.result;
+      else if (typeof resp === "string") arr = JSON.parse((resp.match(/\[[\s\S]*\]/) || ["[]"])[0]);
+    } catch (e) {
+      console.log("classify error", e);
+    }
+    for (let j = 0; j < batch.length; j++) {
+      const a = arr[j];
+      if (a && typeof a === "object") {           // valid AI result -> cache it
+        const c = {
+          is_artist: a.is_artist !== false,
+          name: (a.name || batch[j]).toString().trim() || batch[j],
+          category: CLS_CATS.includes(a.category) ? a.category : "music",
+        };
+        out[batch[j]] = c;
+        await env.SUBS.put("cls2:" + (await artistHash(batch[j])), JSON.stringify(c));
+      } else {                                     // AI failed -> default, do NOT cache (retry later)
+        out[batch[j]] = { is_artist: true, name: batch[j], category: "music" };
+      }
+    }
+  }
+  return out;
 }
 
 // ---- update handling ---------------------------------------------------------

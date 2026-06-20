@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, timezone
 import requests
 
 import scrapers  # noqa: F401  (importing registers all scrapers)
+from core import storage
 from core.engine import run_scan
 from scrapers.base import all_scrapers
 
@@ -53,6 +54,39 @@ def notify_worker(new_shows) -> None:
         print(f"[notify] error: {e}")
 
 
+def classify_artists(cap: int = 60) -> None:
+    """Annotate artists.json with {category, is_artist} via the Worker's AI classifier
+    (Workers AI, cached). Only un-annotated artists are sent; capped per run."""
+    base = os.environ.get("WORKER_NOTIFY_URL")
+    secret = os.environ.get("NOTIFY_SECRET")
+    if not (base and secret):
+        return
+    classify_url = base.rsplit("/", 1)[0] + "/classify"
+    artists = storage.load("artists.json", {})
+    by_disp = {}
+    for k, info in artists.items():
+        by_disp.setdefault(info["display"], k)
+    todo = [d for d, k in by_disp.items() if not artists[k].get("category")][:cap]
+    if not todo:
+        return
+    done = 0
+    for i in range(0, len(todo), 12):
+        try:
+            res = requests.post(classify_url, timeout=120,
+                                json={"secret": secret, "titles": todo[i:i + 12]}).json()
+        except requests.RequestException as e:
+            print(f"[classify] error: {e}")
+            break
+        for disp, c in res.items():
+            k = by_disp.get(disp)
+            if k and isinstance(c, dict) and c.get("category"):
+                artists[k]["category"] = c["category"]
+                artists[k]["is_artist"] = bool(c.get("is_artist", True))
+                done += 1
+    storage.save("artists.json", artists)
+    print(f"[classify] annotated {done} artists")
+
+
 def main():
     if not should_scan_now():
         print("Outside active hours (07:00–00:00 Israel) — skipping scan.")
@@ -61,6 +95,7 @@ def main():
     new_shows, new_artists = run_scan(all_scrapers())
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
     notify_worker(new_shows)
+    classify_artists()
 
 
 if __name__ == "__main__":

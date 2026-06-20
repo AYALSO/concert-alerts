@@ -33,11 +33,24 @@ def _sort_key(a):
 
 
 def _page(artists: dict) -> str:
+    # manual corrections win over the AI classification (data/overrides.json:
+    # { "<display name>": {"category": "...", "is_artist": true|false} })
+    ov = storage.load("overrides.json", {})
+
+    def cat_of(info):
+        return ov.get(info["display"], {}).get("category") or info.get("category", "music")
+
+    def keep(info):
+        o = ov.get(info["display"], {})
+        return o.get("is_artist", info.get("is_artist", True))
+
     data = sorted(
         ({"n": info["display"],
           "h": _artist_hash(key),
+          "c": cat_of(info),
           "s": " · ".join(_SRC_LABEL.get(s, s) for s in info.get("sources", []))}
-         for key, info in artists.items()),
+         for key, info in artists.items()
+         if keep(info)),                           # drop AI-flagged (or overridden) non-artists
         key=_sort_key,
     )
     blob = json.dumps(data, ensure_ascii=False)
@@ -62,6 +75,10 @@ h1{font-size:18px;margin:0 0 10px}
   background:#141b30;color:#fff;outline:none}
 #count{color:#8b93a7;font-size:13px;margin:8px 2px 0}
 #hint{color:#8b93a7;font-size:13px;margin:2px 2px 0}
+.chips{display:flex;gap:8px;margin:10px 0 2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chip{flex:none;padding:7px 14px;border-radius:999px;border:1px solid #2a3350;background:#141b30;
+  color:#cdd3e0;font-size:14px;white-space:nowrap}
+.chip.on{background:#2563eb;border-color:#2563eb;color:#fff;font-weight:600}
 ul{list-style:none;margin:0;padding:8px 12px 96px}
 li{display:flex;align-items:center;gap:12px;padding:12px 10px;border-bottom:1px solid #1c2438}
 li.sel{cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -81,6 +98,12 @@ a.follow{flex:none;background:#2563eb;color:#fff;text-decoration:none;
 <header>
   <div class="row1"><h1>🎵 בחר אמנים לעקוב אחריהם</h1><button id="clear">🗑 נקה הכל</button></div>
   <input id="q" placeholder="🔎 חיפוש אמן…" autocomplete="off">
+  <div class="chips" id="chips">
+    <button class="chip on" data-c="all">הכל</button>
+    <button class="chip" data-c="music">🎵 מוזיקה</button>
+    <button class="chip" data-c="standup">😂 סטנדאפ</button>
+    <button class="chip" data-c="theater">🎭 הצגות</button>
+  </div>
   <div id="count"></div>
   <div id="hint"></div>
 </header>
@@ -100,6 +123,7 @@ const list=document.getElementById('list'), q=document.getElementById('q'),
       clearBtn=document.getElementById('clear');
 const selected=new Set();
 let order=A;
+let cat="all";
 hint.textContent = inApp ? "סמנו/בטלו אמנים (מי שכבר עוקב מסומן ובראש) ואז אשרו למטה"
                          : "לחצו עקוב ליד אמן (נפתח בטלגרם)";
 
@@ -114,8 +138,9 @@ function rowHtml(a){
 }
 function render(f){
   f=(f||'').trim().toLowerCase();
-  const m = f ? order.filter(a=>a.n.toLowerCase().includes(f)) : order;
-  count.textContent = m.length + (f?' אמנים תואמים':' אמנים') + (inApp&&selected.size?` · ${selected.size} במעקב`:'');
+  let m = cat==='all' ? order : order.filter(a=>a.c===cat);
+  if(f) m = m.filter(a=>a.n.toLowerCase().includes(f));
+  count.textContent = m.length + ' אמנים' + (inApp&&selected.size?` · ${selected.size} במעקב`:'');
   list.innerHTML = m.length ? m.slice(0,800).map(rowHtml).join('')
                            : '<div class=empty>לא נמצאו אמנים</div>';
 }
@@ -158,6 +183,12 @@ async function init(){
     list.addEventListener('click',e=>{const li=e.target.closest('li.sel');if(li)toggle(li.dataset.h,li);});
   }
   q.addEventListener('input',e=>render(e.target.value));
+  document.getElementById('chips').addEventListener('click',e=>{
+    const b=e.target.closest('.chip'); if(!b) return;
+    cat=b.dataset.c;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
+    render(q.value);
+  });
   render('');
   updateBtn();
 }
