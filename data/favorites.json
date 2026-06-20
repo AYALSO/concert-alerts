@@ -1,3 +1,9 @@
 {
-  "subscribers": {}
+  "subscribers": {
+    "1610483981": {
+      "follows": [
+        "טונה"
+      ]
+    }
+  }
 }
