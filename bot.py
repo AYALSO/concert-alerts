@@ -19,6 +19,7 @@ re-rendering the same message's keyboard.
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 from datetime import datetime, timedelta, timezone
 
@@ -32,6 +33,7 @@ TELEGRAM_API = "https://api.telegram.org/bot{token}/{method}"
 ISRAEL_TZ = timezone(timedelta(hours=3))
 PAGE_SIZE = 8            # artist buttons per page
 TG_LIMIT = 3500         # safe chunk size (Telegram hard limit is 4096)
+WEBAPP_URL = "https://ayalso.github.io/concert-alerts/"   # Mini App (artist picker)
 
 
 def _token():
@@ -168,6 +170,36 @@ def _build_search_kb(matches, follows):
     return {"inline_keyboard": rows}
 
 
+def _webapp_keyboard():
+    """Reply-keyboard button that opens the Mini App (so sendData reaches us)."""
+    return {
+        "keyboard": [[{"text": "\U0001F3A4 פתח את רשימת האמנים",
+                       "web_app": {"url": WEBAPP_URL}}]],
+        "resize_keyboard": True,
+    }
+
+
+def _upcoming_lines(follow_set):
+    """Formatted upcoming shows for these follows, or None if there are none."""
+    if not follow_set:
+        return None
+    today = datetime.now(ISRAEL_TZ).strftime("%Y-%m-%d")
+    shows = storage.load("shows.json", {})
+    mine = [s for s in shows.values()
+            if s.get("artist_key") in follow_set
+            and (not s.get("date_iso") or s["date_iso"] >= today)]
+    if not mine:
+        return None
+    mine.sort(key=lambda s: s.get("date_iso") or s.get("date_raw") or "")
+    lines = ["\U0001F3B6 <b>הופעות קרובות של האמנים שלך:</b>"]
+    for s in mine:
+        title = s.get("title")
+        extra = f"\n  {title}" if title and title != s["artist"] else ""
+        lines.append(
+            f"• <b>{s['artist']}</b>{extra}\n  {s['date_raw']} · {s['venue']}\n  {s['url']}")
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------------------
 # Update handlers
 # ---------------------------------------------------------------------------
@@ -242,42 +274,31 @@ def _handle_command(chat_id, text, subs):
             else:
                 _send(chat_id, "לא מצאתי את האמן — נסה שוב מהאתר.")
             return
-        # Greet + explain search (the catalogue is too big to page through) and
-        # still offer the browsable list.
+        # Open the Mini App right away — that's the main way to choose artists.
         _send(chat_id,
               "ברוך הבא! \U0001F3B6\n"
-              "אתריע לך על כל הופעה חדשה של האמנים שתבחר.\n\n"
-              "\U0001F50E פשוט הקלד שם של אמן (או חלק ממנו) כדי לחפש — "
-              "לחיצה על תוצאה = מעקב/ביטול.")
-        items = _numbered_artists()
-        if items:
-            _send(chat_id,
-                  f"\U0001F3A4 {len(items)} אמנים בקטלוג. הקלד שם לחיפוש, או דפדף:",
-                  reply_markup=_build_keyboard(items, set(sub["follows"]), 0))
-        else:
-            _send(chat_id, "עוד לא נמצאו אמנים. הסריקה הראשונה תמלא את הרשימה.")
+              "כאן תקבל התראה על כל הופעה חדשה של האמנים שתבחר.\n\n"
+              "\U0001F447 לחץ על הכפתור, חפש וסמן אמנים ואשר — "
+              "ומיד תקבל כאן את ההופעות הקרובות שלהם.",
+              reply_markup=_webapp_keyboard())
         return
 
     if cmd == "/help":
         _send(chat_id,
               "ברוך הבא! \U0001F3B6\n"
               "אתריע לך על הופעות חדשות של האמנים שתבחר.\n\n"
-              "\U0001F50E הקלד שם של אמן כדי לחפש ולעקוב (הדרך המהירה)\n"
-              "/artists – דפדוף בכל האמנים\n"
+              "\U0001F3A4 כפתור «פתח את רשימת האמנים» – לחיפוש וסימון אמנים\n"
               "/following – מי שאתה עוקב אחריו\n"
               "/upcoming – הופעות קרובות של האמנים שלך\n"
-              "/follow <שם> · /unfollow <שם> – מעקב לפי שם")
+              "/follow <שם> · /unfollow <שם> – מעקב/ביטול לפי שם")
         return
 
     items = _numbered_artists()
 
     if cmd == "/artists":
-        if not items:
-            _send(chat_id, "עוד לא נמצאו אמנים. הסריקה הראשונה תמלא את הרשימה.")
-            return
         _send(chat_id,
-              "\U0001F3A4 <b>אמנים שהתגלו</b> — לחץ כדי לעקוב/לבטל:",
-              reply_markup=_build_keyboard(items, set(sub["follows"]), 0))
+              "\U0001F3A4 פתח את רשימת האמנים, חפש וסמן את מי שתרצה לעקוב אחריו:",
+              reply_markup=_webapp_keyboard())
         return
 
     if cmd in ("/follow", "/unfollow"):
@@ -307,29 +328,12 @@ def _handle_command(chat_id, text, subs):
         return
 
     if cmd == "/upcoming":
-        follow_set = set(sub["follows"])
-        if not follow_set:
-            _send(chat_id, "אינך עוקב אחרי אף אמן עדיין. /artists")
+        if not sub["follows"]:
+            _send(chat_id, "עוד לא בחרת אמנים. פתח את הרשימה מהכפתור למטה.",
+                  reply_markup=_webapp_keyboard())
             return
-        today = datetime.now(ISRAEL_TZ).strftime("%Y-%m-%d")
-        shows = storage.load("shows.json", {})
-        mine = [
-            s for s in shows.values()
-            if s.get("artist_key") in follow_set
-            and (not s.get("date_iso") or s["date_iso"] >= today)
-        ]
-        if not mine:
-            _send(chat_id, "אין כרגע הופעות קרובות לאמנים שאתה עוקב אחריהם.")
-            return
-        mine.sort(key=lambda s: s.get("date_iso") or s.get("date_raw") or "")
-        lines = ["\U0001F3B6 <b>הופעות קרובות:</b>"]
-        for s in mine:
-            title = s.get("title")
-            extra = f"\n  {title}" if title and title != s["artist"] else ""
-            lines.append(
-                f"• <b>{s['artist']}</b>{extra}\n  {s['date_raw']} · {s['venue']}\n  {s['url']}"
-            )
-        _send_long(chat_id, "\n".join(lines))
+        txt = _upcoming_lines(set(sub["follows"]))
+        _send_long(chat_id, txt or "אין כרגע הופעות קרובות לאמנים שאתה עוקב אחריהם.")
         return
 
     # Any other plain text is treated as an artist search.
@@ -346,6 +350,31 @@ def _handle_command(chat_id, text, subs):
         return
 
     _send(chat_id, "הקלד שם של אמן כדי לחפש, או /help")
+
+
+def _handle_web_app_data(chat_id, data, subs):
+    """Apply the batch of artists picked in the Mini App, then show upcoming shows."""
+    sub = subs["subscribers"].setdefault(chat_id, {"follows": []})
+    try:
+        hashes = json.loads(data)
+    except Exception:
+        hashes = None
+    if not isinstance(hashes, list):
+        return
+    by_hash = {_artist_hash(k): (k, info) for k, info in _numbered_artists()}
+    added = []
+    for h in hashes:
+        hit = by_hash.get(h)
+        if hit and hit[0] not in sub["follows"]:
+            sub["follows"].append(hit[0])
+            added.append(hit[1]["display"])
+    if added:
+        _send_long(chat_id, "✅ עכשיו עוקב אחרי:\n" + "\n".join(f"• {n}" for n in added))
+    else:
+        _send(chat_id, "כבר עקבת אחרי כל מי שבחרת \U0001F44D")
+    txt = _upcoming_lines(set(sub["follows"]))
+    if txt:
+        _send_long(chat_id, txt)
 
 
 def process_updates():
@@ -370,6 +399,9 @@ def process_updates():
         if not msg:
             continue
         chat_id = str(msg["chat"]["id"])
+        if "web_app_data" in msg:                  # batch follow from the Mini App
+            _handle_web_app_data(chat_id, msg["web_app_data"].get("data", ""), subs)
+            continue
         text = (msg.get("text") or "").strip()
         if text:
             _handle_command(chat_id, text, subs)
