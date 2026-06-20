@@ -31,6 +31,8 @@ export default {
       const n = await pushNewShows(body.shows || [], env);
       return Response.json({ alerts: n });
     }
+    // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
+    if (url.pathname === "/api/follows") return handleApi(request, url, env);
     return new Response("concert-alerts bot up");
   },
 };
@@ -62,18 +64,70 @@ async function artistHash(key) {
 const normalize = (s) =>
   (s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
 
-// Build the Mini App keyboard with the user's current follows baked into the URL
-// (?f=hash.hash...), so the page can pre-tick them (and untick = remove).
-async function webappKeyboard(follows) {
-  let url = WEBAPP_URL;
-  if (follows && follows.length) {
-    const hashes = await Promise.all(follows.map(artistHash));
-    url += "?f=" + hashes.join(".");
+// ---- Mini App API (authenticated via Telegram initData) ---------------------
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+async function hmac(keyBytes, msgBytes) {
+  const k = await crypto.subtle.importKey("raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  return new Uint8Array(await crypto.subtle.sign("HMAC", k, msgBytes));
+}
+// Returns the chat_id (as string) if initData is genuine, else null.
+async function validateInitData(initData, botToken) {
+  const p = new URLSearchParams(initData || "");
+  const hash = p.get("hash");
+  if (!hash) return null;
+  p.delete("hash");
+  const dcs = [...p.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))
+    .map(([k, v]) => `${k}=${v}`).join("\n");
+  const enc = new TextEncoder();
+  const secret = await hmac(enc.encode("WebAppData"), enc.encode(botToken));
+  const sig = await hmac(secret, enc.encode(dcs));
+  const hex = [...sig].map((b) => b.toString(16).padStart(2, "0")).join("");
+  if (hex !== hash) return null;
+  try { return String(JSON.parse(p.get("user")).id); } catch { return null; }
+}
+async function handleApi(request, url, env) {
+  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+  let initData = "", hashes = null;
+  if (request.method === "GET") {
+    initData = url.searchParams.get("initData") || "";
+  } else {
+    const b = await request.json().catch(() => ({}));
+    initData = b.initData || ""; hashes = b.hashes;
   }
-  return {
-    keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url } }]],
-    resize_keyboard: true,
-  };
+  const chat = await validateInitData(initData, env.BOT_TOKEN);
+  if (!chat) return Response.json({ error: "unauthorized" }, { status: 401, headers: CORS });
+
+  if (request.method === "GET") {                 // return current follows as hashes
+    const follows = followsOf(await getSubs(env), chat);
+    const hs = await Promise.all(follows.map(artistHash));
+    return Response.json({ hashes: hs }, { headers: CORS });
+  }
+  if (!Array.isArray(hashes)) return Response.json({ error: "bad" }, { status: 400, headers: CORS });
+  const artists = await fetchJSON("artists.json");
+  const byHash = new Map();
+  for (const k of Object.keys(artists)) byHash.set(await artistHash(k), k);
+  const follows = [];
+  for (const h of hashes) { const k = byHash.get(h); if (k && !follows.includes(k)) follows.push(k); }
+  const subs = await ensureSub(env, chat);
+  subs.subscribers[chat].follows = follows;
+  await saveSubs(env, subs);
+  const names = follows.map((k) => artists[k]?.display || k);
+  await send(env, chat, follows.length
+    ? `✅ עוקב אחרי ${follows.length} אמנים:\n` + names.map((n) => `• ${esc(n)}`).join("\n")
+    : "רשימת המעקב נוקתה — לא עוקב אחרי אף אמן כרגע.");
+  const txt = await upcomingText(new Set(follows));
+  if (txt) await send(env, chat, txt);
+  return Response.json({ ok: true, count: follows.length }, { headers: CORS });
+}
+
+// Inline button that opens the Mini App. Inline (not reply-keyboard) => Telegram
+// passes initData, so the app can fetch the user's LIVE follows and pre-tick them.
+function webappKeyboard() {
+  return { inline_keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url: WEBAPP_URL } }]] };
 }
 const followsOf = (subs, chat) => subs.subscribers[chat]?.follows || [];
 
@@ -124,13 +178,20 @@ async function handleCommand(chat, text, env) {
 
   if (low === "/start") {
     if (arg.startsWith("f_")) return followByHash(chat, arg.slice(2), env);
-    const f = followsOf(await getSubs(env), chat);
-    return send(env,
-      chat,
-      "ברוך הבא! \u{1F3B6}\nכאן תקבל התראה על כל הופעה חדשה של האמנים שתבחר.\n\n" +
-      "\u{1F447} לחץ על הכפתור, סמן/בטל אמנים ואשר — ומיד תקבל את ההופעות הקרובות שלהם.\n" +
-      "אפשר גם פשוט להקליד שם של אמן לחיפוש מהיר.",
-      { reply_markup: await webappKeyboard(f) });
+    await send(env, chat,
+      "ברוך הבא! \u{1F3B6}\nכאן תקבל התראה על כל הופעה חדשה של האמנים שתבחר.",
+      { reply_markup: { remove_keyboard: true } });   // clear any old reply keyboard
+    return send(env, chat,
+      "\u{1F447} פתח את רשימת האמנים — מי שכבר עוקב יופיע מסומן בראש, אפשר לסמן/לבטל ולנקות הכל.\n" +
+      "אפשר גם להקליד שם של אמן לחיפוש מהיר.",
+      { reply_markup: webappKeyboard() });
+  }
+  if (low === "/clear" || low === "/unfollowall") {
+    const subs = await ensureSub(env, chat);
+    subs.subscribers[chat].follows = [];
+    await saveSubs(env, subs);
+    return send(env, chat, "\u{1F5D1} רשימת המעקב נוקתה. פתח את הרשימה כדי לבחור מחדש:",
+      { reply_markup: webappKeyboard() });
   }
   if (low === "/help") {
     const f = followsOf(await getSubs(env), chat);
