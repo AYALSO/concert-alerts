@@ -31,10 +31,12 @@ jobs:
 
       - name: Run scan
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           EXAMPLE_SCRAPER: ${{ vars.EXAMPLE_SCRAPER || 'off' }}
           # Cron runs skip Saturday; a manual run with force=true (default) scans anyway.
           SKIP_SATURDAY: ${{ inputs.force && 'false' || 'true' }}
+          # New shows are pushed to the Cloudflare Worker, which alerts followers.
+          WORKER_NOTIFY_URL: ${{ vars.WORKER_NOTIFY_URL }}
+          NOTIFY_SECRET: ${{ secrets.NOTIFY_SECRET }}
         run: python scan.py
 
       - name: Build searchable artist page

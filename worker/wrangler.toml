@@ -1,0 +1,14 @@
+name = "concert-alerts-bot"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Follows live in KV (one key "subscribers"). After `wrangler kv namespace create SUBS`
+# put the returned id here.
+kv_namespaces = [
+  { binding = "SUBS", id = "PLACEHOLDER_KV_ID" }
+]
+
+# Secrets (set with `wrangler secret put <NAME>`), NOT stored here:
+#   BOT_TOKEN       - Telegram bot token
+#   WEBHOOK_SECRET  - random; also passed to setWebhook as secret_token
+#   NOTIFY_SECRET   - random; shared with the GitHub Actions scanner
