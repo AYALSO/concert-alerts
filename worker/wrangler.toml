@@ -5,7 +5,7 @@ compatibility_date = "2024-11-01"
 # Follows live in KV (one key "subscribers"). After `wrangler kv namespace create SUBS`
 # put the returned id here.
 kv_namespaces = [
-  { binding = "SUBS", id = "PLACEHOLDER_KV_ID" }
+  { binding = "SUBS", id = "b2516bc78a5548c5b17d53619893b2e8" }
 ]
 
 # Secrets (set with `wrangler secret put <NAME>`), NOT stored here:
