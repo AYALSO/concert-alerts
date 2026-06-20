@@ -1,12 +1,14 @@
 """Gray Club (grayclub.co.il) scraper.
 
-The homepage server-renders every upcoming show inside per-city carousels, so a
-single GET is enough -- the "load more" button only affects one list, and the
-carousels already enumerate the full catalogue. We dedupe by the stable event
-URL (/event/<a>/<b>/) and drop past dates.
+The homepage server-renders every upcoming show as a card (`div.article-list`):
+each card holds an `<h3>` title, a date (DD.MM.YYYY) and one `/event/<a>/<b>/`
+link. The earlier version walked *all* headings and caught the city-section
+`<h2>` labels (תלאביב/יהוד/מודיעין) as artists; driving off the per-card `<h3>`
+fixes that. We dedupe by the event path, drop past dates, and clean the artist
+name (titles often read "X – מופע …"). Verified 75 upcoming shows on 2026-06-20.
 
-NOTE: selectors validated against the rendered page structure; run once live to
-confirm class names didn't change, then lock in.
+403 from datacenter networks (anti-bot): if Actions logs show 403, the realistic
+browser headers below may need refreshing.
 """
 from __future__ import annotations
 
@@ -17,12 +19,20 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
+from core.artist_names import clean_artist
 from core.models import Show
 from scrapers.base import Scraper, register
 
 DATE_RE = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d{4})")
-EVENT_HREF_RE = re.compile(r"/event/\d+/\d+/?")
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; concert-alerts/1.0)"}
+EVENT_RE = re.compile(r"/event/\d+/\d+/?")
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "he-IL,he;q=0.9,en;q=0.8",
+}
+VENUE = "מועדון גריי"
 
 
 @register
@@ -35,57 +45,40 @@ class GrayClubScraper(Scraper):
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "lxml")
         today = date.today()
-        shows: dict[str, Show] = {}
+        shows: dict[str, Show] = {}     # /event/<a>/<b>/ -> Show
 
-        # Each show card has a title heading; the event link and date live in
-        # the same card. Drive off the headings and resolve link + date nearby.
-        for heading in soup.find_all(["h3", "h2"]):
-            title = heading.get_text(" ", strip=True)
-            if not title:
+        for card in soup.select("div.article-list"):
+            h3 = card.find("h3")
+            link_tag = card.find("a", href=EVENT_RE)
+            if not h3 or not link_tag:
+                continue
+            title = h3.get_text(" ", strip=True)
+            href = link_tag.get("href", "")
+            key = EVENT_RE.search(href).group(0)
+            if not title or key in shows:
                 continue
 
-            # nearest event link (search the card around this heading)
-            link = None
-            for a in heading.find_all_previous("a", href=EVENT_HREF_RE, limit=1):
-                link = a
-                break
-            if link is None:
-                for a in heading.find_all_next("a", href=EVENT_HREF_RE, limit=1):
-                    link = a
-                    break
-            if link is None:
+            m = DATE_RE.search(card.get_text(" ", strip=True))
+            if not m:
                 continue
-            href = link.get("href", "")
-            url = href if href.startswith("http") else "https://grayclub.co.il" + href
-
-            # date: first DD.MM.YYYY appearing just after the title
-            date_raw = date_iso = None
-            for nxt in heading.find_all_next(string=DATE_RE, limit=1):
-                m = DATE_RE.search(str(nxt))
-                if m:
-                    dd, mm, yyyy = m.groups()
-                    date_raw = f"{int(dd):02d}.{int(mm):02d}.{yyyy}"
-                    date_iso = f"{yyyy}-{int(mm):02d}-{int(dd):02d}"
-                break
-            if not date_iso:
-                continue
-
+            dd, mm, yyyy = m.groups()
+            date_iso = f"{yyyy}-{int(mm):02d}-{int(dd):02d}"
             try:
                 if datetime.fromisoformat(date_iso).date() < today:
                     continue
             except ValueError:
-                pass
-
-            key = re.search(EVENT_HREF_RE, href).group(0)
-            if key in shows:
                 continue
+
+            url = href if href.startswith("http") else "https://grayclub.co.il" + href
+            artist = clean_artist(title)
             shows[key] = Show(
-                artist=title,
-                date_raw=date_raw,
-                venue="\u05de\u05d5\u05e2\u05d3\u05d5\u05df \u05d2\u05e8\u05d9\u05d9",
+                artist=artist,
+                date_raw=f"{int(dd):02d}.{int(mm):02d}.{yyyy}",
+                venue=VENUE,
                 url=url,
                 source=self.name,
                 date_iso=date_iso,
+                title=title if title != artist else None,
             )
 
         return list(shows.values())
