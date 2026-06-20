@@ -62,10 +62,20 @@ async function artistHash(key) {
 const normalize = (s) =>
   (s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
 
-const WEBAPP_KB = {
-  keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url: WEBAPP_URL } }]],
-  resize_keyboard: true,
-};
+// Build the Mini App keyboard with the user's current follows baked into the URL
+// (?f=hash.hash...), so the page can pre-tick them (and untick = remove).
+async function webappKeyboard(follows) {
+  let url = WEBAPP_URL;
+  if (follows && follows.length) {
+    const hashes = await Promise.all(follows.map(artistHash));
+    url += "?f=" + hashes.join(".");
+  }
+  return {
+    keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url } }]],
+    resize_keyboard: true,
+  };
+}
+const followsOf = (subs, chat) => subs.subscribers[chat]?.follows || [];
 
 function formatShow(s) {
   const lines = [`\u{1F3B5} <b>${esc(s.artist)}</b> — הופעה חדשה!`];
@@ -114,33 +124,34 @@ async function handleCommand(chat, text, env) {
 
   if (low === "/start") {
     if (arg.startsWith("f_")) return followByHash(chat, arg.slice(2), env);
+    const f = followsOf(await getSubs(env), chat);
     return send(env,
       chat,
       "ברוך הבא! \u{1F3B6}\nכאן תקבל התראה על כל הופעה חדשה של האמנים שתבחר.\n\n" +
-      "\u{1F447} לחץ על הכפתור, חפש וסמן אמנים ואשר — ומיד תקבל את ההופעות הקרובות שלהם.\n" +
+      "\u{1F447} לחץ על הכפתור, סמן/בטל אמנים ואשר — ומיד תקבל את ההופעות הקרובות שלהם.\n" +
       "אפשר גם פשוט להקליד שם של אמן לחיפוש מהיר.",
-      { reply_markup: WEBAPP_KB });
+      { reply_markup: await webappKeyboard(f) });
   }
   if (low === "/help") {
+    const f = followsOf(await getSubs(env), chat);
     return send(env, chat,
-      "\u{1F3A4} כפתור «פתח את רשימת האמנים» — חיפוש וסימון אמנים\n" +
+      "\u{1F3A4} כפתור «פתח את רשימת האמנים» — לסמן/לבטל אמנים (מי שכבר עוקב מסומן)\n" +
       "\u{1F50E} הקלד שם של אמן לחיפוש מהיר\n/following — מי שאתה עוקב אחריו\n" +
       "/upcoming — הופעות קרובות שלך\n/follow <שם> · /unfollow <שם>",
-      { reply_markup: WEBAPP_KB });
+      { reply_markup: await webappKeyboard(f) });
   }
   if (low === "/following") {
-    const subs = await getSubs(env);
-    const f = subs.subscribers[chat]?.follows || [];
-    if (!f.length) return send(env, chat, "עוד לא בחרת אמנים.", { reply_markup: WEBAPP_KB });
+    const f = followsOf(await getSubs(env), chat);
+    if (!f.length) return send(env, chat, "עוד לא בחרת אמנים.", { reply_markup: await webappKeyboard([]) });
     const artists = await fetchJSON("artists.json");
     const names = f.map((k) => artists[k]?.display || k);
-    return send(env, chat, "אתה עוקב אחרי:\n" + names.map((n) => `• ${esc(n)}`).join("\n"));
+    return send(env, chat, "אתה עוקב אחרי:\n" + names.map((n) => `• ${esc(n)}`).join("\n"),
+      { reply_markup: await webappKeyboard(f) });
   }
   if (low === "/upcoming") {
-    const subs = await getSubs(env);
-    const f = new Set(subs.subscribers[chat]?.follows || []);
-    if (!f.size) return send(env, chat, "עוד לא בחרת אמנים.", { reply_markup: WEBAPP_KB });
-    return send(env, chat, (await upcomingText(f)) || "אין כרגע הופעות קרובות לאמנים שלך.");
+    const f = followsOf(await getSubs(env), chat);
+    if (!f.length) return send(env, chat, "עוד לא בחרת אמנים.", { reply_markup: await webappKeyboard([]) });
+    return send(env, chat, (await upcomingText(new Set(f))) || "אין כרגע הופעות קרובות לאמנים שלך.");
   }
   if (low === "/follow" || low === "/unfollow") {
     return resolveAndToggle(chat, arg, low === "/follow", env);
@@ -152,7 +163,7 @@ async function handleCommand(chat, text, env) {
 async function searchAndReply(chat, query, env) {
   const artists = await fetchJSON("artists.json");
   const q = normalize(query);
-  if (!q) return send(env, chat, "הקלד שם של אמן לחיפוש.", { reply_markup: WEBAPP_KB });
+  if (!q) return send(env, chat, "הקלד שם של אמן לחיפוש.", { reply_markup: await webappKeyboard([]) });
   const subs = await getSubs(env);
   const follows = new Set(subs.subscribers[chat]?.follows || []);
   const starts = [], has = [];
@@ -214,7 +225,7 @@ async function resolveAndToggle(chat, arg, follow, env) {
   for (const [k, info] of Object.entries(artists))
     if (k === target || normalize(info.display) === target) { key = k; break; }
   if (!key) for (const k of Object.keys(artists)) if (target && k.includes(target)) { key = k; break; }
-  if (!key) return send(env, chat, `לא מצאתי: ${esc(arg)}`, { reply_markup: WEBAPP_KB });
+  if (!key) return send(env, chat, `לא מצאתי: ${esc(arg)}`, { reply_markup: await webappKeyboard([]) });
   const subs = await ensureSub(env, chat);
   const f = subs.subscribers[chat].follows;
   const i = f.indexOf(key);
@@ -231,18 +242,22 @@ async function handleWebAppData(chat, data, env) {
   const artists = await fetchJSON("artists.json");
   const byHash = new Map();
   for (const k of Object.keys(artists)) byHash.set(await artistHash(k), k);
-  const subs = await ensureSub(env, chat);
-  const f = subs.subscribers[chat].follows;
-  const added = [];
+  // The Mini App sends the COMPLETE desired set (pre-ticked + changes), so we
+  // replace — unticking an artist removes them.
+  const follows = [];
   for (const h of hashes) {
     const key = byHash.get(h);
-    if (key && !f.includes(key)) { f.push(key); added.push(artists[key].display); }
+    if (key && !follows.includes(key)) follows.push(key);
   }
+  const subs = await ensureSub(env, chat);
+  subs.subscribers[chat].follows = follows;
   await saveSubs(env, subs);
-  await send(env, chat, added.length
-    ? "✅ עכשיו עוקב אחרי:\n" + added.map((n) => `• ${esc(n)}`).join("\n")
-    : "כבר עקבת אחרי כל מי שבחרת \u{1F44D}");
-  const txt = await upcomingText(new Set(f));
+  const names = follows.map((k) => artists[k]?.display || k);
+  await send(env, chat,
+    follows.length ? `✅ עוקב אחרי ${follows.length} אמנים:\n` + names.map((n) => `• ${esc(n)}`).join("\n")
+                   : "לא עוקב אחרי אף אמן כרגע.",
+    { reply_markup: await webappKeyboard(follows) });
+  const txt = await upcomingText(new Set(follows));
   if (txt) await send(env, chat, txt);
 }
 

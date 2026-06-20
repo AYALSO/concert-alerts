@@ -52,7 +52,10 @@ const list=document.getElementById('list'), q=document.getElementById('q'),
       count=document.getElementById('count'), hint=document.getElementById('hint'),
       bar=document.getElementById('bar'), go=document.getElementById('go');
 const selected=new Set();
-hint.textContent = inApp ? "סמנו כמה אמנים (לחיצה שוב מבטלת) ואז אשרו למטה"
+// artists already followed are passed in the URL (?f=hash.hash...) so we pre-tick them
+const pre = new URLSearchParams(location.search).get("f");
+if (pre) pre.split(".").forEach(h => { if (h) selected.add(h); });
+hint.textContent = inApp ? "סמנו/בטלו אמנים (מי שכבר עוקב מסומן) ואז אשרו למטה"
                          : "לחצו עקוב ליד אמן (נפתח בטלגרם)";
 
 function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -95,4 +98,5 @@ if(inApp){
 }
 q.addEventListener('input', e=>render(e.target.value));
 render('');
+updateBtn();   // show the confirm button if artists are already pre-selected
 </script></body></html>
