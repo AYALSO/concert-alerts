@@ -3,7 +3,12 @@ name: concert-scan
 on:
   schedule:
     - cron: "0 * * * *"      # every hour (UTC); Saturday is skipped in code (Israel time)
-  workflow_dispatch: {}        # lets you run it manually for instant updates
+  workflow_dispatch:           # lets you run it manually for instant updates
+    inputs:
+      force:
+        description: "Scan even on Saturday (Israel time)"
+        type: boolean
+        default: true
 
 permissions:
   contents: write              # needed to commit updated data back to the repo
@@ -28,7 +33,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           EXAMPLE_SCRAPER: ${{ vars.EXAMPLE_SCRAPER || 'off' }}
-          SKIP_SATURDAY: "true"
+          # Cron runs skip Saturday; a manual run with force=true (default) scans anyway.
+          SKIP_SATURDAY: ${{ inputs.force && 'false' || 'true' }}
         run: python scan.py
 
       - name: Commit data changes
