@@ -185,7 +185,24 @@ def _handle_command(chat_id, text, subs):
     cmd, _, arg = text.partition(" ")
     cmd = cmd.lower()
 
-    if cmd in ("/start", "/help"):
+    if cmd == "/start":
+        # Greet + immediately open the artist picker so the user can choose who
+        # to follow right away (the main thing the bot is for).
+        _send(chat_id,
+              "ברוך הבא! \U0001F3B6\n"
+              "בחר מהרשימה את האמנים שתרצה לעקוב אחריהם — "
+              "ואתריע לך על כל הופעה חדשה שלהם.\n"
+              "(/help לכל הפקודות)")
+        items = _numbered_artists()
+        if items:
+            _send(chat_id,
+                  "\U0001F3A4 <b>אמנים שהתגלו</b> — לחץ כדי לעקוב/לבטל:",
+                  reply_markup=_build_keyboard(items, set(sub["follows"]), 0))
+        else:
+            _send(chat_id, "עוד לא נמצאו אמנים. הסריקה הראשונה תמלא את הרשימה.")
+        return
+
+    if cmd == "/help":
         _send(chat_id,
               "ברוך הבא! \U0001F3B6\n"
               "אתריע לך על הופעות חדשות של האמנים שתבחר.\n\n"
