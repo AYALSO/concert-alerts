@@ -413,7 +413,8 @@
     "first_seen": "2026-06-20T20:16:08.468049+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "איציק קלה": {
@@ -928,6 +929,15 @@
       "eventim"
     ]
   },
+  "הטבה ללקוחות flycard": {
+    "category": "music",
+    "display": "הטבה ללקוחות FLYCARD",
+    "first_seen": "2026-06-21T06:09:08.467368+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "הטבות לארגון עובדי עיריית ירושלים": {
     "category": "music",
     "display": "הטבות לארגון עובדי עיריית ירושלים",
@@ -941,6 +951,15 @@
     "category": "music",
     "display": "הטבות ללקוחות ישראכרט",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הטבות לעובדי רמבם": {
+    "category": "music",
+    "display": "הטבות לעובדי רמב\"ם",
+    "first_seen": "2026-06-21T06:09:08.467470+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
