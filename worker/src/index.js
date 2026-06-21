@@ -133,7 +133,10 @@ async function handleApi(request, url, env) {
 // Inline button that opens the Mini App. Inline (not reply-keyboard) => Telegram
 // passes initData, so the app can fetch the user's LIVE follows and pre-tick them.
 function webappKeyboard() {
-  return { inline_keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url: WEBAPP_URL } }]] };
+  // Telegram caches the Mini App page, so a freshly-scanned artist list can look
+  // stale. Bump the URL each hour (≈ the scan cadence) to force a fresh load.
+  const v = new Date().toISOString().slice(0, 13).replace(/[-T]/g, "");   // YYYYMMDDHH
+  return { inline_keyboard: [[{ text: "\u{1F3A4} פתח את רשימת האמנים", web_app: { url: `${WEBAPP_URL}?v=${v}` } }]] };
 }
 const followsOf = (subs, chat) => subs.subscribers[chat]?.follows || [];
 
