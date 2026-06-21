@@ -300,6 +300,12 @@ async function handleCommand(chat, text, env) {
   if (low === "/follow" || low === "/unfollow") {
     return resolveAndToggle(chat, arg, low === "/follow", env);
   }
+  if (low === "/id" || low === "/admin") {            // dev: register for scan digests
+    await env.SUBS.put("admin_chat", String(chat));
+    return send(env, chat,
+      `\u{1F194} chat_id: <code>${chat}</code>\n` +
+      "✅ מעכשיו תקבל כאן סיכום של כל סריקה שמוצאת הופעות חדשות.");
+  }
   // plain text -> instant search
   return searchAndReply(chat, text, env);
 }
@@ -418,5 +424,19 @@ async function pushNewShows(shows, env) {
       }
     }
   }
+  await notifyAdmin(shows, env);
   return sent;
+}
+
+// Developer digest: every scan that finds new shows pings ADMIN_CHAT_ID with a
+// summary of ALL new shows (independent of follows), so the dev can verify scans.
+async function notifyAdmin(shows, env) {
+  const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
+  if (!admin || !shows.length) return;
+  const artists = [...new Set(shows.map((s) => s.artist))];
+  const head = `\u{1F50D} <b>סריקה:</b> ${shows.length} הופעות חדשות · ${artists.length} אמנים`;
+  const lines = shows.slice(0, 30).map((s) =>
+    `• <b>${esc(s.artist)}</b> — ${esc(s.date_raw || "")} · ${esc(s.venue || "")} (${esc(s.source || "")})`);
+  if (shows.length > 30) lines.push(`…ועוד ${shows.length - 30}`);
+  try { await send(env, admin, [head, "", ...lines].join("\n")); } catch (e) { console.log("admin notify", e); }
 }
