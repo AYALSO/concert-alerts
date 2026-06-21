@@ -68,6 +68,20 @@ async function fetchJSON(path) {
 const getSubs = (env) => env.SUBS.get("subscribers", "json").then((v) => v || { subscribers: {} });
 const saveSubs = (env, s) => env.SUBS.put("subscribers", JSON.stringify(s));
 
+// Manual artist merges (loser_key -> winner_key) from the admin overrides, so a
+// follow of an absorbed artist still matches the surviving one.
+async function getMerges(env) {
+  const ov = (await env.SUBS.get("overrides", "json")) || {};
+  const m = {};
+  for (const k in ov) if (ov[k] && ov[k].merge_into) m[k] = ov[k].merge_into;
+  return m;
+}
+function mergeKey(k, m) {
+  const seen = new Set();
+  while (m[k] && !seen.has(k)) { seen.add(k); k = m[k]; }
+  return k;
+}
+
 async function artistHash(key) {
   const buf = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(key));
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 12);
@@ -113,7 +127,8 @@ async function handleApi(request, url, env) {
   if (!chat) return Response.json({ error: "unauthorized" }, { status: 401, headers: CORS });
 
   if (request.method === "GET") {                 // return current follows as hashes
-    const follows = followsOf(await getSubs(env), chat);
+    const merges = await getMerges(env);
+    const follows = [...new Set(followsOf(await getSubs(env), chat).map((k) => mergeKey(k, merges)))];
     const hs = await Promise.all(follows.map(artistHash));
     return Response.json({ hashes: hs }, { headers: CORS });
   }
@@ -447,10 +462,12 @@ async function handleWebAppData(chat, data, env) {
 async function pushNewShows(shows, env) {
   if (!shows.length) return 0;
   const subs = await getSubs(env);
+  const merges = await getMerges(env);
   let sent = 0;
   for (const s of shows) {
     for (const [chat, sub] of Object.entries(subs.subscribers)) {
-      if ((sub.follows || []).includes(s.artist_key)) {
+      const follows = (sub.follows || []).map((k) => mergeKey(k, merges));
+      if (follows.includes(s.artist_key)) {
         await send(env, chat, formatShow(s));
         sent++;
       }

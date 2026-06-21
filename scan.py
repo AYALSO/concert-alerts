@@ -116,12 +116,27 @@ def classify_artists(cap: int = 60) -> None:
     print(f"[classify] annotated {done} artists (cat_v={CLS_VERSION})")
 
 
+def fetch_merges() -> dict:
+    """Manual artist merges (loser_key -> winner_key), set in the admin panel and
+    stored in the Worker's KV overrides. Read so the scan collapses duplicates."""
+    base = os.environ.get("WORKER_NOTIFY_URL")
+    if not base:
+        return {}
+    url = base.rsplit("/", 1)[0] + "/api/overrides"
+    try:
+        ov = requests.get(url, timeout=20).json()
+    except (requests.RequestException, ValueError):
+        return {}
+    return {k: v["merge_into"] for k, v in ov.items()
+            if isinstance(v, dict) and v.get("merge_into")}
+
+
 def main():
     if not should_scan_now():
         print("Outside active hours (07:00–00:00 Israel) — skipping scan.")
         return
 
-    new_shows, new_artists = run_scan(all_scrapers())
+    new_shows, new_artists = run_scan(all_scrapers(), merges=fetch_merges())
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
     notify_worker(new_shows)
     force_standup()

@@ -22,6 +22,10 @@ li.mod{background:#16203f}
 select{flex:1;padding:8px;font-size:14px;border-radius:9px;border:1px solid #2a3350;background:#0f1626;color:#fff}
 .hide{flex:none;display:flex;align-items:center;gap:6px;font-size:13px;color:#cdd3e0;background:#141b30;border:1px solid #2a3350;border-radius:9px;padding:8px 11px}
 .empty{color:#8b93a7;text-align:center;padding:30px}
+li.merged{background:#241a2e;opacity:.85}
+.mhead{font-size:14px;color:#d9b8ff}
+.mbtn{margin-top:8px;font-size:13px;border-radius:9px;padding:7px 12px;border:1px solid #5a2a3a;background:#3a2030;color:#ffb4c4}
+.mbtn.merge{border-color:#7a4ad0;background:#2a2050;color:#cdb4ff}
 #bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:#0b1020;border-top:1px solid #1c2438;display:none}
 #save{width:100%;padding:14px;font-size:16px;font-weight:700;border:0;border-radius:12px;background:#2563eb;color:#fff}
 #warn{background:#3a2030;color:#ffb4c4;padding:10px 14px;font-size:13px;display:none}
@@ -57,39 +61,71 @@ function base(info){
            cat: info.category || (standup?"standup":"music"),
            art: ('is_artist' in info)? !!info.is_artist : true };
 }
+function nrm(s){return (s||'').trim().toLowerCase();}
 function modified(k){
   const b=base(ART[k]), s=state[k];
-  return s.name!==b.name || s.cat!==b.cat || s.art!==b.art;
+  return s.name!==b.name || s.cat!==b.cat || s.art!==b.art || !!s.mergeInto;
+}
+// Another NON-merged artist that currently shows the same name (the merge target).
+function dupKey(k){
+  const n=nrm(state[k].name);
+  for(const o of KEYS){ if(o!==k && !state[o].mergeInto && nrm(state[o].name)===n) return o; }
+  return null;
 }
 function row(k){
   const info=ART[k], s=state[k];
-  const opts=CATS.map(([v,l])=>`<option value="${v}"${v===s.cat?' selected':''}>${l}</option>`).join('');
   const src=(info.sources||[]).map(x=>SRCL[x]||x).join(' · ');
+  if(s.mergeInto){
+    return `<li class="merged" data-k="${esc(k)}">
+      <div class=mhead>↳ <b>${esc(s.name)}</b> ימוזג אל «${esc(state[s.mergeInto]?state[s.mergeInto].name:s.mergeInto)}»</div>
+      <div class=src>${esc(src)}</div>
+      <button class="mbtn undo">בטל מיזוג</button></li>`;
+  }
+  const opts=CATS.map(([v,l])=>`<option value="${v}"${v===s.cat?' selected':''}>${l}</option>`).join('');
+  const w=dupKey(k);
+  const mergeBtn=w?`<button class="mbtn merge" data-w="${esc(w)}">🔗 מזג עם הרשומה הכפולה</button>`:'';
   return `<li class="${modified(k)?'mod':''}" data-k="${esc(k)}">
     <div class=top><input class=nm value="${esc(s.name)}"></div>
     <div class=src>${esc(src)}</div>
     <div class=ctrls>
       <select class=cat>${opts}</select>
       <label class=hide><input type=checkbox class=hd ${s.art?'':'checked'}> הסתר</label>
-    </div></li>`;
+    </div>${mergeBtn}</li>`;
+}
+function counts(){
+  const mod=KEYS.filter(modified).length;
+  const dups=KEYS.filter(k=>!state[k].mergeInto && dupKey(k)).length;
+  return `${KEYS.filter(k=>!state[k].mergeInto).length} אמנים · ${mod} שינויים`
+    + (dups?` · ⚠️ ${dups} כפילויות שם` : '');
 }
 function render(){
-  const f=(q.value||'').trim().toLowerCase();
+  const f=nrm(q.value);
   let ks=KEYS;
-  if(f) ks=KEYS.filter(k=>state[k].name.toLowerCase().includes(f)||k.toLowerCase().includes(f));
-  const mod=KEYS.filter(modified).length;
-  info.textContent=`${ks.length} אמנים · ${mod} שינויים שלא נשמרו`;
+  if(f) ks=KEYS.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
+  info.textContent=counts();
   list.innerHTML = ks.length ? ks.slice(0,1200).map(row).join('') : '<div class=empty>לא נמצא</div>';
   bar.style.display = inApp ? 'block' : 'none';
 }
-list.addEventListener('input', e=>{
+function doMerge(k,w){ if(!w) return; state[k].mergeInto=w; render(); }
+// edit name/category/hide (fires on blur for text) — on a name clash, ASK to merge.
+list.addEventListener('change', e=>{
   const li=e.target.closest('li'); if(!li) return; const k=li.dataset.k;
-  if(e.target.classList.contains('nm')) state[k].name=e.target.value.trim();
-  else if(e.target.classList.contains('cat')) state[k].cat=e.target.value;
-  else if(e.target.classList.contains('hd')) state[k].art=!e.target.checked;
-  li.classList.toggle('mod', modified(k));
-  const mod=KEYS.filter(modified).length;
-  info.textContent=info.textContent.replace(/\d+ שינויים/, mod+' שינויים');
+  if(e.target.classList.contains('nm')){
+    state[k].name=e.target.value.trim();
+    const w=dupKey(k);
+    if(w){
+      const msg=`כבר קיימת רשומה בשם «${state[k].name}». למזג את שתי הרשומות לאמן אחד?`;
+      if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>doMerge(k, ok?w:null));
+      else if(confirm(msg)) doMerge(k,w);
+    }
+    render();
+  } else if(e.target.classList.contains('cat')){ state[k].cat=e.target.value; render(); }
+  else if(e.target.classList.contains('hd')){ state[k].art=!e.target.checked; render(); }
+});
+list.addEventListener('click', e=>{
+  const li=e.target.closest('li'); if(!li) return; const k=li.dataset.k;
+  if(e.target.classList.contains('merge')) doMerge(k, e.target.dataset.w);
+  else if(e.target.classList.contains('undo')){ state[k].mergeInto=null; render(); }
 });
 q.addEventListener('input', render);
 
@@ -99,6 +135,7 @@ async function save(){
   const overrides={};
   for(const k of KEYS){
     const b=base(ART[k]), s=state[k], o={};
+    if(s.mergeInto){ o.merge_into=s.mergeInto; overrides[k]=o; continue; }   // absorbed
     if(s.name && s.name!==b.name) o.name=s.name;
     if(s.cat!==b.cat) o.category=s.cat;
     if(s.art!==b.art) o.is_artist=s.art;
@@ -108,7 +145,7 @@ async function save(){
     const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({initData:tg.initData, overrides})});
     if(r.ok){ const j=await r.json();
-      (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ הרשימה תתעדכן.`);
+      (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ הרשימה תתעדכן (מיזוגים מתאחדים בסריקה הבאה).`);
       render();
     } else { (tg.showAlert?tg.showAlert:alert)('שמירה נכשלה ('+r.status+'). ודא שאתה האדמין.'); }
   }catch(e){ (tg.showAlert?tg.showAlert:alert)('שגיאת רשת'); }
@@ -126,7 +163,8 @@ async function load(){
     for(const k of KEYS){
       const b=base(ART[k]), o=ov[k]||{};
       state[k]={ name:o.name||b.name, cat:o.category||b.cat,
-                 art:('is_artist' in o)? !!o.is_artist : b.art };
+                 art:('is_artist' in o)? !!o.is_artist : b.art,
+                 mergeInto:o.merge_into||null };
     }
     KEYS.sort((x,y)=>state[x].name.localeCompare(state[y].name,'he'));
     if(inApp && tg.MainButton){ tg.MainButton.setText('שמור שינויים'); tg.MainButton.show(); tg.MainButton.onClick(save); }

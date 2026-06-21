@@ -116,7 +116,7 @@ function toggle(h,li){
 async function init(){
   try{                                   // apply live admin overrides (name/category/hide)
     const ov=await (await fetch(WORKER+'/api/overrides')).json();
-    A = A.filter(a=>(ov[a.k]||{}).is_artist!==false)
+    A = A.filter(a=>{const o=ov[a.k]||{}; return o.is_artist!==false && !o.merge_into;})
          .map(a=>{const o=ov[a.k]||{}; return {...a, n:o.name||a.n, c:o.category||a.c};});
     order=A;
   }catch(e){}

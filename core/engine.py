@@ -42,16 +42,29 @@ def _canonical_artist(key: str, display: str, artists: dict) -> Tuple[str, str]:
     return (best, artists[best]["display"]) if best else (key, display)
 
 
-def run_scan(scrapers=None) -> Tuple[List[dict], List[str]]:
+def _resolve_merge(key: str, merges: dict) -> str:
+    """Follow a manual merge chain (loser_key -> winner_key) to its end."""
+    seen = set()
+    while key in merges and key not in seen:
+        seen.add(key)
+        key = merges[key]
+    return key
+
+
+def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str]]:
     """Run all scrapers, persist state, and return (new_show_dicts, new_artists).
 
     - New shows are keyed to a canonical artist (see `_canonical_artist`) so a
       follower never misses a same-artist show that came in under a longer title.
+    - `merges` ({loser_key: winner_key}, set manually in the admin panel) absorb a
+      duplicate artist into another: the loser's shows are re-attributed to the
+      winner, so the catalogue/shows/alerts all collapse onto one entry.
     - The artist catalogue only ever GROWS (never pruned) — users can follow an
       artist with no current shows and still get alerted when one opens.
     - `shows.json` is pruned to today-and-future; past shows are dropped.
     """
     scrapers = scrapers if scrapers is not None else all_scrapers()
+    merges = merges or {}
     current = collect(scrapers)
 
     by_id = {sh.show_id: sh for sh in current}       # dedupe this run by show_id
@@ -67,6 +80,10 @@ def run_scan(scrapers=None) -> Tuple[List[dict], List[str]]:
     new_artists: List[str] = []
     for sh in ordered:
         d = sh.to_dict()
+        merged = _resolve_merge(d["artist_key"], merges)         # manual merge first
+        if merged != d["artist_key"]:
+            d["artist_key"] = merged
+            d["artist"] = artists.get(merged, {}).get("display", d["artist"])
         key, display = _canonical_artist(d["artist_key"], d["artist"], artists)
         d["artist_key"], d["artist"] = key, display          # canonical attribution
         is_new = sh.show_id not in known
@@ -80,9 +97,12 @@ def run_scan(scrapers=None) -> Tuple[List[dict], List[str]]:
         elif d["source"] not in artists[key]["sources"]:
             artists[key]["sources"].append(d["source"])
 
-    # Prune past shows (keep today & future). Artists are NEVER pruned.
+    # Prune past shows (keep today & future). Artists are NEVER pruned…
     for sid in [s for s, v in known.items() if v.get("date_iso") and v["date_iso"] < today]:
         del known[sid]
+    # …except a manually-merged loser, whose shows are now under the winner.
+    for loser in merges:
+        artists.pop(loser, None)
 
     storage.save("shows.json", known)
     storage.save("artists.json", artists)
