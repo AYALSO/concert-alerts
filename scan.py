@@ -59,6 +59,23 @@ def notify_worker(new_shows) -> None:
 CLS_VERSION = 2
 
 
+def force_comy_standup() -> int:
+    """COMY is stand-up only — tag every COMY-sourced artist directly so the AI
+    classifier never needs to (and can't mislabel) them. Runs every scan,
+    independent of Worker credentials."""
+    artists = storage.load("artists.json", {})
+    n = 0
+    for info in artists.values():
+        if "comy" in info.get("sources", []) and not (
+                info.get("category") == "standup" and info.get("cat_v") == CLS_VERSION):
+            info.update(category="standup", is_artist=True, cat_v=CLS_VERSION)
+            n += 1
+    if n:
+        storage.save("artists.json", artists)
+        print(f"[comy] forced standup on {n} artists")
+    return n
+
+
 def classify_artists(cap: int = 60) -> None:
     """Annotate artists.json with {category, is_artist, cat_v} via the Worker's AI
     classifier (Gemini, cached). Re-does artists whose cat_v is stale; capped per
@@ -102,6 +119,7 @@ def main():
     new_shows, new_artists = run_scan(all_scrapers())
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
     notify_worker(new_shows)
+    force_comy_standup()
     classify_artists()
 
 

@@ -165,6 +165,16 @@
       "grayclub"
     ]
   },
+  "open mic": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "open mic",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "party": {
     "category": "music",
     "display": "PARTY",
@@ -251,21 +261,25 @@
     ]
   },
   "אבו טבלה": {
+    "cat_v": 2,
     "category": "standup",
     "display": "אבו טבלה",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "אבי נוסבאום": {
+    "cat_v": 2,
     "category": "standup",
     "display": "אבי נוסבאום",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "אבי סינגולדה": {
@@ -314,6 +328,16 @@
       "kupat"
     ]
   },
+  "אדיר מילר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אדיר מילר",
+    "first_seen": "2026-06-21T08:09:29.208425+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "אהבה מודרנית": {
     "category": "theater",
     "display": "אהבה מודרנית",
@@ -331,6 +355,36 @@
     "sources": [
       "barby",
       "eventim"
+    ]
+  },
+  "אודי כגן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אודי כגן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אור לגויים": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אור לגויים",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אוראל צברי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אוראל צברי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "אורות הבמה": {
@@ -359,7 +413,8 @@
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "אורן זוזל": {
@@ -369,7 +424,8 @@
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "אורנה בנאי": {
@@ -379,7 +435,8 @@
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "אידיוט": {
@@ -482,6 +539,46 @@
       "barby"
     ]
   },
+  "אלי חביב": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אלי חביב",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אלי יצפאן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אלי יצפאן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אלי פיניש": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אלי פיניש",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אמדאוס": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אמדאוס",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "אמירם טובים": {
     "category": "music",
     "display": "אמירם טובים",
@@ -501,6 +598,26 @@
       "eventim"
     ]
   },
+  "אסי כהן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אסי כהן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אסי עזר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אסי עזר",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "אסף אמדורסקי שלומי שבן יעל קראוס שרים החלונות הגבוהים": {
     "category": "music",
     "display": "אסף אמדורסקי, שלומי שבן, יעל קראוס שרים החלונות הגבוהים",
@@ -508,6 +625,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "אסף יצחקי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אסף יצחקי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "אסף מור יוסף": {
@@ -518,6 +645,26 @@
     "sources": [
       "eventim",
       "grayclub"
+    ]
+  },
+  "אף מילה לאמא": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אף מילה לאמא",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "אפס ביחסי אנוש": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אפס ביחסי אנוש",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "אקו x מיצי": {
@@ -537,6 +684,16 @@
     "is_artist": false,
     "sources": [
       "kupat"
+    ]
+  },
+  "ארז בירנבוים": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ארז בירנבוים",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "ארז נץ": {
@@ -605,6 +762,16 @@
       "barby"
     ]
   },
+  "בחורים טובים בית לסין": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "בחורים טובים בית לסין",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "בין אדיס לריו": {
     "category": "music",
     "display": "בין אדיס לריו",
@@ -621,6 +788,26 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "במה פתוחה בהנחיית דניאל כהן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "במה פתוחה בהנחיית דניאל כהן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "בן בן ברוך": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "בן בן ברוך",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "בן מירן": {
@@ -677,7 +864,8 @@
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "גיא הוכמן": {
@@ -688,6 +876,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "גיא ויעל": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "גיא ויעל",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "גיא מזיג": {
@@ -718,7 +916,8 @@
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "גיין בורדו": {
@@ -758,7 +957,8 @@
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "גליקיריה": {
@@ -878,6 +1078,26 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "דניאל חן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "דניאל חן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "דניאל כהן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "דניאל כהן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "דף הטבות poalim wonder": {
@@ -1091,6 +1311,16 @@
       "eventim"
     ]
   },
+  "המרתון הגדול": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "המרתון הגדול",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "הסינור של רוני": {
     "category": "standup",
     "display": "הסינור של רוני",
@@ -1236,13 +1466,45 @@
       "grayclub"
     ]
   },
+  "חן מזרחי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "חן מזרחי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "חנאל ומכבית": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "חנאל ומכבית",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "חנה לסלאו": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "חנה לסלאו",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "חנוך דאום": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "חנוך דאום",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "חני נחמיאס": {
@@ -1345,6 +1607,36 @@
       "grayclub"
     ]
   },
+  "יובל סמו": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "יובל סמו",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "יום המזל שלי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "יום המזל שלי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "יונה קפח": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "יונה קפח",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "יוני בלוך": {
     "category": "music",
     "display": "יוני בלוך",
@@ -1364,13 +1656,25 @@
     ]
   },
   "יונתן ברק": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "יונתן ברק",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "comy"
+    ]
+  },
+  "יונתן גרובר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "יונתן גרובר",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "יושי": {
@@ -1391,6 +1695,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "יעל פוליאקוב": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "יעל פוליאקוב",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "יפים אלכנסדרוב": {
@@ -1430,7 +1744,8 @@
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "כנסיית השכל": {
@@ -1516,6 +1831,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "ליאור סושרד": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ליאור סושרד",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "ליהי טולדנו": {
@@ -1629,6 +1954,26 @@
       "eventim"
     ]
   },
+  "מה קשור": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מה קשור",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "מה שקרה לנו": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מה שקרה לנו",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "מוחמד נעמה": {
     "category": "music",
     "display": "מוחמד נעמה",
@@ -1657,12 +2002,24 @@
     ]
   },
   "מור": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "מור",
     "first_seen": "2026-06-20T20:16:23.452115+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
+      "kupat",
+      "comy"
+    ]
+  },
+  "מורת רוח": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מורת רוח",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "מושיק עפיה": {
@@ -1728,6 +2085,16 @@
       "barby"
     ]
   },
+  "מייקל אזכרת קיץ": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מייקל אזכרת קיץ",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "מייקל הרפז": {
     "category": "music",
     "display": "מייקל הרפז",
@@ -1753,6 +2120,47 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "מירית גליצקי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מירית גליצקי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "מלכת היופי של ירושלים": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מלכת היופי של ירושלים",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "מני עוזרי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מני עוזרי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "מסיבת כיתה 2": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מסיבת כיתה 2",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy",
+      "grayclub"
     ]
   },
   "מסיבת כיתה 2 עם לירון לב ורביטל ויטלזון יעקבס": {
@@ -1801,6 +2209,16 @@
       "barby"
     ]
   },
+  "משה אשכנזי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "משה אשכנזי",
+    "first_seen": "2026-06-21T08:09:29.216829+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "משה להב": {
     "category": "music",
     "display": "משה להב",
@@ -1828,6 +2246,16 @@
       "kupat"
     ]
   },
+  "מתן פרץ": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מתן פרץ",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "נגה ארז": {
     "category": "music",
     "display": "נגה ארז",
@@ -1837,13 +2265,25 @@
       "kupat"
     ]
   },
+  "נגה דאנגלי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "נגה ד'אנג'לי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "נדב אבוקסיס": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "נדב אבוקסיס",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "נוגה פרידמן": {
@@ -1862,6 +2302,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "נועה יהודאי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "נועה יהודאי",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "נועם בתן": {
@@ -1909,6 +2359,16 @@
       "eventim"
     ]
   },
+  "נותנים בראש": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "נותנים בראש",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "נטלי פרץ": {
     "category": "music",
     "display": "נטלי פרץ",
@@ -1945,23 +2405,37 @@
       "eventim"
     ]
   },
+  "נלי תגר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "נלי תגר",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "נמרוד הראל": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "נמרוד הראל",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "ננסי ברנדס ואסנת שיר": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "ננסי ברנדס ואסנת שיר",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "נעם חורב": {
@@ -2019,6 +2493,16 @@
       "eventim"
     ]
   },
+  "סיבה למסיבה": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "סיבה למסיבה",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "סינגולדה וחברים": {
     "category": "music",
     "display": "סינגולדה וחברים",
@@ -2047,6 +2531,16 @@
       "barby"
     ]
   },
+  "סיפור הפרברים": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "סיפור הפרברים",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "עברי לידר": {
     "category": "music",
     "display": "עברי לידר",
@@ -2054,6 +2548,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "עדי אשכנזי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עדי אשכנזי",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "עדן בן זקן": {
@@ -2075,14 +2579,36 @@
       "kupat"
     ]
   },
+  "עודד מנסטר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עודד מנסטר",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "עומר קולי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עומר קולי",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "עופר ומאור": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "עופר ומאור",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "עופר לוי": {
@@ -2092,6 +2618,26 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "עושים צחוק מרתון סטנד אפ": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עושים צחוק מרתון סטנד אפ",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "עידו קציר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עידו קציר",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "עידן סלע": {
@@ -2141,6 +2687,16 @@
       "kupat"
     ]
   },
+  "עמית ויינברג": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "עמית ויינברג",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "עמרי סמדר": {
     "category": "standup",
     "display": "עמרי סמדר",
@@ -2159,6 +2715,16 @@
       "grayclub"
     ]
   },
+  "ערן זרחוביץ": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ערן זרחוביץ",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "ערן צור": {
     "category": "music",
     "display": "ערן צור",
@@ -2167,6 +2733,16 @@
     "sources": [
       "barby",
       "eventim"
+    ]
+  },
+  "פאות קדושות": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "פאות קדושות",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "פבלו רוזנברג": {
@@ -2263,6 +2839,26 @@
       "kupat"
     ]
   },
+  "ציפורים כולם": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ציפורים כולם",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "ציפורלה": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ציפורלה",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "צרלי וחצי": {
     "category": "music",
     "display": "צרלי וחצי",
@@ -2288,7 +2884,8 @@
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "קוולריה רוסטיקנה והליצנים": {
@@ -2316,6 +2913,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "קיר זכוכית": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "קיר זכוכית",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "קרולינה": {
@@ -2355,6 +2962,16 @@
       "eventim"
     ]
   },
+  "רביטל ויטלזון יעקבס": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רביטל ויטלזון יעקבס",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "רביטל ויטלזון יעקובס": {
     "category": "theater",
     "display": "רביטל ויטלזון יעקובס",
@@ -2380,6 +2997,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "רודי סעדה": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רודי סעדה",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "רונה קינן": {
@@ -2409,6 +3036,16 @@
       "eventim"
     ]
   },
+  "רוני ששון": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רוני ששון",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "רוקוויל": {
     "category": "music",
     "display": "רוקוויל",
@@ -2420,12 +3057,14 @@
     ]
   },
   "רותם אבוהב": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "רותם אבוהב",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "רותם כהן": {
@@ -2466,6 +3105,16 @@
       "barby"
     ]
   },
+  "רשף לוי": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רשף לוי",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "שאזאמאט": {
     "category": "standup",
     "display": "שאזאמאט",
@@ -2473,6 +3122,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "שבוע טוב": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "שבוע טוב",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "שבקס": {
@@ -2520,6 +3179,16 @@
       "grayclub"
     ]
   },
+  "שיחות עם הברמן": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "שיחות עם הברמן",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "שימי תבורי": {
     "category": "music",
     "display": "שימי תבורי",
@@ -2548,13 +3217,15 @@
     ]
   },
   "שלום אסייג": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "שלום אסייג",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "comy"
     ]
   },
   "שלום חנוך": {
@@ -2632,6 +3303,16 @@
       "kupat"
     ]
   },
+  "תום יער אופטימית זהירה": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "תום יער אופטימית זהירה",
+    "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "תזמורת המהפכה": {
     "category": "music",
     "display": "תזמורת המהפכה",
@@ -2648,6 +3329,16 @@
     "is_artist": false,
     "sources": [
       "barby"
+    ]
+  },
+  "תמיר בר": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "תמיר בר",
+    "first_seen": "2026-06-21T08:09:29.208713+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "תמיר גרינברג": {

@@ -38,11 +38,20 @@ def _page(artists: dict) -> str:
     ov = storage.load("overrides.json", {})
 
     def cat_of(info):
-        return ov.get(info["display"], {}).get("category") or info.get("category", "music")
+        o = ov.get(info["display"], {})
+        if o.get("category"):
+            return o["category"]
+        if "comy" in info.get("sources", []):       # COMY is stand-up only
+            return "standup"
+        return info.get("category", "music")
 
     def keep(info):
         o = ov.get(info["display"], {})
-        return o.get("is_artist", info.get("is_artist", True))
+        if "is_artist" in o:
+            return o["is_artist"]
+        if "comy" in info.get("sources", []):        # every COMY act is a real stand-up artist
+            return True
+        return info.get("is_artist", True)
 
     data = sorted(
         ({"n": info["display"],
