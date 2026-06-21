@@ -7,3 +7,4 @@ __pycache__/
 
 # Generated review reports
 reports/
+data/artists_review.csv

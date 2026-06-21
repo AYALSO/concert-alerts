@@ -130,17 +130,19 @@ class KupatScraper(Scraper):
 
         artist = clean_artist(name)
         title = name if name != artist else None
-        multi = len(pairs) > 1
+        single = len(pairs) == 1
         shows = []
         for iso, raw, venue in pairs:
-            if time_s and multi is False:
+            if time_s and single:
                 raw = f"{raw} {time_s}"
             shows.append(Show(
                 artist=artist,
                 date_raw=raw,
                 venue=venue or "קופת תל אביב",
-                # distinct per date so multi-date shows get distinct show_ids
-                url=f"{url}#{iso}" if multi else url,
+                # ALWAYS key per date (even single-date), so a show_id is stable per
+                # (show, date): opening a new date adds exactly ONE new show_id and
+                # never re-keys the existing dates (which would re-alert them).
+                url=f"{url}#{iso}",
                 source="kupat",
                 date_iso=iso,
                 title=title,

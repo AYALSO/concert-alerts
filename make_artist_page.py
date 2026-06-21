@@ -33,22 +33,24 @@ def _sort_key(a):
 
 
 def _page(artists: dict) -> str:
-    # manual corrections win over the AI classification (data/overrides.json:
-    # { "<display name>": {"category": "...", "is_artist": true|false} })
+    # manual corrections win over the AI classification — data/overrides.json keyed
+    # by artist_key: { "<artist_key>": {"name","category","is_artist"} }. Edit it via
+    # `python manage_artists.py export/apply`. "name" renames the displayed artist
+    # (the follow key/hash is unchanged, so existing follows keep working).
     ov = storage.load("overrides.json", {})
 
     standup_src = {"comy", "comedybar"}              # stand-up-only sources
 
-    def cat_of(info):
-        o = ov.get(info["display"], {})
+    def cat_of(key, info):
+        o = ov.get(key, {})
         if o.get("category"):
             return o["category"]
         if standup_src.intersection(info.get("sources", [])):
             return "standup"
         return info.get("category", "music")
 
-    def keep(info):
-        o = ov.get(info["display"], {})
+    def keep(key, info):
+        o = ov.get(key, {})
         if "is_artist" in o:
             return o["is_artist"]
         if standup_src.intersection(info.get("sources", [])):   # every COMY/Comedy-Bar act is a real artist
@@ -56,12 +58,12 @@ def _page(artists: dict) -> str:
         return info.get("is_artist", True)
 
     data = sorted(
-        ({"n": info["display"],
+        ({"n": ov.get(key, {}).get("name") or info["display"],   # manual rename wins
           "h": _artist_hash(key),
-          "c": cat_of(info),
+          "c": cat_of(key, info),
           "s": " · ".join(_SRC_LABEL.get(s, s) for s in info.get("sources", []))}
          for key, info in artists.items()
-         if keep(info)),                           # drop AI-flagged (or overridden) non-artists
+         if keep(key, info)),                       # drop AI-flagged (or overridden) non-artists
         key=_sort_key,
     )
     blob = json.dumps(data, ensure_ascii=False)
