@@ -1,0 +1,137 @@
+<!doctype html>
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פאנל ניהול אמנים</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0b1020;color:#e7e9ee}
+header{position:sticky;top:0;background:#0b1020;padding:12px 14px 8px;box-shadow:0 2px 12px rgba(0,0,0,.4);z-index:5}
+h1{font-size:17px;margin:0 0 8px}
+#q{width:100%;padding:11px 13px;font-size:16px;border-radius:11px;border:1px solid #2a3350;background:#141b30;color:#fff;outline:none}
+#info{color:#8b93a7;font-size:13px;margin:7px 2px 0}
+ul{list-style:none;margin:0;padding:6px 10px 110px}
+li{padding:10px 8px;border-bottom:1px solid #1c2438}
+li.mod{background:#16203f}
+.top{display:flex;align-items:center;gap:8px}
+.nm{flex:1;min-width:0;padding:8px 10px;font-size:15px;border-radius:9px;border:1px solid #2a3350;background:#0f1626;color:#fff}
+.src{color:#8b93a7;font-size:11px;margin:5px 2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctrls{display:flex;gap:7px;margin-top:8px;align-items:center}
+select{flex:1;padding:8px;font-size:14px;border-radius:9px;border:1px solid #2a3350;background:#0f1626;color:#fff}
+.hide{flex:none;display:flex;align-items:center;gap:6px;font-size:13px;color:#cdd3e0;background:#141b30;border:1px solid #2a3350;border-radius:9px;padding:8px 11px}
+.empty{color:#8b93a7;text-align:center;padding:30px}
+#bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:#0b1020;border-top:1px solid #1c2438;display:none}
+#save{width:100%;padding:14px;font-size:16px;font-weight:700;border:0;border-radius:12px;background:#2563eb;color:#fff}
+#warn{background:#3a2030;color:#ffb4c4;padding:10px 14px;font-size:13px;display:none}
+</style></head><body>
+<div id="warn">⚠️ פתח דרך הכפתור בבוט (פקודת /id) כדי שתהיה הרשאת שמירה.</div>
+<header>
+  <h1>🛠 ניהול אמנים — שמות וקטגוריות</h1>
+  <input id="q" placeholder="🔎 חיפוש אמן…" autocomplete="off">
+  <div id="info">טוען…</div>
+</header>
+<ul id="list"></ul>
+<div id="bar"><button id="save">שמור שינויים</button></div>
+<script>
+const WORKER = "https://concert-alerts-bot.tunaconcerts.workers.dev";
+const STANDUP = new Set(["comy","comedybar"]);
+const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["theater","🎭 הצגות"]];
+const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",comy:"קומי",comedybar:"קומדי בר"};
+const tg = window.Telegram && window.Telegram.WebApp;
+const inApp = !!(tg && tg.initData);
+if (inApp){ tg.ready(); tg.expand(); }
+
+const list=document.getElementById('list'), q=document.getElementById('q'),
+      info=document.getElementById('info'), bar=document.getElementById('bar'),
+      saveBtn=document.getElementById('save'), warn=document.getElementById('warn');
+if(!inApp) warn.style.display='block';
+
+let ART={}, KEYS=[], state={}, busy=false;
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function base(info){
+  const src=info.sources||[];
+  const standup=src.some(s=>STANDUP.has(s));
+  return { name: info.display,
+           cat: info.category || (standup?"standup":"music"),
+           art: ('is_artist' in info)? !!info.is_artist : true };
+}
+function modified(k){
+  const b=base(ART[k]), s=state[k];
+  return s.name!==b.name || s.cat!==b.cat || s.art!==b.art;
+}
+function row(k){
+  const info=ART[k], s=state[k];
+  const opts=CATS.map(([v,l])=>`<option value="${v}"${v===s.cat?' selected':''}>${l}</option>`).join('');
+  const src=(info.sources||[]).map(x=>SRCL[x]||x).join(' · ');
+  return `<li class="${modified(k)?'mod':''}" data-k="${esc(k)}">
+    <div class=top><input class=nm value="${esc(s.name)}"></div>
+    <div class=src>${esc(src)}</div>
+    <div class=ctrls>
+      <select class=cat>${opts}</select>
+      <label class=hide><input type=checkbox class=hd ${s.art?'':'checked'}> הסתר</label>
+    </div></li>`;
+}
+function render(){
+  const f=(q.value||'').trim().toLowerCase();
+  let ks=KEYS;
+  if(f) ks=KEYS.filter(k=>state[k].name.toLowerCase().includes(f)||k.toLowerCase().includes(f));
+  const mod=KEYS.filter(modified).length;
+  info.textContent=`${ks.length} אמנים · ${mod} שינויים שלא נשמרו`;
+  list.innerHTML = ks.length ? ks.slice(0,1200).map(row).join('') : '<div class=empty>לא נמצא</div>';
+  bar.style.display = inApp ? 'block' : 'none';
+}
+list.addEventListener('input', e=>{
+  const li=e.target.closest('li'); if(!li) return; const k=li.dataset.k;
+  if(e.target.classList.contains('nm')) state[k].name=e.target.value.trim();
+  else if(e.target.classList.contains('cat')) state[k].cat=e.target.value;
+  else if(e.target.classList.contains('hd')) state[k].art=!e.target.checked;
+  li.classList.toggle('mod', modified(k));
+  const mod=KEYS.filter(modified).length;
+  info.textContent=info.textContent.replace(/\d+ שינויים/, mod+' שינויים');
+});
+q.addEventListener('input', render);
+
+async function save(){
+  if(!inApp||busy) return; busy=true;
+  if(tg.MainButton) tg.MainButton.showProgress();
+  const overrides={};
+  for(const k of KEYS){
+    const b=base(ART[k]), s=state[k], o={};
+    if(s.name && s.name!==b.name) o.name=s.name;
+    if(s.cat!==b.cat) o.category=s.cat;
+    if(s.art!==b.art) o.is_artist=s.art;
+    if(Object.keys(o).length) overrides[k]=o;
+  }
+  try{
+    const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({initData:tg.initData, overrides})});
+    if(r.ok){ const j=await r.json();
+      (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ הרשימה תתעדכן.`);
+      render();
+    } else { (tg.showAlert?tg.showAlert:alert)('שמירה נכשלה ('+r.status+'). ודא שאתה האדמין.'); }
+  }catch(e){ (tg.showAlert?tg.showAlert:alert)('שגיאת רשת'); }
+  busy=false; if(tg.MainButton) tg.MainButton.hideProgress();
+}
+saveBtn.addEventListener('click', save);
+
+async function load(){
+  try{
+    const [a,ov]=await Promise.all([
+      fetch(WORKER+'/api/catalogue').then(r=>r.json()),
+      fetch(WORKER+'/api/overrides').then(r=>r.json()).catch(()=>({}))]);
+    ART=a||{};
+    KEYS=Object.keys(ART);
+    for(const k of KEYS){
+      const b=base(ART[k]), o=ov[k]||{};
+      state[k]={ name:o.name||b.name, cat:o.category||b.cat,
+                 art:('is_artist' in o)? !!o.is_artist : b.art };
+    }
+    KEYS.sort((x,y)=>state[x].name.localeCompare(state[y].name,'he'));
+    if(inApp && tg.MainButton){ tg.MainButton.setText('שמור שינויים'); tg.MainButton.show(); tg.MainButton.onClick(save); }
+    render();
+  }catch(e){ info.textContent='שגיאה בטעינה: '+e; }
+}
+load();
+</script></body></html>

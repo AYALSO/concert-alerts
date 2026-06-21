@@ -33,33 +33,26 @@ def _sort_key(a):
 
 
 def _page(artists: dict) -> str:
-    # manual corrections win over the AI classification — data/overrides.json keyed
-    # by artist_key: { "<artist_key>": {"name","category","is_artist"} }. Edit it via
-    # `python manage_artists.py export/apply`. "name" renames the displayed artist
-    # (the follow key/hash is unchanged, so existing follows keep working).
-    ov = storage.load("overrides.json", {})
-
+    # Manual name/category fixes are made ONLINE via the admin Mini App (open it with
+    # /id in the bot) and stored in Cloudflare KV ("overrides", keyed by artist_key).
+    # The page fetches /api/overrides at load and applies them live (rename / recat /
+    # hide) — see init() below. The build itself only forces stand-up sources.
     standup_src = {"comy", "comedybar"}              # stand-up-only sources
 
     def cat_of(key, info):
-        o = ov.get(key, {})
-        if o.get("category"):
-            return o["category"]
         if standup_src.intersection(info.get("sources", [])):
             return "standup"
         return info.get("category", "music")
 
     def keep(key, info):
-        o = ov.get(key, {})
-        if "is_artist" in o:
-            return o["is_artist"]
         if standup_src.intersection(info.get("sources", [])):   # every COMY/Comedy-Bar act is a real artist
             return True
         return info.get("is_artist", True)
 
     data = sorted(
-        ({"n": ov.get(key, {}).get("name") or info["display"],   # manual rename wins
+        ({"n": info["display"],
           "h": _artist_hash(key),
+          "k": key,                                  # for live KV-override matching
           "c": cat_of(key, info),
           "s": " · ".join(_SRC_LABEL.get(s, s) for s in info.get("sources", []))}
          for key, info in artists.items()
@@ -123,7 +116,7 @@ a.follow{flex:none;background:#2563eb;color:#fff;text-decoration:none;
 <ul id="list"></ul>
 <div id="bar"><button id="go"></button></div>
 <script>
-const A = __DATA__;
+let A = __DATA__;
 const BOT = "__BOT__";
 const WORKER = "__WORKER__";
 const tg = window.Telegram && window.Telegram.WebApp;
@@ -183,6 +176,12 @@ function toggle(h,li){
   count.textContent=count.textContent; updateBtn();
 }
 async function init(){
+  try{                                   // apply live admin overrides (name/category/hide)
+    const ov=await (await fetch(WORKER+'/api/overrides')).json();
+    A = A.filter(a=>(ov[a.k]||{}).is_artist!==false)
+         .map(a=>{const o=ov[a.k]||{}; return {...a, n:o.name||a.n, c:o.category||a.c};});
+    order=A;
+  }catch(e){}
   if(inApp){
     try{
       const r=await fetch(WORKER+'/api/follows?initData='+encodeURIComponent(tg.initData));

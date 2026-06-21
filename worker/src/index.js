@@ -33,6 +33,11 @@ export default {
     }
     // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
     if (url.pathname === "/api/follows") return handleApi(request, url, env);
+    // Admin override store (artist name/category fixes): GET public, POST admin-only.
+    if (url.pathname === "/api/overrides") return handleOverrides(request, env);
+    // Full artist catalogue (for the admin panel; CORS-enabled passthrough of raw JSON).
+    if (url.pathname === "/api/catalogue")
+      return Response.json(await fetchJSON("artists.json"), { headers: CORS });
     // Title classifier for the scan (Workers AI, cached). Secret-protected.
     if (url.pathname === "/classify" && request.method === "POST") {
       const b = await request.json().catch(() => ({}));
@@ -132,6 +137,26 @@ async function handleApi(request, url, env) {
 
 // Inline button that opens the Mini App. Inline (not reply-keyboard) => Telegram
 // passes initData, so the app can fetch the user's LIVE follows and pre-tick them.
+// Admin overrides: { "<artist_key>": {name?, category?, is_artist?} }. GET is public
+// (the Mini App applies them live); POST is restricted to the admin chat (the one
+// stored by /id). The admin panel sends the full map each save.
+async function handleOverrides(request, env) {
+  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+  if (request.method === "GET")
+    return Response.json((await env.SUBS.get("overrides", "json")) || {}, { headers: CORS });
+  if (request.method === "POST") {
+    const b = await request.json().catch(() => ({}));
+    const chat = await validateInitData(b.initData || "", env.BOT_TOKEN);
+    const admin = await env.SUBS.get("admin_chat");
+    if (!chat || !admin || chat !== admin)
+      return Response.json({ error: "forbidden" }, { status: 403, headers: CORS });
+    const ov = b.overrides && typeof b.overrides === "object" ? b.overrides : {};
+    await env.SUBS.put("overrides", JSON.stringify(ov));
+    return Response.json({ ok: true, count: Object.keys(ov).length }, { headers: CORS });
+  }
+  return new Response("method", { status: 405, headers: CORS });
+}
+
 function webappKeyboard() {
   // Telegram caches the Mini App page, so a freshly-scanned artist list can look
   // stale. Bump the URL each hour (≈ the scan cadence) to force a fresh load.
@@ -303,11 +328,15 @@ async function handleCommand(chat, text, env) {
   if (low === "/follow" || low === "/unfollow") {
     return resolveAndToggle(chat, arg, low === "/follow", env);
   }
-  if (low === "/id" || low === "/admin") {            // dev: register for scan digests
+  if (low === "/id" || low === "/admin") {            // dev: register + admin panel
     await env.SUBS.put("admin_chat", String(chat));
+    const v = new Date().toISOString().slice(0, 13).replace(/[-T]/g, "");
     return send(env, chat,
       `\u{1F194} chat_id: <code>${chat}</code>\n` +
-      "✅ מעכשיו תקבל כאן סיכום של כל סריקה שמוצאת הופעות חדשות.");
+      "✅ מעכשיו תקבל כאן סיכום של כל סריקה שמוצאת הופעות חדשות.\n" +
+      "\u{1F6E0} פאנל ניהול: ערוך שמות וקטגוריות של אמנים ↓",
+      { reply_markup: { inline_keyboard: [[
+        { text: "\u{1F6E0} פאנל ניהול אמנים", web_app: { url: `${WEBAPP_URL}admin.html?v=${v}` } }]] } });
   }
   // plain text -> instant search
   return searchAndReply(chat, text, env);

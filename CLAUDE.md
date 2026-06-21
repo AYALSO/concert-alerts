@@ -89,15 +89,20 @@ defaulted, so a quota hiccup never sticks a wrong label).
   within quota. Bump `CLS_VERSION` (+ the `cls3:` Worker cache prefix) to force a
   full re-classify after a model/prompt change.
 - `make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
-  adds music/standup/theater filter chips. **`data/overrides.json` (keyed by
-  `artist_key`: `{"<key>": {"name","category","is_artist"}}`) wins over the AI at
-  page-build** and survives scans — `name` renames the displayed artist (follow
-  key/hash unchanged), `category`/`is_artist` pin the classification.
-- **Developer review/edit tool:** `python manage_artists.py export` writes
-  `data/artists_review.csv` (display · category · is_artist · sources · #shows,
-  most-shows first; gitignored). Edit it in Excel, then `python manage_artists.py
-  apply` records just the changed fields into `overrides.json` (idempotent; revert
-  a value to drop its override). Rebuild with `make_artist_page.py`.
+  adds music/standup/theater filter chips. The build only forces stand-up sources;
+  all manual fixes are **online** (below).
+- **Online admin panel (manual name/category fixes):** `docs/admin.html` is a Telegram
+  Mini App the developer opens by sending **`/id`** to the bot (its reply has a
+  "🛠 פאנל ניהול אמנים" button). It lists every artist with an editable name, a
+  category dropdown (music/standup/theater) and a hide toggle, and **Save** POSTs the
+  full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
+  `{ "<artist_key>": {name?, category?, is_artist?} }`), keyed by stable `artist_key`
+  so renames don't break follows. `/api/overrides` GET is public, POST is restricted
+  to the admin chat (the one `/id` stored in `admin_chat`), validated by Telegram
+  `initData`. `/api/catalogue` is a CORS passthrough of `artists.json` for the panel.
+  The **public Mini App fetches `/api/overrides` at load** and applies them live
+  (rename / recategorize / hide), so edits show up without a rebuild. (There is no
+  local override file — KV is the single source.)
 
 ## Known gotchas
 - **grayclub returned HTTP 403** when fetched from some datacenter networks (anti-bot).
