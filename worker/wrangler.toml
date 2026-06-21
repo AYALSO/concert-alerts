@@ -8,8 +8,8 @@ kv_namespaces = [
   { binding = "SUBS", id = "b2516bc78a5548c5b17d53619893b2e8" }
 ]
 
-# Workers AI (free daily allowance) — used to classify show titles (is_artist /
-# clean name / category). Cached in KV so each title is classified once.
+# Workers AI (free daily allowance) — FALLBACK classifier when GEMINI_API_KEY is
+# unset. Primary classifier is Google Gemini (web-grounded). Cached in KV.
 [ai]
 binding = "AI"
 
@@ -17,3 +17,6 @@ binding = "AI"
 #   BOT_TOKEN       - Telegram bot token
 #   WEBHOOK_SECRET  - random; also passed to setWebhook as secret_token
 #   NOTIFY_SECRET   - random; shared with the GitHub Actions scanner
+#   GEMINI_API_KEY  - Google AI Studio key; enables Gemini (gemini-2.5-flash) with
+#                     Google-Search grounding for /classify. Free-tier grounded quota
+#                     is small (~70 artists/day) so the catalogue upgrades over a few days.

@@ -175,32 +175,52 @@ const CLS_SYS =
   '"category" exactly one of: "music" (concerts, singers, bands), "standup" (stand-up ' +
   'comedy), "theater" (plays, musicals, ballet, dance, and children\'s shows). ' +
   "Reply with ONLY a JSON array of these objects, in the same order, nothing else.";
+const GEMINI_MODEL = "gemini-2.5-flash";
+
+// Classify one batch -> array of {is_artist,name,category}. Prefers Gemini with
+// Google-Search grounding (free tier) when GEMINI_API_KEY is set; else Workers AI.
+async function classifyBatch(batch, env) {
+  const user = batch.map((t, j) => `${j + 1}. ${t.replace(/\s+/g, " ").slice(0, 140)}`).join("\n");
+  if (env.GEMINI_API_KEY) {
+    const r = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${env.GEMINI_API_KEY}`,
+      { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: CLS_SYS + " Use Google Search to verify each performer." }] },
+          contents: [{ parts: [{ text: user }] }],
+          tools: [{ google_search: {} }],
+          generationConfig: { temperature: 0 },
+        }) });
+    const j = await r.json();
+    if (!r.ok) { console.log("gemini err", JSON.stringify(j).slice(0, 200)); return []; }
+    const text = (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+    return JSON.parse((text.match(/\[[\s\S]*\]/) || ["[]"])[0]);
+  }
+  const r = await env.AI.run(AI_MODEL, {
+    messages: [{ role: "system", content: CLS_SYS }, { role: "user", content: user }],
+    max_tokens: 2400, temperature: 0,
+  });
+  const resp = r.response;
+  if (Array.isArray(resp)) return resp;
+  if (resp && Array.isArray(resp.result)) return resp.result;
+  if (typeof resp === "string") return JSON.parse((resp.match(/\[[\s\S]*\]/) || ["[]"])[0]);
+  return [];
+}
 
 async function classifyTitles(titles, env) {
   const out = {};
   const todo = [];
   for (const t of titles) {
     if (!t) continue;
-    const cached = await env.SUBS.get("cls2:" + (await artistHash(t)), "json");
+    const cached = await env.SUBS.get("cls3:" + (await artistHash(t)), "json");
     if (cached) out[t] = cached;
     else if (!todo.includes(t)) todo.push(t);
   }
-  for (let i = 0; i < todo.length; i += 12) {
-    const batch = todo.slice(i, i + 12);
-    const list = batch.map((t, j) => `${j + 1}. ${t.replace(/\s+/g, " ").slice(0, 140)}`).join("\n");
+  for (let i = 0; i < todo.length; i += 8) {
+    const batch = todo.slice(i, i + 8);
     let arr = [];
-    try {
-      const r = await env.AI.run(AI_MODEL, {
-        messages: [{ role: "system", content: CLS_SYS }, { role: "user", content: list }],
-        max_tokens: 2400, temperature: 0,
-      });
-      const resp = r.response;                       // may be a parsed array OR a string
-      if (Array.isArray(resp)) arr = resp;
-      else if (resp && Array.isArray(resp.result)) arr = resp.result;
-      else if (typeof resp === "string") arr = JSON.parse((resp.match(/\[[\s\S]*\]/) || ["[]"])[0]);
-    } catch (e) {
-      console.log("classify error", e);
-    }
+    try { arr = await classifyBatch(batch, env); }
+    catch (e) { console.log("classify error", e); }
     for (let j = 0; j < batch.length; j++) {
       const a = arr[j];
       if (a && typeof a === "object") {           // valid AI result -> cache it
@@ -210,10 +230,8 @@ async function classifyTitles(titles, env) {
           category: CLS_CATS.includes(a.category) ? a.category : "music",
         };
         out[batch[j]] = c;
-        await env.SUBS.put("cls2:" + (await artistHash(batch[j])), JSON.stringify(c));
-      } else {                                     // AI failed -> default, do NOT cache (retry later)
-        out[batch[j]] = { is_artist: true, name: batch[j], category: "music" };
-      }
+        await env.SUBS.put("cls3:" + (await artistHash(batch[j])), JSON.stringify(c));
+      }                                            // AI failed/omitted -> leave out (caller retries later)
     }
   }
   return out;

@@ -69,17 +69,26 @@ Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `re
 ### Artist-name unification (`core/artist_names.py`)
 `clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
 
-### AI classification (Cloudflare Workers AI — free, no per-use cost)
-The Worker's `/classify` endpoint (model `@cf/meta/llama-3.3-70b-instruct-fp8-fast`,
-`env.AI` binding) turns each artist name into `{is_artist, name, category}` where
-category ∈ music/standup/theater. Results are cached in KV (`cls2:<hash>`, only
-successful results cached). `scan.classify_artists()` annotates `artists.json`
-incrementally (capped per run, so it stays within the free daily allowance).
-`make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
-adds music/standup/theater filter chips. The model uses its training knowledge
-(no live web), so a few are wrong (e.g. bare "קובי מימון" → music); `data/overrides.json`
-( `{"<display>": {"category","is_artist"}}` ) fixes those at page-build time.
-To re-classify everything, bump the `cls2:` cache prefix in the Worker.
+### AI classification (Google Gemini, web-grounded — free; Workers AI fallback)
+The Worker's `/classify` endpoint turns each artist name into `{is_artist, name,
+category}` (category ∈ music/standup/theater). It prefers **Google Gemini**
+(`gemini-2.5-flash` with **Google-Search grounding** — actually verifies each
+performer on the web, so e.g. bare "קובי מימון" → standup correctly) when the
+`GEMINI_API_KEY` secret is set; otherwise it falls back to Cloudflare **Workers AI**
+(`@cf/meta/llama-3.3-70b-instruct-fp8-fast`, no live web). Results cache in KV
+(`cls3:<hash>`, successes only; titles it can't classify are **omitted**, not
+defaulted, so a quota hiccup never sticks a wrong label).
+- **Free-quota reality:** Gemini's free *grounded-search* allowance is small
+  (~70 artists/day; `gemini-2.0-flash` had 0 free quota — 2.5-flash works). So
+  `scan.classify_artists(cap=60)` upgrades the catalogue **incrementally** — it
+  re-classifies only artists whose `cat_v` ≠ `CLS_VERSION` (in `scan.py`), keeping
+  the existing category until Gemini re-does it (**no regression**). The ~290-artist
+  bulk fills in over a few daily scans; ongoing only adds 0–2 new artists/scan, well
+  within quota. Bump `CLS_VERSION` (+ the `cls3:` Worker cache prefix) to force a
+  full re-classify after a model/prompt change.
+- `make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
+  adds music/standup/theater filter chips. `data/overrides.json`
+  ( `{"<display>": {"category","is_artist"}}` ) still wins over the AI at page-build.
 
 ## Known gotchas
 - **grayclub returned HTTP 403** when fetched from some datacenter networks (anti-bot).
