@@ -443,7 +443,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "comy"
+      "comy",
+      "comedybar"
     ]
   },
   "אורנה בנאי": {
@@ -547,6 +548,16 @@
     "sources": [
       "eventim",
       "kupat"
+    ]
+  },
+  "אלדד שטרית": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "אלדד שטרית",
+    "first_seen": "2026-06-21T13:00:35.872963+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
     ]
   },
   "אלון עדר": {
@@ -884,6 +895,13 @@
       "eventim"
     ]
   },
+  "גבירתי הנאווה": {
+    "display": "גבירתי הנאווה",
+    "first_seen": "2026-06-21T12:59:09.624051+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "גון בן ארי ומקהלת זולת": {
     "cat_v": 2,
     "category": "music",
@@ -1146,7 +1164,8 @@
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "comedybar"
     ]
   },
   "דף הטבות poalim wonder": {
@@ -1487,6 +1506,13 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "זלנקה": {
+    "display": "זלנקה",
+    "first_seen": "2026-06-21T12:59:09.910703+00:00",
+    "sources": [
+      "eventim"
     ]
   },
   "ז׳וקה פרפיניאן גרופ joca perpignan group": {
@@ -1892,6 +1918,16 @@
       "kupat"
     ]
   },
+  "ליאור דובדבני": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "ליאור דובדבני",
+    "first_seen": "2026-06-21T13:00:35.888610+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "ליאור כלפון": {
     "category": "music",
     "display": "ליאור כלפון",
@@ -2043,12 +2079,14 @@
     ]
   },
   "מוחמד נעמה": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "מוחמד נעמה",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comedybar"
     ]
   },
   "מופע הארנבות של דר קספר": {
@@ -2278,6 +2316,16 @@
       "barby"
     ]
   },
+  "מרתון סטנדאפ": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "מרתון סטנדאפ",
+    "first_seen": "2026-06-21T13:00:33.015166+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "משה אשכנזי": {
     "cat_v": 2,
     "category": "standup",
@@ -2417,6 +2465,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "נופר סויסה": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "נופר סויסה",
+    "first_seen": "2026-06-21T13:00:35.872963+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
     ]
   },
   "נורית גלרון": {
@@ -3112,7 +3170,8 @@
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "comedybar"
     ]
   },
   "רוקוויל": {
@@ -3228,6 +3287,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "שחר חסון": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "שחר חסון",
+    "first_seen": "2026-06-21T13:00:35.872963+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
     ]
   },
   "שי המבר": {
