@@ -1,23 +1,24 @@
-"""COMY (comy.co.il) scraper — stand-up only.
+"""COMY (comy.co.il) scraper — stand-up only, one Show per DATE.
 
-The homepage server-renders each act as an `.event` card: an `a.event-inner`
-link to /event/<slug>/, an `<h3>` performer/show name, an `<h4>` ("סטנדאפ") and
-an `<h5>` date range "DD/MM/YYYY-DD/MM/YYYY". These are touring stand-up shows
-under ONE URL with many dates, so we record one Show per event (one alert per
-new tour, not per date) keyed on the event URL. date_iso = the tour's END date,
-so an in-progress tour isn't pruned until it is fully over.
+Homepage `.event` cards give each act's name (`<h3>`) and event URL
+(`a.event-inner`). Each event is a touring stand-up show with many dates, so we
+fetch its detail page and emit ONE Show per performance date — comedians open
+new dates one at a time, and each new date must raise its own alert.
 
-Every COMY act is stand-up by definition; `make_artist_page` / `classify_artists`
-force the category to "standup" for any artist sourced from here, regardless of
-the AI classifier.
+Per-date rows on the detail page: `.single-event-details` →
+`.single-date-details .date` (DD.MM, no year) + `.single-light` (day + time) +
+`.single-place-string` (venue). The year is inferred as the nearest future
+occurrence. The url gets `#<iso>` so each date is a distinct `show_id`;
+same-date rows dedupe, so no duplicate alerts.
 
-Behind a CDN — fetched with curl_cffi browser impersonation, like eventim.
+Every COMY artist is stand-up (forced in `scan.force_comy_standup` and
+`make_artist_page`). curl_cffi browser impersonation (behind a CDN).
 """
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
-from typing import List
+from datetime import date
+from typing import List, Optional
 
 from bs4 import BeautifulSoup
 from curl_cffi import requests as creq
@@ -26,7 +27,19 @@ from core.artist_names import clean_artist
 from core.models import Show
 from scrapers.base import Scraper, register
 
-DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
+DM_RE = re.compile(r"(\d{1,2})[.\/](\d{1,2})")
+
+
+def _infer_iso(dd: int, mm: int, today: date) -> Optional[str]:
+    """DD.MM with no year -> the nearest occurrence that is today-or-future."""
+    for y in (today.year, today.year + 1):
+        try:
+            d = date(y, mm, dd)
+        except ValueError:
+            return None
+        if d >= today:
+            return d.isoformat()
+    return None
 
 
 @register
@@ -39,40 +52,48 @@ class ComyScraper(Scraper):
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
         today = date.today()
-        shows: dict[str, Show] = {}            # event url -> Show
 
+        events: dict[str, str] = {}              # event url -> name
         for card in soup.select(".event"):
             link = card.select_one("a.event-inner")
             h3 = card.find("h3")
             if not link or not h3:
                 continue
-            title = h3.get_text(" ", strip=True)
             href = (link.get("href") or "").split("?")[0].split("#")[0]
-            if not title or not href.startswith("http") or href in shows:
+            name = h3.get_text(" ", strip=True)
+            if href.startswith("http") and name:
+                events.setdefault(href, name)
+
+        shows: dict[str, Show] = {}              # url#iso -> Show (dedupes same date)
+        for url, name in events.items():
+            artist = clean_artist(name)
+            try:
+                d = creq.get(url, impersonate="chrome", timeout=30)
+                rows = BeautifulSoup(d.text, "html.parser").select(".single-event-details")
+            except Exception as e:  # one bad event page must not stop the rest
+                print(f"[comy] {url} ERROR: {e}")
                 continue
-
-            h5 = card.find("h5")
-            raw = h5.get_text(" ", strip=True) if h5 else ""
-            dates = DATE_RE.findall(raw)
-            date_iso = None
-            if dates:
-                dd, mm, yyyy = dates[-1]            # tour END date
-                date_iso = f"{yyyy}-{int(mm):02d}-{int(dd):02d}"
-                try:
-                    if datetime.fromisoformat(date_iso).date() < today:
-                        continue                     # whole tour already over
-                except ValueError:
-                    date_iso = None
-
-            artist = clean_artist(title)
-            shows[href] = Show(
-                artist=artist,
-                date_raw=raw,
-                venue="",
-                url=href,
-                source=self.name,
-                date_iso=date_iso,
-                title=title if title != artist else None,
-            )
-
+            for row in rows:
+                dt = row.select_one(".single-date-details .date")
+                m = DM_RE.search(dt.get_text(" ", strip=True)) if dt else None
+                if not m:
+                    continue
+                iso = _infer_iso(int(m.group(1)), int(m.group(2)), today)
+                if not iso:
+                    continue
+                key = f"{url}#{iso}"
+                if key in shows:
+                    continue
+                light = row.select_one(".single-light")
+                place = row.select_one(".single-place-string")
+                when = light.get_text(" ", strip=True) if light else ""
+                shows[key] = Show(
+                    artist=artist,
+                    date_raw=f"{iso[8:10]}.{iso[5:7]} {when}".strip(),
+                    venue=place.get_text(" ", strip=True) if place else "",
+                    url=key,
+                    source=self.name,
+                    date_iso=iso,
+                    title=name if name != artist else None,
+                )
         return list(shows.values())
