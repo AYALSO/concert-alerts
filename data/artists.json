@@ -121,6 +121,7 @@
     ]
   },
   "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
+    "cat_v": 2,
     "category": "music",
     "display": "– ELTON מייקל הרפז שר אלטון ג'ון – מחווה חיה לאגדה",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -130,6 +131,7 @@
     ]
   },
   "fever": {
+    "cat_v": 2,
     "category": "music",
     "display": "FEVER",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -139,6 +141,7 @@
     ]
   },
   "flame": {
+    "cat_v": 2,
     "category": "music",
     "display": "FLAME",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -148,6 +151,7 @@
     ]
   },
   "mehmet dash": {
+    "cat_v": 2,
     "category": "music",
     "display": "Mehmet Dash",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -157,6 +161,7 @@
     ]
   },
   "moonlight": {
+    "cat_v": 2,
     "category": "music",
     "display": "Moonlight",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -176,6 +181,7 @@
     ]
   },
   "party": {
+    "cat_v": 2,
     "category": "music",
     "display": "PARTY",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -185,6 +191,7 @@
     ]
   },
   "pink floyd greatest hits by echoes": {
+    "cat_v": 2,
     "category": "music",
     "display": "PINK FLOYD GREATEST HITS BY ECHOES",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -194,6 +201,7 @@
     ]
   },
   "sudance": {
+    "cat_v": 2,
     "category": "music",
     "display": "SUDANCE",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -243,7 +251,8 @@
     ]
   },
   "vivo": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "theater",
     "display": "VIVO",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": false,
@@ -252,6 +261,7 @@
     ]
   },
   "water fun": {
+    "cat_v": 2,
     "category": "music",
     "display": "WATER FUN",
     "first_seen": "2026-06-20T20:16:52.917478+00:00",
@@ -283,6 +293,7 @@
     ]
   },
   "אבי סינגולדה": {
+    "cat_v": 2,
     "category": "music",
     "display": "אבי סינגולדה",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
@@ -292,6 +303,7 @@
     ]
   },
   "אביחי הולנדר": {
+    "cat_v": 2,
     "category": "music",
     "display": "אביחי הולנדר",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -301,6 +313,7 @@
     ]
   },
   "אביתר בנאי": {
+    "cat_v": 2,
     "category": "music",
     "display": "אביתר בנאי",
     "first_seen": "2026-06-20T20:16:07.324275+00:00",
@@ -311,15 +324,17 @@
     ]
   },
   "אבנר מדר": {
+    "cat_v": 2,
     "category": "music",
     "display": "אבנר מדר",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
   },
   "אדיר גץ": {
+    "cat_v": 2,
     "category": "music",
     "display": "אדיר גץ",
     "first_seen": "2026-06-20T20:16:59.957275+00:00",
@@ -339,6 +354,7 @@
     ]
   },
   "אהבה מודרנית": {
+    "cat_v": 2,
     "category": "theater",
     "display": "אהבה מודרנית",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -348,6 +364,7 @@
     ]
   },
   "אהוד בנאי": {
+    "cat_v": 2,
     "category": "music",
     "display": "אהוד בנאי",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -388,6 +405,7 @@
     ]
   },
   "אורות הבמה": {
+    "cat_v": 2,
     "category": "theater",
     "display": "אורות הבמה",
     "first_seen": "2026-06-20T20:16:09.401663+00:00",
@@ -521,6 +539,7 @@
     ]
   },
   "איתי לוי": {
+    "cat_v": 2,
     "category": "music",
     "display": "איתי לוי",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -531,6 +550,7 @@
     ]
   },
   "אלון עדר": {
+    "cat_v": 2,
     "category": "music",
     "display": "אלון עדר",
     "first_seen": "2026-06-20T20:16:07.323972+00:00",
@@ -580,7 +600,8 @@
     ]
   },
   "אמירם טובים": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "אמירם טובים",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
@@ -590,7 +611,8 @@
     ]
   },
   "אנני": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "theater",
     "display": "אנני",
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
     "is_artist": true,
@@ -619,6 +641,7 @@
     ]
   },
   "אסף אמדורסקי שלומי שבן יעל קראוס שרים החלונות הגבוהים": {
+    "cat_v": 2,
     "category": "music",
     "display": "אסף אמדורסקי, שלומי שבן, יעל קראוס שרים החלונות הגבוהים",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -638,7 +661,8 @@
     ]
   },
   "אסף מור יוסף": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "אסף מור יוסף",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
     "is_artist": true,
@@ -668,6 +692,7 @@
     ]
   },
   "אקו x מיצי": {
+    "cat_v": 2,
     "category": "music",
     "display": "אקו x מיצי",
     "first_seen": "2026-06-20T20:16:07.322714+00:00",
@@ -697,6 +722,7 @@
     ]
   },
   "ארז נץ": {
+    "cat_v": 2,
     "category": "music",
     "display": "ארז נץ",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -706,6 +732,7 @@
     ]
   },
   "אריאל זילבר": {
+    "cat_v": 2,
     "category": "music",
     "display": "אריאל זילבר",
     "first_seen": "2026-06-20T20:16:07.321714+00:00",
@@ -717,6 +744,7 @@
     ]
   },
   "ארקדי דוכין": {
+    "cat_v": 2,
     "category": "music",
     "display": "ארקדי דוכין",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -727,15 +755,17 @@
     ]
   },
   "אשכול נבו": {
+    "cat_v": 2,
     "category": "music",
     "display": "אשכול נבו",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
   },
   "אתניx": {
+    "cat_v": 2,
     "category": "music",
     "display": "אתניX",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
@@ -745,6 +775,7 @@
     ]
   },
   "באלישג ויובי": {
+    "cat_v": 2,
     "category": "music",
     "display": "באלישג ויובי",
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
@@ -754,6 +785,7 @@
     ]
   },
   "בזי בי": {
+    "cat_v": 2,
     "category": "music",
     "display": "בזי בי",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -773,6 +805,7 @@
     ]
   },
   "בין אדיס לריו": {
+    "cat_v": 2,
     "category": "music",
     "display": "בין אדיס לריו",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -782,6 +815,7 @@
     ]
   },
   "בלאקבירדס": {
+    "cat_v": 2,
     "category": "music",
     "display": "בלאקבירדס",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
@@ -811,6 +845,7 @@
     ]
   },
   "בן מירן": {
+    "cat_v": 2,
     "category": "music",
     "display": "בן מירן",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -820,6 +855,7 @@
     ]
   },
   "בניה ברבי": {
+    "cat_v": 2,
     "category": "music",
     "display": "בניה ברבי",
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
@@ -829,6 +865,7 @@
     ]
   },
   "בעז שרעבי": {
+    "cat_v": 2,
     "category": "music",
     "display": "בעז שרעבי",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -972,6 +1009,7 @@
     ]
   },
   "גליקריה": {
+    "cat_v": 2,
     "category": "music",
     "display": "גליקריה",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -981,6 +1019,7 @@
     ]
   },
   "גרנד סלאם אתלטיקה ירושלים": {
+    "cat_v": 2,
     "category": "music",
     "display": "גרנד סלאם אתלטיקה ירושלים",
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
@@ -990,6 +1029,7 @@
     ]
   },
   "ג׳ימבו ג׳יי": {
+    "cat_v": 2,
     "category": "music",
     "display": "ג׳ימבו ג׳יי",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -999,6 +1039,7 @@
     ]
   },
   "דודו אהרון": {
+    "cat_v": 2,
     "category": "music",
     "display": "דודו אהרון",
     "first_seen": "2026-06-20T20:16:25.828660+00:00",
@@ -1008,7 +1049,8 @@
     ]
   },
   "דודו ארז": {
-    "category": "music",
+    "cat_v": 2,
+    "category": "standup",
     "display": "דודו ארז",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
@@ -1017,6 +1059,7 @@
     ]
   },
   "דודו טסה": {
+    "cat_v": 2,
     "category": "music",
     "display": "דודו טסה",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
@@ -1026,6 +1069,7 @@
     ]
   },
   "דויד ברוזה": {
+    "cat_v": 2,
     "category": "music",
     "display": "דויד ברוזה",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -1035,6 +1079,7 @@
     ]
   },
   "דורון מזר": {
+    "cat_v": 2,
     "category": "music",
     "display": "דורון מזר",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -1044,6 +1089,7 @@
     ]
   },
   "דיקלה": {
+    "cat_v": 2,
     "category": "music",
     "display": "דיקלה",
     "first_seen": "2026-06-20T20:16:07.320714+00:00",
@@ -1053,6 +1099,7 @@
     ]
   },
   "דני סנדרסון": {
+    "cat_v": 2,
     "category": "music",
     "display": "דני סנדרסון",
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
@@ -1063,6 +1110,7 @@
     ]
   },
   "דני רובס": {
+    "cat_v": 2,
     "category": "music",
     "display": "דני רובס",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
@@ -1072,6 +1120,7 @@
     ]
   },
   "דניאל וייס": {
+    "cat_v": 2,
     "category": "music",
     "display": "דניאל וייס",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -1201,6 +1250,7 @@
     ]
   },
   "הטבה ללקוחות flycard": {
+    "cat_v": 2,
     "category": "music",
     "display": "הטבה ללקוחות FLYCARD",
     "first_seen": "2026-06-21T06:09:08.467368+00:00",
@@ -1230,6 +1280,7 @@
     ]
   },
   "הטבות לעובדי רמבם": {
+    "cat_v": 2,
     "category": "music",
     "display": "הטבות לעובדי רמב\"ם",
     "first_seen": "2026-06-21T06:09:08.467470+00:00",
@@ -1249,16 +1300,18 @@
     ]
   },
   "הטברנס": {
+    "cat_v": 2,
     "category": "music",
     "display": "הטברנס",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "grayclub"
     ]
   },
   "הטיש הגדול משה להב": {
-    "category": "standup",
+    "cat_v": 2,
+    "category": "music",
     "display": "הטיש הגדול- משה להב",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
     "is_artist": true,
@@ -1267,7 +1320,8 @@
     ]
   },
   "היהודים": {
-    "category": "theater",
+    "cat_v": 2,
+    "category": "music",
     "display": "היהודים",
     "first_seen": "2026-06-20T20:16:38.460020+00:00",
     "is_artist": true,
@@ -1276,15 +1330,17 @@
     ]
   },
   "היוצרים": {
+    "cat_v": 2,
     "category": "music",
     "display": "היוצרים",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
   },
   "הילה רוח": {
+    "cat_v": 2,
     "category": "music",
     "display": "הילה רוח",
     "first_seen": "2026-06-20T20:16:07.316726+00:00",
@@ -1294,15 +1350,17 @@
     ]
   },
   "הכבש השישה עשר ושירים שלנו גם": {
+    "cat_v": 2,
     "category": "music",
     "display": "הכבש השישה עשר ושירים שלנו גם",
     "first_seen": "2026-06-20T20:16:07.696518+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
   },
   "הלהקות חוזרות": {
+    "cat_v": 2,
     "category": "music",
     "display": "הלהקות חוזרות",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
@@ -1322,7 +1380,8 @@
     ]
   },
   "הסינור של רוני": {
-    "category": "standup",
+    "cat_v": 2,
+    "category": "theater",
     "display": "הסינור של רוני",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
     "is_artist": true,
@@ -1331,6 +1390,7 @@
     ]
   },
   "הערב הגדול של הרוק הישראלי": {
+    "cat_v": 2,
     "category": "music",
     "display": "הערב הגדול של הרוק הישראלי",
     "first_seen": "2026-06-20T20:16:16.097043+00:00",
@@ -1717,6 +1777,13 @@
       "eventim"
     ]
   },
+  "יריד השערוריות המפואר ונבזה של תמיר בר": {
+    "display": "יריד השערוריות המפואר ונבזה של תמיר בר",
+    "first_seen": "2026-06-21T10:35:44.940452+00:00",
+    "sources": [
+      "kupat"
+    ]
+  },
   "ירמי קפלן": {
     "cat_v": 2,
     "category": "music",
@@ -1776,7 +1843,8 @@
     "is_artist": true,
     "sources": [
       "kupat",
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "לאה שבת": {
@@ -3328,6 +3396,13 @@
     "display": "תל אביב חוזרת לניינטיז",
     "first_seen": "2026-06-20T20:16:07.322714+00:00",
     "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
+  "תל אביב חוזרת לשנות ה2000": {
+    "display": "תל אביב חוזרת לשנות ה2000",
+    "first_seen": "2026-06-21T10:35:39.604732+00:00",
     "sources": [
       "barby"
     ]
