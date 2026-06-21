@@ -47,7 +47,7 @@ def notify_worker(new_shows) -> None:
     try:
         r = requests.post(url, timeout=30, json={
             "secret": secret,
-            "shows": [s.to_dict() for s in new_shows],
+            "shows": new_shows,            # already canonical dicts from run_scan
         })
         print(f"[notify] worker {r.status_code}: {r.text[:160]}")
     except requests.RequestException as e:

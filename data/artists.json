@@ -1272,15 +1272,6 @@
       "barby"
     ]
   },
-  "חתול בשק מיאסוווו": {
-    "category": "music",
-    "display": "חתול בשק מיאסוווו",
-    "first_seen": "2026-06-20T20:16:07.321714+00:00",
-    "is_artist": true,
-    "sources": [
-      "barby"
-    ]
-  },
   "טוהר גדסי": {
     "category": "music",
     "display": "טוהר גדסי",
@@ -1469,15 +1460,7 @@
     "first_seen": "2026-06-20T20:16:53.827421+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
-    ]
-  },
-  "כשאמא באה הנה אריאל הורוביץ ו״האחיות שמר 24״ שרים ומספרים נעמי שמר": {
-    "category": "theater",
-    "display": "כשאמא באה הנה אריאל הורוביץ ו״האחיות שמר 24״ שרים ומספרים נעמי שמר",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
-    "sources": [
+      "kupat",
       "grayclub"
     ]
   },
@@ -2436,15 +2419,6 @@
       "grayclub"
     ]
   },
-  "רוקוויל במחווה ל": {
-    "category": "music",
-    "display": "רוקוויל במחווה ל",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "רותם אבוהב": {
     "category": "music",
     "display": "רותם אבוהב",
@@ -2470,25 +2444,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "kupat"
-    ]
-  },
-  "ריטה lets dance": {
-    "category": "music",
-    "display": "ריטה Let`s Dance",
-    "first_seen": "2026-06-20T20:16:07.325311+00:00",
-    "is_artist": true,
-    "sources": [
+      "kupat",
       "barby"
-    ]
-  },
-  "ריטה ושירי מימון": {
-    "category": "music",
-    "display": "ריטה ושירי מימון",
-    "first_seen": "2026-06-20T20:16:49.552597+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
     ]
   },
   "רינת בר": {
