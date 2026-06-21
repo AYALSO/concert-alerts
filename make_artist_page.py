@@ -37,11 +37,13 @@ def _page(artists: dict) -> str:
     # { "<display name>": {"category": "...", "is_artist": true|false} })
     ov = storage.load("overrides.json", {})
 
+    standup_src = {"comy", "comedybar"}              # stand-up-only sources
+
     def cat_of(info):
         o = ov.get(info["display"], {})
         if o.get("category"):
             return o["category"]
-        if "comy" in info.get("sources", []):       # COMY is stand-up only
+        if standup_src.intersection(info.get("sources", [])):
             return "standup"
         return info.get("category", "music")
 
@@ -49,7 +51,7 @@ def _page(artists: dict) -> str:
         o = ov.get(info["display"], {})
         if "is_artist" in o:
             return o["is_artist"]
-        if "comy" in info.get("sources", []):        # every COMY act is a real stand-up artist
+        if standup_src.intersection(info.get("sources", [])):   # every COMY/Comedy-Bar act is a real artist
             return True
         return info.get("is_artist", True)
 
