@@ -127,6 +127,11 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   AND a persistent **menu button** (set via `setChatMenuButton`) — both pass `initData`
   (a reply-keyboard web_app does NOT, which is why those are avoided). The page calls
   `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
+- **Dev scan-digest:** sending `/id` (or `/admin`) to the bot stores the sender's
+  chat_id in KV key `admin_chat`. On every `/notify`, `notifyAdmin()` pings that chat
+  a summary of ALL new shows that scan found (artist · date · venue · source),
+  independent of follows — so the developer can confirm scans are landing. Clear the
+  `admin_chat` KV key to disable. (`GEMINI_API_KEY` is also a Worker secret now.)
 
 ### Local dev (this Windows machine)
 - `python` not on PATH → `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
