@@ -120,13 +120,6 @@
       "kupat"
     ]
   },
-  "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
-    "display": "– ELTON מייקל הרפז שר אלטון ג'ון – מחווה חיה לאגדה",
-    "first_seen": "2026-06-22T17:27:19.214961+00:00",
-    "sources": [
-      "grayclub"
-    ]
-  },
   "fever": {
     "cat_v": 2,
     "category": "music",
@@ -148,8 +141,11 @@
     ]
   },
   "love story": {
+    "cat_v": 2,
+    "category": "theater",
     "display": "Love Story",
     "first_seen": "2026-06-22T12:17:27.851383+00:00",
+    "is_artist": false,
     "sources": [
       "grayclub"
     ]
@@ -275,8 +271,11 @@
     ]
   },
   "yerushalmi 02": {
+    "cat_v": 2,
+    "category": "music",
     "display": "Yerushalmi 02",
     "first_seen": "2026-06-22T17:27:15.109867+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1071,8 +1070,11 @@
     ]
   },
   "דוד דאור": {
+    "cat_v": 2,
+    "category": "music",
     "display": "דוד ד'אור",
     "first_seen": "2026-06-22T17:27:50.887854+00:00",
+    "is_artist": true,
     "sources": [
       "kupat"
     ]
@@ -1108,8 +1110,11 @@
     ]
   },
   "דודו פארוק": {
+    "cat_v": 2,
+    "category": "music",
     "display": "דודו פארוק",
     "first_seen": "2026-06-22T17:27:56.418365+00:00",
+    "is_artist": true,
     "sources": [
       "kupat"
     ]
@@ -1337,8 +1342,11 @@
     ]
   },
   "הטבות לעובדי כללית": {
+    "cat_v": 2,
+    "category": "music",
     "display": "הטבות לעובדי כללית",
     "first_seen": "2026-06-22T12:17:25.636658+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1434,8 +1442,11 @@
     ]
   },
   "המיוחדים שלנו": {
+    "cat_v": 2,
+    "category": "music",
     "display": "המיוחדים שלנו",
     "first_seen": "2026-06-22T12:17:25.635587+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1894,13 +1905,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "יריד השערוריות המפואר ונבזה של תמיר בר": {
-    "display": "יריד השערוריות המפואר ונבזה של תמיר בר",
-    "first_seen": "2026-06-22T17:27:23.266704+00:00",
-    "sources": [
-      "kupat"
     ]
   },
   "ירמי קפלן": {
@@ -2861,8 +2865,11 @@
     ]
   },
   "עוזי פוקס": {
+    "cat_v": 2,
+    "category": "music",
     "display": "עוזי פוקס",
     "first_seen": "2026-06-22T12:17:27.853231+00:00",
+    "is_artist": true,
     "sources": [
       "grayclub"
     ]
@@ -3033,8 +3040,11 @@
     ]
   },
   "פאר טסי": {
+    "cat_v": 2,
+    "category": "music",
     "display": "פאר טסי",
     "first_seen": "2026-06-22T12:17:29.576131+00:00",
+    "is_artist": true,
     "sources": [
       "kupat"
     ]
@@ -3271,16 +3281,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "רביטל ויטלזון יעקבס": {
-    "cat_v": 2,
-    "category": "standup",
-    "display": "רביטל ויטלזון יעקבס",
-    "first_seen": "2026-06-22T17:28:21.495389+00:00",
-    "is_artist": true,
-    "sources": [
-      "comy"
     ]
   },
   "רביטל ויטלזון יעקובס": {
@@ -3625,8 +3625,11 @@
     ]
   },
   "שמוליק בודגוב": {
+    "cat_v": 2,
+    "category": "music",
     "display": "שמוליק בודגוב",
     "first_seen": "2026-06-22T12:17:25.253345+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
