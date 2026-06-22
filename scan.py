@@ -59,7 +59,8 @@ def notify_worker(new_shows, stats=None, classify=None) -> None:
 
 # Bump when the classifier (model/prompt) changes — artists are re-classified
 # until their cat_v matches, keeping the old category meanwhile (no regression).
-CLS_VERSION = 2
+# v3: also apply Gemini's name as a safe shortening (see classify_artists).
+CLS_VERSION = 3
 
 
 # Sources that are stand-up-only by definition — their artists are forced to the
@@ -116,6 +117,17 @@ def classify_artists(cap: int = 60) -> dict:
                 artists[k]["category"] = c["category"]
                 artists[k]["is_artist"] = is_art
                 artists[k]["cat_v"] = CLS_VERSION
+                # Use Gemini's cleaned name ONLY as a safe shortening: it must be a
+                # contiguous part of the current name (so "…של תמיר בר" → "תמיר בר",
+                # "מייקל הרפז שר אלטון ג'ון" → "מייקל הרפז"), never an expansion/rewrite
+                # like "מצבי רוח" → "תזמורת המהפכה - מצבי רוח". Display only; the
+                # follow key is unchanged.
+                gname = " ".join((c.get("name") or "").split())
+                cur = artists[k]["display"]
+                if (is_art and len(gname) >= 2 and len(gname) < len(cur)
+                        and gname.lower() in " ".join(cur.split()).lower()):
+                    artists[k]["display"] = gname
+                    disp = gname
                 items.append((disp, c["category"], is_art))
     storage.save("artists.json", artists)
     print(f"[classify] annotated {len(items)} artists (cat_v={CLS_VERSION})")

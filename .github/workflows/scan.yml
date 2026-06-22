@@ -48,5 +48,13 @@ jobs:
           git config user.name "concert-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data docs
-          git diff --staged --quiet || git commit -m "update data + page [skip ci]"
+          if git diff --staged --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "update data + page [skip ci]"
+          # main may move while the scan runs (other scans / pushes). Pull-merge and
+          # retry so a concurrent push never fails the run; this scan's fresh data wins.
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "push rejected (attempt $i) — merging remote, keeping this scan's data"
+            git pull --no-rebase -X ours --no-edit origin main || true
+          done
           git push

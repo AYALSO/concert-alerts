@@ -88,6 +88,12 @@ defaulted, so a quota hiccup never sticks a wrong label).
   bulk fills in over a few daily scans; ongoing only adds 0–2 new artists/scan, well
   within quota. Bump `CLS_VERSION` (+ the `cls3:` Worker cache prefix) to force a
   full re-classify after a model/prompt change.
+- **Name shortening (`CLS_VERSION=3`):** `classify_artists` also applies Gemini's
+  cleaned `name` as the display — but ONLY as a **safe shortening**: it must be a
+  contiguous part of the current name (so "…של תמיר בר" → "תמיר בר", "מייקל הרפז שר
+  אלטון ג'ון" → "מייקל הרפז"), never an expansion/rewrite ("מצבי רוח" is left as-is,
+  not "תזמורת המהפכה - מצבי רוח"). Display only — the follow `artist_key` is unchanged.
+  (A shortened display can collide with another artist → the admin merge prompt.)
 - `make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
   adds music/standup/theater filter chips. The build only forces stand-up sources;
   all manual fixes are **online** (below). The scan report shows Gemini's non-artist
