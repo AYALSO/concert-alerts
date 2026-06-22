@@ -120,6 +120,13 @@
       "kupat"
     ]
   },
+  "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
+    "display": "– ELTON מייקל הרפז שר אלטון ג'ון – מחווה חיה לאגדה",
+    "first_seen": "2026-06-22T17:27:19.214961+00:00",
+    "sources": [
+      "grayclub"
+    ]
+  },
   "fever": {
     "cat_v": 2,
     "category": "music",
@@ -265,6 +272,13 @@
     "is_artist": false,
     "sources": [
       "kupat"
+    ]
+  },
+  "yerushalmi 02": {
+    "display": "Yerushalmi 02",
+    "first_seen": "2026-06-22T17:27:15.109867+00:00",
+    "sources": [
+      "eventim"
     ]
   },
   "אבו טבלה": {
@@ -1056,6 +1070,13 @@
       "barby"
     ]
   },
+  "דוד דאור": {
+    "display": "דוד ד'אור",
+    "first_seen": "2026-06-22T17:27:50.887854+00:00",
+    "sources": [
+      "kupat"
+    ]
+  },
   "דודו אהרון": {
     "cat_v": 2,
     "category": "music",
@@ -1084,6 +1105,13 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "דודו פארוק": {
+    "display": "דודו פארוק",
+    "first_seen": "2026-06-22T17:27:56.418365+00:00",
+    "sources": [
+      "kupat"
     ]
   },
   "דויד ברוזה": {
@@ -1844,7 +1872,8 @@
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "barby"
     ]
   },
   "יעל פוליאקוב": {
@@ -1865,6 +1894,13 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "יריד השערוריות המפואר ונבזה של תמיר בר": {
+    "display": "יריד השערוריות המפואר ונבזה של תמיר בר",
+    "first_seen": "2026-06-22T17:27:23.266704+00:00",
+    "sources": [
+      "kupat"
     ]
   },
   "ירמי קפלן": {
@@ -3235,6 +3271,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "רביטל ויטלזון יעקבס": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רביטל ויטלזון יעקבס",
+    "first_seen": "2026-06-22T17:28:21.495389+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "רביטל ויטלזון יעקובס": {
