@@ -120,12 +120,9 @@
       "kupat"
     ]
   },
-  "fever": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "FEVER",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
+  "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
+    "display": "– ELTON מייקל הרפז שר אלטון ג'ון – מחווה חיה לאגדה",
+    "first_seen": "2026-06-22T17:56:39.418517+00:00",
     "sources": [
       "grayclub"
     ]
@@ -494,16 +491,6 @@
     "display": "איילה אינגדשט",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "אילנה דיין": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "אילנה דיין",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1201,16 +1188,6 @@
       "comedybar"
     ]
   },
-  "דף הטבות poalim wonder": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "דף הטבות Poalim Wonder",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "דר אייל דורון": {
     "cat_v": 2,
     "category": "theater",
@@ -1321,56 +1298,6 @@
       "eventim"
     ]
   },
-  "הטבות לארגון עובדי עיריית ירושלים": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "הטבות לארגון עובדי עיריית ירושלים",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הטבות ללקוחות ישראכרט": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "הטבות ללקוחות ישראכרט",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הטבות לעובדי כללית": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "הטבות לעובדי כללית",
-    "first_seen": "2026-06-22T12:17:25.636658+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הטבות לעובדי רמבם": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "הטבות לעובדי רמב\"ם",
-    "first_seen": "2026-06-21T06:09:08.467470+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הטבות לקהילת ברקלאב": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "הטבות לקהילת ברקלאב",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "הטברנס": {
     "cat_v": 2,
     "category": "music",
@@ -1436,16 +1363,6 @@
     "category": "music",
     "display": "הלהקות חוזרות",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "המיוחדים שלנו": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "המיוחדים שלנו",
-    "first_seen": "2026-06-22T12:17:25.635587+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -1905,6 +1822,13 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "יריד השערוריות המפואר ונבזה של תמיר בר": {
+    "display": "יריד השערוריות המפואר ונבזה של תמיר בר",
+    "first_seen": "2026-06-22T17:56:45.354060+00:00",
+    "sources": [
+      "kupat"
     ]
   },
   "ירמי קפלן": {
@@ -3281,6 +3205,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "רביטל ויטלזון יעקבס": {
+    "cat_v": 2,
+    "category": "standup",
+    "display": "רביטל ויטלזון יעקבס",
+    "first_seen": "2026-06-22T17:57:45.739169+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "רביטל ויטלזון יעקובס": {

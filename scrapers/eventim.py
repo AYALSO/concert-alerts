@@ -78,6 +78,10 @@ class EventimScraper(Scraper):
         start = le.get("startDate") or ""
         if not artist or not start:
             return None
+        # Eventim lists marketing/benefit landing pages in the live-shows category
+        # ("הטבות לעובדי …", "דף הטבות …", "המיוחדים שלנו") — not real events.
+        if "הטבות" in artist or artist == "המיוחדים שלנו":
+            return None
         try:
             dt = datetime.fromisoformat(start)
         except ValueError:

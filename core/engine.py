@@ -109,6 +109,12 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
     # …except a manually-merged loser, whose shows are now under the winner.
     for loser in merges:
         artists.pop(loser, None)
+    # …and except an AI-flagged non-artist (is_artist=False) once it has no live
+    # show — so junk like "הטבות לעובדי כללית" doesn't linger in the catalogue.
+    live_keys = {v["artist_key"] for v in known.values()}
+    for k in list(artists):
+        if artists[k].get("is_artist") is False and k not in live_keys:
+            del artists[k]
 
     storage.save("shows.json", known)
     storage.save("artists.json", artists)

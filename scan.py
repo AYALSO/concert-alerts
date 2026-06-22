@@ -112,10 +112,11 @@ def classify_artists(cap: int = 60) -> dict:
         for disp, c in res.items():
             k = by_disp.get(disp)
             if k and isinstance(c, dict) and c.get("category"):
+                is_art = bool(c.get("is_artist", True))
                 artists[k]["category"] = c["category"]
-                artists[k]["is_artist"] = bool(c.get("is_artist", True))
+                artists[k]["is_artist"] = is_art
                 artists[k]["cat_v"] = CLS_VERSION
-                items.append((disp, c["category"]))
+                items.append((disp, c["category"], is_art))
     storage.save("artists.json", artists)
     print(f"[classify] annotated {len(items)} artists (cat_v={CLS_VERSION})")
     return {"count": len(items), "items": items}

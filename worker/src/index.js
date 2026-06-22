@@ -514,8 +514,15 @@ async function scanDigest(body, env) {
     else lines.push(`• ${label}: ${s.found} הופעות` + (s.new ? ` · \u{1F195} ${s.new} חדשות` : " · אין חדשות"));
   }
   if (cls && cls.count) {
-    const ex = (cls.items || []).slice(0, 8).map((it) => `${esc(it[0])}→${it[1]}`).join(", ");
-    lines.push(`\u{1F916} ג'מיני סיווג ${cls.count} אמנים` + (ex ? `: ${ex}` : ""));
+    const items = cls.items || [];
+    const arts = items.filter((it) => it[2] !== false);
+    const non = items.filter((it) => it[2] === false);
+    if (arts.length)
+      lines.push(`\u{1F916} ג'מיני סיווג ${arts.length} אמנים: `
+        + arts.slice(0, 8).map((it) => `${esc(it[0])}→${it[1]}`).join(", ") + (arts.length > 8 ? " …" : ""));
+    if (non.length)
+      lines.push(`\u{1F6AB} סומנו ${non.length} לא-אמנים (מוסתרים): `
+        + non.slice(0, 8).map((it) => esc(it[0])).join(", ") + (non.length > 8 ? " …" : ""));
   }
   if (shows.length) {
     const artists = [...new Set(shows.map((s) => s.artist))];

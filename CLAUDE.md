@@ -90,7 +90,11 @@ defaulted, so a quota hiccup never sticks a wrong label).
   full re-classify after a model/prompt change.
 - `make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
   adds music/standup/theater filter chips. The build only forces stand-up sources;
-  all manual fixes are **online** (below).
+  all manual fixes are **online** (below). The scan report shows Gemini's non-artist
+  flags distinctly (`🚫 סומנו N לא-אמנים`) so they're not mistaken for mis-categorised
+  artists. `engine.run_scan` **prunes** an `is_artist:false` entry once it has no live
+  show, so flagged junk doesn't linger; obvious Eventim promo pages ("הטבות לעובדי …",
+  "המיוחדים שלנו") are also dropped at the scraper.
 - **Online admin panel (manual name/category fixes):** `docs/admin.html` is a Telegram
   Mini App the developer opens by sending **`/id`** to the bot (its reply has a
   "🛠 פאנל ניהול אמנים" button). It lists every artist with an editable name, a
