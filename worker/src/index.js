@@ -47,7 +47,27 @@ export default {
     }
     return new Response("concert-alerts bot up");
   },
+
+  // Cloudflare cron (hourly) — dispatch the GitHub scan workflow. Reliable, unlike
+  // GitHub's own schedule cron. Gated to active hours (07:00–00:00 Israel).
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(dispatchScan(env));
+  },
 };
+
+async function dispatchScan(env) {
+  const hr = Number(new Intl.DateTimeFormat("en-US",
+    { timeZone: "Asia/Jerusalem", hour: "numeric", hour12: false }).format(new Date()));
+  if (hr >= 1 && hr <= 6) return;                  // skip 01:00–06:00 Israel (matches scan.py)
+  if (!env.GH_TOKEN) { console.log("no GH_TOKEN; skip dispatch"); return; }
+  const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/scan.yml/dispatches`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${env.GH_TOKEN}`, Accept: "application/vnd.github+json",
+               "User-Agent": "concert-alerts-cron", "X-GitHub-Api-Version": "2022-11-28" },
+    body: JSON.stringify({ ref: "main", inputs: { force: "true" } }),
+  });
+  if (!r.ok) console.log("dispatch scan failed", r.status, (await r.text()).slice(0, 160));
+}
 
 // ---- Telegram + data helpers -------------------------------------------------
 async function tg(env, method, payload) {

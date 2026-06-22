@@ -13,6 +13,12 @@ kv_namespaces = [
 [ai]
 binding = "AI"
 
+# Reliable hourly scan trigger: Cloudflare cron fires every hour; the Worker's
+# scheduled() handler dispatches the GitHub scan workflow (GitHub's own cron drops
+# most hourly runs). Needs secret GH_TOKEN (fine-grained PAT, Actions: read+write).
+[triggers]
+crons = ["0 * * * *"]
+
 # Secrets (set with `wrangler secret put <NAME>`), NOT stored here:
 #   BOT_TOKEN       - Telegram bot token
 #   WEBHOOK_SECRET  - random; also passed to setWebhook as secret_token
@@ -20,3 +26,5 @@ binding = "AI"
 #   GEMINI_API_KEY  - Google AI Studio key; enables Gemini (gemini-2.5-flash) with
 #                     Google-Search grounding for /classify. Free-tier grounded quota
 #                     is small (~70 artists/day) so the catalogue upgrades over a few days.
+#   GH_TOKEN        - GitHub fine-grained PAT (repo AYALSO/concert-alerts, Actions:
+#                     read+write); lets the hourly cron dispatch the scan workflow.
