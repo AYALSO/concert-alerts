@@ -140,6 +140,13 @@
       "eventim"
     ]
   },
+  "love story": {
+    "display": "Love Story",
+    "first_seen": "2026-06-22T12:17:27.851383+00:00",
+    "sources": [
+      "grayclub"
+    ]
+  },
   "mehmet dash": {
     "cat_v": 2,
     "category": "music",
@@ -1301,6 +1308,13 @@
       "eventim"
     ]
   },
+  "הטבות לעובדי כללית": {
+    "display": "הטבות לעובדי כללית",
+    "first_seen": "2026-06-22T12:17:25.636658+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "הטבות לעובדי רמבם": {
     "cat_v": 2,
     "category": "music",
@@ -1387,6 +1401,13 @@
     "display": "הלהקות חוזרות",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "המיוחדים שלנו": {
+    "display": "המיוחדים שלנו",
+    "first_seen": "2026-06-22T12:17:25.635587+00:00",
     "sources": [
       "eventim"
     ]
@@ -2273,7 +2294,8 @@
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "מיכה שטרית": {
@@ -2802,6 +2824,13 @@
       "comy"
     ]
   },
+  "עוזי פוקס": {
+    "display": "עוזי פוקס",
+    "first_seen": "2026-06-22T12:17:27.853231+00:00",
+    "sources": [
+      "grayclub"
+    ]
+  },
   "עומר קולי": {
     "cat_v": 2,
     "category": "standup",
@@ -2965,6 +2994,13 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "פאר טסי": {
+    "display": "פאר טסי",
+    "first_seen": "2026-06-22T12:17:29.576131+00:00",
+    "sources": [
+      "kupat"
     ]
   },
   "פבלו רוזנברג": {
@@ -3209,7 +3245,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "comy"
+      "comy",
+      "grayclub"
     ]
   },
   "רבקה זהר": {
@@ -3537,6 +3574,13 @@
     "display": "שם טוב לוי",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "שמוליק בודגוב": {
+    "display": "שמוליק בודגוב",
+    "first_seen": "2026-06-22T12:17:25.253345+00:00",
     "sources": [
       "eventim"
     ]
