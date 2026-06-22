@@ -120,16 +120,6 @@
       "kupat"
     ]
   },
-  "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
-    "cat_v": 2,
-    "category": "music",
-    "display": "– ELTON מייקל הרפז שר אלטון ג'ון – מחווה חיה לאגדה",
-    "first_seen": "2026-06-20T20:16:12.409542+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "fever": {
     "cat_v": 2,
     "category": "music",
@@ -1271,6 +1261,16 @@
       "eventim"
     ]
   },
+  "הופעות ללקוחות מקס": {
+    "cat_v": 2,
+    "category": "music",
+    "display": "הופעות ללקוחות מקס",
+    "first_seen": "2026-06-22T05:06:54.270966+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "הטבה ללקוחות flycard": {
     "cat_v": 2,
     "category": "music",
@@ -1496,6 +1496,16 @@
     "category": "theater",
     "display": "הרצאות בזאפה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הרצאות דיגיתל": {
+    "cat_v": 2,
+    "category": "music",
+    "display": "הרצאות - דיגיתל",
+    "first_seen": "2026-06-22T05:06:54.271930+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -1834,16 +1844,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "יריד השערוריות המפואר ונבזה של תמיר בר": {
-    "cat_v": 2,
-    "category": "standup",
-    "display": "יריד השערוריות המפואר ונבזה של תמיר בר",
-    "first_seen": "2026-06-21T10:35:44.940452+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
     ]
   },
   "ירמי קפלן": {
@@ -2334,16 +2334,6 @@
     "is_artist": true,
     "sources": [
       "comy",
-      "grayclub"
-    ]
-  },
-  "מסיבת כיתה 2 עם לירון לב ורביטל ויטלזון יעקבס": {
-    "cat_v": 2,
-    "category": "standup",
-    "display": "מסיבת כיתה 2 עם לירון לב ורביטל ויטלזון יעקבס",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
-    "sources": [
       "grayclub"
     ]
   },
@@ -3211,16 +3201,6 @@
       "eventim"
     ]
   },
-  "רביטל ויטלזון יעקבס": {
-    "cat_v": 2,
-    "category": "standup",
-    "display": "רביטל ויטלזון יעקבס",
-    "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
-    "sources": [
-      "comy"
-    ]
-  },
   "רביטל ויטלזון יעקובס": {
     "cat_v": 2,
     "category": "standup",
@@ -3228,7 +3208,8 @@
     "first_seen": "2026-06-20T20:16:08.889217+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "comy"
     ]
   },
   "רבקה זהר": {
@@ -3447,6 +3428,7 @@
     ]
   },
   "שיחות מהבגאז": {
+    "cat_v": 2,
     "category": "theater",
     "display": "שיחות מהבגאז",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -3466,6 +3448,7 @@
     ]
   },
   "שימי תבורי": {
+    "cat_v": 2,
     "category": "music",
     "display": "שימי תבורי",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -3475,6 +3458,7 @@
     ]
   },
   "שיר לוי": {
+    "cat_v": 2,
     "category": "music",
     "display": "שיר לוי",
     "first_seen": "2026-06-20T20:16:57.767316+00:00",
@@ -3484,7 +3468,8 @@
     ]
   },
   "שירה זלוף": {
-    "category": "theater",
+    "cat_v": 2,
+    "category": "music",
     "display": "שירה זלוף",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
     "is_artist": true,
@@ -3505,6 +3490,7 @@
     ]
   },
   "שלום חנוך": {
+    "cat_v": 2,
     "category": "music",
     "display": "שלום חנוך",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -3514,6 +3500,7 @@
     ]
   },
   "שלומי קוריאט": {
+    "cat_v": 2,
     "category": "standup",
     "display": "שלומי קוריאט",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -3524,6 +3511,7 @@
     ]
   },
   "שליחי הבלוז": {
+    "cat_v": 2,
     "category": "music",
     "display": "שליחי הבלוז",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -3544,6 +3532,7 @@
     ]
   },
   "שם טוב לוי": {
+    "cat_v": 2,
     "category": "music",
     "display": "שם טוב לוי",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
@@ -3629,7 +3618,8 @@
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "kupat"
     ]
   },
   "תמיר גרינברג": {
