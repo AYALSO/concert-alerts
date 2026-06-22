@@ -141,11 +141,15 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   AND a persistent **menu button** (set via `setChatMenuButton`) — both pass `initData`
   (a reply-keyboard web_app does NOT, which is why those are avoided). The page calls
   `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
-- **Dev scan-digest:** sending `/id` (or `/admin`) to the bot stores the sender's
-  chat_id in KV key `admin_chat`. On every `/notify`, `notifyAdmin()` pings that chat
-  a summary of ALL new shows that scan found (artist · date · venue · source),
-  independent of follows — so the developer can confirm scans are landing. Clear the
-  `admin_chat` KV key to disable. (`GEMINI_API_KEY` is also a Worker secret now.)
+- **Dev scan report (every scan):** sending `/id` (or `/admin`) to the bot stores the
+  sender's chat_id in KV key `admin_chat`. `scan.py` POSTs to `/notify` on **every**
+  run (even with zero new shows) with `{shows, stats, classify, ts}`; the Worker's
+  `scanDigest()` pings `admin_chat` a report: a per-source line (`<source>: N הופעות ·
+  אין/🆕 חדשות`, or `⚠️ שגיאה` if a scraper threw — so failures & true scan frequency
+  are visible since the Actions cron is unreliable), a `🤖 ג'מיני` line listing what
+  Gemini just classified, then the new shows (artist · date · venue · source). Clear
+  `admin_chat` to disable. (`stats` come from `engine.run_scan`'s 3rd return value;
+  `classify` from `scan.classify_artists`.) (`GEMINI_API_KEY` is also a Worker secret.)
 
 ### Local dev (this Windows machine)
 - `python` not on PATH → `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.

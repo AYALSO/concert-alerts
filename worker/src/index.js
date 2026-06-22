@@ -29,6 +29,7 @@ export default {
       const body = await request.json().catch(() => ({}));
       if (body.secret !== env.NOTIFY_SECRET) return new Response("unauthorized", { status: 401 });
       const n = await pushNewShows(body.shows || [], env);
+      await scanDigest(body, env);              // report every scan to the developer
       return Response.json({ alerts: n });
     }
     // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
@@ -473,19 +474,35 @@ async function pushNewShows(shows, env) {
       }
     }
   }
-  await notifyAdmin(shows, env);
   return sent;
 }
 
-// Developer digest: every scan that finds new shows pings ADMIN_CHAT_ID with a
-// summary of ALL new shows (independent of follows), so the dev can verify scans.
-async function notifyAdmin(shows, env) {
+const SRC_HE = { barby: "בארבי", eventim: "איוונטים/זאפה", grayclub: "גריי",
+  kupat: "קופת ת״א", comy: "קומי", comedybar: "קומדי בר", example: "דמו" };
+
+// Sent to the developer on EVERY scan (KV admin_chat, set via /id): per-source
+// counts (so scan frequency + failures are visible even when nothing's new),
+// Gemini's classifications, and the new shows themselves.
+async function scanDigest(body, env) {
   const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
-  if (!admin || !shows.length) return;
-  const artists = [...new Set(shows.map((s) => s.artist))];
-  const head = `\u{1F50D} <b>סריקה:</b> ${shows.length} הופעות חדשות · ${artists.length} אמנים`;
-  const lines = shows.slice(0, 30).map((s) =>
-    `• <b>${esc(s.artist)}</b> — ${esc(s.date_raw || "")} · ${esc(s.venue || "")} (${esc(s.source || "")})`);
-  if (shows.length > 30) lines.push(`…ועוד ${shows.length - 30}`);
-  try { await send(env, admin, [head, "", ...lines].join("\n")); } catch (e) { console.log("admin notify", e); }
+  if (!admin) return;
+  const stats = body.stats || {}, shows = body.shows || [], cls = body.classify || {};
+  const lines = [`\u{1F504} <b>סריקה</b> — ${esc(body.ts || "")}`];
+  for (const src of Object.keys(stats)) {
+    const s = stats[src], label = SRC_HE[src] || src;
+    if (s.error) lines.push(`• ${label}: ⚠️ שגיאה`);
+    else lines.push(`• ${label}: ${s.found} הופעות` + (s.new ? ` · \u{1F195} ${s.new} חדשות` : " · אין חדשות"));
+  }
+  if (cls && cls.count) {
+    const ex = (cls.items || []).slice(0, 8).map((it) => `${esc(it[0])}→${it[1]}`).join(", ");
+    lines.push(`\u{1F916} ג'מיני סיווג ${cls.count} אמנים` + (ex ? `: ${ex}` : ""));
+  }
+  if (shows.length) {
+    const artists = [...new Set(shows.map((s) => s.artist))];
+    lines.push("", `\u{1F195} <b>${shows.length} הופעות חדשות</b> (${artists.length} אמנים):`);
+    shows.slice(0, 25).forEach((s) =>
+      lines.push(`• <b>${esc(s.artist)}</b> — ${esc(s.date_raw || "")} · ${esc(s.venue || "")} (${esc(s.source || "")})`));
+    if (shows.length > 25) lines.push(`…ועוד ${shows.length - 25}`);
+  }
+  try { await send(env, admin, lines.join("\n")); } catch (e) { console.log("scan digest", e); }
 }

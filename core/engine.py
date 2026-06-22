@@ -1,23 +1,29 @@
 from __future__ import annotations
 
+from collections import Counter
 from datetime import date
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from core import storage
 from core.models import Show
 from scrapers.base import all_scrapers
 
 
-def collect(scrapers) -> List[Show]:
+def collect(scrapers) -> Tuple[List[Show], Dict[str, dict]]:
+    """Return (all_shows, per_source_stats). stats[name] = {"found": n} or
+    {"error": "..."} so a failed scraper is visible in the scan report."""
     shows: List[Show] = []
+    stats: Dict[str, dict] = {}
     for s in scrapers:
         try:
             found = s.fetch()
             print(f"[{s.name}] fetched {len(found)} shows")
+            stats[s.name] = {"found": len(found)}
             shows.extend(found)
         except Exception as e:  # one broken site must not stop the others
             print(f"[{s.name}] ERROR: {e}")
-    return shows
+            stats[s.name] = {"error": str(e)[:120]}
+    return shows, stats
 
 
 def _canonical_artist(key: str, display: str, artists: dict) -> Tuple[str, str]:
@@ -51,7 +57,7 @@ def _resolve_merge(key: str, merges: dict) -> str:
     return key
 
 
-def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str]]:
+def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[str, dict]]:
     """Run all scrapers, persist state, and return (new_show_dicts, new_artists).
 
     - New shows are keyed to a canonical artist (see `_canonical_artist`) so a
@@ -65,7 +71,7 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str]]:
     """
     scrapers = scrapers if scrapers is not None else all_scrapers()
     merges = merges or {}
-    current = collect(scrapers)
+    current, stats = collect(scrapers)
 
     by_id = {sh.show_id: sh for sh in current}       # dedupe this run by show_id
     known = storage.load("shows.json", {})           # show_id -> show dict
@@ -106,4 +112,9 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str]]:
 
     storage.save("shows.json", known)
     storage.save("artists.json", artists)
-    return new_shows, new_artists
+
+    new_per_source = Counter(d["source"] for d in new_shows)   # annotate stats with new counts
+    for src, st in stats.items():
+        if "found" in st:
+            st["new"] = new_per_source.get(src, 0)
+    return new_shows, new_artists, stats

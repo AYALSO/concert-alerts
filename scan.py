@@ -34,20 +34,23 @@ def should_scan_now() -> bool:
     return datetime.now(ISRAEL_TZ).hour in ACTIVE_HOURS
 
 
-def notify_worker(new_shows) -> None:
-    """Post new shows to the Worker, which alerts followers (reads follows from KV)."""
+def notify_worker(new_shows, stats=None, classify=None) -> None:
+    """Post the scan result to the Worker EVERY scan: it alerts followers about new
+    shows (reads follows from KV) AND sends the developer a scan report (per-source
+    counts + Gemini classification), so scans are visible even when nothing's new."""
     url = os.environ.get("WORKER_NOTIFY_URL")
     secret = os.environ.get("NOTIFY_SECRET")
     if not (url and secret):
         print("[notify] WORKER_NOTIFY_URL/NOTIFY_SECRET not set; skipping push")
         return
-    if not new_shows:
-        print("[notify] no new shows")
-        return
+    ts = datetime.now(ISRAEL_TZ).strftime("%d/%m %H:%M")
     try:
         r = requests.post(url, timeout=30, json={
             "secret": secret,
             "shows": new_shows,            # already canonical dicts from run_scan
+            "stats": stats or {},
+            "classify": classify or {},
+            "ts": ts,
         })
         print(f"[notify] worker {r.status_code}: {r.text[:160]}")
     except requests.RequestException as e:
@@ -81,14 +84,15 @@ def force_standup() -> int:
     return n
 
 
-def classify_artists(cap: int = 60) -> None:
+def classify_artists(cap: int = 60) -> dict:
     """Annotate artists.json with {category, is_artist, cat_v} via the Worker's AI
     classifier (Gemini, cached). Re-does artists whose cat_v is stale; capped per
-    run so it stays within the free quota (the bulk fills in over a few runs)."""
+    run so it stays within the free quota (the bulk fills in over a few runs).
+    Returns {"count", "items": [(display, category), ...]} for the scan report."""
     base = os.environ.get("WORKER_NOTIFY_URL")
     secret = os.environ.get("NOTIFY_SECRET")
     if not (base and secret):
-        return
+        return {"count": 0, "items": []}
     classify_url = base.rsplit("/", 1)[0] + "/classify"
     artists = storage.load("artists.json", {})
     by_disp = {}
@@ -96,8 +100,8 @@ def classify_artists(cap: int = 60) -> None:
         by_disp.setdefault(info["display"], k)
     todo = [d for d, k in by_disp.items() if artists[k].get("cat_v") != CLS_VERSION][:cap]
     if not todo:
-        return
-    done = 0
+        return {"count": 0, "items": []}
+    items = []
     for i in range(0, len(todo), 8):
         try:
             res = requests.post(classify_url, timeout=120,
@@ -111,9 +115,10 @@ def classify_artists(cap: int = 60) -> None:
                 artists[k]["category"] = c["category"]
                 artists[k]["is_artist"] = bool(c.get("is_artist", True))
                 artists[k]["cat_v"] = CLS_VERSION
-                done += 1
+                items.append((disp, c["category"]))
     storage.save("artists.json", artists)
-    print(f"[classify] annotated {done} artists (cat_v={CLS_VERSION})")
+    print(f"[classify] annotated {len(items)} artists (cat_v={CLS_VERSION})")
+    return {"count": len(items), "items": items}
 
 
 def fetch_merges() -> dict:
@@ -136,11 +141,11 @@ def main():
         print("Outside active hours (07:00–00:00 Israel) — skipping scan.")
         return
 
-    new_shows, new_artists = run_scan(all_scrapers(), merges=fetch_merges())
+    new_shows, new_artists, stats = run_scan(all_scrapers(), merges=fetch_merges())
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
-    notify_worker(new_shows)
     force_standup()
-    classify_artists()
+    classify = classify_artists()
+    notify_worker(new_shows, stats, classify)   # always — so every scan is reported
 
 
 if __name__ == "__main__":
