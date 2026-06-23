@@ -39,6 +39,8 @@ export default {
     // Full artist catalogue (for the admin panel; CORS-enabled passthrough of raw JSON).
     if (url.pathname === "/api/catalogue")
       return Response.json(await fetchJSON("artists.json"), { headers: CORS });
+    // Developer control-center: active users + their follows (admin-only).
+    if (url.pathname === "/api/users") return handleUsers(request, url, env);
     // Title classifier for the scan (Workers AI, cached). Secret-protected.
     if (url.pathname === "/classify" && request.method === "POST") {
       const b = await request.json().catch(() => ({}));
@@ -184,6 +186,11 @@ async function handleApi(request, url, env) {
   for (const h of hashes) { const k = byHash.get(h); if (k && !follows.includes(k)) follows.push(k); }
   const subs = await ensureSub(env, chat);
   subs.subscribers[chat].follows = follows;
+  try {                                            // capture name for the control center
+    const u = JSON.parse(new URLSearchParams(initData).get("user"));
+    const nm = u.first_name || u.username;
+    if (nm) subs.subscribers[chat].name = nm;
+  } catch (e) { /* no user info */ }
   await saveSubs(env, subs);
   const names = follows.map((k) => artists[k]?.display || k);
   await send(env, chat, follows.length
@@ -214,6 +221,33 @@ async function handleOverrides(request, env) {
     return Response.json({ ok: true, count: Object.keys(ov).length }, { headers: CORS });
   }
   return new Response("method", { status: 405, headers: CORS });
+}
+
+// Developer control-center data (admin-only): how many users, what each follows,
+// and the most-followed artists. Reads subscribers from KV.
+async function handleUsers(request, url, env) {
+  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+  const chat = await validateInitData(url.searchParams.get("initData") || "", env.BOT_TOKEN);
+  const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
+  if (!chat || !admin || String(chat) !== String(admin))
+    return Response.json({ error: "forbidden" }, { status: 403, headers: CORS });
+  const subs = (await getSubs(env)).subscribers || {};
+  const artists = await fetchJSON("artists.json");
+  const merges = await getMerges(env);
+  const users = Object.entries(subs).map(([id, sub]) => {
+    const follows = [...new Set((sub.follows || []).map((k) => mergeKey(k, merges)))];
+    return { id, name: sub.name || "", count: follows.length,
+             names: follows.map((k) => artists[k]?.display || k).sort((a, b) => a.localeCompare(b, "he")) };
+  }).sort((a, b) => b.count - a.count);
+  const tally = {};
+  for (const u of users) for (const n of u.names) tally[n] = (tally[n] || 0) + 1;
+  const topArtists = Object.entries(tally).sort((a, b) => b[1] - a[1]);
+  return Response.json({
+    total: users.length,
+    active: users.filter((u) => u.count > 0).length,
+    follows: users.reduce((s, u) => s + u.count, 0),
+    topArtists, users,
+  }, { headers: CORS });
 }
 
 function webappKeyboard() {
@@ -433,10 +467,10 @@ async function handleCommand(chat, text, env) {
     const v = new Date().toISOString().slice(0, 13).replace(/[-T]/g, "");
     return send(env, chat,
       `\u{1F194} chat_id: <code>${chat}</code>\n` +
-      "✅ אתה רשום כמפתח — סיכום יומי (~22:00) + פאנל ניהול.\n" +
-      "\u{1F6E0} פאנל ניהול: ערוך שמות וקטגוריות של אמנים ↓",
-      { reply_markup: { inline_keyboard: [[
-        { text: "\u{1F6E0} פאנל ניהול אמנים", web_app: { url: `${WEBAPP_URL}admin.html?v=${v}` } }]] } });
+      "✅ אתה רשום כמפתח — סיכום יומי (~22:00), פאנל ניהול ומרכז בקרה.",
+      { reply_markup: { inline_keyboard: [
+        [{ text: "\u{1F6E0} פאנל ניהול אמנים", web_app: { url: `${WEBAPP_URL}admin.html?v=${v}` } }],
+        [{ text: "\u{1F4CA} מרכז בקרה — יוזרים", web_app: { url: `${WEBAPP_URL}dashboard.html?v=${v}` } }]] } });
   }
   // plain text -> instant search
   return searchAndReply(chat, text, env);

@@ -1,0 +1,76 @@
+<!doctype html>
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מרכז בקרה</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0b1020;color:#e7e9ee}
+header{padding:14px 16px 6px}
+h1{font-size:18px;margin:0 0 12px}
+.stats{display:flex;gap:10px}
+.stat{flex:1;background:#141b30;border:1px solid #2a3350;border-radius:12px;padding:12px;text-align:center}
+.stat b{display:block;font-size:24px;color:#fff}
+.stat span{font-size:12px;color:#8b93a7}
+h2{font-size:14px;color:#8b93a7;margin:18px 16px 6px}
+.wrap{padding:0 12px 40px}
+.card{background:#141b30;border:1px solid #1c2438;border-radius:12px;padding:10px 12px;margin:8px 0}
+.uhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.uname{font-weight:600;font-size:15px}
+.uid{font-size:11px;color:#8b93a7}
+.badge{flex:none;background:#2563eb;color:#fff;border-radius:999px;padding:3px 10px;font-size:13px}
+.follows{margin-top:6px;font-size:13px;color:#cdd3e0;line-height:1.7}
+.chip{display:inline-block;background:#0f1626;border:1px solid #2a3350;border-radius:999px;padding:2px 9px;margin:2px 2px 0}
+.top .chip span{color:#8b93a7}
+.empty{color:#8b93a7;text-align:center;padding:30px}
+#err{display:none;background:#3a2030;color:#ffb4c4;padding:12px 16px;font-size:13px}
+</style></head><body>
+<div id="err"></div>
+<header>
+  <h1>📊 מרכז בקרה</h1>
+  <div class="stats">
+    <div class="stat"><b id="s-active">–</b><span>יוזרים פעילים</span></div>
+    <div class="stat"><b id="s-total">–</b><span>סה״כ יוזרים</span></div>
+    <div class="stat"><b id="s-follows">–</b><span>מעקבים</span></div>
+  </div>
+</header>
+<h2>האמנים הכי נעקבים</h2>
+<div class="wrap top" id="top"></div>
+<h2>יוזרים והבחירות שלהם</h2>
+<div class="wrap" id="users"></div>
+<script>
+const WORKER="https://concert-alerts-bot.tunaconcerts.workers.dev";
+const tg=window.Telegram&&window.Telegram.WebApp;
+if(tg&&tg.initData){tg.ready();tg.expand();}
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function err(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';}
+async function load(){
+  if(!tg||!tg.initData){err('פתח דרך הבוט (פקודת /id) — דרוש אימות מפתח.');return;}
+  let d;
+  try{
+    const r=await fetch(WORKER+'/api/users?initData='+encodeURIComponent(tg.initData));
+    if(r.status===403){err('גישה למפתח בלבד.');return;}
+    d=await r.json();
+  }catch(e){err('שגיאת רשת');return;}
+  document.getElementById('s-active').textContent=d.active;
+  document.getElementById('s-total').textContent=d.total;
+  document.getElementById('s-follows').textContent=d.follows;
+  const top=document.getElementById('top');
+  top.innerHTML = (d.topArtists&&d.topArtists.length)
+    ? '<div class=card>'+d.topArtists.slice(0,40).map(([n,c])=>`<span class=chip>${esc(n)} <span>· ${c}</span></span>`).join('')+'</div>'
+    : '<div class=empty>אין עדיין מעקבים</div>';
+  const U=document.getElementById('users');
+  const active=(d.users||[]).filter(u=>u.count>0);
+  U.innerHTML = active.length ? active.map(u=>`
+    <div class=card>
+      <div class=uhead>
+        <div><div class=uname>${esc(u.name||'יוזר')}</div><div class=uid>id: ${esc(u.id)}</div></div>
+        <div class=badge>${u.count}</div>
+      </div>
+      <div class=follows>${u.names.map(n=>`<span class=chip>${esc(n)}</span>`).join('')}</div>
+    </div>`).join('') : '<div class=empty>אין יוזרים פעילים עדיין</div>';
+}
+load();
+</script></body></html>

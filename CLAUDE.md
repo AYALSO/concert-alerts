@@ -122,6 +122,11 @@ defaulted, so a quota hiccup never sticks a wrong label).
   artists. `engine.run_scan` **prunes** an `is_artist:false` entry once it has no live
   show, so flagged junk doesn't linger; obvious Eventim promo pages ("הטבות לעובדי …",
   "המיוחדים שלנו") are also dropped at the scraper.
+- **Developer control center:** `docs/dashboard.html` (opened via the **`/id`** reply's
+  "📊 מרכז בקרה" button) shows active-user count, the most-followed artists, and every
+  user + their follows. Data from `GET /api/users` (admin-only, same `ADMIN_CHAT_ID`
+  initData check). The user's first name is captured into the subscriber record on
+  follow-save (KV `subscribers[chat].name`); follows resolve through merges.
 - **Online admin panel (manual name/category fixes):** `docs/admin.html` is a Telegram
   Mini App the developer opens by sending **`/id`** to the bot (its reply has a
   "🛠 פאנל ניהול אמנים" button). It lists every artist with an editable name, a
