@@ -9,8 +9,11 @@ Alert the user on Telegram whenever artists they follow announce **new** shows o
 Israeli ticketing/venue sites. Runs free, automatically, in the cloud.
 
 ## How it works (architecture) — two free cloud pieces
-**1. Hourly scan — GitHub Actions** (`.github/workflows/scan.yml`; cron, skips Saturday
-unless a manual run passes `force=true`). Runs `scan.py`:
+**1. Hourly scan — GitHub Actions** (`.github/workflows/scan.yml`, `workflow_dispatch`
+only). Triggered **on the hour by the Cloudflare Worker's cron** (`scheduled()` →
+`dispatchScan()`, gated to 07:00–00:00 Israel) — GitHub's own `schedule:` cron was
+removed because it fired late/erratically (off-hour duplicate scans) and dropped most
+hourly runs. Runs `scan.py`:
 - `engine.run_scan()` runs every registered scraper, dedupes by `show_id`, detects shows
   not seen in the previous scan, grows the artist catalogue, commits `data/*.json`.
 - New shows are POSTed to the Cloudflare Worker `/notify`, which alerts followers.

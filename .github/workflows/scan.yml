@@ -1,10 +1,11 @@
 name: concert-scan
 
 on:
-  schedule:
-    # Hourly (UTC). scan.py runs only 07:00–00:00 Israel time, every day (DST-aware).
-    - cron: "0 * * * *"
-  workflow_dispatch:           # manual run
+  # Triggered hourly ON THE HOUR by the Cloudflare Worker cron (reliable) via
+  # workflow_dispatch — see the Worker's scheduled()/dispatchScan(). GitHub's own
+  # `schedule:` cron was REMOVED: it fired late/erratically (e.g. 08:08, 12:54),
+  # producing off-hour duplicate scans on top of the Worker's clean :00 runs.
+  workflow_dispatch:           # Worker-cron + manual
     inputs:
       force:
         description: "Scan now even outside active hours (07:00–00:00 Israel)"
