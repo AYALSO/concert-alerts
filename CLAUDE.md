@@ -53,7 +53,13 @@ instant, because an Actions cron can't reply in real time):
 
 ## Data model (`core/models.py`)
 `Show`: artist (clean), date_raw, venue, url, source, date_iso, `title` (full show name),
-scraped_at.
+`sold_out`, scraped_at.
+- **`sold_out`**: scrapers KEEP sold-out dates but flag them (don't drop — a dropped show
+  that's not yet past would just linger as "available"). Flagged shows are hidden from
+  users: `engine.run_scan` excludes them from `new_shows` (no alert) and the Worker's
+  `upcomingText` filters them out. Detection: **barby** `showSold ≥ showSoldMaxBuy`;
+  **comy** the date's `<a>` wrapper has `.event-sold-out`; **comedybar** the row says
+  "אזל(ו הכרטיסים)". (eventim/kupat/grayclub not yet checked for sold-out markers.)
 - `artist_key` = normalized cleaned name → grouping + the bot's follow keys.
 - `show_id` = stable hash of **(source, event URL)** → detects "new" (URL is unique +
   stable per show). Kupat multi-date shows append `#<date>` to the url so each date is

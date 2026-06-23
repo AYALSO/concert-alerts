@@ -34,6 +34,7 @@ class Show:
     source: str                 # scraper key, e.g. "zappa"
     date_iso: Optional[str] = None   # "YYYY-MM-DD" if the scraper parsed it
     title: Optional[str] = None      # full show title as shown (if richer than artist)
+    sold_out: bool = False           # True = no tickets to buy → hidden from users
     scraped_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )

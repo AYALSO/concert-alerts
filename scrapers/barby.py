@@ -26,6 +26,13 @@ from scrapers.base import Scraper, register
 
 DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
 
+
+def _int(x):
+    try:
+        return int(str(x).strip())
+    except (TypeError, ValueError):
+        return 0
+
 # Cloudflare in front of the API rejects non-browser requests, so look like one.
 HEADERS = {
     "User-Agent": (
@@ -61,6 +68,9 @@ class BarbyScraper(Scraper):
             if not show_id or not name or not raw_date:
                 continue
 
+            cap = _int(row.get("showSoldMaxBuy"))               # capacity
+            sold_out = bool(cap and _int(row.get("showSold")) >= cap)
+
             m = DATE_RE.search(raw_date)
             if not m:
                 continue
@@ -88,6 +98,7 @@ class BarbyScraper(Scraper):
                 source=self.name,
                 date_iso=date_iso,
                 title=name if name != artist else None,
+                sold_out=sold_out,
             )
 
         return list(shows.values())

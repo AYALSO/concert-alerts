@@ -94,8 +94,8 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
         d["artist_key"], d["artist"] = key, display          # canonical attribution
         is_new = sh.show_id not in known
         known[sh.show_id] = d
-        if is_new and (not d.get("date_iso") or d["date_iso"] >= today):
-            new_shows.append(d)                              # never alert a past show
+        if is_new and not d.get("sold_out") and (not d.get("date_iso") or d["date_iso"] >= today):
+            new_shows.append(d)                              # never alert a past or sold-out show
         if key not in artists:
             artists[key] = {"display": display, "sources": [d["source"]],
                             "first_seen": d["scraped_at"]}

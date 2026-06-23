@@ -74,6 +74,8 @@ class ComyScraper(Scraper):
                 print(f"[comy] {url} ERROR: {e}")
                 continue
             for row in rows:
+                wrap = row.find_parent("a")             # <a single-page-event [not-clickable]>
+                sold_out = bool(wrap and wrap.select_one(".event-sold-out"))
                 dt = row.select_one(".single-date-details .date")
                 m = DM_RE.search(dt.get_text(" ", strip=True)) if dt else None
                 if not m:
@@ -95,5 +97,6 @@ class ComyScraper(Scraper):
                     source=self.name,
                     date_iso=iso,
                     title=name if name != artist else None,
+                    sold_out=sold_out,
                 )
         return list(shows.values())

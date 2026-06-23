@@ -88,6 +88,7 @@ class ComedyBarScraper(Scraper):
             tds = tr.find_all("td")
             if len(tds) < 2:
                 continue
+            sold_out = "אזל" in tr.get_text(" ")            # "אזלו הכרטיסים" -> sold out
             dtext = tds[0].get_text(" ", strip=True)        # "ביום שישי, 3 ביולי 2026 : בשעה 22:00"
             m = _DATE_RE.search(dtext)
             if not m or m.group(2) not in _MONTHS:
@@ -97,7 +98,9 @@ class ComedyBarScraper(Scraper):
             if iso < today_iso:
                 continue
             url = f"{BASE}{path}#{iso}"
-            if url in shows:
+            if url in shows:                            # same date in featured + full table
+                if sold_out:
+                    shows[url].sold_out = True          # sold-out status wins
                 continue
             tm = _TIME_RE.search(dtext)
             shows[url] = Show(
@@ -108,5 +111,6 @@ class ComedyBarScraper(Scraper):
                 source=self.name,
                 date_iso=iso,
                 title=title if title != name else None,
+                sold_out=sold_out,
             )
         return list(shows.values())

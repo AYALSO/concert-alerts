@@ -242,7 +242,7 @@ async function upcomingText(followSet) {
   const shows = await fetchJSON("shows.json");
   const today = new Date().toISOString().slice(0, 10);
   const mine = Object.values(shows).filter(
-    (s) => followSet.has(s.artist_key) && (!s.date_iso || s.date_iso >= today));
+    (s) => followSet.has(s.artist_key) && !s.sold_out && (!s.date_iso || s.date_iso >= today));
   if (!mine.length) return null;
 
   const byArtist = new Map();
