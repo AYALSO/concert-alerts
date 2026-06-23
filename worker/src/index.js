@@ -232,19 +232,37 @@ function formatShow(s) {
 }
 const esc = (s) => (s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
+const UPCOMING_ARTIST_CAP = 25;
+// One entry PER FOLLOWED ARTIST with a link to their page (which lists all their
+// dates) — not a link per date. Keeps the message short & tidy regardless of how
+// many dates an act has (a comedian can have 30+), and Telegram caps a message at
+// 4096 chars. New dates that open later still arrive as individual push alerts.
 async function upcomingText(followSet) {
   const shows = await fetchJSON("shows.json");
   const today = new Date().toISOString().slice(0, 10);
   const mine = Object.values(shows).filter(
     (s) => followSet.has(s.artist_key) && (!s.date_iso || s.date_iso >= today));
   if (!mine.length) return null;
-  mine.sort((a, b) => (a.date_iso || "").localeCompare(b.date_iso || ""));
-  const lines = ["\u{1F3B6} <b>הופעות קרובות של האמנים שלך:</b>"];
+  const byArtist = new Map();
   for (const s of mine) {
-    const extra = s.title && s.title !== s.artist ? `\n  ${esc(s.title)}` : "";
-    lines.push(`• <b>${esc(s.artist)}</b>${extra}\n  ${esc(s.date_raw)} · ${esc(s.venue)}\n  ${s.url}`);
+    const g = byArtist.get(s.artist_key) || { artist: s.artist, count: 0, soonest: s };
+    g.count++;
+    g.artist = s.artist;
+    if ((s.date_iso || "9999") < (g.soonest.date_iso || "9999")) g.soonest = s;
+    byArtist.set(s.artist_key, g);
   }
-  return lines.join("\n");
+  const groups = [...byArtist.values()]
+    .sort((a, b) => (a.soonest.date_iso || "").localeCompare(b.soonest.date_iso || ""));
+  const lines = ["\u{1F3B6} <b>האמנים שלך וההופעות שלהם:</b>"];
+  for (const g of groups.slice(0, UPCOMING_ARTIST_CAP)) {
+    const page = (g.soonest.url || "").split("#")[0];     // the act's page = all their dates
+    const when = g.count > 1 ? `${g.count} תאריכים` : esc(g.soonest.date_raw || "");
+    lines.push(`\u{1F3A4} <b>${esc(g.artist)}</b> — ${when}\n${page}`);
+  }
+  if (groups.length > UPCOMING_ARTIST_CAP)
+    lines.push(`\u{2026}ועוד ${groups.length - UPCOMING_ARTIST_CAP} אמנים`);
+  lines.push("\u{1F514} תקבל פוש על כל תאריך חדש שייפתח.");
+  return lines.join("\n\n");
 }
 
 // ---- title classification (Workers AI, cached in KV) ------------------------
@@ -364,12 +382,14 @@ async function handleCommand(chat, text, env) {
       { reply_markup: webappKeyboard() });
   }
   if (low === "/help") {
-    const f = followsOf(await getSubs(env), chat);
     return send(env, chat,
-      "\u{1F3A4} כפתור «פתח את רשימת האמנים» — לסמן/לבטל אמנים (מי שכבר עוקב מסומן)\n" +
-      "\u{1F50E} הקלד שם של אמן לחיפוש מהיר\n/following — מי שאתה עוקב אחריו\n" +
-      "/upcoming — הופעות קרובות שלך\n/follow <שם> · /unfollow <שם>",
-      { reply_markup: await webappKeyboard(f) });
+      "\u{1F3A4} «פתח את רשימת האמנים» — לסמן/לבטל אמנים (מי שכבר עוקב מסומן)\n" +
+      "\u{1F50E} הקלד שם של אמן לחיפוש מהיר\n\n" +
+      "פקודות:\n" +
+      "/following — האמנים שאתה עוקב אחריהם\n" +
+      "/upcoming — ההופעות של האמנים שלך\n" +
+      "/clear — איפוס רשימת המעקב",
+      { reply_markup: webappKeyboard() });
   }
   if (low === "/following") {
     const f = followsOf(await getSubs(env), chat);

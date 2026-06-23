@@ -30,7 +30,13 @@ instant, because an Actions cron can't reply in real time):
   the Bot API (re-run the snippet in this repo's history if the bot is recreated).
 - Follows live in Cloudflare **KV** (key `subscribers`), NOT the repo. The Mini App reads
   / writes them via `/api/follows` (GET/POST), authenticated by Telegram `initData` (HMAC).
-- `/notify` (called by the scan) pushes alerts to followers.
+- `/notify` (called by the scan) pushes alerts to followers (a push **per new date**
+  via `formatShow`). The "your artists' shows" message (sent right after following, and
+  on `/upcoming`) is grouped **one entry per artist with a link to their page** (all
+  their dates) via `upcomingText` — NOT a link per date, so it never hits Telegram's
+  4096-char message limit even for a comedian with 30+ dates. (All bot messages use
+  `parse_mode:HTML`, so literal `<…>` in text must be avoided/escaped — that broke
+  `/help` once.)
 - The catalogue is read from the public repo's raw `data/*.json`. Mini App is served by
   **GitHub Pages** (`/docs`, repo is public). Bot username: `@Tunaconcerts_bot`.
 
