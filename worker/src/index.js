@@ -348,12 +348,12 @@ async function handleCommand(chat, text, env) {
 
   if (low === "/start") {
     if (arg.startsWith("f_")) return followByHash(chat, arg.slice(2), env);
-    await send(env, chat,
-      "ברוך הבא! \u{1F3B6}\nכאן תקבל התראה על כל הופעה חדשה של האמנים שתבחר.",
-      { reply_markup: { remove_keyboard: true } });   // clear any old reply keyboard
     return send(env, chat,
-      "\u{1F447} פתח את רשימת האמנים — מי שכבר עוקב יופיע מסומן בראש, אפשר לסמן/לבטל ולנקות הכל.\n" +
-      "אפשר גם להקליד שם של אמן לחיפוש מהיר.",
+      "\u{1F3B5} <b>ברוכים הבאים ל-Tuna Concerts!</b>\n\n" +
+      "הבוט שולח לך התראה בטלגרם <b>ברגע שאמן שאתה עוקב אחריו מכריז על הופעה חדשה</b> " +
+      "באתרי הכרטיסים בישראל (בארבי, זאפה/איוונטים, קומדי בר, קופת תל אביב ועוד).\n\n" +
+      "\u{1F449} לחץ על הכפתור למטה, סמן את האמנים שמעניינים אותך ואשר — " +
+      "ומאותו רגע תקבל פוש על כל הופעה חדשה שלהם. אפשר גם פשוט להקליד שם של אמן לחיפוש.",
       { reply_markup: webappKeyboard() });
   }
   if (low === "/clear" || low === "/unfollowall") {

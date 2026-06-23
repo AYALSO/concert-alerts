@@ -22,7 +22,12 @@ hourly runs. Runs `scan.py`:
 **2. Real-time bot — Cloudflare Worker** (`worker/src/index.js`, a Telegram webhook —
 instant, because an Actions cron can't reply in real time):
 - Instant `/start`, in-chat search, and the **Mini App** (opened via an inline button)
-  for picking artists. `/clear` resets follows.
+  for picking artists. `/clear` resets follows. **Onboarding (no typing needed):** a new
+  user opens the bot link → Telegram shows its intro (`setMyDescription`) + a **Start**
+  button; `/start` replies with a one-message explanation (what/how) + the "open artist
+  list" inline button. User commands appear in the `/` menu via `setMyCommands`
+  (start/following/upcoming/clear/help). The intro/short-desc/commands are set once via
+  the Bot API (re-run the snippet in this repo's history if the bot is recreated).
 - Follows live in Cloudflare **KV** (key `subscribers`), NOT the repo. The Mini App reads
   / writes them via `/api/follows` (GET/POST), authenticated by Telegram `initData` (HMAC).
 - `/notify` (called by the scan) pushes alerts to followers.
