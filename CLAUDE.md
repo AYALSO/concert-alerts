@@ -111,8 +111,11 @@ defaulted, so a quota hiccup never sticks a wrong label).
   full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
   `{ "<artist_key>": {name?, category?, is_artist?} }`), keyed by stable `artist_key`
   so renames don't break follows. `/api/overrides` GET is public, POST is restricted
-  to the admin chat (the one `/id` stored in `admin_chat`), validated by Telegram
-  `initData`. `/api/catalogue` is a CORS passthrough of `artists.json` for the panel.
+  to the admin — `String(chat) === ADMIN_CHAT_ID` (a Worker secret = the dev's chat_id),
+  validated by Telegram `initData`. **`/id` and the admin panel are dev-only:** a
+  non-admin sending `/id` just gets their chat_id back (no panel, no `admin_chat`
+  overwrite), and a non-admin POST to `/api/overrides` is 403 — so the admin role
+  can't be hijacked. `/api/catalogue` is a CORS passthrough of `artists.json` for the panel.
   The **public Mini App fetches `/api/overrides` at load** and applies them live
   (rename / recategorize / hide), so edits show up without a rebuild. (There is no
   local override file — KV is the single source.)

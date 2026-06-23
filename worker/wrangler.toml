@@ -28,3 +28,6 @@ crons = ["0 * * * *"]
 #                     is small (~70 artists/day) so the catalogue upgrades over a few days.
 #   GH_TOKEN        - GitHub fine-grained PAT (repo AYALSO/concert-alerts, Actions:
 #                     read+write); lets the hourly cron dispatch the scan workflow.
+#   ADMIN_CHAT_ID   - the developer's Telegram chat_id. PINS the admin: only this chat
+#                     gets the daily summary / admin panel and can POST /api/overrides.
+#                     (Without it, anyone sending /id could hijack the admin role.)

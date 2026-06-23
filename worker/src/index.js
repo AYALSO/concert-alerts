@@ -206,8 +206,8 @@ async function handleOverrides(request, env) {
   if (request.method === "POST") {
     const b = await request.json().catch(() => ({}));
     const chat = await validateInitData(b.initData || "", env.BOT_TOKEN);
-    const admin = await env.SUBS.get("admin_chat");
-    if (!chat || !admin || chat !== admin)
+    const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
+    if (!chat || !admin || String(chat) !== String(admin))
       return Response.json({ error: "forbidden" }, { status: 403, headers: CORS });
     const ov = b.overrides && typeof b.overrides === "object" ? b.overrides : {};
     await env.SUBS.put("overrides", JSON.stringify(ov));
@@ -387,12 +387,15 @@ async function handleCommand(chat, text, env) {
   if (low === "/follow" || low === "/unfollow") {
     return resolveAndToggle(chat, arg, low === "/follow", env);
   }
-  if (low === "/id" || low === "/admin") {            // dev: register + admin panel
-    await env.SUBS.put("admin_chat", String(chat));
+  if (low === "/id" || low === "/admin") {
+    const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
+    if (admin && String(chat) !== String(admin))      // NOT the developer — id only, no admin
+      return send(env, chat, `\u{1F194} chat_id: <code>${chat}</code>`);
+    await env.SUBS.put("admin_chat", String(chat));   // the developer (or first-time bootstrap)
     const v = new Date().toISOString().slice(0, 13).replace(/[-T]/g, "");
     return send(env, chat,
       `\u{1F194} chat_id: <code>${chat}</code>\n` +
-      "✅ מעכשיו תקבל כאן סיכום של כל סריקה שמוצאת הופעות חדשות.\n" +
+      "✅ אתה רשום כמפתח — סיכום יומי (~22:00) + פאנל ניהול.\n" +
       "\u{1F6E0} פאנל ניהול: ערוך שמות וקטגוריות של אמנים ↓",
       { reply_markup: { inline_keyboard: [[
         { text: "\u{1F6E0} פאנל ניהול אמנים", web_app: { url: `${WEBAPP_URL}admin.html?v=${v}` } }]] } });
