@@ -232,37 +232,55 @@ function formatShow(s) {
 }
 const esc = (s) => (s || "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
-const UPCOMING_ARTIST_CAP = 25;
-// One entry PER FOLLOWED ARTIST with a link to their page (which lists all their
-// dates) — not a link per date. Keeps the message short & tidy regardless of how
-// many dates an act has (a comedian can have 30+), and Telegram caps a message at
-// 4096 chars. New dates that open later still arrive as individual push alerts.
+const UPCOMING_MAX_CHARS = 3800;       // stay under Telegram's 4096-char message limit
+const PER_ARTIST_URL_CAP = 10;
+// Per followed artist, group their dates by BASE URL (the url without the #date
+// fragment). When all dates share one page (comy / comedybar / kupat) -> ONE link.
+// When each date is its own page (barby / eventim) -> a link per date, so a "4
+// תאריכים" never opens just one. New dates still arrive later as push alerts.
 async function upcomingText(followSet) {
   const shows = await fetchJSON("shows.json");
   const today = new Date().toISOString().slice(0, 10);
   const mine = Object.values(shows).filter(
     (s) => followSet.has(s.artist_key) && (!s.date_iso || s.date_iso >= today));
   if (!mine.length) return null;
+
   const byArtist = new Map();
   for (const s of mine) {
-    const g = byArtist.get(s.artist_key) || { artist: s.artist, count: 0, soonest: s };
-    g.count++;
-    g.artist = s.artist;
-    if ((s.date_iso || "9999") < (g.soonest.date_iso || "9999")) g.soonest = s;
-    byArtist.set(s.artist_key, g);
+    let a = byArtist.get(s.artist_key);
+    if (!a) { a = { artist: s.artist, soonest: s, urls: new Map() }; byArtist.set(s.artist_key, a); }
+    a.artist = s.artist;
+    if ((s.date_iso || "9999") < (a.soonest.date_iso || "9999")) a.soonest = s;
+    const base = (s.url || "").split("#")[0];
+    let u = a.urls.get(base);
+    if (!u) { u = { url: base, count: 0, soonest: s }; a.urls.set(base, u); }
+    u.count++;
+    if ((s.date_iso || "9999") < (u.soonest.date_iso || "9999")) u.soonest = s;
   }
-  const groups = [...byArtist.values()]
+  const arts = [...byArtist.values()]
     .sort((a, b) => (a.soonest.date_iso || "").localeCompare(b.soonest.date_iso || ""));
-  const lines = ["\u{1F3B6} <b>האמנים שלך וההופעות שלהם:</b>"];
-  for (const g of groups.slice(0, UPCOMING_ARTIST_CAP)) {
-    const page = (g.soonest.url || "").split("#")[0];     // the act's page = all their dates
-    const when = g.count > 1 ? `${g.count} תאריכים` : esc(g.soonest.date_raw || "");
-    lines.push(`\u{1F3A4} <b>${esc(g.artist)}</b> — ${when}\n${page}`);
+
+  const label = (u) => (u.count > 1 ? `${u.count} תאריכים` : esc(u.soonest.date_raw || ""));
+  const block = (a) => {
+    const urls = [...a.urls.values()]
+      .sort((x, y) => (x.soonest.date_iso || "").localeCompare(y.soonest.date_iso || ""));
+    if (urls.length === 1)                              // all dates on one page -> single link
+      return `\u{1F3A4} <b>${esc(a.artist)}</b> — ${label(urls[0])}\n${urls[0].url}`;
+    const rows = urls.slice(0, PER_ARTIST_URL_CAP).map((u) => `• ${label(u)} — ${u.url}`);
+    if (urls.length > PER_ARTIST_URL_CAP) rows.push(`\u{2026}ועוד ${urls.length - PER_ARTIST_URL_CAP}`);
+    return `\u{1F3A4} <b>${esc(a.artist)}</b>\n` + rows.join("\n");   // separate page per date
+  };
+
+  const out = ["\u{1F3B6} <b>האמנים שלך וההופעות שלהם:</b>"];
+  let len = out[0].length, dropped = 0;
+  for (let i = 0; i < arts.length; i++) {
+    const b = block(arts[i]);
+    if (len + b.length + 2 > UPCOMING_MAX_CHARS) { dropped = arts.length - i; break; }
+    out.push(b); len += b.length + 2;
   }
-  if (groups.length > UPCOMING_ARTIST_CAP)
-    lines.push(`\u{2026}ועוד ${groups.length - UPCOMING_ARTIST_CAP} אמנים`);
-  lines.push("\u{1F514} תקבל פוש על כל תאריך חדש שייפתח.");
-  return lines.join("\n\n");
+  if (dropped) out.push(`\u{2026}ועוד ${dropped} אמנים`);
+  out.push("\u{1F514} תקבל פוש על כל תאריך חדש שייפתח.");
+  return out.join("\n\n");
 }
 
 // ---- title classification (Workers AI, cached in KV) ------------------------
