@@ -29,7 +29,7 @@ export default {
       const body = await request.json().catch(() => ({}));
       if (body.secret !== env.NOTIFY_SECRET) return new Response("unauthorized", { status: 401 });
       const n = await pushNewShows(body.shows || [], env);
-      await scanDigest(body, env);              // report every scan to the developer
+      await bumpDaily(body, env);               // accumulate for the ~22:00 daily summary
       return Response.json({ alerts: n });
     }
     // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
@@ -48,16 +48,17 @@ export default {
     return new Response("concert-alerts bot up");
   },
 
-  // Cloudflare cron (hourly) — dispatch the GitHub scan workflow. Reliable, unlike
-  // GitHub's own schedule cron. Gated to active hours (07:00–00:00 Israel).
+  // Cloudflare cron (hourly): send the ~22:00 daily summary, then dispatch the scan
+  // (active hours only). Reliable, unlike GitHub's own schedule cron.
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(dispatchScan(env));
+    ctx.waitUntil(runCron(env));
   },
 };
 
-async function dispatchScan(env) {
+async function runCron(env) {
   const hr = Number(new Intl.DateTimeFormat("en-US",
     { timeZone: "Asia/Jerusalem", hour: "numeric", hour12: false }).format(new Date()));
+  if (hr === 22) await sendDailySummary(env);      // one evening summary (~22:00 Israel)
   if (hr >= 1 && hr <= 6) return;                  // skip 01:00–06:00 Israel (matches scan.py)
   if (!env.GH_TOKEN) { console.log("no GH_TOKEN; skip dispatch"); return; }
   const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/scan.yml/dispatches`, {
@@ -67,6 +68,28 @@ async function dispatchScan(env) {
     body: JSON.stringify({ ref: "main", inputs: { force: "true" } }),
   });
   if (!r.ok) console.log("dispatch scan failed", r.status, (await r.text()).slice(0, 160));
+}
+
+// Daily developer summary (replaces the per-scan report): counts accumulated by
+// bumpDaily() on every /notify, sent ~22:00 then reset.
+async function sendDailySummary(env) {
+  const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
+  if (!admin) return;
+  const d = (await env.SUBS.get("daily", "json")) || { scans: 0, new_shows: 0, new_artists: 0 };
+  const msg = "\u{1F4C5} <b>סיכום יומי</b>\n"
+    + `\u{1F501} ${d.scans} סריקות\n`
+    + `\u{1F195} ${d.new_shows} הופעות חדשות נוספו\n`
+    + `\u{1F3A4} ${d.new_artists} אמנים חדשים נוספו`;
+  try { await send(env, admin, msg); } catch (e) { console.log("daily summary", e); }
+  await env.SUBS.put("daily", JSON.stringify({ scans: 0, new_shows: 0, new_artists: 0 }));
+}
+
+async function bumpDaily(body, env) {
+  const d = (await env.SUBS.get("daily", "json")) || { scans: 0, new_shows: 0, new_artists: 0 };
+  d.scans += 1;
+  d.new_shows += (body.shows || []).length;
+  d.new_artists += Number(body.new_artists) || 0;
+  await env.SUBS.put("daily", JSON.stringify(d));
 }
 
 // ---- Telegram + data helpers -------------------------------------------------
@@ -497,39 +520,3 @@ async function pushNewShows(shows, env) {
   return sent;
 }
 
-const SRC_HE = { barby: "בארבי", eventim: "איוונטים/זאפה", grayclub: "גריי",
-  kupat: "קופת ת״א", comy: "קומי", comedybar: "קומדי בר", example: "דמו" };
-
-// Sent to the developer on EVERY scan (KV admin_chat, set via /id): per-source
-// counts (so scan frequency + failures are visible even when nothing's new),
-// Gemini's classifications, and the new shows themselves.
-async function scanDigest(body, env) {
-  const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
-  if (!admin) return;
-  const stats = body.stats || {}, shows = body.shows || [], cls = body.classify || {};
-  const lines = [`\u{1F504} <b>סריקה</b> — ${esc(body.ts || "")}`];
-  for (const src of Object.keys(stats)) {
-    const s = stats[src], label = SRC_HE[src] || src;
-    if (s.error) lines.push(`• ${label}: ⚠️ שגיאה`);
-    else lines.push(`• ${label}: ${s.found} הופעות` + (s.new ? ` · \u{1F195} ${s.new} חדשות` : " · אין חדשות"));
-  }
-  if (cls && cls.count) {
-    const items = cls.items || [];
-    const arts = items.filter((it) => it[2] !== false);
-    const non = items.filter((it) => it[2] === false);
-    if (arts.length)
-      lines.push(`\u{1F916} ג'מיני סיווג ${arts.length} אמנים: `
-        + arts.slice(0, 8).map((it) => `${esc(it[0])}→${it[1]}`).join(", ") + (arts.length > 8 ? " …" : ""));
-    if (non.length)
-      lines.push(`\u{1F6AB} סומנו ${non.length} לא-אמנים (מוסתרים): `
-        + non.slice(0, 8).map((it) => esc(it[0])).join(", ") + (non.length > 8 ? " …" : ""));
-  }
-  if (shows.length) {
-    const artists = [...new Set(shows.map((s) => s.artist))];
-    lines.push("", `\u{1F195} <b>${shows.length} הופעות חדשות</b> (${artists.length} אמנים):`);
-    shows.slice(0, 25).forEach((s) =>
-      lines.push(`• <b>${esc(s.artist)}</b> — ${esc(s.date_raw || "")} · ${esc(s.venue || "")} (${esc(s.source || "")})`));
-    if (shows.length > 25) lines.push(`…ועוד ${shows.length - 25}`);
-  }
-  try { await send(env, admin, lines.join("\n")); } catch (e) { console.log("scan digest", e); }
-}

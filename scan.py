@@ -34,23 +34,20 @@ def should_scan_now() -> bool:
     return datetime.now(ISRAEL_TZ).hour in ACTIVE_HOURS
 
 
-def notify_worker(new_shows, stats=None, classify=None) -> None:
-    """Post the scan result to the Worker EVERY scan: it alerts followers about new
-    shows (reads follows from KV) AND sends the developer a scan report (per-source
-    counts + Gemini classification), so scans are visible even when nothing's new."""
+def notify_worker(new_shows, new_artists=0) -> None:
+    """Post the scan result to the Worker: it alerts followers about new shows and
+    accumulates the daily counters (scans / new shows / new artists) that feed the
+    single ~22:00 developer summary."""
     url = os.environ.get("WORKER_NOTIFY_URL")
     secret = os.environ.get("NOTIFY_SECRET")
     if not (url and secret):
         print("[notify] WORKER_NOTIFY_URL/NOTIFY_SECRET not set; skipping push")
         return
-    ts = datetime.now(ISRAEL_TZ).strftime("%d/%m %H:%M")
     try:
         r = requests.post(url, timeout=30, json={
             "secret": secret,
             "shows": new_shows,            # already canonical dicts from run_scan
-            "stats": stats or {},
-            "classify": classify or {},
-            "ts": ts,
+            "new_artists": new_artists,
         })
         print(f"[notify] worker {r.status_code}: {r.text[:160]}")
     except requests.RequestException as e:
@@ -154,11 +151,11 @@ def main():
         print("Outside active hours (07:00–00:00 Israel) — skipping scan.")
         return
 
-    new_shows, new_artists, stats = run_scan(all_scrapers(), merges=fetch_merges())
+    new_shows, new_artists, _stats = run_scan(all_scrapers(), merges=fetch_merges())
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
     force_standup()
-    classify = classify_artists()
-    notify_worker(new_shows, stats, classify)   # always — so every scan is reported
+    classify_artists()                          # classify + safe name-shortening
+    notify_worker(new_shows, len(new_artists))
 
 
 if __name__ == "__main__":

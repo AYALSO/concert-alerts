@@ -154,15 +154,16 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   AND a persistent **menu button** (set via `setChatMenuButton`) — both pass `initData`
   (a reply-keyboard web_app does NOT, which is why those are avoided). The page calls
   `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
-- **Dev scan report (every scan):** sending `/id` (or `/admin`) to the bot stores the
-  sender's chat_id in KV key `admin_chat`. `scan.py` POSTs to `/notify` on **every**
-  run (even with zero new shows) with `{shows, stats, classify, ts}`; the Worker's
-  `scanDigest()` pings `admin_chat` a report: a per-source line (`<source>: N הופעות ·
-  אין/🆕 חדשות`, or `⚠️ שגיאה` if a scraper threw — so failures & true scan frequency
-  are visible since the Actions cron is unreliable), a `🤖 ג'מיני` line listing what
-  Gemini just classified, then the new shows (artist · date · venue · source). Clear
-  `admin_chat` to disable. (`stats` come from `engine.run_scan`'s 3rd return value;
-  `classify` from `scan.classify_artists`.) (`GEMINI_API_KEY` is also a Worker secret.)
+- **Dev daily summary (~22:00 Israel):** sending `/id` (or `/admin`) to the bot stores
+  the sender's chat_id in KV key `admin_chat`. `scan.py` POSTs to `/notify` every run
+  with `{shows, new_artists}`; the Worker's `bumpDaily()` accumulates a KV `daily`
+  counter (`{scans, new_shows, new_artists}`). The Worker cron, at hour **22 Israel**,
+  calls `sendDailySummary()` → pings `admin_chat` one message ("📅 סיכום יומי — N
+  סריקות · N הופעות חדשות · N אמנים חדשים") and resets the counter. This **replaced**
+  the old per-scan report + per-new-show admin pings (too noisy). Clear `admin_chat`
+  to disable. **Follower alerts are separate and unchanged** — `pushNewShows()` still
+  pushes each new show to whoever follows that artist (the product). (`GEMINI_API_KEY`
+  is also a Worker secret.)
 
 ### Local dev (this Windows machine)
 - `python` not on PATH → `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
