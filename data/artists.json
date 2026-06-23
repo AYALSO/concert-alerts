@@ -2006,8 +2006,11 @@
     ]
   },
   "ליילי": {
+    "cat_v": 3,
+    "category": "music",
     "display": "ליילי",
     "first_seen": "2026-06-23T11:01:10.229488+00:00",
+    "is_artist": true,
     "sources": [
       "barby"
     ]
@@ -2865,8 +2868,11 @@
     ]
   },
   "עטר מיינר": {
+    "cat_v": 3,
+    "category": "music",
     "display": "עטר מיינר",
     "first_seen": "2026-06-23T11:01:10.229522+00:00",
+    "is_artist": true,
     "sources": [
       "barby"
     ]
