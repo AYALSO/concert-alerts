@@ -2047,6 +2047,16 @@
       "barby"
     ]
   },
+  "לירון אופיר": {
+    "cat_v": 3,
+    "category": "standup",
+    "display": "לירון אופיר",
+    "first_seen": "2026-06-24T14:01:35.963071+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "לירן דנינו": {
     "cat_v": 3,
     "category": "music",
