@@ -3054,8 +3054,11 @@
     ]
   },
   "פסטיבל באר טוביה": {
+    "cat_v": 3,
+    "category": "music",
     "display": "פסטיבל באר טוביה",
     "first_seen": "2026-06-23T19:01:28.881206+00:00",
+    "is_artist": false,
     "sources": [
       "kupat"
     ]
