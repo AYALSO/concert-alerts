@@ -1997,8 +1997,11 @@
     ]
   },
   "לייזה ודניאלה עושות פאנל": {
-    "display": "לייזה ודניאלה עושות פאנל",
+    "cat_v": 3,
+    "category": "standup",
+    "display": "לייזה ודניאלה",
     "first_seen": "2026-06-24T09:01:13.933499+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -3541,8 +3544,11 @@
     ]
   },
   "שירז אברהם": {
+    "cat_v": 3,
+    "category": "music",
     "display": "שירז אברהם",
     "first_seen": "2026-06-24T09:01:13.933554+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
