@@ -72,25 +72,44 @@ async function runCron(env) {
   if (!r.ok) console.log("dispatch scan failed", r.status, (await r.text()).slice(0, 160));
 }
 
-// Daily developer summary (replaces the per-scan report): counts accumulated by
+const DAILY0 = { scans: 0, new_shows: 0, new_artists: 0, shows: [], artists: [] };
+
+// Daily developer summary (replaces the per-scan report): the day's scan count +
+// new shows + new artists, WITH the detail of what was added. Accumulated by
 // bumpDaily() on every /notify, sent ~22:00 then reset.
 async function sendDailySummary(env) {
   const admin = env.ADMIN_CHAT_ID || (await env.SUBS.get("admin_chat"));
   if (!admin) return;
-  const d = (await env.SUBS.get("daily", "json")) || { scans: 0, new_shows: 0, new_artists: 0 };
-  const msg = "\u{1F4C5} <b>סיכום יומי</b>\n"
-    + `\u{1F501} ${d.scans} סריקות\n`
-    + `\u{1F195} ${d.new_shows} הופעות חדשות נוספו\n`
-    + `\u{1F3A4} ${d.new_artists} אמנים חדשים נוספו`;
-  try { await send(env, admin, msg); } catch (e) { console.log("daily summary", e); }
-  await env.SUBS.put("daily", JSON.stringify({ scans: 0, new_shows: 0, new_artists: 0 }));
+  const d = (await env.SUBS.get("daily", "json")) || DAILY0;
+  const lines = ["\u{1F4C5} <b>סיכום יומי</b>",
+    `\u{1F501} ${d.scans || 0} סריקות`,
+    `\u{1F195} ${d.new_shows || 0} הופעות חדשות · \u{1F3A4} ${d.new_artists || 0} אמנים חדשים`];
+  const artists = d.artists || [], shows = d.shows || [];
+  if (artists.length) {
+    lines.push("", "\u{1F3A4} <b>אמנים חדשים:</b>");
+    artists.slice(0, 20).forEach((a) => lines.push(`• ${esc(a)}`));
+    if ((d.new_artists || 0) > 20) lines.push(`\u{2026}ועוד ${d.new_artists - 20}`);
+  }
+  if (shows.length) {
+    lines.push("", "\u{1F195} <b>הופעות חדשות:</b>");
+    shows.slice(0, 25).forEach((s) =>
+      lines.push(`• <b>${esc(s.a)}</b> — ${esc(s.d || "")} · ${esc(s.v || "")} (${esc(s.src || "")})`));
+    if ((d.new_shows || 0) > 25) lines.push(`\u{2026}ועוד ${d.new_shows - 25}`);
+  }
+  try { await send(env, admin, lines.join("\n")); } catch (e) { console.log("daily summary", e); }
+  await env.SUBS.put("daily", JSON.stringify(DAILY0));
 }
 
 async function bumpDaily(body, env) {
-  const d = (await env.SUBS.get("daily", "json")) || { scans: 0, new_shows: 0, new_artists: 0 };
-  d.scans += 1;
-  d.new_shows += (body.shows || []).length;
-  d.new_artists += Number(body.new_artists) || 0;
+  const d = (await env.SUBS.get("daily", "json")) || {};
+  const shows = body.shows || [], arts = body.new_artists || [];
+  d.scans = (d.scans || 0) + 1;
+  d.new_shows = (d.new_shows || 0) + shows.length;
+  d.new_artists = (d.new_artists || 0) + arts.length;
+  d.shows = d.shows || []; d.artists = d.artists || [];
+  for (const s of shows) if (d.shows.length < 80)
+    d.shows.push({ a: s.artist, d: s.date_raw, v: s.venue, src: s.source });
+  for (const a of arts) if (d.artists.length < 60) d.artists.push(a);
   await env.SUBS.put("daily", JSON.stringify(d));
 }
 

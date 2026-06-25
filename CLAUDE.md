@@ -182,12 +182,14 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
 - **Dev daily summary (~22:00 Israel):** sending `/id` (or `/admin`) to the bot stores
   the sender's chat_id in KV key `admin_chat`. `scan.py` POSTs to `/notify` every run
-  with `{shows, new_artists}`; the Worker's `bumpDaily()` accumulates a KV `daily`
-  counter (`{scans, new_shows, new_artists}`). The Worker cron, at hour **22 Israel**,
-  calls `sendDailySummary()` → pings `admin_chat` one message ("📅 סיכום יומי — N
-  סריקות · N הופעות חדשות · N אמנים חדשים") and resets the counter. This **replaced**
-  the old per-scan report + per-new-show admin pings (too noisy). Clear `admin_chat`
-  to disable. **Follower alerts are separate and unchanged** — `pushNewShows()` still
+  with `{shows, new_artists}` (new_artists = list of names); the Worker's `bumpDaily()`
+  accumulates a KV `daily` record — counts **and** the detail: `{scans, new_shows,
+  new_artists, shows[], artists[]}` (detail capped at 80 shows / 60 artists). The Worker
+  cron, at hour **22 Israel**, calls `sendDailySummary()` → pings `admin_chat` one
+  message: the counts (N סריקות · N הופעות · N אמנים) **plus a list of the new artists
+  and new shows** (artist · date · venue · source) added through the day — then resets.
+  This **replaced** the old per-scan report + per-new-show admin pings (too noisy). Clear
+  `admin_chat` to disable. **Follower alerts are separate and unchanged** — `pushNewShows()` still
   pushes each new show to whoever follows that artist (the product). (`GEMINI_API_KEY`
   is also a Worker secret.)
 

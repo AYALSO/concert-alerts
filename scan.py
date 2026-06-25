@@ -34,9 +34,9 @@ def should_scan_now() -> bool:
     return datetime.now(ISRAEL_TZ).hour in ACTIVE_HOURS
 
 
-def notify_worker(new_shows, new_artists=0) -> None:
+def notify_worker(new_shows, new_artists=None) -> None:
     """Post the scan result to the Worker: it alerts followers about new shows and
-    accumulates the daily counters (scans / new shows / new artists) that feed the
+    accumulates the day's new shows + new artist names (and scan count) that feed the
     single ~22:00 developer summary."""
     url = os.environ.get("WORKER_NOTIFY_URL")
     secret = os.environ.get("NOTIFY_SECRET")
@@ -47,7 +47,7 @@ def notify_worker(new_shows, new_artists=0) -> None:
         r = requests.post(url, timeout=30, json={
             "secret": secret,
             "shows": new_shows,            # already canonical dicts from run_scan
-            "new_artists": new_artists,
+            "new_artists": new_artists or [],   # list of new artist display names
         })
         print(f"[notify] worker {r.status_code}: {r.text[:160]}")
     except requests.RequestException as e:
@@ -155,7 +155,7 @@ def main():
     print(f"New shows: {len(new_shows)} | New artists: {len(new_artists)}")
     force_standup()
     classify_artists()                          # classify + safe name-shortening
-    notify_worker(new_shows, len(new_artists))
+    notify_worker(new_shows, new_artists)
 
 
 if __name__ == "__main__":
