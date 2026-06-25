@@ -91,8 +91,11 @@
     ]
   },
   "degibri big band": {
+    "cat_v": 3,
+    "category": "music",
     "display": "Degibri Big Band",
     "first_seen": "2026-06-25T16:48:30.042676+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -148,15 +151,21 @@
     ]
   },
   "gordon fight nights 1": {
+    "cat_v": 3,
+    "category": "music",
     "display": "Gordon Fight Nights 1",
     "first_seen": "2026-06-25T16:48:37.092309+00:00",
+    "is_artist": false,
     "sources": [
       "ticketmaster"
     ]
   },
   "keren ann": {
+    "cat_v": 3,
+    "category": "music",
     "display": "Keren Ann",
     "first_seen": "2026-06-25T16:48:28.609987+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -2008,8 +2017,11 @@
     ]
   },
   "ליאור נרקיס": {
+    "cat_v": 3,
+    "category": "music",
     "display": "ליאור נרקיס",
     "first_seen": "2026-06-25T16:48:38.422455+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -2903,8 +2915,11 @@
     ]
   },
   "עומר אדם": {
+    "cat_v": 3,
+    "category": "music",
     "display": "עומר אדם",
     "first_seen": "2026-06-25T16:46:42.338394+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -3597,8 +3612,11 @@
     ]
   },
   "שיער": {
+    "cat_v": 3,
+    "category": "theater",
     "display": "שיער",
     "first_seen": "2026-06-25T16:48:48.566256+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -3739,8 +3757,11 @@
     ]
   },
   "תום אורן": {
+    "cat_v": 3,
+    "category": "music",
     "display": "תום אורן",
     "first_seen": "2026-06-25T16:48:54.503529+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -3817,8 +3838,11 @@
     ]
   },
   "תמר": {
+    "cat_v": 3,
+    "category": "music",
     "display": "תמר",
     "first_seen": "2026-06-25T16:49:10.208852+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster",
       "kupat"
