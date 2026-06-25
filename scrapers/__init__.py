@@ -6,4 +6,5 @@ from . import grayclub  # noqa: F401  (card-based parser; reads h3 titles, not c
 from . import kupat     # noqa: F401  (Kupat Tel Aviv aggregator; per-show detail pages)
 from . import comy      # noqa: F401  (COMY stand-up; one Show per touring event)
 from . import comedybar # noqa: F401  (Comedy Bar via SmartTicket; named artists only)
+from . import ticketmaster  # noqa: F401  (Ticketmaster IL; sitemap + SSR event pages)
 # from . import kupot_ta     # noqa: F401

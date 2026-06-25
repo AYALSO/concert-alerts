@@ -90,6 +90,13 @@
       "eventim"
     ]
   },
+  "degibri big band": {
+    "display": "Degibri Big Band",
+    "first_seen": "2026-06-25T16:48:30.042676+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "dirty pop": {
     "cat_v": 3,
     "category": "music",
@@ -138,6 +145,20 @@
     "is_artist": false,
     "sources": [
       "eventim"
+    ]
+  },
+  "gordon fight nights 1": {
+    "display": "Gordon Fight Nights 1",
+    "first_seen": "2026-06-25T16:48:37.092309+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
+  "keren ann": {
+    "display": "Keren Ann",
+    "first_seen": "2026-06-25T16:48:28.609987+00:00",
+    "sources": [
+      "ticketmaster"
     ]
   },
   "love story": {
@@ -341,7 +362,8 @@
     "is_artist": true,
     "sources": [
       "barby",
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "אבנר מדר": {
@@ -1985,6 +2007,13 @@
       "grayclub"
     ]
   },
+  "ליאור נרקיס": {
+    "display": "ליאור נרקיס",
+    "first_seen": "2026-06-25T16:48:38.422455+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "ליאור סושרד": {
     "cat_v": 3,
     "category": "standup",
@@ -2026,7 +2055,8 @@
     "sources": [
       "barby",
       "eventim",
-      "grayclub"
+      "grayclub",
+      "ticketmaster"
     ]
   },
   "לייזה ודניאלה עושות פאנל": {
@@ -2817,7 +2847,8 @@
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "עדי אשכנזי": {
@@ -2869,6 +2900,13 @@
     "sources": [
       "grayclub",
       "eventim"
+    ]
+  },
+  "עומר אדם": {
+    "display": "עומר אדם",
+    "first_seen": "2026-06-25T16:46:42.338394+00:00",
+    "sources": [
+      "ticketmaster"
     ]
   },
   "עומר קולי": {
@@ -3033,7 +3071,8 @@
     "is_artist": true,
     "sources": [
       "barby",
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "פאות קדושות": {
@@ -3557,6 +3596,13 @@
       "grayclub"
     ]
   },
+  "שיער": {
+    "display": "שיער",
+    "first_seen": "2026-06-25T16:48:48.566256+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "שיר לוי": {
     "cat_v": 3,
     "category": "music",
@@ -3606,7 +3652,8 @@
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "שלומי קוריאט": {
@@ -3691,6 +3738,13 @@
       "kupat"
     ]
   },
+  "תום אורן": {
+    "display": "תום אורן",
+    "first_seen": "2026-06-25T16:48:54.503529+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "תום יער אופטימית זהירה": {
     "cat_v": 3,
     "category": "standup",
@@ -3760,6 +3814,14 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "תמר": {
+    "display": "תמר",
+    "first_seen": "2026-06-25T16:49:10.208852+00:00",
+    "sources": [
+      "ticketmaster",
+      "kupat"
     ]
   },
   "תמר יהלומי ויונתן קלימי": {
