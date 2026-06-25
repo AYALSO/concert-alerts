@@ -3771,5 +3771,15 @@
     "sources": [
       "kupat"
     ]
+  },
+  "תמר ריילי": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "תמר ריילי",
+    "first_seen": "2026-06-25T13:00:56.493896+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
   }
 }
