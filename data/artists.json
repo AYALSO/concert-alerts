@@ -100,6 +100,16 @@
       "grayclub"
     ]
   },
+  "disco train": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "Disco Train",
+    "first_seen": "2026-06-25T07:00:56.532979+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "echoes": {
     "cat_v": 3,
     "category": "music",
@@ -241,8 +251,11 @@
     ]
   },
   "trio athina": {
+    "cat_v": 3,
+    "category": "music",
     "display": "TRIO ATHINA",
     "first_seen": "2026-06-25T06:00:59.112483+00:00",
+    "is_artist": true,
     "sources": [
       "grayclub"
     ]
@@ -880,6 +893,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "ברי סחרוף": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "ברי סחרוף",
+    "first_seen": "2026-06-25T07:00:51.748261+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "בריגדת הנייר": {
@@ -2397,7 +2420,8 @@
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "eventim"
     ]
   },
   "מרתון סטנדאפ": {
