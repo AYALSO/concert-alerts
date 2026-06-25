@@ -10,16 +10,6 @@
       "grayclub"
     ]
   },
-  "andalusi sessions 1": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "Andalusi Sessions #1",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "axis rock argentino by latin power": {
     "cat_v": 3,
     "category": "music",
@@ -190,14 +180,14 @@
       "grayclub"
     ]
   },
-  "sudance": {
+  "taiko life your heart your drum": {
     "cat_v": 3,
     "category": "music",
-    "display": "SUDANCE",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
+    "display": "Taiko Life",
+    "first_seen": "2026-06-25T04:00:54.457019+00:00",
+    "is_artist": true,
     "sources": [
-      "eventim"
+      "grayclub"
     ]
   },
   "the 90s show": {
@@ -1178,7 +1168,8 @@
     "is_artist": true,
     "sources": [
       "comy",
-      "comedybar"
+      "comedybar",
+      "grayclub"
     ]
   },
   "דר אייל דורון": {
@@ -1209,16 +1200,6 @@
     "is_artist": false,
     "sources": [
       "grayclub"
-    ]
-  },
-  "דרושה עוזרת": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "דרושה עוזרת",
-    "first_seen": "2026-06-20T20:16:08.892207+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "האחים שטרית": {
@@ -1641,6 +1622,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "טריפונס": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "טריפונס",
+    "first_seen": "2026-06-25T04:00:54.455168+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "יהודה פוליקר": {
@@ -3196,16 +3187,6 @@
       "eventim"
     ]
   },
-  "קולולם": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "קולולם",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "קוקו מאילת": {
     "cat_v": 3,
     "category": "music",
@@ -3706,6 +3687,16 @@
     "is_artist": false,
     "sources": [
       "barby"
+    ]
+  },
+  "תלמידי מחול": {
+    "cat_v": 3,
+    "category": "theater",
+    "display": "תלמידי מחול",
+    "first_seen": "2026-06-25T04:00:50.176546+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "תמיר בר": {
