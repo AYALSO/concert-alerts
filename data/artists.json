@@ -120,6 +120,16 @@
       "grayclub"
     ]
   },
+  "distortion festival": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "DISTORTION FESTIVAL",
+    "first_seen": "2026-06-26T04:01:00.399218+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "echoes": {
     "cat_v": 3,
     "category": "music",
@@ -1087,16 +1097,6 @@
     "display": "גליקריה",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
     "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "גרנד סלאם אתלטיקה ירושלים": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "גרנד סלאם אתלטיקה ירושלים",
-    "first_seen": "2026-06-20T20:16:09.687941+00:00",
-    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -2242,16 +2242,6 @@
       "barby"
     ]
   },
-  "מופע סיום": {
-    "cat_v": 3,
-    "category": "theater",
-    "display": "מופע סיום",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "מור": {
     "cat_v": 3,
     "category": "standup",
@@ -2891,6 +2881,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "עדנה קנטי": {
+    "cat_v": 3,
+    "category": "standup",
+    "display": "עדנה קנטי",
+    "first_seen": "2026-06-26T04:02:08.332819+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
     ]
   },
   "עודד מנסטר": {
