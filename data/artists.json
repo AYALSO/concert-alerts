@@ -867,6 +867,16 @@
       "comy"
     ]
   },
+  "בי פאני": {
+    "cat_v": 3,
+    "category": "standup",
+    "display": "בי פאני",
+    "first_seen": "2026-06-27T04:01:33.931658+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "בין אדיס לריו": {
     "cat_v": 3,
     "category": "music",
@@ -1260,16 +1270,6 @@
     "display": "ד\"ר חיים שפירא",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
     "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
-  "דראג בראנץ": {
-    "cat_v": 3,
-    "category": "theater",
-    "display": "דראג בראנץ",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
     "sources": [
       "grayclub"
     ]
@@ -3178,16 +3178,6 @@
     "category": "theater",
     "display": "פסטיבל ימי פלמנקו",
     "first_seen": "2026-06-20T20:16:09.401663+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "פסטיבל ירושלים מזרח ומערב": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "פסטיבל ירושלים מזרח ומערב",
-    "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
