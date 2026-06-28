@@ -271,16 +271,6 @@
       "eventim"
     ]
   },
-  "the k hotel": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "The K Hotel",
-    "first_seen": "2026-06-20T20:16:12.409542+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "tpuse the band": {
     "cat_v": 3,
     "category": "music",
@@ -413,16 +403,6 @@
     "is_artist": true,
     "sources": [
       "comy"
-    ]
-  },
-  "אהבה מודרנית": {
-    "cat_v": 3,
-    "category": "theater",
-    "display": "אהבה מודרנית",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "אהוד בנאי": {
@@ -1329,6 +1309,16 @@
     "category": "music",
     "display": "הופעות ללקוחות מקס",
     "first_seen": "2026-06-22T05:06:54.270966+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הטבה אירגונית ברק כרטיסים": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "הטבה אירגונית  ברק כרטיסים",
+    "first_seen": "2026-06-28T04:00:51.275334+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -2366,6 +2356,16 @@
       "grayclub"
     ]
   },
+  "מיכאל בן דוד": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "מיכאל בן דוד",
+    "first_seen": "2026-06-28T04:00:53.879736+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "מיכה שטרית": {
     "cat_v": 3,
     "category": "music",
@@ -2791,6 +2791,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "סטלוס ואורן חן": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "סטלוס ואורן חן",
+    "first_seen": "2026-06-28T04:00:53.877769+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "סטנדאפ": {
