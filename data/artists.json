@@ -907,6 +907,16 @@
       "eventim"
     ]
   },
+  "בן צור": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "בן צור",
+    "first_seen": "2026-06-28T11:02:30.320620+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "בניה ברבי": {
     "cat_v": 3,
     "category": "music",
