@@ -3573,8 +3573,11 @@
     ]
   },
   "שגיא דקל חן מהשבי אל הדשא": {
+    "cat_v": 3,
+    "category": "theater",
     "display": "שגיא דקל חן, מהשבי אל הדשא",
     "first_seen": "2026-06-28T20:01:15.785815+00:00",
+    "is_artist": false,
     "sources": [
       "kupat"
     ]
