@@ -3183,6 +3183,16 @@
       "kupat"
     ]
   },
+  "פלד": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "פלד",
+    "first_seen": "2026-06-28T08:01:01.978088+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "פסטיבל באר טוביה": {
     "cat_v": 3,
     "category": "music",
