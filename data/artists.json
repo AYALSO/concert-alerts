@@ -1546,8 +1546,11 @@
     ]
   },
   "וועד הרופאים והאחיות הדסה": {
+    "cat_v": 3,
+    "category": "theater",
     "display": "וועד הרופאים והאחיות - הדסה",
     "first_seen": "2026-06-30T04:01:17.207953+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
