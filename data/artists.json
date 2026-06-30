@@ -2028,6 +2028,16 @@
       "eventim"
     ]
   },
+  "להקת gipsy kings": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "Gipsy Kings",
+    "first_seen": "2026-06-30T15:01:04.585933+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "להקת המחול הקיבוצית": {
     "cat_v": 3,
     "category": "theater",
