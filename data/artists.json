@@ -582,6 +582,16 @@
       "comedybar"
     ]
   },
+  "אלון אולארציק": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "אלון אולארצ'יק",
+    "first_seen": "2026-06-30T06:01:12.495988+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אלון עדר": {
     "cat_v": 3,
     "category": "music",
@@ -1098,7 +1108,8 @@
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "ג׳ימבו ג׳יי": {
