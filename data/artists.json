@@ -446,16 +446,6 @@
       "comy"
     ]
   },
-  "אורות הבמה": {
-    "cat_v": 3,
-    "category": "theater",
-    "display": "אורות הבמה",
-    "first_seen": "2026-06-20T20:16:09.401663+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "אורי ברויר": {
     "cat_v": 3,
     "category": "standup",
@@ -1553,6 +1543,13 @@
     "sources": [
       "eventim",
       "ticketmaster"
+    ]
+  },
+  "וועד הרופאים והאחיות הדסה": {
+    "display": "וועד הרופאים והאחיות - הדסה",
+    "first_seen": "2026-06-30T04:01:17.207953+00:00",
+    "sources": [
+      "eventim"
     ]
   },
   "זושא": {
