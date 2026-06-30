@@ -1425,6 +1425,16 @@
       "eventim"
     ]
   },
+  "המופע הגדול של שלישיית הנובים": {
+    "cat_v": 3,
+    "category": "theater",
+    "display": "שלישיית הנובים",
+    "first_seen": "2026-06-30T08:03:14.180830+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "המחווה לאבבא מבית רוקוויל": {
     "cat_v": 3,
     "category": "music",
