@@ -3912,6 +3912,16 @@
       "kupat"
     ]
   },
+  "תאיר שדה": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "תאיר שדה",
+    "first_seen": "2026-07-01T08:00:59.991014+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "תום אורן": {
     "cat_v": 3,
     "category": "music",
