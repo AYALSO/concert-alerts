@@ -1566,6 +1566,16 @@
       "eventim"
     ]
   },
+  "הרצאות דיגיתל": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "הרצאות - דיגיתל",
+    "first_seen": "2026-07-01T04:00:33.117598+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "התקווה 6": {
     "cat_v": 3,
     "category": "music",
@@ -2378,16 +2388,6 @@
       "grayclub"
     ]
   },
-  "מחווה לזמרות הגדולות": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "מחווה לזמרות הגדולות",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "מחווה לקולדפליי": {
     "cat_v": 3,
     "category": "music",
@@ -3127,6 +3127,16 @@
     "category": "music",
     "display": "עילי בוטנר",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "עירן צנחני": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "עירן צנחני",
+    "first_seen": "2026-07-01T04:00:33.118590+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
