@@ -2967,6 +2967,16 @@
       "barby"
     ]
   },
+  "סיפור אהבה": {
+    "cat_v": 3,
+    "category": "standup",
+    "display": "סיפור אהבה",
+    "first_seen": "2026-07-01T14:01:22.574109+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "סיפור הפרברים": {
     "cat_v": 3,
     "category": "standup",
