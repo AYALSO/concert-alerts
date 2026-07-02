@@ -704,6 +704,16 @@
       "comy"
     ]
   },
+  "אסף אבידן": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "אסף אבידן",
+    "first_seen": "2026-07-02T13:00:37.077531+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אסף אמדורסקי שלומי שבן יעל קראוס שרים החלונות הגבוהים": {
     "cat_v": 3,
     "category": "music",
@@ -1767,7 +1777,8 @@
     "first_seen": "2026-06-25T04:00:54.455168+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "יהודה פוליקר": {
