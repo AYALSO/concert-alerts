@@ -1576,16 +1576,6 @@
       "eventim"
     ]
   },
-  "הרצאות דיגיתל": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "הרצאות - דיגיתל",
-    "first_seen": "2026-07-01T04:00:33.117598+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "התקווה 6": {
     "cat_v": 3,
     "category": "music",
@@ -1595,16 +1585,6 @@
     "sources": [
       "eventim",
       "ticketmaster"
-    ]
-  },
-  "וועד הרופאים והאחיות הדסה": {
-    "cat_v": 3,
-    "category": "theater",
-    "display": "וועד הרופאים והאחיות - הדסה",
-    "first_seen": "2026-06-30T04:01:17.207953+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "זושא": {
