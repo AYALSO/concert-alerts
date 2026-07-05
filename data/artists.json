@@ -1224,6 +1224,16 @@
       "eventim"
     ]
   },
+  "דורון פישלר": {
+    "cat_v": 3,
+    "category": "theater",
+    "display": "דורון פישלר",
+    "first_seen": "2026-07-05T10:00:46.942991+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דיקלה": {
     "cat_v": 3,
     "category": "music",
