@@ -3748,6 +3748,16 @@
       "comy"
     ]
   },
+  "שימי רון": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "שימי רון",
+    "first_seen": "2026-07-05T04:00:43.859364+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "שימי תבורי": {
     "cat_v": 3,
     "category": "music",
