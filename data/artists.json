@@ -170,6 +170,16 @@
       "ticketmaster"
     ]
   },
+  "itraveljerusalem": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "iTravelJerusalem",
+    "first_seen": "2026-07-05T07:00:44.594995+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "keren ann": {
     "cat_v": 3,
     "category": "music",
@@ -3655,7 +3665,8 @@
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "eventim"
     ]
   },
   "שבוע טוב": {
