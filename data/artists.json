@@ -160,6 +160,16 @@
       "eventim"
     ]
   },
+  "forever tango": {
+    "cat_v": 3,
+    "category": "theater",
+    "display": "forever tango",
+    "first_seen": "2026-07-05T11:01:03.639288+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "gordon fight nights 1": {
     "cat_v": 3,
     "category": "music",
