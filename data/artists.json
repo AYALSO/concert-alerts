@@ -540,6 +540,16 @@
       "eventim"
     ]
   },
+  "אייס בוקס": {
+    "cat_v": 3,
+    "category": "theater",
+    "display": "אייס בוקס",
+    "first_seen": "2026-07-05T12:00:58.155299+00:00",
+    "is_artist": false,
+    "sources": [
+      "kupat"
+    ]
+  },
   "אינדי דזרט": {
     "cat_v": 3,
     "category": "music",
