@@ -510,6 +510,16 @@
       "grayclub"
     ]
   },
+  "אייל לוי": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "אייל לוי",
+    "first_seen": "2026-07-05T09:00:45.170133+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "איילה אינגדשט": {
     "cat_v": 3,
     "category": "music",
