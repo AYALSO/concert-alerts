@@ -373,6 +373,16 @@
       "grayclub"
     ]
   },
+  "אבישי כהן בסיסט": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "אבישי כהן",
+    "first_seen": "2026-07-06T09:00:48.604587+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אביתר בנאי": {
     "cat_v": 3,
     "category": "music",
