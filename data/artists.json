@@ -1487,6 +1487,16 @@
       "eventim"
     ]
   },
+  "הכל אודות איב": {
+    "cat_v": 3,
+    "category": "standup",
+    "display": "הכל אודות איב",
+    "first_seen": "2026-07-06T13:01:34.470490+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "הלהקות חוזרות": {
     "cat_v": 3,
     "category": "music",
@@ -1622,6 +1632,16 @@
     "category": "theater",
     "display": "הרצאות בזאפה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הרצאות דיגיתל": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "הרצאות - דיגיתל",
+    "first_seen": "2026-07-06T13:00:51.024093+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
