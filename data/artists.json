@@ -593,6 +593,16 @@
       "grayclub"
     ]
   },
+  "אירוע הקרנה חגיגי לגמר הגדול של מונדיאל": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "אירוע הקרנה חגיגי לגמר הגדול של מונדיאל",
+    "first_seen": "2026-07-07T13:00:49.213766+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "איתי אנגל": {
     "cat_v": 3,
     "category": "music",
@@ -1408,16 +1418,6 @@
       "eventim"
     ]
   },
-  "הופעות ללקוחות מקס": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "הופעות ללקוחות מקס",
-    "first_seen": "2026-06-22T05:06:54.270966+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "הטבה אירגונית ברק כרטיסים": {
     "cat_v": 3,
     "category": "music",
@@ -1799,6 +1799,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "חצי גמר מונדיאל זכאים": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "חצי גמר מונדיאל זכאים",
+    "first_seen": "2026-07-07T13:00:49.214854+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "חתול בשק": {
@@ -3760,8 +3770,11 @@
     ]
   },
   "רפי ביטון קולות מן השמיים": {
+    "cat_v": 3,
+    "category": "music",
     "display": "רפי ביטון & קולות מן השמיים",
     "first_seen": "2026-07-07T12:00:46.336739+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
