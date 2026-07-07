@@ -145,7 +145,8 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
       <div id="mList"></div>
     </div>
   </div>
-  <button class="sbtn revert" id="sRevert" style="display:none">↩️ בטל את השינויים ברשומה זו</button>
+  <button class="sbtn revert" id="sRevert" style="display:none">↩️ בטל שינויים שלא נשמרו</button>
+  <button class="sbtn revert" id="sReset" style="display:none">🧹 אפס לערכי המקור (מבטל התאמות שמורות)</button>
   <button class="sbtn done" id="sDone">סגור</button>
 </div>
 
@@ -177,9 +178,25 @@ function base(info){
            cat: info.category || (standup?"standup":"music"),
            art: ('is_artist' in info)? !!info.is_artist : true };
 }
+// What is currently PERSISTED for this artist: catalogue values + saved overrides.
+// Pending ("modified") is measured against THIS, so saved edits stop counting as
+// changes and the save button resets after a successful save.
+function persisted(k){
+  const b=base(ART[k]), o=OV0[k]||{};
+  return { name: o.name||b.name,
+           cat: o.category||b.cat,
+           art: ('is_artist' in o)? !!o.is_artist : b.art,
+           mergeInto: o.merge_into||null };
+}
 function modified(k){
-  const b=base(ART[k]), s=state[k];
-  return s.name!==b.name || s.cat!==b.cat || s.art!==b.art || !!s.mergeInto;
+  const p=persisted(k), s=state[k];
+  return s.name!==p.name || s.cat!==p.cat || s.art!==p.art
+      || (s.mergeInto||null)!==(p.mergeInto||null);
+}
+// A saved override exists (persisted differs from the raw catalogue values).
+function overridden(k){
+  const b=base(ART[k]), p=persisted(k);
+  return p.name!==b.name || p.cat!==b.cat || p.art!==b.art || !!p.mergeInto;
 }
 // Another NON-merged artist that currently shows the same name (a merge target).
 function dupKey(k){
@@ -308,6 +325,7 @@ function openSheet(k){
     $('mPick').style.display='none';
   }
   $('sRevert').style.display = modified(k) ? 'block' : 'none';
+  $('sReset').style.display = overridden(k) ? 'block' : 'none';
   $('backdrop').style.display='block';
   $('sheet').style.display='block';
   render();
@@ -375,8 +393,13 @@ $('mList').addEventListener('click',e=>{
   if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(open,w); });
   else if(confirm(msg)) doMerge(open,w);
 });
-$('sRevert').addEventListener('click',()=>{
+$('sRevert').addEventListener('click',()=>{        // discard UNSAVED edits
   if(!open) return;
+  state[open]={...persisted(open)};
+  openSheet(open);
+});
+$('sReset').addEventListener('click',()=>{         // back to raw catalogue values
+  if(!open) return;                                // (saving then REMOVES the override)
   const b=base(ART[open]);
   state[open]={name:b.name,cat:b.cat,art:b.art,mergeInto:null};
   openSheet(open);
@@ -420,6 +443,7 @@ async function save(){
     const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({initData:tg.initData, overrides})});
     if(r.ok){ const j=await r.json();
+      OV0=JSON.parse(JSON.stringify(overrides));   // saved -> new baseline; pending resets to 0
       (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ (מיזוגים מתאחדים בסריקה הבאה)`);
     } else { (tg.showAlert?tg.showAlert:alert)('שמירה נכשלה ('+r.status+'). ודא שאתה האדמין.'); }
   }catch(e){ (tg.showAlert?tg.showAlert:alert)('שגיאת רשת'); }
