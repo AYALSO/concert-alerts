@@ -998,6 +998,16 @@
       "grayclub"
     ]
   },
+  "בר צברי": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "בר צברי",
+    "first_seen": "2026-07-07T07:01:17.913822+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "ברי סחרוף": {
     "cat_v": 3,
     "category": "music",
