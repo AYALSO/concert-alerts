@@ -30,7 +30,8 @@ export default {
       if (body.secret !== env.NOTIFY_SECRET) return new Response("unauthorized", { status: 401 });
       const n = await pushNewShows(body.shows || [], env);
       await bumpDaily(body, env);               // accumulate for the ~22:00 daily summary
-      return Response.json({ alerts: n });
+      const m = await recordAutoMerges(body.auto_merges, env);
+      return Response.json({ alerts: n, merges: m });
     }
     // Mini App API (authenticated by Telegram initData): GET current follows, POST to save.
     if (url.pathname === "/api/follows") return handleApi(request, url, env);
@@ -45,7 +46,8 @@ export default {
     if (url.pathname === "/classify" && request.method === "POST") {
       const b = await request.json().catch(() => ({}));
       if (b.secret !== env.NOTIFY_SECRET) return new Response("unauthorized", { status: 401 });
-      return Response.json(await classifyTitles(b.titles || [], env));
+      // __v lets the scan verify prompt/cache version before stamping cat_v.
+      return Response.json({ __v: CLS_VERSION, ...(await classifyTitles(b.titles || [], env)) });
     }
     return new Response("concert-alerts bot up");
   },
@@ -132,6 +134,28 @@ async function fetchJSON(path) {
 }
 const getSubs = (env) => env.SUBS.get("subscribers", "json").then((v) => v || { subscribers: {} });
 const saveSubs = (env, s) => env.SUBS.put("subscribers", JSON.stringify(s));
+
+// Duplicate merges proposed by the scan (same display name under two catalogue
+// keys, e.g. a shortened marketing title next to the plain artist key). Stored
+// in the same KV overrides as manual merges, so follows keep resolving and the
+// next scan collapses the catalogue entries. Guarded against cycles.
+async function recordAutoMerges(m, env) {
+  if (!m || typeof m !== "object") return 0;
+  const ov = (await env.SUBS.get("overrides", "json")) || {};
+  let n = 0;
+  for (const [loser, winner] of Object.entries(m).slice(0, 50)) {
+    if (typeof winner !== "string" || !winner || loser === winner) continue;
+    if (ov[loser] && ov[loser].merge_into) continue;   // already merged (manually or before)
+    let w = winner;
+    const seen = new Set();
+    while (ov[w] && ov[w].merge_into && !seen.has(w)) { seen.add(w); w = ov[w].merge_into; }
+    if (w === loser) continue;                         // would close a cycle
+    ov[loser] = { ...(ov[loser] || {}), merge_into: winner, auto: true };
+    n++;
+  }
+  if (n) await env.SUBS.put("overrides", JSON.stringify(ov));
+  return n;
+}
 
 // Manual artist merges (loser_key -> winner_key) from the admin overrides, so a
 // follow of an absorbed artist still matches the surviving one.
@@ -338,18 +362,29 @@ async function upcomingText(followSet) {
 
 // ---- title classification (Workers AI, cached in KV) ------------------------
 const AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
-const CLS_CATS = ["music", "standup", "theater"];
+const CLS_CATS = ["music", "standup", "theater", "lecture"];
+const CLS_VERSION = 4;                 // must match scan.py's CLS_VERSION + the cache prefix
 const CLS_SYS =
-  "You classify Israeli live-event titles (mostly Hebrew) for a concert-alert app. " +
-  "Use what you know about the actual performer/show. For EACH numbered title return " +
-  "one JSON object with: " +
-  '"is_artist" (true if it is a show by a specific named performer — a musician/singer/' +
-  "band, a stand-up comedian, or a named theater/dance/ballet/children's act; false for " +
-  'festivals, expos, conferences, parties, generic or venue events like "אקספו מכביה סיטי"), ' +
-  '"name" (the real performer/show name ONLY, cleaned of tour/album/venue/extra words, ' +
-  'in the original language), ' +
-  '"category" exactly one of: "music" (concerts, singers, bands), "standup" (stand-up ' +
-  'comedy), "theater" (plays, musicals, ballet, dance, and children\'s shows). ' +
+  "You classify Israeli live-event acts (mostly Hebrew) for a concert-alert app. " +
+  "Each numbered line is an act name, optionally followed by ' ::: ' and a sample " +
+  "event title @ venue as context. Judge the ACT (use the context and what you know " +
+  "about the actual performer). For EACH line return one JSON object with: " +
+  '"is_artist" — true ONLY for a specific named act people would follow for future ' +
+  "shows: a musician/singer/band, a stand-up comedian, a named theater/dance/ballet/" +
+  "children's show, or a named lecturer/speaker (author, academic, journalist) who " +
+  "tours with talks. false for everything else, including: festivals and multi-artist " +
+  "line-ups; organization/committee/employee events (ועד עובדים, הטבות לעובדי…); " +
+  "conference/expo/webinar pages; parties, DJ/dance nights, karaoke, trivia and quiz " +
+  "nights; film screenings and sports broadcasts (מונדיאל); voucher/benefit/marketing " +
+  'pages; one-off date-or-occasion events (e.g. "לילה 1 באפריל", holiday specials); ' +
+  "one-off tribute or cover evenings (מחווה ל…, הצדעה ל…) that are not a standing " +
+  "named act. When unsure whether it names a real recurring act, use false. " +
+  '"name" — the core performer/show name ONLY, stripped of tour/album/venue words and ' +
+  'of hosting/guest phrases (מארחת את…, מציג…, feat.) — e.g. "נגה ארז מארחת את שקל " ' +
+  '→ "נגה ארז", "מייקל הרפז שר אלטון ג\'ון" → "מייקל הרפז" — in the original language. ' +
+  '"category" — exactly one of: "music" (concerts, singers, bands), "standup" (stand-up ' +
+  'comedy), "theater" (plays, musicals, ballet, dance, children\'s shows), "lecture" ' +
+  "(talks, lectures, live podcasts, literary/journalism evenings). " +
   "Reply with ONLY a JSON array of these objects, in the same order, nothing else.";
 const GEMINI_MODEL = "gemini-2.5-flash";
 
@@ -388,7 +423,8 @@ async function classifyTitles(titles, env) {
   const todo = [];
   for (const t of titles) {
     if (!t) continue;
-    const cached = await env.SUBS.get("cls3:" + (await artistHash(t)), "json");
+    // Cache prefix must track scan.py's CLS_VERSION (v4 = stricter is_artist prompt).
+    const cached = await env.SUBS.get("cls4:" + (await artistHash(t)), "json");
     if (cached) out[t] = cached;
     else if (!todo.includes(t)) todo.push(t);
   }
@@ -406,7 +442,7 @@ async function classifyTitles(titles, env) {
           category: CLS_CATS.includes(a.category) ? a.category : "music",
         };
         out[batch[j]] = c;
-        await env.SUBS.put("cls3:" + (await artistHash(batch[j])), JSON.stringify(c));
+        await env.SUBS.put("cls4:" + (await artistHash(batch[j])), JSON.stringify(c));
       }                                            // AI failed/omitted -> leave out (caller retries later)
     }
   }
@@ -495,8 +531,27 @@ async function handleCommand(chat, text, env) {
   return searchAndReply(chat, text, env);
 }
 
-async function searchAndReply(chat, query, env) {
+// The catalogue keeps AI-flagged non-artists (hidden in the Mini App) and the
+// admin's KV overrides (rename/hide/merge). In-chat search must apply BOTH, or
+// junk the Mini App hides is still reachable by typing its name.
+async function visibleArtists(env) {
   const artists = await fetchJSON("artists.json");
+  const ov = (await env.SUBS.get("overrides", "json")) || {};
+  const out = {};
+  for (const [key, info] of Object.entries(artists)) {
+    const o = ov[key] || {};
+    if (o.merge_into) continue;                               // absorbed duplicate
+    const isArtist = "is_artist" in o ? o.is_artist !== false : info.is_artist !== false;
+    if (!isArtist) continue;                                  // flagged/hidden junk
+    out[key] = o.name || o.category
+      ? { ...info, display: o.name || info.display, category: o.category || info.category }
+      : info;
+  }
+  return out;
+}
+
+async function searchAndReply(chat, query, env) {
+  const artists = await visibleArtists(env);
   const q = normalize(query);
   if (!q) return send(env, chat, "הקלד שם של אמן לחיפוש.", { reply_markup: await webappKeyboard([]) });
   const subs = await getSubs(env);
@@ -554,7 +609,7 @@ async function followByHash(chat, hash, env) {
 }
 
 async function resolveAndToggle(chat, arg, follow, env) {
-  const artists = await fetchJSON("artists.json");
+  const artists = await visibleArtists(env);
   const target = normalize(arg);
   let key = null;
   for (const [k, info] of Object.entries(artists))

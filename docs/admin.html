@@ -41,8 +41,8 @@ li.merged{background:#241a2e;opacity:.85}
 <script>
 const WORKER = "https://concert-alerts-bot.tunaconcerts.workers.dev";
 const STANDUP = new Set(["comy","comedybar"]);
-const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["theater","🎭 הצגות"]];
-const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",comy:"קומי",comedybar:"קומדי בר"};
+const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["theater","🎭 הצגות"],["lecture","🎓 הרצאות"]];
+const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",comy:"קומי",comedybar:"קומדי בר",ticketmaster:"טיקטמאסטר"};
 const tg = window.Telegram && window.Telegram.WebApp;
 const inApp = !!(tg && tg.initData);
 if (inApp){ tg.ready(); tg.expand(); }

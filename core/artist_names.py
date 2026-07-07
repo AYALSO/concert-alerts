@@ -19,7 +19,7 @@ import re
 _CUT = (
     "מופע", "במופע", "הופעה", "בהופעה", "אורח", "אורחת", "אורחים",
     "חוגג", "השקת", "השקה", "סדרת", "לייב", "live", "Live", "LIVE",
-    "סיבוב", "מארח", "ערב", "חו״ל",
+    "סיבוב", "מארח", "מציג", "ערב", "חו״ל",
 )
 # Venue / filler phrases dropped wherever they appear.
 _STRIP = (
@@ -68,3 +68,28 @@ def clean_artist(raw: str, extra_strip: tuple[str, ...] = ()) -> str:
 
     s = re.sub(r"\s+", " ", s).strip(" \t-–—|:!.,&" + _QUOTES)
     return s or re.sub(r"\s+", " ", (raw or "")).strip()
+
+
+# Titles that are clearly NOT a performer: lecture-series pages, conferences,
+# committee / employee-benefit events, expos, workshops, screenings, vouchers,
+# quiz nights. Deterministic — these never reach the AI classifier (no quota
+# spent) and never appear in the daily summary or the Mini App. Word-boundary
+# matched, so e.g. "כנסיית השכל" (a band) is NOT hit by "כנס". Committee ("ועד")
+# only counts at the START of the title — "מבאך ועד הביטלס" is a real show.
+# NOTE: singular "הרצאה" is deliberately NOT here — "הרצאה של <שם>" may be a
+# followable named lecturer; the AI classifies those (category "lecture").
+_NON_ARTIST = re.compile(
+    r"^ו?ועד\b"
+    r"|\bהרצאות\b"
+    r"|\bהטב(?:ה|ות)\b"
+    r"|\bכנס\b|\bכינוס\b|\bועיד(?:ה|ת)\b|\bאקספו\b|\bוובינר\b"
+    r"|\bסדנ(?:ה|ת|אות)\b"
+    r"|\bהקרנ(?:ה|ת)\b"
+    r"|שובר מתנה|מייל שירות|מכירה מוקדמת"
+    r"|\bטריוויה\b|\bקריוקי\b|\bמונדיאל\b",
+)
+
+
+def looks_non_artist(name: str) -> bool:
+    """True when the title is self-evidently not an artist/band/play."""
+    return bool(_NON_ARTIST.search(name or ""))

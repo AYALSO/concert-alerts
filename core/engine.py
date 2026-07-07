@@ -58,7 +58,11 @@ def _resolve_merge(key: str, merges: dict) -> str:
 
 
 def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[str, dict]]:
-    """Run all scrapers, persist state, and return (new_show_dicts, new_artists).
+    """Run all scrapers, persist state, and return (new_show_dicts, new_artist_keys).
+
+    `new_artist_keys` are catalogue KEYS (not display names): the caller filters
+    them against the post-scan classification (is_artist) before reporting, so
+    junk like "הרצאות - דיגיתל" never reaches the daily summary.
 
     - New shows are keyed to a canonical artist (see `_canonical_artist`) so a
       follower never misses a same-artist show that came in under a longer title.
@@ -83,7 +87,7 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
     ordered = sorted(by_id.values(), key=lambda sh: len(sh.artist_key.split()))
 
     new_shows: List[dict] = []
-    new_artists: List[str] = []
+    new_artist_keys: List[str] = []
     for sh in ordered:
         d = sh.to_dict()
         merged = _resolve_merge(d["artist_key"], merges)         # manual merge first
@@ -99,7 +103,7 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
         if key not in artists:
             artists[key] = {"display": display, "sources": [d["source"]],
                             "first_seen": d["scraped_at"]}
-            new_artists.append(display)
+            new_artist_keys.append(key)
         elif d["source"] not in artists[key]["sources"]:
             artists[key]["sources"].append(d["source"])
 
@@ -123,4 +127,4 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
     for src, st in stats.items():
         if "found" in st:
             st["new"] = new_per_source.get(src, 0)
-    return new_shows, new_artists, stats
+    return new_shows, new_artist_keys, stats

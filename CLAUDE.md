@@ -21,7 +21,9 @@ hourly runs. Runs `scan.py`:
 
 **2. Real-time bot — Cloudflare Worker** (`worker/src/index.js`, a Telegram webhook —
 instant, because an Actions cron can't reply in real time):
-- Instant `/start`, in-chat search, and the **Mini App** (opened via an inline button)
+- Instant `/start`, in-chat search (via `visibleArtists` — hides `is_artist:false`
+  entries and applies the KV overrides' rename/hide/merge, same as the Mini App, so
+  junk can't be found or followed by typing its name), and the **Mini App** (opened via an inline button)
   for picking artists. `/clear` resets follows. **Onboarding (no typing needed):** a new
   user opens the bot link → Telegram shows its intro (`setMyDescription`) + a **Start**
   button; `/start` replies with a one-message explanation (what/how) + the "open artist
@@ -91,38 +93,61 @@ Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `re
 - `web__eventim-co-il` = **all Eventim Israel** live shows (we chose this over zappa-only for max coverage). To narrow to just zappa-club, add `retail_partner=ZPE` — confirm it actually narrows before relying on it.
 
 ### Artist-name unification (`core/artist_names.py`)
-`clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
+`clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב/מארח/מציג…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
 
 ### AI classification (Google Gemini, web-grounded — free; Workers AI fallback)
 The Worker's `/classify` endpoint turns each artist name into `{is_artist, name,
-category}` (category ∈ music/standup/theater). It prefers **Google Gemini**
-(`gemini-2.5-flash` with **Google-Search grounding** — actually verifies each
+category}` (category ∈ **music/standup/theater/lecture** — lecture added in v4 for
+named lecturers/authors/live-podcast acts people can follow). It prefers **Google
+Gemini** (`gemini-2.5-flash` with **Google-Search grounding** — actually verifies each
 performer on the web, so e.g. bare "קובי מימון" → standup correctly) when the
 `GEMINI_API_KEY` secret is set; otherwise it falls back to Cloudflare **Workers AI**
 (`@cf/meta/llama-3.3-70b-instruct-fp8-fast`, no live web). Results cache in KV
-(`cls3:<hash>`, successes only; titles it can't classify are **omitted**, not
+(`cls4:<hash>`, successes only; titles it can't classify are **omitted**, not
 defaulted, so a quota hiccup never sticks a wrong label).
+- **Deterministic junk pre-filter (no quota):** `core.artist_names.looks_non_artist`
+  (word-boundary regex: הרצאות / הטבות / כנס / ועידה / אקספו / סדנה / הקרנה / מונדיאל /
+  שובר מתנה / leading וועד…) → `scan.mark_non_artists()` flags them `is_artist:false,
+  cat_v=CLS_VERSION` **before** the AI ever sees them. Careful cases proven safe:
+  "כנסיית השכל" (band) and "מבאך ועד הביטלס" are NOT hit; stand-up sources skipped.
 - **Free-quota reality:** Gemini's free *grounded-search* allowance is small
   (~70 artists/day; `gemini-2.0-flash` had 0 free quota — 2.5-flash works). So
   `scan.classify_artists(cap=60)` upgrades the catalogue **incrementally** — it
   re-classifies only artists whose `cat_v` ≠ `CLS_VERSION` (in `scan.py`), keeping
-  the existing category until Gemini re-does it (**no regression**). The ~290-artist
-  bulk fills in over a few daily scans; ongoing only adds 0–2 new artists/scan, well
-  within quota. Bump `CLS_VERSION` (+ the `cls3:` Worker cache prefix) to force a
-  full re-classify after a model/prompt change.
-- **Name shortening (`CLS_VERSION=3`):** `classify_artists` also applies Gemini's
-  cleaned `name` as the display — but ONLY as a **safe shortening**: it must be a
-  contiguous part of the current name (so "…של תמיר בר" → "תמיר בר", "מייקל הרפז שר
-  אלטון ג'ון" → "מייקל הרפז"), never an expansion/rewrite ("מצבי רוח" is left as-is,
-  not "תזמורת המהפכה - מצבי רוח"). Display only — the follow `artist_key` is unchanged.
-  (A shortened display can collide with another artist → the admin merge prompt.)
+  the existing category until Gemini re-does it (**no regression**), and **brand-new
+  artists jump the queue** (no `cat_v` at all → classified in the same run, so the
+  daily summary can filter fresh junk). Bump `CLS_VERSION` (+ the `cls4:` Worker
+  cache prefix + the Worker's `CLS_VERSION` const) after a model/prompt change; the
+  scan checks the `__v` field `/classify` returns and **skips classification while
+  the Worker still runs an older version** (prevents stamping old-prompt results).
+- **Title context (v4):** each `/classify` request line is
+  `"<display> ::: <sample show title> @ <venue>"` (sample = lexicographically first,
+  from shows.json via `scan._classify_context`) so the AI judges the act from its
+  real event title, not just the extracted name.
+- **Name shortening (since v3):** `classify_artists` also applies Gemini's cleaned
+  `name` as the display — but ONLY as a **safe shortening**: it must be a contiguous
+  part of the current name (so "…של תמיר בר" → "תמיר בר", "נגה ארז מארחת את…" →
+  "נגה ארז"), never an expansion/rewrite. Display only — the follow `artist_key` is
+  unchanged.
+- **Duplicate auto-merge (v4):** a shortened display colliding with another artist
+  ("מייקל הרפז" twice) is detected by `scan.propose_merges` (same normalized display
+  under 2+ keys; winner = the key that IS the normalized display, else the shortest)
+  and sent with `/notify` as `auto_merges`; the Worker's `recordAutoMerges` writes
+  them into the KV `overrides` as `merge_into` (cycle-guarded, marked `auto:true`).
+  Follows keep resolving via `mergeKey`, the Mini App hides losers live, and the
+  next scan collapses the catalogue entries (engine merge logic, unchanged).
+- **The daily summary only reports real artists:** `scan.main()` re-loads
+  artists.json AFTER classification and drops `is_artist:false` entries from both
+  `new_artists` and `new_shows` before POSTing `/notify` — junk like
+  "הרצאות - דיגיתל" or "וועד הרופאים והאחיות" never reaches the summary (this was
+  the old bug: run_scan's raw new-artist list was reported unfiltered).
 - `make_artist_page` hides `is_artist:false` (e.g. "אקספו מכביה סיטי", festivals) and
-  adds music/standup/theater filter chips. The build only forces stand-up sources;
-  all manual fixes are **online** (below). The scan report shows Gemini's non-artist
-  flags distinctly (`🚫 סומנו N לא-אמנים`) so they're not mistaken for mis-categorised
-  artists. `engine.run_scan` **prunes** an `is_artist:false` entry once it has no live
-  show, so flagged junk doesn't linger; obvious Eventim promo pages ("הטבות לעובדי …",
-  "המיוחדים שלנו") are also dropped at the scraper.
+  has music/standup/theater/lecture filter chips **with live counts**; each row shows
+  the artist's upcoming-dates count + nearest date (from shows.json). The build only
+  forces stand-up sources; all manual fixes are **online** (below). `engine.run_scan`
+  **prunes** an `is_artist:false` entry once it has no live show, so flagged junk
+  doesn't linger; obvious Eventim promo pages ("הטבות לעובדי …", "המיוחדים שלנו") are
+  also dropped at the scraper.
 - **Developer control center:** `docs/dashboard.html` (opened via the **`/id`** reply's
   "📊 מרכז בקרה" button) shows active-user count, the most-followed artists, and every
   user + their follows. Data from `GET /api/users` (admin-only, same `ADMIN_CHAT_ID`
@@ -131,7 +156,7 @@ defaulted, so a quota hiccup never sticks a wrong label).
 - **Online admin panel (manual name/category fixes):** `docs/admin.html` is a Telegram
   Mini App the developer opens by sending **`/id`** to the bot (its reply has a
   "🛠 פאנל ניהול אמנים" button). It lists every artist with an editable name, a
-  category dropdown (music/standup/theater) and a hide toggle, and **Save** POSTs the
+  category dropdown (music/standup/theater/lecture) and a hide toggle, and **Save** POSTs the
   full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
   `{ "<artist_key>": {name?, category?, is_artist?} }`), keyed by stable `artist_key`
   so renames don't break follows. `/api/overrides` GET is public, POST is restricted
@@ -183,7 +208,8 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   `/api/follows` (GET pre-tick / POST save) authenticated by that initData.
 - **Dev daily summary (~22:00 Israel):** sending `/id` (or `/admin`) to the bot stores
   the sender's chat_id in KV key `admin_chat`. `scan.py` POSTs to `/notify` every run
-  with `{shows, new_artists}` (new_artists = list of names); the Worker's `bumpDaily()`
+  with `{shows, new_artists, auto_merges}` (new_artists = list of names, already
+  filtered to real artists; auto_merges = duplicate merges); the Worker's `bumpDaily()`
   accumulates a KV `daily` record — counts **and** the detail: `{scans, new_shows,
   new_artists, shows[], artists[]}` (detail capped at 80 shows / 60 artists). The Worker
   cron, at hour **22 Israel**, calls `sendDailySummary()` → pings `admin_chat` one
@@ -194,12 +220,14 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
   pushes each new show to whoever follows that artist (the product). (`GEMINI_API_KEY`
   is also a Worker secret.)
 
-### Local dev (this Windows machine)
-- `python` not on PATH → `C:\Users\Solav\AppData\Local\Programs\Python\Python312\python.exe`.
-  Node `C:\Program Files\nodejs`; `gh` `C:\Program Files\GitHub CLI\gh.exe`.
+### Local dev (this Windows machine — "ayals", since 2026-07-07; the old "Solav" paths are gone)
+- `python` IS on PATH (Python 3.9, `C:\Users\ayals\AppData\Local\Programs\Python\Python39`).
+  Node v24 on PATH. **`gh` CLI is NOT installed.**
 - Run with `PYTHONUTF8=1` + `PYTHONPATH`=repo root (Hebrew output + `scrapers`/`core` imports).
-- **The PowerShell tool is blocked by antivirus** (`EPERM uv_spawn powershell.exe`) — use Bash.
-- Local secrets in a gitignored `.env`: `TELEGRAM_BOT_TOKEN`, `CLOUDFLARE_API_TOKEN`.
+- Local secrets `.env` (gitignored: `TELEGRAM_BOT_TOKEN`, `CLOUDFLARE_API_TOKEN`) was NOT
+  copied to this machine — recreate it before deploying the Worker from here.
+- The repo of record is https://github.com/AYALSO/concert-alerts (public; Actions+Pages
+  run from it). This folder was re-connected to it with `git init` on 2026-07-07.
 
 ## Next steps (optional)
 1. **Artist-list cleanup via Claude** (the planned cheap pass): drop non-artist events
