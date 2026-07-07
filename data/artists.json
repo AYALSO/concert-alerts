@@ -71,7 +71,7 @@
     ]
   },
   "darco": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "DARCO",
     "first_seen": "2026-06-20T20:16:07.322714+00:00",
@@ -81,7 +81,7 @@
     ]
   },
   "david azria": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "standup",
     "display": "David Azria",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -91,7 +91,7 @@
     ]
   },
   "degibri big band": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "Degibri Big Band",
     "first_seen": "2026-06-25T16:48:30.042676+00:00",
@@ -101,17 +101,17 @@
     ]
   },
   "dirty pop": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "DIRTY POP",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "grayclub"
     ]
   },
   "disco train": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "Disco Train",
     "first_seen": "2026-06-25T07:00:56.532979+00:00",
@@ -122,7 +122,7 @@
     ]
   },
   "distortion festival": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "DISTORTION FESTIVAL",
     "first_seen": "2026-06-26T04:01:00.399218+00:00",
@@ -132,22 +132,13 @@
     ]
   },
   "echoes": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ECHOES",
     "first_seen": "2026-06-20T20:16:48.529275+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
-    ]
-  },
-  "elton מייקל הרפז שר אלטון גון מחווה חיה לאגדה": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "מייקל הרפז",
-    "first_seen": "2026-06-22T21:00:35.758291+00:00",
-    "is_artist": true,
-    "sources": [
+      "kupat",
       "grayclub"
     ]
   },
@@ -241,16 +232,6 @@
       "eventim"
     ]
   },
-  "pink floyd greatest hits by echoes": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Echoes",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
@@ -269,16 +250,6 @@
     "is_artist": true,
     "sources": [
       "grayclub",
-      "eventim"
-    ]
-  },
-  "the black magicהמחווה למייקל גקסון סטיבי וונדר ופרינס": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "The Black Magic",
-    "first_seen": "2026-06-25T05:00:57.006478+00:00",
-    "is_artist": true,
-    "sources": [
       "eventim"
     ]
   },
@@ -512,17 +483,17 @@
     ]
   },
   "אידיוט": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "music",
     "display": "אידיוט",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "barby"
     ]
   },
   "איזי פריסטייל": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "איזי",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -532,7 +503,7 @@
     ]
   },
   "אייל לוי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "אייל לוי",
     "first_seen": "2026-07-05T09:00:45.170133+00:00",
@@ -542,7 +513,7 @@
     ]
   },
   "איילה אינגדשט": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "איילה אינגדשט",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -552,8 +523,8 @@
     ]
   },
   "אייס בוקס": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "music",
     "display": "אייס בוקס",
     "first_seen": "2026-07-05T12:00:58.155299+00:00",
     "is_artist": false,
@@ -562,7 +533,7 @@
     ]
   },
   "אינדי דזרט": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "אינדי דזרט",
     "first_seen": "2026-06-20T20:16:41.660115+00:00",
@@ -572,7 +543,7 @@
     ]
   },
   "איפה הילד": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "איפה הילד",
     "first_seen": "2026-06-20T20:16:08.468049+00:00",
@@ -583,7 +554,7 @@
     ]
   },
   "איציק קלה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "איציק קלה",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
@@ -710,16 +681,6 @@
     "category": "music",
     "display": "אנדי ווטס",
     "first_seen": "2026-07-07T14:00:56.416336+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
-  "אנדי ווטס מציג את רוי יאנג ועמליה וויליאמסארהב blues on fire": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "אנדי ווטס",
-    "first_seen": "2026-06-30T13:00:39.083377+00:00",
     "is_artist": true,
     "sources": [
       "grayclub"
@@ -857,7 +818,7 @@
     ]
   },
   "אריאל זילבר": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "אריאל זילבר",
     "first_seen": "2026-06-20T20:16:07.321714+00:00",
@@ -869,7 +830,7 @@
     ]
   },
   "ארקדי דוכין": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ארקדי דוכין",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -880,17 +841,17 @@
     ]
   },
   "אשכול נבו": {
-    "cat_v": 3,
-    "category": "music",
+    "cat_v": 4,
+    "category": "lecture",
     "display": "אשכול נבו",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
   },
   "אתניx": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "אתניX",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
@@ -900,7 +861,7 @@
     ]
   },
   "באלישג ויובי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "באלישג ויובי",
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
@@ -910,7 +871,7 @@
     ]
   },
   "בזי בי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בזי בי",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -940,17 +901,17 @@
     ]
   },
   "בין אדיס לריו": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בין אדיס לריו",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
   },
   "בלאקבירדס": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בלאקבירדס",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
@@ -980,7 +941,7 @@
     ]
   },
   "בן מירן": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בן מירן",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -990,7 +951,7 @@
     ]
   },
   "בן צור": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בן צור",
     "first_seen": "2026-06-28T11:02:30.320620+00:00",
@@ -1000,7 +961,7 @@
     ]
   },
   "בניה ברבי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בניה ברבי",
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
@@ -1010,7 +971,7 @@
     ]
   },
   "בעז שרעבי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בעז שרעבי",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -1020,7 +981,7 @@
     ]
   },
   "בר צברי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "בר צברי",
     "first_seen": "2026-07-07T07:01:17.913822+00:00",
@@ -1030,7 +991,7 @@
     ]
   },
   "ברי סחרוף": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ברי סחרוף",
     "first_seen": "2026-06-25T07:00:51.748261+00:00",
@@ -1040,17 +1001,17 @@
     ]
   },
   "בריגדת הנייר": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "theater",
     "display": "בריגדת הנייר",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
   },
   "גבירתי הנאווה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "theater",
     "display": "גבירתי הנאווה",
     "first_seen": "2026-06-21T12:59:09.624051+00:00",
@@ -1060,7 +1021,7 @@
     ]
   },
   "גון בן ארי ומקהלת זולת": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גון בן ארי ומקהלת זולת",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
@@ -1081,7 +1042,7 @@
     ]
   },
   "גיא הוכמן": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "standup",
     "display": "גיא הוכמן",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -1091,7 +1052,7 @@
     ]
   },
   "גיא ויהל": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גיא ויהל",
     "first_seen": "2026-06-29T08:01:19.815141+00:00",
@@ -1111,7 +1072,7 @@
     ]
   },
   "גיא מזיג": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גיא מזיג",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
@@ -1121,7 +1082,7 @@
     ]
   },
   "גידי גוב": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גידי גוב",
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
@@ -1143,7 +1104,7 @@
     ]
   },
   "גיין בורדו": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ג'יין בורדו",
     "first_seen": "2026-06-20T20:16:08.468049+00:00",
@@ -1153,7 +1114,7 @@
     ]
   },
   "גימבו גיי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ג'ימבו ג'יי",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
@@ -1163,7 +1124,7 @@
     ]
   },
   "גירפות": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ג'ירפות",
     "first_seen": "2026-06-20T20:16:07.316726+00:00",
@@ -1184,7 +1145,7 @@
     ]
   },
   "גליקיריה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גליקיריה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -1194,7 +1155,7 @@
     ]
   },
   "גליקריה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "גליקריה",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -1205,7 +1166,7 @@
     ]
   },
   "ג׳ימבו ג׳יי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ג׳ימבו ג׳יי",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -1215,7 +1176,7 @@
     ]
   },
   "דוד דאור": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דוד ד'אור",
     "first_seen": "2026-06-22T17:27:50.887854+00:00",
@@ -1225,7 +1186,7 @@
     ]
   },
   "דודו אהרון": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דודו אהרון",
     "first_seen": "2026-06-20T20:16:25.828660+00:00",
@@ -1235,7 +1196,7 @@
     ]
   },
   "דודו ארז": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "standup",
     "display": "דודו ארז",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
@@ -1245,7 +1206,7 @@
     ]
   },
   "דודו טסה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דודו טסה",
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
@@ -1255,7 +1216,7 @@
     ]
   },
   "דודו פארוק": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דודו פארוק",
     "first_seen": "2026-06-22T17:27:56.418365+00:00",
@@ -1265,7 +1226,7 @@
     ]
   },
   "דויד ברוזה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דויד ברוזה",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
@@ -1275,7 +1236,7 @@
     ]
   },
   "דורון מזר": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דורון מזר",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -1286,8 +1247,8 @@
     ]
   },
   "דורון פישלר": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "lecture",
     "display": "דורון פישלר",
     "first_seen": "2026-07-05T10:00:46.942991+00:00",
     "is_artist": true,
@@ -1296,7 +1257,7 @@
     ]
   },
   "דיקלה": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דיקלה",
     "first_seen": "2026-06-20T20:16:07.320714+00:00",
@@ -1306,7 +1267,7 @@
     ]
   },
   "דני סנדרסון": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דני סנדרסון",
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
@@ -1317,7 +1278,7 @@
     ]
   },
   "דני רובס": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דני רובס",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
@@ -1327,7 +1288,7 @@
     ]
   },
   "דניאל וייס": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "דניאל וייס",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
@@ -1359,8 +1320,8 @@
     ]
   },
   "דר אייל דורון": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "lecture",
     "display": "ד\"ר אייל דורון",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
     "is_artist": true,
@@ -1369,8 +1330,8 @@
     ]
   },
   "דר חיים שפירא": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "lecture",
     "display": "ד\"ר חיים שפירא",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
     "is_artist": true,
@@ -1379,7 +1340,7 @@
     ]
   },
   "האחים שטרית": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "האחים שטרית",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -1389,7 +1350,7 @@
     ]
   },
   "הבלט הישראלי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "theater",
     "display": "הבלט הישראלי",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
@@ -1399,7 +1360,7 @@
     ]
   },
   "הבלט הלאומי של רוסיה גורדייב": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "theater",
     "display": "הבלט הלאומי של רוסיה - גורדייב",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -1409,7 +1370,7 @@
     ]
   },
   "הגבעטרון": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "הגבעטרון",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
@@ -1466,16 +1427,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "הטיש הגדול משה להב": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "משה להב",
-    "first_seen": "2026-06-20T20:16:08.891208+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
     ]
   },
   "היהודים": {
@@ -1546,16 +1497,6 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
-    ]
-  },
-  "המחווה לאבבא מבית רוקוויל": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "רוקוויל",
-    "first_seen": "2026-06-27T05:00:59.073978+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
     ]
   },
   "המרתון הגדול": {
@@ -2055,16 +1996,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "יריד השערוריות המפואר ונבזה של תמיר בר": {
-    "cat_v": 3,
-    "category": "standup",
-    "display": "תמיר בר",
-    "first_seen": "2026-06-22T20:56:39.875243+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
     ]
   },
   "ירמי קפלן": {
