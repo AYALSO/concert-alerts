@@ -1144,27 +1144,6 @@
       "eventim"
     ]
   },
-  "גליקריה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "גליקריה",
-    "first_seen": "2026-06-20T20:16:08.108417+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim",
-      "grayclub"
-    ]
-  },
-  "ג׳ימבו ג׳יי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "ג׳ימבו ג׳יי",
-    "first_seen": "2026-06-20T20:16:07.317722+00:00",
-    "is_artist": true,
-    "sources": [
-      "barby"
-    ]
-  },
   "דוד דאור": {
     "cat_v": 4,
     "category": "music",
@@ -3540,19 +3519,8 @@
     "first_seen": "2026-06-22T20:57:18.331184+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
-    ]
-  },
-  "רביטל ויטלזון יעקובס": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "רביטל ויטלזון יעקובס",
-    "first_seen": "2026-06-20T20:16:08.889217+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim",
       "comy",
-      "grayclub"
+      "eventim"
     ]
   },
   "רבקה זהר": {
