@@ -167,7 +167,7 @@ const $=id=>document.getElementById(id);
 const list=$('list'), q=$('q'), tabsEl=$('tabs'), chipsEl=$('chips'), fab=$('fab');
 if(!inApp) $('warn').style.display='block';
 
-let ART={}, KEYS=[], state={}, tab='visible', cat='all', open=null, busy=false;
+let ART={}, KEYS=[], state={}, OV0={}, tab='visible', cat='all', open=null, busy=false;
 
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function nrm(s){return (s||'').trim().toLowerCase();}
@@ -411,6 +411,11 @@ async function save(){
     if(s.art!==b.art) o.is_artist=s.art;
     if(Object.keys(o).length) overrides[k]=o;
   }
+  // Preserve override entries whose key is no longer in the catalogue (merged-away
+  // losers etc.) — old follows still resolve through their merge_into mapping.
+  // Also guards against wiping everything if the catalogue failed to load.
+  for(const k in OV0) if(!(k in ART) && !(k in overrides)) overrides[k]=OV0[k];
+  if(!KEYS.length){ (tg.showAlert?tg.showAlert:alert)('הקטלוג לא נטען — לא שומר.'); busy=false; if(tg.MainButton) tg.MainButton.hideProgress(); return; }
   try{
     const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({initData:tg.initData, overrides})});
@@ -428,7 +433,7 @@ async function load(){
     const [a,ov]=await Promise.all([
       fetch(WORKER+'/api/catalogue').then(r=>r.json()),
       fetch(WORKER+'/api/overrides').then(r=>r.json()).catch(()=>({}))]);
-    ART=a||{};
+    ART=a||{}; OV0=ov||{};
     KEYS=Object.keys(ART);
     for(const k of KEYS){
       const b=base(ART[k]), o=ov[k]||{};

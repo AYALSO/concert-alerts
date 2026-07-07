@@ -128,9 +128,19 @@ const send = (env, chat, text, extra = {}) =>
   tg(env, "sendMessage", { chat_id: chat, text, parse_mode: "HTML",
     disable_web_page_preview: true, ...extra });
 
+// Data lives in the repo; raw.githubusercontent sometimes rate-limits/blocks
+// Cloudflare egress IPs (seen 2026-07-07: every fetch failed while browsers were
+// fine — catalogue/search went empty). The scan therefore ALSO publishes
+// data/*.json to GitHub Pages (docs/data/, Fastly CDN) as a fallback source.
+const PAGES_DATA = `${WEBAPP_URL}data`;
 async function fetchJSON(path) {
-  const r = await fetch(`${RAW}/${path}`, { cf: { cacheTtl: 60, cacheEverything: true } });
-  return r.ok ? r.json() : {};
+  let r = await fetch(`${RAW}/${path}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+  if (!r.ok) {
+    console.log("raw fetch failed", path, r.status, "-> pages fallback");
+    r = await fetch(`${PAGES_DATA}/${path}`, { cf: { cacheTtl: 60, cacheEverything: true } });
+  }
+  if (!r.ok) { console.log("pages fetch failed too", path, r.status); return {}; }
+  return r.json();
 }
 const getSubs = (env) => env.SUBS.get("subscribers", "json").then((v) => v || { subscribers: {} });
 const saveSubs = (env, s) => env.SUBS.put("subscribers", JSON.stringify(s));

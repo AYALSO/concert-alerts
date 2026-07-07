@@ -275,7 +275,13 @@ def main() -> None:
     DOCS.mkdir(exist_ok=True)
     (DOCS / "index.html").write_text(_page(artists, shows), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
-    print(f"wrote {DOCS/'index.html'} with {len(artists)} artists")
+    # Publish the data to GitHub Pages too (docs/data/) — the Worker falls back
+    # to it when raw.githubusercontent rate-limits Cloudflare egress IPs.
+    ddir = DOCS / "data"
+    ddir.mkdir(exist_ok=True)
+    for name, obj in (("artists.json", artists), ("shows.json", shows)):
+        (ddir / name).write_text(json.dumps(obj, ensure_ascii=False), encoding="utf-8")
+    print(f"wrote {DOCS/'index.html'} with {len(artists)} artists (+ docs/data copies)")
 
 
 if __name__ == "__main__":
