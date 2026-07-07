@@ -155,8 +155,13 @@ defaulted, so a quota hiccup never sticks a wrong label).
   follow-save (KV `subscribers[chat].name`); follows resolve through merges.
 - **Online admin panel (manual name/category fixes):** `docs/admin.html` is a Telegram
   Mini App the developer opens by sending **`/id`** to the bot (its reply has a
-  "🛠 פאנל ניהול אמנים" button). It lists every artist with an editable name, a
-  category dropdown (music/standup/theater/lecture) and a hide toggle, and **Save** POSTs the
+  "🛠 פאנל ניהול אמנים" button). Redesigned 2026-07-07: state **tabs**
+  (גלויים / מוסתרים / מיזוגים / שינויים, with live counts) + category filter chips +
+  search; rows are read-only summaries (category emoji, sources, modified-dot / 🚫),
+  tapping one opens a **bottom-sheet editor** (name input, 4-way category segmented
+  control, visibility switch, merge-duplicate button, per-record revert). ONE save
+  control only — Telegram's MainButton ("שמור N שינויים", visible only when there are
+  pending edits; a floating button replaces it outside Telegram). **Save** POSTs the
   full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
   `{ "<artist_key>": {name?, category?, is_artist?} }`), keyed by stable `artist_key`
   so renames don't break follows. `/api/overrides` GET is public, POST is restricted

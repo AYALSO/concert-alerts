@@ -5,130 +5,308 @@
 <title>פאנל ניהול אמנים</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{color-scheme:light dark}
-*{box-sizing:border-box}
-body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0b1020;color:#e7e9ee}
-header{position:sticky;top:0;background:#0b1020;padding:12px 14px 8px;box-shadow:0 2px 12px rgba(0,0,0,.4);z-index:5}
-h1{font-size:17px;margin:0 0 8px}
-#q{width:100%;padding:11px 13px;font-size:16px;border-radius:11px;border:1px solid #2a3350;background:#141b30;color:#fff;outline:none}
-#info{color:#8b93a7;font-size:13px;margin:7px 2px 0}
-ul{list-style:none;margin:0;padding:6px 10px 110px}
-li{padding:10px 8px;border-bottom:1px solid #1c2438}
-li.mod{background:#16203f}
-.top{display:flex;align-items:center;gap:8px}
-.nm{flex:1;min-width:0;padding:8px 10px;font-size:15px;border-radius:9px;border:1px solid #2a3350;background:#0f1626;color:#fff}
-.src{color:#8b93a7;font-size:11px;margin:5px 2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ctrls{display:flex;gap:7px;margin-top:8px;align-items:center}
-select{flex:1;padding:8px;font-size:14px;border-radius:9px;border:1px solid #2a3350;background:#0f1626;color:#fff}
-.hide{flex:none;display:flex;align-items:center;gap:6px;font-size:13px;color:#cdd3e0;background:#141b30;border:1px solid #2a3350;border-radius:9px;padding:8px 11px}
-.empty{color:#8b93a7;text-align:center;padding:30px}
-li.merged{background:#241a2e;opacity:.85}
-.mhead{font-size:14px;color:#d9b8ff}
-.mbtn{margin-top:8px;font-size:13px;border-radius:9px;padding:7px 12px;border:1px solid #5a2a3a;background:#3a2030;color:#ffb4c4}
-.mbtn.merge{border-color:#7a4ad0;background:#2a2050;color:#cdb4ff}
-#bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:#0b1020;border-top:1px solid #1c2438;display:none}
-#save{width:100%;padding:14px;font-size:16px;font-weight:700;border:0;border-radius:12px;background:#2563eb;color:#fff}
+:root{
+  color-scheme:dark;
+  --bg:#0b1020; --panel:#131a2e; --panel2:#182136; --line:#232e4a;
+  --text:#eef1f7; --dim:#93a0b8; --accent:#3b82f6; --accent2:#2563eb;
+  --warn:#f59e0b; --danger:#ef4444; --ok:#22c55e;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;
+  background:var(--bg);color:var(--text)}
 #warn{background:#3a2030;color:#ffb4c4;padding:10px 14px;font-size:13px;display:none}
+
+header{position:sticky;top:0;z-index:5;background:rgba(11,16,32,.94);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:12px 14px 0;border-bottom:1px solid var(--line)}
+h1{font-size:17px;margin:0 0 10px;font-weight:800}
+#q{width:100%;padding:10px 13px;font-size:16px;border-radius:12px;border:1px solid var(--line);
+  background:var(--panel);color:var(--text);outline:none}
+#q:focus{border-color:var(--accent)}
+
+#tabs{display:flex;gap:6px;margin:10px 0 0;overflow-x:auto;scrollbar-width:none}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:8px 12px;font-size:13.5px;color:var(--dim);background:none;border:0;
+  border-bottom:2.5px solid transparent;white-space:nowrap}
+.tab b{color:var(--text);font-weight:700}
+.tab small{opacity:.8;font-weight:600;margin-inline-start:3px}
+.tab.on{border-color:var(--accent)}
+.tab.on b{color:var(--accent)}
+
+#chips{display:flex;gap:6px;padding:8px 0 10px;overflow-x:auto;scrollbar-width:none}
+#chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:5px 11px;border-radius:999px;border:1px solid var(--line);
+  background:var(--panel);color:#cdd5e4;font-size:12.5px;white-space:nowrap}
+.chip.on{background:var(--accent2);border-color:var(--accent2);color:#fff;font-weight:700}
+
+ul{list-style:none;margin:0;padding:6px 10px 120px}
+li{display:flex;align-items:center;gap:10px;padding:10px 10px;margin:4px 0;
+  border-radius:13px;background:var(--panel);border:1px solid var(--line);cursor:pointer}
+li:active{background:var(--panel2)}
+li.hidden-row{opacity:.55}
+li.merged-row{border-color:#4a3568;background:#1c1630}
+.cbadge{flex:none;width:34px;height:34px;border-radius:10px;background:var(--panel2);
+  display:flex;align-items:center;justify-content:center;font-size:17px}
+.rinfo{flex:1;min-width:0}
+.rinfo b{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rinfo span{display:block;font-size:11.5px;color:var(--dim);margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flags{flex:none;display:flex;gap:5px;align-items:center;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.chev{flex:none;color:var(--dim);font-size:16px}
+.empty{color:var(--dim);text-align:center;padding:36px 16px}
+
+#fab{position:fixed;left:16px;right:16px;bottom:16px;z-index:6;display:none;
+  padding:14px;font-size:16px;font-weight:700;border:0;border-radius:14px;
+  background:var(--accent2);color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+
+#backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:8;display:none}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:9;display:none;
+  background:var(--panel);border-radius:18px 18px 0 0;border-top:1px solid var(--line);
+  padding:14px 16px calc(18px + env(safe-area-inset-bottom));max-height:82vh;overflow-y:auto}
+.grab{width:38px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+#sTitle{font-size:16px;font-weight:800;margin:0 0 2px}
+#sSrc{font-size:12px;color:var(--dim);margin:0 0 14px}
+.fld{font-size:12.5px;color:var(--dim);margin:12px 0 6px}
+#sName{width:100%;padding:11px 13px;font-size:16px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--text);outline:none}
+#sName:focus{border-color:var(--accent)}
+#sCats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.scat{padding:9px 4px;font-size:12.5px;border-radius:11px;border:1px solid var(--line);
+  background:var(--bg);color:#cdd5e4;text-align:center}
+.scat.on{background:var(--accent2);border-color:var(--accent2);color:#fff;font-weight:700}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);margin-top:6px}
+.switch span{font-size:14.5px}
+.tgl{position:relative;width:46px;height:26px;flex:none}
+.tgl input{opacity:0;width:0;height:0}
+.knob{position:absolute;inset:0;border-radius:999px;background:#39415c;transition:.15s}
+.knob:before{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;
+  border-radius:50%;background:#fff;transition:.15s}
+.tgl input:checked + .knob{background:var(--ok)}
+.tgl input:checked + .knob:before{transform:translateX(-20px)}
+html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
+.sbtn{width:100%;margin-top:10px;padding:12px;font-size:14.5px;font-weight:600;
+  border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.sbtn.merge{border-color:#7a4ad0;background:#2a2050;color:#cdb4ff}
+.sbtn.revert{border-color:#5a2a3a;background:#3a2030;color:#ffb4c4}
+.sbtn.done{border:0;background:var(--accent2);color:#fff;font-weight:700;margin-top:14px}
+#mergedNote{display:none;margin-top:10px;padding:11px 13px;border-radius:12px;
+  border:1px solid #7a4ad0;background:#241a3e;color:#d9c5ff;font-size:13.5px}
 </style></head><body>
 <div id="warn">⚠️ פתח דרך הכפתור בבוט (פקודת /id) כדי שתהיה הרשאת שמירה.</div>
 <header>
-  <h1>🛠 ניהול אמנים — שמות וקטגוריות</h1>
+  <h1>🛠 ניהול אמנים</h1>
   <input id="q" placeholder="🔎 חיפוש אמן…" autocomplete="off">
-  <div id="info">טוען…</div>
+  <nav id="tabs"></nav>
+  <div id="chips"></div>
 </header>
 <ul id="list"></ul>
-<div id="bar"><button id="save">שמור שינויים</button></div>
+<button id="fab"></button>
+
+<div id="backdrop"></div>
+<div id="sheet">
+  <div class="grab"></div>
+  <h2 id="sTitle"></h2>
+  <p id="sSrc"></p>
+  <div id="mergedNote"></div>
+  <div id="editArea">
+    <div class="fld">שם תצוגה</div>
+    <input id="sName" autocomplete="off">
+    <div class="fld">קטגוריה</div>
+    <div id="sCats"></div>
+    <div class="fld">נראוּת</div>
+    <label class="switch"><span>מוצג ברשימת האמנים</span>
+      <span class="tgl"><input type="checkbox" id="sVis"><span class="knob"></span></span>
+    </label>
+    <button class="sbtn merge" id="sMerge" style="display:none"></button>
+  </div>
+  <button class="sbtn revert" id="sRevert" style="display:none">↩️ בטל את השינויים ברשומה זו</button>
+  <button class="sbtn done" id="sDone">סגור</button>
+</div>
+
 <script>
 const WORKER = "https://concert-alerts-bot.tunaconcerts.workers.dev";
 const STANDUP = new Set(["comy","comedybar"]);
 const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["theater","🎭 הצגות"],["lecture","🎓 הרצאות"]];
-const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",comy:"קומי",comedybar:"קומדי בר",ticketmaster:"טיקטמאסטר"};
+const CATE = {music:"🎵",standup:"😂",theater:"🎭",lecture:"🎓"};
+const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",
+              comy:"קומי",comedybar:"קומדי בר",ticketmaster:"טיקטמאסטר"};
+const TABS = [["visible","גלויים"],["hidden","מוסתרים"],["merged","מיזוגים"],["changed","שינויים"]];
 const tg = window.Telegram && window.Telegram.WebApp;
 const inApp = !!(tg && tg.initData);
 if (inApp){ tg.ready(); tg.expand(); }
 
-const list=document.getElementById('list'), q=document.getElementById('q'),
-      info=document.getElementById('info'), bar=document.getElementById('bar'),
-      saveBtn=document.getElementById('save'), warn=document.getElementById('warn');
-if(!inApp) warn.style.display='block';
+const $=id=>document.getElementById(id);
+const list=$('list'), q=$('q'), tabsEl=$('tabs'), chipsEl=$('chips'), fab=$('fab');
+if(!inApp) $('warn').style.display='block';
 
-let ART={}, KEYS=[], state={}, busy=false;
+let ART={}, KEYS=[], state={}, tab='visible', cat='all', open=null, busy=false;
+
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function nrm(s){return (s||'').trim().toLowerCase();}
 function base(info){
-  const src=info.sources||[];
-  const standup=src.some(s=>STANDUP.has(s));
+  const standup=(info.sources||[]).some(s=>STANDUP.has(s));
   return { name: info.display,
            cat: info.category || (standup?"standup":"music"),
            art: ('is_artist' in info)? !!info.is_artist : true };
 }
-function nrm(s){return (s||'').trim().toLowerCase();}
 function modified(k){
   const b=base(ART[k]), s=state[k];
   return s.name!==b.name || s.cat!==b.cat || s.art!==b.art || !!s.mergeInto;
 }
-// Another NON-merged artist that currently shows the same name (the merge target).
+// Another NON-merged artist that currently shows the same name (a merge target).
 function dupKey(k){
   const n=nrm(state[k].name);
   for(const o of KEYS){ if(o!==k && !state[o].mergeInto && nrm(state[o].name)===n) return o; }
   return null;
 }
-function row(k){
-  const info=ART[k], s=state[k];
-  const src=(info.sources||[]).map(x=>SRCL[x]||x).join(' · ');
-  if(s.mergeInto){
-    return `<li class="merged" data-k="${esc(k)}">
-      <div class=mhead>↳ <b>${esc(s.name)}</b> ימוזג אל «${esc(state[s.mergeInto]?state[s.mergeInto].name:s.mergeInto)}»</div>
-      <div class=src>${esc(src)}</div>
-      <button class="mbtn undo">בטל מיזוג</button></li>`;
-  }
-  const opts=CATS.map(([v,l])=>`<option value="${v}"${v===s.cat?' selected':''}>${l}</option>`).join('');
-  const w=dupKey(k);
-  const mergeBtn=w?`<button class="mbtn merge" data-w="${esc(w)}">🔗 מזג עם הרשומה הכפולה</button>`:'';
-  return `<li class="${modified(k)?'mod':''}" data-k="${esc(k)}">
-    <div class=top><input class=nm value="${esc(s.name)}"></div>
-    <div class=src>${esc(src)}</div>
-    <div class=ctrls>
-      <select class=cat>${opts}</select>
-      <label class=hide><input type=checkbox class=hd ${s.art?'':'checked'}> הסתר</label>
-    </div>${mergeBtn}</li>`;
+function inTab(k,t){
+  const s=state[k];
+  if(t==='merged')  return !!s.mergeInto;
+  if(t==='changed') return modified(k);
+  if(t==='hidden')  return !s.mergeInto && !s.art;
+  return !s.mergeInto && s.art;                      // visible
 }
-function counts(){
-  const mod=KEYS.filter(modified).length;
-  const dups=KEYS.filter(k=>!state[k].mergeInto && dupKey(k)).length;
-  return `${KEYS.filter(k=>!state[k].mergeInto).length} אמנים · ${mod} שינויים`
-    + (dups?` · ⚠️ ${dups} כפילויות שם` : '');
+function srcOf(k){ return (ART[k].sources||[]).map(x=>SRCL[x]||x).join(' · '); }
+function pending(){ return KEYS.filter(modified).length; }
+
+function renderTabs(){
+  tabsEl.innerHTML = TABS.map(([t,l])=>{
+    const n=KEYS.filter(k=>inTab(k,t)).length;
+    return `<button class="tab${t===tab?' on':''}" data-t="${t}"><b>${l}</b><small>${n}</small></button>`;
+  }).join('');
+}
+function renderChips(){
+  const ks=KEYS.filter(k=>inTab(k,tab));
+  const n={all:ks.length};
+  for(const k of ks) n[state[k].cat]=(n[state[k].cat]||0)+1;
+  chipsEl.innerHTML = [["all","הכל"],...CATS].map(([v,l])=>
+    `<button class="chip${v===cat?' on':''}" data-c="${v}">${l}${n[v]?` ${n[v]}`:''}</button>`).join('');
+  chipsEl.style.display = tab==='merged' ? 'none' : 'flex';
+}
+function row(k){
+  const s=state[k];
+  if(s.mergeInto){
+    const w=state[s.mergeInto] ? state[s.mergeInto].name : s.mergeInto;
+    return `<li class="merged-row" data-k="${esc(k)}">
+      <div class=cbadge>🔗</div>
+      <div class=rinfo><b>${esc(s.name)}</b><span>ימוזג אל «${esc(w)}» · ${esc(srcOf(k))}</span></div>
+      <div class=chev>‹</div></li>`;
+  }
+  const flags = (modified(k)?'<span class=dot></span>':'') + (s.art?'':'🚫');
+  return `<li class="${s.art?'':'hidden-row'}" data-k="${esc(k)}">
+    <div class=cbadge>${CATE[s.cat]||'🎵'}</div>
+    <div class=rinfo><b>${esc(s.name)}</b><span>${esc(srcOf(k))}</span></div>
+    <div class=flags>${flags}</div>
+    <div class=chev>‹</div></li>`;
 }
 function render(){
+  renderTabs(); renderChips();
   const f=nrm(q.value);
-  let ks=KEYS;
-  if(f) ks=KEYS.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
-  info.textContent=counts();
-  list.innerHTML = ks.length ? ks.slice(0,1200).map(row).join('') : '<div class=empty>לא נמצא</div>';
-  bar.style.display = inApp ? 'block' : 'none';
+  let ks=KEYS.filter(k=>inTab(k,tab));
+  if(tab!=='merged' && cat!=='all') ks=ks.filter(k=>state[k].cat===cat);
+  if(f) ks=ks.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
+  list.innerHTML = ks.length ? ks.slice(0,1200).map(row).join('')
+                             : '<div class=empty>אין אמנים בתצוגה הזו 🤷</div>';
+  updateSaveUi();
 }
-function doMerge(k,w){ if(!w) return; state[k].mergeInto=w; render(); }
-// edit name/category/hide (fires on blur for text) — on a name clash, ASK to merge.
-list.addEventListener('change', e=>{
-  const li=e.target.closest('li'); if(!li) return; const k=li.dataset.k;
-  if(e.target.classList.contains('nm')){
-    state[k].name=e.target.value.trim();
-    const w=dupKey(k);
-    if(w){
-      const msg=`כבר קיימת רשומה בשם «${state[k].name}». למזג את שתי הרשומות לאמן אחד?`;
-      if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>doMerge(k, ok?w:null));
-      else if(confirm(msg)) doMerge(k,w);
-    }
-    render();
-  } else if(e.target.classList.contains('cat')){ state[k].cat=e.target.value; render(); }
-  else if(e.target.classList.contains('hd')){ state[k].art=!e.target.checked; render(); }
-});
-list.addEventListener('click', e=>{
-  const li=e.target.closest('li'); if(!li) return; const k=li.dataset.k;
-  if(e.target.classList.contains('merge')) doMerge(k, e.target.dataset.w);
-  else if(e.target.classList.contains('undo')){ state[k].mergeInto=null; render(); }
-});
-q.addEventListener('input', render);
+// ONE save control: Telegram's MainButton in-app, the floating button in a browser.
+function updateSaveUi(){
+  const n=pending();
+  const label=`💾 שמור ${n} שינויים`;
+  if(inApp && tg.MainButton){
+    fab.style.display='none';
+    if(n){ tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
+  }else{
+    fab.textContent=label;
+    fab.style.display = n ? 'block' : 'none';
+  }
+}
 
+// ---- bottom-sheet editor ----
+function openSheet(k){
+  open=k;
+  const s=state[k];
+  $('sTitle').textContent = ART[k].display;
+  $('sSrc').textContent = srcOf(k) + ' · מפתח: ' + k;
+  const merged=!!s.mergeInto;
+  $('editArea').style.display = merged?'none':'block';
+  $('mergedNote').style.display = merged?'block':'none';
+  if(merged){
+    const w=state[s.mergeInto] ? state[s.mergeInto].name : s.mergeInto;
+    $('mergedNote').textContent = `🔗 הרשומה תמוזג אל «${w}» בשמירה הבאה. העוקבים עוברים אוטומטית.`;
+  }else{
+    $('sName').value=s.name;
+    $('sCats').innerHTML = CATS.map(([v,l])=>
+      `<button class="scat${v===s.cat?' on':''}" data-v="${v}">${l}</button>`).join('');
+    $('sVis').checked=s.art;
+    refreshMergeBtn();
+  }
+  $('sRevert').style.display = modified(k) ? 'block' : 'none';
+  $('backdrop').style.display='block';
+  $('sheet').style.display='block';
+  render();
+}
+function refreshMergeBtn(){
+  const w=open && dupKey(open);
+  $('sMerge').style.display = w ? 'block' : 'none';
+  if(w) $('sMerge').textContent = `🔗 מזג עם הרשומה הכפולה «${state[w].name}»`;
+}
+function closeSheet(){ open=null; $('backdrop').style.display='none'; $('sheet').style.display='none'; render(); }
+function doMerge(k,w){ if(!w) return; state[k].mergeInto=w; closeSheet(); }
+
+$('sName').addEventListener('input',()=>{
+  if(!open) return;
+  state[open].name=$('sName').value.trim();
+  $('sRevert').style.display = modified(open)?'block':'none';
+  refreshMergeBtn();
+});
+$('sName').addEventListener('change',()=>{             // finished typing — offer merge on clash
+  if(!open) return;
+  const w=dupKey(open);
+  if(w){
+    const msg=`כבר קיימת רשומה בשם «${state[open].name}». למזג את שתי הרשומות לאמן אחד?`;
+    if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(open,w); });
+    else if(confirm(msg)) doMerge(open,w);
+  }
+});
+$('sCats').addEventListener('click',e=>{
+  const b=e.target.closest('.scat'); if(!b||!open) return;
+  state[open].cat=b.dataset.v;
+  document.querySelectorAll('.scat').forEach(x=>x.classList.toggle('on',x===b));
+  $('sRevert').style.display = modified(open)?'block':'none';
+});
+$('sVis').addEventListener('change',()=>{
+  if(!open) return;
+  state[open].art=$('sVis').checked;
+  $('sRevert').style.display = modified(open)?'block':'none';
+});
+$('sMerge').addEventListener('click',()=>{ if(open) doMerge(open,dupKey(open)); });
+$('sRevert').addEventListener('click',()=>{
+  if(!open) return;
+  const b=base(ART[open]);
+  state[open]={name:b.name,cat:b.cat,art:b.art,mergeInto:null};
+  openSheet(open);
+});
+$('sDone').addEventListener('click',closeSheet);
+$('backdrop').addEventListener('click',closeSheet);
+
+// ---- list / header events ----
+list.addEventListener('click',e=>{
+  const li=e.target.closest('li'); if(li) openSheet(li.dataset.k);
+});
+tabsEl.addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b) return;
+  tab=b.dataset.t; cat='all'; render();
+});
+chipsEl.addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  cat=b.dataset.c; render();
+});
+q.addEventListener('input',render);
+
+// ---- save (single handler for MainButton / fab) ----
 async function save(){
   if(!inApp||busy) return; busy=true;
   if(tg.MainButton) tg.MainButton.showProgress();
@@ -145,13 +323,13 @@ async function save(){
     const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({initData:tg.initData, overrides})});
     if(r.ok){ const j=await r.json();
-      (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ הרשימה תתעדכן (מיזוגים מתאחדים בסריקה הבאה).`);
-      render();
+      (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ (מיזוגים מתאחדים בסריקה הבאה)`);
     } else { (tg.showAlert?tg.showAlert:alert)('שמירה נכשלה ('+r.status+'). ודא שאתה האדמין.'); }
   }catch(e){ (tg.showAlert?tg.showAlert:alert)('שגיאת רשת'); }
   busy=false; if(tg.MainButton) tg.MainButton.hideProgress();
+  render();
 }
-saveBtn.addEventListener('click', save);
+fab.addEventListener('click',()=>{ if(inApp) save(); else (tg&&tg.showAlert?tg.showAlert:alert)('שמירה אפשרית רק מתוך טלגרם (/id בבוט)'); });
 
 async function load(){
   try{
@@ -167,9 +345,9 @@ async function load(){
                  mergeInto:o.merge_into||null };
     }
     KEYS.sort((x,y)=>state[x].name.localeCompare(state[y].name,'he'));
-    if(inApp && tg.MainButton){ tg.MainButton.setText('שמור שינויים'); tg.MainButton.show(); tg.MainButton.onClick(save); }
+    if(inApp && tg.MainButton) tg.MainButton.onClick(save);
     render();
-  }catch(e){ info.textContent='שגיאה בטעינה: '+e; }
+  }catch(e){ list.innerHTML='<div class=empty>שגיאה בטעינה: '+esc(String(e))+'</div>'; }
 }
 load();
 </script></body></html>
