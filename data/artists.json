@@ -117,7 +117,8 @@
     "first_seen": "2026-06-25T07:00:56.532979+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "distortion festival": {
