@@ -159,10 +159,13 @@ defaulted, so a quota hiccup never sticks a wrong label).
   (גלויים / מוסתרים / מיזוגים / שינויים, with live counts) + category filter chips +
   search; rows are read-only summaries (category emoji, sources, modified-dot / 🚫),
   tapping one opens a **bottom-sheet editor** (name input, 4-way category segmented
-  control, visibility switch, merge-duplicate button, per-record revert). ONE save
-  control only — Telegram's MainButton ("שמור N שינויים", visible only when there are
-  pending edits; a floating button replaces it outside Telegram). **Save** POSTs the
-  full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
+  control, visibility switch, merge-duplicate button, per-record revert, plus the
+  artist's **current shows as tappable links** — fetched client-side from the repo's
+  raw `shows.json`, raw.githubusercontent is CORS-open — and a **free merge picker**:
+  "מזג לתוך אמן אחר…" opens a search list of all artists, tap + confirm sets
+  `merge_into`). ONE save control only — Telegram's MainButton ("שמור N שינויים",
+  visible only when there are pending edits; a floating button replaces it outside
+  Telegram). **Save** POSTs the full map to the Worker `/api/overrides`. Overrides live in **KV** (key `overrides`,
   `{ "<artist_key>": {name?, category?, is_artist?} }`), keyed by stable `artist_key`
   so renames don't break follows. `/api/overrides` GET is public, POST is restricted
   to the admin — `String(chat) === ADMIN_CHAT_ID` (a Worker secret = the dev's chat_id),

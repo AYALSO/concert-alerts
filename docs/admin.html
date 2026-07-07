@@ -93,6 +93,23 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
 .sbtn.done{border:0;background:var(--accent2);color:#fff;font-weight:700;margin-top:14px}
 #mergedNote{display:none;margin-top:10px;padding:11px 13px;border-radius:12px;
   border:1px solid #7a4ad0;background:#241a3e;color:#d9c5ff;font-size:13.5px}
+#showList,#mList{max-height:190px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;
+  background:var(--bg)}
+#mList{margin-top:6px}
+.mrow .sdate{min-width:24px}
+#mSearch{width:100%;padding:10px 13px;font-size:15px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--text);outline:none}
+#mSearch:focus{border-color:var(--accent)}
+.showrow{display:flex;align-items:center;gap:8px;padding:9px 11px;border-bottom:1px solid var(--line);
+  color:var(--text);text-decoration:none;font-size:13.5px}
+.showrow:last-child{border-bottom:0}
+.showrow:active{background:var(--panel2)}
+.showrow.soldout{opacity:.55}
+.sdate{flex:none;font-weight:700;font-variant-numeric:tabular-nums;color:#bcd0f7;min-width:60px}
+.svenue{flex:1;min-width:0;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sold{flex:none;font-size:11px;color:#ffb4c4;border:1px solid #5a2a3a;background:#3a2030;
+  border-radius:999px;padding:2px 7px}
+.schev{flex:none;color:var(--dim)}
 </style></head><body>
 <div id="warn">⚠️ פתח דרך הכפתור בבוט (פקודת /id) כדי שתהיה הרשאת שמירה.</div>
 <header>
@@ -109,6 +126,7 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
   <div class="grab"></div>
   <h2 id="sTitle"></h2>
   <p id="sSrc"></p>
+  <div id="sShows"></div>
   <div id="mergedNote"></div>
   <div id="editArea">
     <div class="fld">שם תצוגה</div>
@@ -120,6 +138,12 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
       <span class="tgl"><input type="checkbox" id="sVis"><span class="knob"></span></span>
     </label>
     <button class="sbtn merge" id="sMerge" style="display:none"></button>
+    <button class="sbtn merge" id="sMergeAny">🔗 מזג לתוך אמן אחר…</button>
+    <div id="mPick" style="display:none">
+      <div class="fld">בחר לאן למזג — העוקבים וההופעות עוברים לאמן שתבחר</div>
+      <input id="mSearch" placeholder="🔎 חיפוש אמן יעד…" autocomplete="off">
+      <div id="mList"></div>
+    </div>
   </div>
   <button class="sbtn revert" id="sRevert" style="display:none">↩️ בטל את השינויים ברשומה זו</button>
   <button class="sbtn done" id="sDone">סגור</button>
@@ -127,6 +151,8 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
 
 <script>
 const WORKER = "https://concert-alerts-bot.tunaconcerts.workers.dev";
+// The artist's current shows, straight from the public repo (raw GitHub is CORS-open).
+const RAW_SHOWS = "https://raw.githubusercontent.com/AYALSO/concert-alerts/main/data/shows.json";
 const STANDUP = new Set(["comy","comedybar"]);
 const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["theater","🎭 הצגות"],["lecture","🎓 הרצאות"]];
 const CATE = {music:"🎵",standup:"😂",theater:"🎭",lecture:"🎓"};
@@ -224,12 +250,48 @@ function updateSaveUi(){
   }
 }
 
+// ---- the artist's current shows (dates + links), shown inside the sheet ----
+let SHOWS=null;                                   // artist_key -> [{iso,d,v,u,so}]
+async function loadShows(){
+  try{
+    const j=await (await fetch(RAW_SHOWS)).json();
+    const by={};
+    for(const s of Object.values(j)){
+      if(!s.artist_key) continue;
+      (by[s.artist_key]=by[s.artist_key]||[]).push({
+        iso:s.date_iso||"",
+        d:s.date_iso?`${s.date_iso.slice(8,10)}.${s.date_iso.slice(5,7)}`:(s.date_raw||"?"),
+        v:s.venue||"", u:s.url||"", so:!!s.sold_out});
+    }
+    for(const k in by) by[k].sort((a,b)=>(a.iso||"9999").localeCompare(b.iso||"9999"));
+    SHOWS=by;
+  }catch(e){ SHOWS={}; }
+  if(open) renderShows(open);
+}
+function renderShows(k){
+  const el=$('sShows');
+  if(!SHOWS){ el.innerHTML='<div class="fld">🎫 טוען הופעות…</div>'; return; }
+  const rows=SHOWS[k]||[];
+  if(!rows.length){ el.innerHTML='<div class="fld">🎫 אין הופעות עתידיות ברשימה</div>'; return; }
+  el.innerHTML=`<div class="fld">🎫 הופעות קיימות (${rows.length})</div><div id="showList">`+
+    rows.map(s=>`<a class="showrow${s.so?' soldout':''}" href="${esc(s.u)}" data-u="${esc(s.u)}">
+      <span class=sdate>${esc(s.d)}</span><span class=svenue>${esc(s.v)}</span>
+      ${s.so?'<span class=sold>אזל</span>':''}<span class=schev>↗</span></a>`).join('')+'</div>';
+}
+$('sShows').addEventListener('click',e=>{
+  const a=e.target.closest('.showrow'); if(!a) return;
+  e.preventDefault();
+  const u=a.dataset.u; if(!u) return;
+  if(tg && tg.openLink) tg.openLink(u); else window.open(u,'_blank','noopener');
+});
+
 // ---- bottom-sheet editor ----
 function openSheet(k){
   open=k;
   const s=state[k];
   $('sTitle').textContent = ART[k].display;
   $('sSrc').textContent = srcOf(k) + ' · מפתח: ' + k;
+  renderShows(k);
   const merged=!!s.mergeInto;
   $('editArea').style.display = merged?'none':'block';
   $('mergedNote').style.display = merged?'block':'none';
@@ -242,6 +304,8 @@ function openSheet(k){
       `<button class="scat${v===s.cat?' on':''}" data-v="${v}">${l}</button>`).join('');
     $('sVis').checked=s.art;
     refreshMergeBtn();
+    $('sMergeAny').style.display='block';        // reset the merge picker between sheets
+    $('mPick').style.display='none';
   }
   $('sRevert').style.display = modified(k) ? 'block' : 'none';
   $('backdrop').style.display='block';
@@ -283,6 +347,34 @@ $('sVis').addEventListener('change',()=>{
   $('sRevert').style.display = modified(open)?'block':'none';
 });
 $('sMerge').addEventListener('click',()=>{ if(open) doMerge(open,dupKey(open)); });
+// Free merge: pick ANY artist as the merge target (search + tap + confirm).
+$('sMergeAny').addEventListener('click',()=>{
+  $('sMergeAny').style.display='none';
+  $('mPick').style.display='block';
+  $('mSearch').value='';
+  renderMergeList();
+  $('mSearch').focus();
+});
+function renderMergeList(){
+  if(!open) return;
+  const f=nrm($('mSearch').value);
+  let ks=KEYS.filter(k=>k!==open && !state[k].mergeInto);
+  if(f) ks=ks.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
+  $('mList').innerHTML = ks.slice(0,60).map(k=>
+    `<a class="showrow mrow" data-k="${esc(k)}">
+      <span class=sdate>${CATE[state[k].cat]||'🎵'}</span>
+      <span class=svenue><b>${esc(state[k].name)}</b> · ${esc(srcOf(k))}</span>
+      <span class=schev>‹</span></a>`).join('')
+    || '<div class="fld">לא נמצא אמן כזה</div>';
+}
+$('mSearch').addEventListener('input',renderMergeList);
+$('mList').addEventListener('click',e=>{
+  const a=e.target.closest('.mrow'); if(!a||!open) return;
+  const w=a.dataset.k;
+  const msg=`למזג את «${state[open].name}» לתוך «${state[w].name}»?`;
+  if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(open,w); });
+  else if(confirm(msg)) doMerge(open,w);
+});
 $('sRevert').addEventListener('click',()=>{
   if(!open) return;
   const b=base(ART[open]);
@@ -347,6 +439,7 @@ async function load(){
     KEYS.sort((x,y)=>state[x].name.localeCompare(state[y].name,'he'));
     if(inApp && tg.MainButton) tg.MainButton.onClick(save);
     render();
+    loadShows();                       // fetched in the background; sheets fill in
   }catch(e){ list.innerHTML='<div class=empty>שגיאה בטעינה: '+esc(String(e))+'</div>'; }
 }
 load();
