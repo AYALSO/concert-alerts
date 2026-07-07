@@ -1438,6 +1438,16 @@
       "eventim"
     ]
   },
+  "הטבה ללקוחות מקס": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "הטבה ללקוחות מקס",
+    "first_seen": "2026-07-07T09:00:45.049369+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "הטברנס": {
     "cat_v": 3,
     "category": "music",
@@ -2440,17 +2450,6 @@
       "kupat"
     ]
   },
-  "מחווה לאלטון גון ובילי גואל": {
-    "cat_v": 3,
-    "category": "music",
-    "display": "מחווה לאלטון ג'ון ובילי ג'ואל",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub",
-      "eventim"
-    ]
-  },
   "מחווה לביטלס all you need is love": {
     "cat_v": 3,
     "category": "music",
@@ -2664,6 +2663,16 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "משה כורסיה": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "משה כורסיה",
+    "first_seen": "2026-07-07T09:01:13.550072+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
     ]
   },
   "משה להב": {
@@ -3397,6 +3406,16 @@
     "display": "פלד",
     "first_seen": "2026-06-28T08:01:01.978088+00:00",
     "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
+  "פסטיבל אושפיזין": {
+    "cat_v": 3,
+    "category": "music",
+    "display": "פסטיבל אושפיזין",
+    "first_seen": "2026-07-07T09:00:58.144713+00:00",
+    "is_artist": false,
     "sources": [
       "kupat"
     ]
