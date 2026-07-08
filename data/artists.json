@@ -542,6 +542,16 @@
       "kupat"
     ]
   },
+  "אילנה דיין": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "אילנה דיין",
+    "first_seen": "2026-07-08T14:01:34.356074+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אינדי דזרט": {
     "cat_v": 4,
     "category": "music",
