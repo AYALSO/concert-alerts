@@ -2124,7 +2124,7 @@
     ]
   },
   "ליאור נרקיס": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ליאור נרקיס",
     "first_seen": "2026-06-25T16:48:38.422455+00:00",
@@ -2189,7 +2189,7 @@
     ]
   },
   "ליילי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ליילי",
     "first_seen": "2026-06-23T11:01:10.229488+00:00",
@@ -2199,17 +2199,17 @@
     ]
   },
   "לילה 1 באפריל": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "music",
     "display": "לילה 1 באפריל",
     "first_seen": "2026-06-20T20:16:07.325311+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "barby"
     ]
   },
   "לילה תומר": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "standup",
     "display": "לילה תומר",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
@@ -2219,7 +2219,7 @@
     ]
   },
   "ליעד ברוידא": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "ליעד ברוידא",
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
@@ -2239,7 +2239,7 @@
     ]
   },
   "לירן דנינו": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "לירן דנינו",
     "first_seen": "2026-06-20T20:16:21.824349+00:00",
@@ -2249,17 +2249,17 @@
     ]
   },
   "ללכת שבי אחריה": {
-    "cat_v": 3,
-    "category": "theater",
+    "cat_v": 4,
+    "category": "music",
     "display": "ללכת שבי אחריה",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
   },
   "מאור כהן": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "מאור כהן",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
@@ -2728,8 +2728,8 @@
     ]
   },
   "נועם חורב": {
-    "cat_v": 3,
-    "category": "music",
+    "cat_v": 4,
+    "category": "lecture",
     "display": "נועם חורב",
     "first_seen": "2026-06-20T20:16:55.744808+00:00",
     "is_artist": true,
@@ -2738,7 +2738,7 @@
     ]
   },
   "נועם קליינשטיין": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נועם קליינשטיין",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -2748,7 +2748,7 @@
     ]
   },
   "נופר בטאט": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נופר בטאט",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
@@ -2768,7 +2768,7 @@
     ]
   },
   "נורית גלרון": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נורית גלרון",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
@@ -2788,7 +2788,7 @@
     ]
   },
   "נטלי פרץ": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נטלי פרץ",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
@@ -2798,7 +2798,7 @@
     ]
   },
   "נטע ברזילי": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נטע ברזילי",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
@@ -2808,7 +2808,7 @@
     ]
   },
   "נינט טייב": {
-    "cat_v": 3,
+    "cat_v": 4,
     "category": "music",
     "display": "נינט טייב",
     "first_seen": "2026-06-20T20:16:07.321714+00:00",
@@ -2818,8 +2818,8 @@
     ]
   },
   "ניצני ודני": {
-    "cat_v": 3,
-    "category": "music",
+    "cat_v": 4,
+    "category": "standup",
     "display": "ניצני ודני",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
