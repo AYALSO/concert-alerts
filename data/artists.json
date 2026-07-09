@@ -1214,6 +1214,16 @@
       "barby"
     ]
   },
+  "דב נבון": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "דב נבון",
+    "first_seen": "2026-07-09T13:01:35.044198+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דוד דאור": {
     "cat_v": 4,
     "category": "music",
