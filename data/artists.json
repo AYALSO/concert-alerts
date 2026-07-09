@@ -512,6 +512,16 @@
       "grayclub"
     ]
   },
+  "אייל גולן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אייל גולן",
+    "first_seen": "2026-07-09T10:01:01.976824+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "אייל לוי": {
     "cat_v": 4,
     "category": "music",
@@ -1637,6 +1647,15 @@
     "sources": [
       "eventim",
       "ticketmaster"
+    ]
+  },
+  "וועד הרופאים והאחיות הדסה": {
+    "cat_v": 4,
+    "display": "וועד הרופאים והאחיות - הדסה",
+    "first_seen": "2026-07-09T10:00:58.656747+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "זושא": {
