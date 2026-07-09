@@ -1418,16 +1418,6 @@
       "eventim"
     ]
   },
-  "הטבה אירגונית ברק כרטיסים": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הטבה אירגונית  ברק כרטיסים",
-    "first_seen": "2026-06-28T04:00:51.275334+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "הטבה ללקוחות flycard": {
     "cat_v": 4,
     "category": "music",
@@ -1633,16 +1623,6 @@
     "category": "theater",
     "display": "הרצאות בזאפה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הרצאות דיגיתל": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הרצאות - דיגיתל",
-    "first_seen": "2026-07-06T13:00:51.024093+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -2802,7 +2782,8 @@
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "נופר סויסה": {
@@ -3099,6 +3080,16 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "עובדי בנק לאומי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עובדי בנק לאומי",
+    "first_seen": "2026-07-09T04:00:52.108951+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "עודד מנסטר": {
@@ -4093,6 +4084,16 @@
     "is_artist": false,
     "sources": [
       "barby"
+    ]
+  },
+  "תלמידי מחול": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תלמידי מחול",
+    "first_seen": "2026-07-09T04:00:52.108707+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "תמיר בר": {
