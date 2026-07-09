@@ -273,6 +273,16 @@
       "grayclub"
     ]
   },
+  "vento show": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "vento show",
+    "first_seen": "2026-07-09T12:00:46.980630+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "vivo": {
     "cat_v": 4,
     "category": "music",
