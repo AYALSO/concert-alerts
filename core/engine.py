@@ -36,13 +36,16 @@ def _canonical_artist(key: str, display: str, artists: dict) -> Tuple[str, str]:
 
     Picks the SHORTEST established prefix (the recognizable name people follow).
     Word-boundary match only, so "אסף מור יוסף" never collapses into a stray
-    "מור". Deterministic — no AI — so a followed key never silently fails to
-    match a same-artist show. Returns (canonical_key, canonical_display)."""
+    "מור" — and the established prefix must itself be at least TWO words: a
+    single-word key is too ambiguous ("תמר", a Masada festival, used to absorb
+    the shows of "תמר ריילי" and "תמר יהלומי ויונתן קלימי"). Deterministic —
+    no AI — so a followed key never silently fails to match a same-artist show.
+    Returns (canonical_key, canonical_display)."""
     sw = key.split()
     best = None
     for k in artists:
         kw = k.split()
-        if kw and len(kw) < len(sw) and sw[:len(kw)] == kw:
+        if len(kw) >= 2 and len(kw) < len(sw) and sw[:len(kw)] == kw:
             if best is None or len(kw) < len(best.split()):
                 best = k
     return (best, artists[best]["display"]) if best else (key, display)
@@ -57,8 +60,9 @@ def _resolve_merge(key: str, merges: dict) -> str:
     return key
 
 
-def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[str, dict]]:
-    """Run all scrapers, persist state, and return (new_show_dicts, new_artist_keys).
+def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[str, str], Dict[str, dict]]:
+    """Run all scrapers, persist state, and return
+    (new_show_dicts, new_artist_keys, variant_merges, stats).
 
     `new_artist_keys` are catalogue KEYS (not display names): the caller filters
     them against the post-scan classification (is_artist) before reporting, so
@@ -66,6 +70,11 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
 
     - New shows are keyed to a canonical artist (see `_canonical_artist`) so a
       follower never misses a same-artist show that came in under a longer title.
+    - `variant_merges` ({variant_key: canonical_key}) are catalogue entries whose
+      shows were all re-attributed to an established shorter artist this run
+      (e.g. "שלמה ארצי ואורחים" scraped before "שלמה ארצי" existed). The caller
+      forwards them as auto-merges so follows of the variant keep resolving and
+      the orphaned entry collapses on the next scan.
     - `merges` ({loser_key: winner_key}, set manually in the admin panel) absorb a
       duplicate artist into another: the loser's shows are re-attributed to the
       winner, so the catalogue/shows/alerts all collapse onto one entry.
@@ -88,6 +97,7 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
 
     new_shows: List[dict] = []
     new_artist_keys: List[str] = []
+    variant_merges: Dict[str, str] = {}
     for sh in ordered:
         d = sh.to_dict()
         merged = _resolve_merge(d["artist_key"], merges)         # manual merge first
@@ -95,6 +105,10 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
             d["artist_key"] = merged
             d["artist"] = artists.get(merged, {}).get("display", d["artist"])
         key, display = _canonical_artist(d["artist_key"], d["artist"], artists)
+        if key != d["artist_key"] and d["artist_key"] in artists:
+            # An older catalogue entry exists for the long variant; its shows now
+            # live under the canonical artist, so propose collapsing the orphan.
+            variant_merges[d["artist_key"]] = key
         d["artist_key"], d["artist"] = key, display          # canonical attribution
         is_new = sh.show_id not in known
         known[sh.show_id] = d
@@ -127,4 +141,6 @@ def run_scan(scrapers=None, merges=None) -> Tuple[List[dict], List[str], Dict[st
     for src, st in stats.items():
         if "found" in st:
             st["new"] = new_per_source.get(src, 0)
-    return new_shows, new_artist_keys, stats
+    if variant_merges:
+        print(f"[merge] {len(variant_merges)} orphaned variant entries -> canonical: {variant_merges}")
+    return new_shows, new_artist_keys, variant_merges, stats

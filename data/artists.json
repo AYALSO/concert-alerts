@@ -197,7 +197,7 @@
     "category": "music",
     "display": "iTravelJerusalem",
     "first_seen": "2026-07-05T07:00:44.594995+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -460,7 +460,7 @@
   },
   "אור לגויים": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "אור לגויים",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -726,7 +726,7 @@
   },
   "אמדאוס": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "אמדאוס",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -810,7 +810,7 @@
     "category": "music",
     "display": "אסף אמדורסקי, שלומי שבן, יעל קראוס",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -838,7 +838,7 @@
   },
   "אף מילה לאמא": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "אף מילה לאמא",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -848,7 +848,7 @@
   },
   "אפס ביחסי אנוש": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "אפס ביחסי אנוש",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -944,7 +944,7 @@
     "category": "music",
     "display": "באלישג ויובי",
     "first_seen": "2026-06-20T20:16:09.687941+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -961,7 +961,7 @@
   },
   "בחורים טובים בית לסין": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "בחורים טובים בית לסין",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -994,7 +994,7 @@
     "category": "standup",
     "display": "במה פתוחה בהנחיית דניאל כהן",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -1132,7 +1132,7 @@
   },
   "גיא ויעל": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "גיא ויעל",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -1216,7 +1216,7 @@
   "גליקיריה": {
     "cat_v": 4,
     "category": "music",
-    "display": "גליקיריה",
+    "display": "גליקריה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
     "sources": [
@@ -1453,7 +1453,7 @@
     "category": "theater",
     "display": "הדסה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1541,7 +1541,7 @@
   },
   "הכל אודות איב": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "הכל אודות איב",
     "first_seen": "2026-07-06T13:01:34.470490+00:00",
     "is_artist": true,
@@ -1554,7 +1554,7 @@
     "category": "music",
     "display": "הלהקות חוזרות",
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1574,7 +1574,7 @@
     "category": "standup",
     "display": "המרתון הגדול",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -1772,7 +1772,7 @@
   },
   "חנאל ומכבית": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "חנאל ומכבית",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -1803,7 +1803,7 @@
   },
   "חני נחמיאס": {
     "cat_v": 4,
-    "category": "theater",
+    "category": "music",
     "display": "חני נחמיאס",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
@@ -1835,7 +1835,7 @@
     "category": "music",
     "display": "חתול בשק",
     "first_seen": "2026-06-20T20:16:07.319716+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "barby"
     ]
@@ -1955,7 +1955,7 @@
   },
   "יום המזל שלי": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "יום המזל שלי",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -2233,7 +2233,7 @@
   },
   "ליאור סושרד": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "ליאור סושרד",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -2408,7 +2408,7 @@
   },
   "מה שקרה לנו": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "lecture",
     "display": "מה שקרה לנו",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -2440,7 +2440,7 @@
   },
   "מור": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "music",
     "display": "מור",
     "first_seen": "2026-06-20T20:16:23.452115+00:00",
     "is_artist": true,
@@ -2484,7 +2484,7 @@
     "category": "music",
     "display": "מחווה לקולדפליי",
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -2593,7 +2593,7 @@
   },
   "מלכת היופי של ירושלים": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "מלכת היופי של ירושלים",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
@@ -2669,7 +2669,7 @@
     "category": "standup",
     "display": "מרתון סטנדאפ",
     "first_seen": "2026-06-21T13:00:33.015166+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -2871,7 +2871,7 @@
     "category": "standup",
     "display": "נותנים בראש",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -2929,7 +2929,7 @@
   },
   "נמרוד הראל": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "נמרוד הראל",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
@@ -3026,7 +3026,7 @@
     "category": "standup",
     "display": "סיבה למסיבה",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -3073,7 +3073,7 @@
   },
   "סיפור הפרברים": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "סיפור הפרברים",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -3220,7 +3220,7 @@
     "category": "standup",
     "display": "עושים צחוק מרתון סטנד אפ",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -3332,7 +3332,7 @@
     "category": "music",
     "display": "עדן",
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "grayclub"
     ]
@@ -3503,7 +3503,7 @@
   },
   "ציפורים כולם": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "ציפורים כולם",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -3513,7 +3513,7 @@
   },
   "ציפורלה": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "ציפורלה",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -3574,7 +3574,7 @@
   },
   "קיר זכוכית": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "קיר זכוכית",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -3817,7 +3817,7 @@
     "category": "standup",
     "display": "שבוע טוב",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "comy"
     ]
@@ -3864,7 +3864,7 @@
   },
   "שונאים סיפור אהבה": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "שונאים סיפור אהבה",
     "first_seen": "2026-07-06T10:01:15.592002+00:00",
     "is_artist": true,
@@ -3904,7 +3904,7 @@
   },
   "שיחות עם הברמן": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "שיחות עם הברמן",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,

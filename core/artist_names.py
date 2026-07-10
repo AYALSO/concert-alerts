@@ -18,9 +18,15 @@ import re
 # by prefix, so "חוגג" also catches "חוגגת"/"חוגגים".
 _CUT = (
     "מופע", "במופע", "הופעה", "בהופעה", "אורח", "אורחת", "אורחים",
+    "ואורח", "ואורחת", "ואורחים",       # vav-conjunction defeats the plain prefix
+    "בהשתתפות", "משתתפים", "מזמין", "מזמינה", "פוגש", "פוגשת", "בליווי",
+    "feat", "Feat", "FEAT", "ft.",
     "חוגג", "השקת", "השקה", "סדרת", "לייב", "live", "Live", "LIVE",
     "סיבוב", "מארח", "מציג", "ערב", "חו״ל",
 )
+# Connector words that must not be left dangling at the end of a cut name
+# ("ברי סחרוף עם ..." -> cut at אורח leaves "ברי סחרוף עם" -> drop the "עם").
+_TRAILING = {"עם", "את", "של", "ו", "וגם", "וה"}
 # Venue / filler phrases dropped wherever they appear.
 _STRIP = (
     "בבארבי", "בארבי", "והלהקה", "ולהקה",
@@ -60,6 +66,8 @@ def clean_artist(raw: str, extra_strip: tuple[str, ...] = ()) -> str:
         if any(tok.startswith(c) for c in _CUT):
             break
         out.append(tok)
+    while out and out[-1] in _TRAILING:      # no dangling "עם"/"את" after a cut
+        out.pop()
     if out:                                  # keep original if cutting empties it
         s = " ".join(out)
 
@@ -82,11 +90,14 @@ _NON_ARTIST = re.compile(
     r"^ו?ועד\b"
     r"|\bהרצאות\b"
     r"|\bהטב(?:ה|ות)\b"
+    r"|\bל?עובדי\b|\bל?ה?לקוחות\b|\bגמלאי\b|\bמנויי\b"   # corporate/customer-club events
+    r"|^הופעות ל|^ארגון\b|^עמותת\b"
     r"|\bכנס\b|\bכינוס\b|\bועיד(?:ה|ת)\b|\bאקספו\b|\bוובינר\b"
     r"|\bסדנ(?:ה|ת|אות)\b"
     r"|\bהקרנ(?:ה|ת)\b"
     r"|שובר מתנה|מייל שירות|מכירה מוקדמת"
-    r"|\bטריוויה\b|\bקריוקי\b|\bמונדיאל\b",
+    r"|\bטריוויה\b|\bקריוקי\b|\bמונדיאל\b"
+    r"|\bבמה פתוחה\b|\bמרתון סטנד ?אפ\b|\bפסטיבל\b",
 )
 
 

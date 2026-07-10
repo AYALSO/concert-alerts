@@ -23,9 +23,13 @@ from typing import List, Optional
 from bs4 import BeautifulSoup
 from curl_cffi import requests as creq
 
-from core.artist_names import clean_artist
+from core.artist_names import clean_artist, looks_non_artist
 from core.models import Show
 from scrapers.base import Scraper, register
+
+# Recurring rotating-lineup club nights are events, not followable comedians
+# (same policy as comedybar's _SKIP): marathons, open mics, material-testing.
+_SKIP = ("מרתון", "במה פתוחה", "open mic", "מיקרופון פתוח", "בדיקת חומרים")
 
 DM_RE = re.compile(r"(\d{1,2})[.\/](\d{1,2})")
 
@@ -61,6 +65,8 @@ class ComyScraper(Scraper):
                 continue
             href = (link.get("href") or "").split("?")[0].split("#")[0]
             name = h3.get_text(" ", strip=True)
+            if any(k in name.lower() for k in _SKIP) or looks_non_artist(name):
+                continue                                   # recurring club night
             if href.startswith("http") and name:
                 events.setdefault(href, name)
 

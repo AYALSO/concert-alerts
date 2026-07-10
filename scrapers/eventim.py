@@ -21,7 +21,7 @@ from typing import List
 
 from curl_cffi import requests as cffi
 
-from core.artist_names import clean_artist
+from core.artist_names import clean_artist, looks_non_artist
 from core.models import Show
 from scrapers.base import Scraper, register
 
@@ -68,11 +68,16 @@ class EventimScraper(Scraper):
     @staticmethod
     def _parse(p: dict, today: date) -> Show | None:
         att = p.get("attractions") or []
-        # attractions[0].name is the clean artist; fall back to the (messy)
-        # event title, which then needs the same cleanup the other sites get.
+        # attractions[0].name is usually the clean artist, but it can carry
+        # guest-title residue and even promo "attractions" (a customer-club
+        # benefit page attached to real events — "הטבה ללקוחות flycard" once
+        # collected 19 unrelated shows). Clean it like any other title, and if
+        # it's self-evidently not an artist fall back to the event title.
         if att and att[0].get("name"):
-            artist = att[0]["name"].strip()
+            artist = clean_artist(att[0]["name"])
         else:
+            artist = clean_artist(p.get("name") or "")
+        if looks_non_artist(artist):
             artist = clean_artist(p.get("name") or "")
         le = (p.get("typeAttributes") or {}).get("liveEntertainment") or {}
         start = le.get("startDate") or ""
@@ -80,7 +85,7 @@ class EventimScraper(Scraper):
             return None
         # Eventim lists marketing/benefit landing pages in the live-shows category
         # ("הטבות לעובדי …", "דף הטבות …", "המיוחדים שלנו") — not real events.
-        if "הטבות" in artist or artist == "המיוחדים שלנו":
+        if looks_non_artist(artist) or artist == "המיוחדים שלנו":
             return None
         try:
             dt = datetime.fromisoformat(start)

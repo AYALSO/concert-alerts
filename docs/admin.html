@@ -53,8 +53,12 @@ li.merged-row{border-color:#4a3568;background:#1c1630}
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .flags{flex:none;display:flex;gap:5px;align-items:center;font-size:13px}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.saved{font-size:12px}
+.hideBtn{flex:none;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+  border-radius:10px;padding:6px 9px;font-size:14px}
 .chev{flex:none;color:var(--dim);font-size:16px}
 .empty{color:var(--dim);text-align:center;padding:36px 16px}
+#ovwarn{display:none;background:#3a2030;color:#ffb4c4;padding:10px 14px;font-size:13px}
 
 #fab{position:fixed;left:16px;right:16px;bottom:16px;z-index:6;display:none;
   padding:14px;font-size:16px;font-weight:700;border:0;border-radius:14px;
@@ -84,8 +88,7 @@ li.merged-row{border-color:#4a3568;background:#1c1630}
 .knob:before{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;
   border-radius:50%;background:#fff;transition:.15s}
 .tgl input:checked + .knob{background:var(--ok)}
-.tgl input:checked + .knob:before{transform:translateX(-20px)}
-html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
+.tgl input:checked + .knob:before{transform:translateX(-20px)}   /* page is dir=rtl */
 .sbtn{width:100%;margin-top:10px;padding:12px;font-size:14.5px;font-weight:600;
   border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
 .sbtn.merge{border-color:#7a4ad0;background:#2a2050;color:#cdb4ff}
@@ -97,8 +100,8 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
   background:var(--bg)}
 #mList{margin-top:6px}
 .mrow .sdate{min-width:24px}
-#mSearch{width:100%;padding:10px 13px;font-size:15px;border-radius:12px;border:1px solid var(--line);
-  background:var(--bg);color:var(--text);outline:none}
+#mSearch{width:100%;padding:10px 13px;font-size:16px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--text);outline:none}   /* 16px: below that iOS auto-zooms on focus */
 #mSearch:focus{border-color:var(--accent)}
 .showrow{display:flex;align-items:center;gap:8px;padding:9px 11px;border-bottom:1px solid var(--line);
   color:var(--text);text-decoration:none;font-size:13.5px}
@@ -112,6 +115,7 @@ html[dir=rtl] .tgl input:checked + .knob:before{transform:translateX(-20px)}
 .schev{flex:none;color:var(--dim)}
 </style></head><body>
 <div id="warn">⚠️ פתח דרך הכפתור בבוט (פקודת /id) כדי שתהיה הרשאת שמירה.</div>
+<div id="ovwarn">⚠️ טעינת ההתאמות השמורות נכשלה — שמירה חסומה כדי לא למחוק אותן. <a href="#" onclick="location.reload();return false" style="color:#ffd7e0">רענן</a></div>
 <header>
   <h1>🛠 ניהול אמנים</h1>
   <input id="q" placeholder="🔎 חיפוש אמן…" autocomplete="off">
@@ -159,7 +163,7 @@ const CATS = [["music","🎵 מוזיקה"],["standup","😂 סטנדאפ"],["th
 const CATE = {music:"🎵",standup:"😂",theater:"🎭",lecture:"🎓"};
 const SRCL = {barby:"בארבי",eventim:"איוונטים",grayclub:"גריי",kupat:"קופת ת״א",
               comy:"קומי",comedybar:"קומדי בר",ticketmaster:"טיקטמאסטר"};
-const TABS = [["visible","גלויים"],["hidden","מוסתרים"],["merged","מיזוגים"],["changed","שינויים"]];
+const TABS = [["visible","גלויים"],["hidden","מוסתרים"],["merged","מיזוגים"],["dupes","כפילויות?"],["changed","שינויים"]];
 const tg = window.Telegram && window.Telegram.WebApp;
 const inApp = !!(tg && tg.initData);
 if (inApp){ tg.ready(); tg.expand(); }
@@ -169,9 +173,13 @@ const list=$('list'), q=$('q'), tabsEl=$('tabs'), chipsEl=$('chips'), fab=$('fab
 if(!inApp) $('warn').style.display='block';
 
 let ART={}, KEYS=[], state={}, OV0={}, tab='visible', cat='all', open=null, busy=false;
+let ovLoaded=false;   // overrides fetch succeeded — saving without it would WIPE all saved fixes
 
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function nrm(s){return (s||'').trim().toLowerCase();}
+// Quote/geresh-insensitive compare (ג' vs ג׳ vs ’) — used by search AND dupKey,
+// so two spellings of the same artist actually register as duplicates.
+function nrm(s){return (s||'').trim().toLowerCase()
+  .replace(/[׳‘’`]/g,"'").replace(/[״“”]/g,'"').replace(/[־–—]/g,'-');}
 function base(info){
   const standup=(info.sources||[]).some(s=>STANDUP.has(s));
   return { name: info.display,
@@ -204,11 +212,28 @@ function dupKey(k){
   for(const o of KEYS){ if(o!==k && !state[o].mergeInto && nrm(state[o].name)===n) return o; }
   return null;
 }
+// Candidate duplicate PAIRS for the כפילויות tab: same normalized name, or one
+// name being a leading-word prefix / word-bounded substring of the other.
+function dupPairs(){
+  const ks=KEYS.filter(k=>!state[k].mergeInto && state[k].art);
+  const ns=ks.map(k=>({k,n:nrm(state[k].name)}));
+  const pairs=[];
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){
+    const a=ns[i],b=ns[j];
+    if(!a.n||!b.n) continue;
+    const [s,l]=a.n.length<=b.n.length?[a,b]:[b,a];
+    if(s.n===l.n || ((s.n.split(' ').length>=2||s.n.length>=6) &&
+       (l.n.startsWith(s.n+' ')||l.n.includes(' '+s.n+' ')||l.n.endsWith(' '+s.n))))
+      pairs.push([s.k,l.k]);
+  }
+  return pairs;
+}
 function inTab(k,t){
   const s=state[k];
   if(t==='merged')  return !!s.mergeInto;
-  if(t==='changed') return modified(k);
+  if(t==='changed') return modified(k)||overridden(k);   // pending + saved fixes
   if(t==='hidden')  return !s.mergeInto && !s.art;
+  if(t==='dupes')   return false;                        // rendered as pairs, not rows
   return !s.mergeInto && s.art;                      // visible
 }
 function srcOf(k){ return (ART[k].sources||[]).map(x=>SRCL[x]||x).join(' · '); }
@@ -216,7 +241,7 @@ function pending(){ return KEYS.filter(modified).length; }
 
 function renderTabs(){
   tabsEl.innerHTML = TABS.map(([t,l])=>{
-    const n=KEYS.filter(k=>inTab(k,t)).length;
+    const n = t==='dupes' ? dupPairs().length : KEYS.filter(k=>inTab(k,t)).length;
     return `<button class="tab${t===tab?' on':''}" data-t="${t}"><b>${l}</b><small>${n}</small></button>`;
   }).join('');
 }
@@ -237,21 +262,43 @@ function row(k){
       <div class=rinfo><b>${esc(s.name)}</b><span>ימוזג אל «${esc(w)}» · ${esc(srcOf(k))}</span></div>
       <div class=chev>‹</div></li>`;
   }
-  const flags = (modified(k)?'<span class=dot></span>':'') + (s.art?'':'🚫');
+  const flags = (modified(k)?'<span class=dot></span>':'') +
+                (!modified(k)&&overridden(k)?'<span class=saved>✏️</span>':'') +
+                (s.art?'':'🚫');
+  // One-tap hide on visible rows: the daily junk chore used to cost 4 taps each.
+  const hideBtn = (s.art && tab==='visible')
+    ? `<button class=hideBtn data-hide="${esc(k)}" aria-label="הסתר">🚫</button>` : '';
   return `<li class="${s.art?'':'hidden-row'}" data-k="${esc(k)}">
     <div class=cbadge>${CATE[s.cat]||'🎵'}</div>
     <div class=rinfo><b>${esc(s.name)}</b><span>${esc(srcOf(k))}</span></div>
-    <div class=flags>${flags}</div>
+    <div class=flags>${flags}</div>${hideBtn}
+    <div class=chev>‹</div></li>`;
+}
+function pairRow([a,b]){
+  // Shown shortest-first; tapping opens the LONGER entry with the merge picker
+  // pre-aimed at the shorter one.
+  return `<li data-pair-long="${esc(b)}" data-pair-short="${esc(a)}">
+    <div class=cbadge>🔗</div>
+    <div class=rinfo><b>${esc(state[a].name)}</b><span>↔ ${esc(state[b].name)} · לחיצה פותחת מיזוג</span></div>
     <div class=chev>‹</div></li>`;
 }
 function render(){
   renderTabs(); renderChips();
   const f=nrm(q.value);
+  if(tab==='dupes'){
+    let ps=dupPairs();
+    if(f) ps=ps.filter(([a,b])=>nrm(state[a].name).includes(f)||nrm(state[b].name).includes(f));
+    list.innerHTML = ps.length ? ps.slice(0,300).map(pairRow).join('')
+      : '<div class=empty>לא זוהו כפילויות אפשריות 🎉</div>';
+    updateSaveUi(); return;
+  }
   let ks=KEYS.filter(k=>inTab(k,tab));
   if(tab!=='merged' && cat!=='all') ks=ks.filter(k=>state[k].cat===cat);
   if(f) ks=ks.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
-  list.innerHTML = ks.length ? ks.slice(0,1200).map(row).join('')
-                             : '<div class=empty>אין אמנים בתצוגה הזו 🤷</div>';
+  let html = ks.length ? ks.slice(0,1200).map(row).join('')
+                       : '<div class=empty>אין אמנים בתצוגה הזו 🤷</div>';
+  if(ks.length>1200) html+='<div class=empty>מוצגים 1200 מתוך '+ks.length+' — חפשו כדי לצמצם</div>';
+  list.innerHTML = html;
   updateSaveUi();
 }
 // ONE save control: Telegram's MainButton in-app, the floating button in a browser.
@@ -260,11 +307,17 @@ function updateSaveUi(){
   const label=`💾 שמור ${n} שינויים`;
   if(inApp && tg.MainButton){
     fab.style.display='none';
-    if(n){ tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
+    if(n && ovLoaded){ tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
   }else{
     fab.textContent=label;
-    fab.style.display = n ? 'block' : 'none';
+    fab.style.display = (n && ovLoaded) ? 'block' : 'none';
   }
+  // A swipe-down closes a Mini App instantly — don't let it discard pending edits.
+  try{
+    if(inApp && tg.enableClosingConfirmation){
+      if(n) tg.enableClosingConfirmation(); else tg.disableClosingConfirmation();
+    }
+  }catch(e){}
 }
 
 // ---- the artist's current shows (dates + links), shown inside the sheet ----
@@ -328,29 +381,46 @@ function openSheet(k){
   $('sReset').style.display = overridden(k) ? 'block' : 'none';
   $('backdrop').style.display='block';
   $('sheet').style.display='block';
+  // Hardware/gesture back must close the SHEET (or collapse the merge picker),
+  // not exit the whole panel with all pending edits.
+  try{ if(inApp && tg.BackButton){ tg.BackButton.onClick(backFromSheet); tg.BackButton.show(); } }catch(e){}
   render();
+}
+function backFromSheet(){
+  if($('mPick').style.display==='block'){          // collapse the merge picker first
+    $('mPick').style.display='none';
+    $('sMergeAny').style.display='block';
+    return;
+  }
+  closeSheet();
 }
 function refreshMergeBtn(){
   const w=open && dupKey(open);
   $('sMerge').style.display = w ? 'block' : 'none';
   if(w) $('sMerge').textContent = `🔗 מזג עם הרשומה הכפולה «${state[w].name}»`;
 }
-function closeSheet(){ open=null; $('backdrop').style.display='none'; $('sheet').style.display='none'; render(); }
-function doMerge(k,w){ if(!w) return; state[k].mergeInto=w; closeSheet(); }
+function closeSheet(){
+  open=null; $('backdrop').style.display='none'; $('sheet').style.display='none';
+  try{ if(inApp && tg.BackButton) tg.BackButton.hide(); }catch(e){}
+  render();
+}
+function doMerge(k,w){ if(!k||!w||!state[k]) return; state[k].mergeInto=w; closeSheet(); }
 
 $('sName').addEventListener('input',()=>{
   if(!open) return;
-  state[open].name=$('sName').value.trim();
+  // An emptied field means "no rename" — storing '' left a phantom modified
+  // state that survived saves (save skips empty names but modified() didn't).
+  state[open].name=$('sName').value.trim()||persisted(open).name;
   $('sRevert').style.display = modified(open)?'block':'none';
   refreshMergeBtn();
 });
 $('sName').addEventListener('change',()=>{             // finished typing — offer merge on clash
   if(!open) return;
-  const w=dupKey(open);
-  if(w){
-    const msg=`כבר קיימת רשומה בשם «${state[open].name}». למזג את שתי הרשומות לאמן אחד?`;
-    if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(open,w); });
-    else if(confirm(msg)) doMerge(open,w);
+  const k=open, w=dupKey(k);                           // capture: the async confirm callback
+  if(w){                                               // may fire after the sheet changed
+    const msg=`כבר קיימת רשומה בשם «${state[k].name}». למזג את שתי הרשומות לאמן אחד?`;
+    if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(k,w); });
+    else if(confirm(msg)) doMerge(k,w);
   }
 });
 $('sCats').addEventListener('click',e=>{
@@ -366,32 +436,40 @@ $('sVis').addEventListener('change',()=>{
 });
 $('sMerge').addEventListener('click',()=>{ if(open) doMerge(open,dupKey(open)); });
 // Free merge: pick ANY artist as the merge target (search + tap + confirm).
-$('sMergeAny').addEventListener('click',()=>{
+// The search is pre-seeded with the name's first two words — the target almost
+// always shares them ("רמי קליינשטיין מארח את…" → "רמי קליינשטיין").
+function openMergePick(seed){
   $('sMergeAny').style.display='none';
   $('mPick').style.display='block';
-  $('mSearch').value='';
+  $('mSearch').value = seed!==undefined ? seed
+    : (state[open]?state[open].name.split(/\s+/).slice(0,2).join(' '):'');
   renderMergeList();
+  if(!$('mList').querySelector('.mrow')){ $('mSearch').value=''; renderMergeList(); }
   $('mSearch').focus();
-});
+}
+$('sMergeAny').addEventListener('click',()=>openMergePick());
 function renderMergeList(){
   if(!open) return;
   const f=nrm($('mSearch').value);
   let ks=KEYS.filter(k=>k!==open && !state[k].mergeInto);
   if(f) ks=ks.filter(k=>nrm(state[k].name).includes(f)||k.toLowerCase().includes(f));
-  $('mList').innerHTML = ks.slice(0,60).map(k=>
-    `<a class="showrow mrow" data-k="${esc(k)}">
-      <span class=sdate>${CATE[state[k].cat]||'🎵'}</span>
-      <span class=svenue><b>${esc(state[k].name)}</b> · ${esc(srcOf(k))}</span>
+  const shown=ks.slice(0,60);
+  $('mList').innerHTML = shown.map(k=>
+    `<a class="showrow mrow${state[k].art?'':' soldout'}" data-k="${esc(k)}">
+      <span class=sdate>${state[k].art?(CATE[state[k].cat]||'🎵'):'🚫'}</span>
+      <span class=svenue><b>${esc(state[k].name)}</b> · ${esc(srcOf(k))}${state[k].art?'':' · מוסתר'}</span>
       <span class=schev>‹</span></a>`).join('')
+    + (ks.length>60?`<div class="fld">…ועוד ${ks.length-60} — חפשו כדי לצמצם</div>`:'')
     || '<div class="fld">לא נמצא אמן כזה</div>';
 }
 $('mSearch').addEventListener('input',renderMergeList);
 $('mList').addEventListener('click',e=>{
   const a=e.target.closest('.mrow'); if(!a||!open) return;
-  const w=a.dataset.k;
-  const msg=`למזג את «${state[open].name}» לתוך «${state[w].name}»?`;
-  if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(open,w); });
-  else if(confirm(msg)) doMerge(open,w);
+  const k=open, w=a.dataset.k;                       // capture before the async confirm
+  const hiddenNote=state[w].art?'':'\n⚠️ אמן היעד מוסתר — העוקבים לא יראו אותו.';
+  const msg=`למזג את «${state[k].name}» לתוך «${state[w].name}»?${hiddenNote}`;
+  if(tg && tg.showConfirm) tg.showConfirm(msg, ok=>{ if(ok) doMerge(k,w); });
+  else if(confirm(msg)) doMerge(k,w);
 });
 $('sRevert').addEventListener('click',()=>{        // discard UNSAVED edits
   if(!open) return;
@@ -409,7 +487,21 @@ $('backdrop').addEventListener('click',closeSheet);
 
 // ---- list / header events ----
 list.addEventListener('click',e=>{
-  const li=e.target.closest('li'); if(li) openSheet(li.dataset.k);
+  const hb=e.target.closest('.hideBtn');
+  if(hb){                                            // one-tap hide, no sheet
+    e.stopPropagation();
+    const k=hb.dataset.hide;
+    if(state[k]){ state[k].art=false; render(); }
+    return;
+  }
+  const li=e.target.closest('li'); if(!li) return;
+  if(li.dataset.pairLong){                           // duplicates tab: open merge flow
+    const long=li.dataset.pairLong, short=li.dataset.pairShort;
+    openSheet(long);
+    openMergePick(state[short]?state[short].name:'');
+    return;
+  }
+  if(li.dataset.k) openSheet(li.dataset.k);
 });
 tabsEl.addEventListener('click',e=>{
   const b=e.target.closest('.tab'); if(!b) return;
@@ -425,6 +517,12 @@ q.addEventListener('input',render);
 async function save(){
   if(!inApp||busy) return; busy=true;
   if(tg.MainButton) tg.MainButton.showProgress();
+  // Hard gate: if the saved overrides never loaded, a "diff" against raw values
+  // would omit every existing fix and the POST would wipe them all.
+  if(!ovLoaded||!KEYS.length){
+    (tg.showAlert?tg.showAlert:alert)('הנתונים לא נטענו במלואם — לא שומר. רענן ונסה שוב.');
+    busy=false; if(tg.MainButton) tg.MainButton.hideProgress(); return;
+  }
   const overrides={};
   for(const k of KEYS){
     const b=base(ART[k]), s=state[k], o={};
@@ -432,18 +530,24 @@ async function save(){
     if(s.name && s.name!==b.name) o.name=s.name;
     if(s.cat!==b.cat) o.category=s.cat;
     if(s.art!==b.art) o.is_artist=s.art;
+    // Un-merging a SAVED merge needs an explicit tombstone: the Worker carries
+    // forward stored merge_into entries it isn't told about (protecting the
+    // scan's auto-merges), so silence would resurrect this one.
+    if((OV0[k]||{}).merge_into && !s.mergeInto) o.merge_into=null;
     if(Object.keys(o).length) overrides[k]=o;
   }
   // Preserve override entries whose key is no longer in the catalogue (merged-away
   // losers etc.) — old follows still resolve through their merge_into mapping.
-  // Also guards against wiping everything if the catalogue failed to load.
   for(const k in OV0) if(!(k in ART) && !(k in overrides)) overrides[k]=OV0[k];
-  if(!KEYS.length){ (tg.showAlert?tg.showAlert:alert)('הקטלוג לא נטען — לא שומר.'); busy=false; if(tg.MainButton) tg.MainButton.hideProgress(); return; }
   try{
     const r=await fetch(WORKER+'/api/overrides',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({initData:tg.initData, overrides})});
-    if(r.ok){ const j=await r.json();
-      OV0=JSON.parse(JSON.stringify(overrides));   // saved -> new baseline; pending resets to 0
+    if(r.ok){
+      // Baseline first — the save DID land even if reading the response body fails.
+      OV0=JSON.parse(JSON.stringify(overrides));
+      for(const k in OV0) if(OV0[k].merge_into===null){ delete OV0[k].merge_into;
+        if(!Object.keys(OV0[k]).length) delete OV0[k]; }
+      const j=await r.json().catch(()=>({count:Object.keys(overrides).length}));
       (tg.showAlert?tg.showAlert:alert)(`נשמרו ${j.count} התאמות ✅ (מיזוגים מתאחדים בסריקה הבאה)`);
     } else { (tg.showAlert?tg.showAlert:alert)('שמירה נכשלה ('+r.status+'). ודא שאתה האדמין.'); }
   }catch(e){ (tg.showAlert?tg.showAlert:alert)('שגיאת רשת'); }
@@ -455,12 +559,17 @@ fab.addEventListener('click',()=>{ if(inApp) save(); else (tg&&tg.showAlert?tg.s
 async function load(){
   try{
     const [a,ov]=await Promise.all([
-      fetch(WORKER+'/api/catalogue').then(r=>r.json()),
-      fetch(WORKER+'/api/overrides').then(r=>r.json()).catch(()=>({}))]);
-    ART=a||{}; OV0=ov||{};
+      fetch(WORKER+'/api/catalogue').then(r=>{ if(!r.ok) throw new Error('catalogue HTTP '+r.status); return r.json(); }),
+      // Overrides failure is NOT survivable for editing (see save's ovLoaded gate):
+      // resolve to null so we can tell "failed" apart from "empty".
+      fetch(WORKER+'/api/overrides').then(r=>r.ok?r.json():null).catch(()=>null)]);
+    ART=(a&&typeof a==='object')?a:{};
+    ovLoaded = ov!==null && typeof ov==='object';
+    OV0 = ovLoaded ? ov : {};
+    $('ovwarn').style.display = ovLoaded ? 'none' : 'block';
     KEYS=Object.keys(ART);
     for(const k of KEYS){
-      const b=base(ART[k]), o=ov[k]||{};
+      const b=base(ART[k]), o=OV0[k]||{};
       state[k]={ name:o.name||b.name, cat:o.category||b.cat,
                  art:('is_artist' in o)? !!o.is_artist : b.art,
                  mergeInto:o.merge_into||null };

@@ -80,7 +80,7 @@ Each site = one module subclassing `Scraper` (see `scrapers/base.py`), returning
 | `eventim` | ✅ **built & verified** | `scrapers/eventim.py`. Covers zappa-club **and all Eventim Israel venues** (זאפה, היכל התרבות, אמפי קיסריה, …). zappa-club is an Eventim white-label; both block plain HTTP at the TLS layer → use `curl_cffi` `impersonate="chrome"`. Reads the Eventim API (recipe below); `attractions[0].name` is already a clean artist. Verified **269 shows / 155 artists** live on 2026-06-20. |
 | `grayclub` | ✅ **built & verified** | `scrapers/grayclub.py`. Card-based: iterates `div.article-list` (each card = `<h3>` title + DD.MM.YYYY date + one `/event/<a>/<b>/` link). Drives off `<h3>` (the title), NOT the city-section `<h2>` (תלאביב/יהוד/מודיעין) — that was the old bug. Dedupe by event path; `clean_artist` applied. Verified **75 shows / 69 artists** live on 2026-06-20. |
 | `kupat` | ✅ **built & verified** | `scrapers/kupat.py`. Kupat Tel Aviv (WordPress aggregator). Homepage cards (`article.item-show`, skip `external_url` promos) → each show's detail page (`ul.show-details-list`). Handles single-date (labelled "תאריך"/"מיקום") and multi-date layouts (one "DD/MM venue" row per date). A tour under ONE url with many dates/cities → a Show per date+venue (e.g. כשאמא באה הנה = 10). **Every** date is keyed `url#<iso>` (even single-date) — so when a popular show opens a new date, that adds exactly ONE new `show_id` and never re-keys the existing dates. (Bug fixed 2026-06-21: single-date shows used a bare url, so opening a 2nd date flipped them to `url#iso` and re-alerted every date — e.g. עדן בן זקן showed as 3 new instead of 1.) Years inferred; fetched fresh each scan (~46 detail fetches). Verified **70 date-events / 44 artists** on 2026-06-20. |
-| `comy` | ✅ **built & verified** | `scrapers/comy.py`. COMY (comy.co.il) — **stand-up only**. Homepage `.event` cards give each act's `<h3>` name + `a.event-inner` event url; we then fetch each event's detail page and emit **one Show per date** (`.single-event-details` rows → `.date` DD.MM + `.single-light` day/time + `.single-place-string` venue). Year inferred (nearest future); url gets `#<iso>` so each date is a distinct `show_id` (same-date rows dedupe). Per-date is deliberate: comedians open new dates one at a time, so each new date must raise its own alert (`url#iso` keys it). ~89 detail fetches/scan, curl_cffi `impersonate="chrome"`. **Every COMY artist is forced to category `standup`** (see `scan.force_standup` / `make_artist_page`). Verified **456 date-shows / 85 artists** on 2026-06-21. |
+| `comy` | ✅ **built & verified** | `scrapers/comy.py`. COMY (comy.co.il) — **stand-up only**. Homepage `.event` cards give each act's `<h3>` name + `a.event-inner` event url; we then fetch each event's detail page and emit **one Show per date** (`.single-event-details` rows → `.date` DD.MM + `.single-light` day/time + `.single-place-string` venue). Year inferred (nearest future); url gets `#<iso>` so each date is a distinct `show_id` (same-date rows dedupe). Per-date is deliberate: comedians open new dates one at a time, so each new date must raise its own alert (`url#iso` keys it). ~89 detail fetches/scan, curl_cffi `impersonate="chrome"`. COMY artists default to `standup` via `scan.force_standup` — but since 2026-07-10 only entries WITHOUT a current-version classification (`cat_v != CLS_VERSION`) are stamped, an all-"תיאטרון"-venue act defaults to `theater` (COMY also sells Beit-Lessin plays — 17 were mislabeled standup), and manual/AI fixes stick. Recurring club nights (מרתון/במה פתוחה/open-mic) are skipped at the scraper. Verified **456 date-shows / 85 artists** on 2026-06-21. |
 | `comedybar` | ✅ **built & verified** | `scrapers/comedybar.py`. Comedy Bar sells via SmartTicket at **tickets.comedybar.net**. The homepage is only a rolling window of the soonest ~100 cards, so a far date looked "new" the day it entered the window (re-alert bug). Fixed: the homepage is used **only to discover** single-comedian shows (`.show_cube` `.h2` title; recurring club nights — open-mic, marathons, "ערב סטנד אפ עם כוכבי…", "קומדי בר <city>", "במה פתוחה…" — skipped via `_SKIP`; Arabic-script dupes skipped; "<name> במופע סטנד אפ" → suffix stripped → `clean_artist`). Then we fetch each show's **detail page** and read its FULL date table (`table tbody tr`: date "ביום … 3 ביולי 2026" + venue + `?id`), so we always have the complete schedule (e.g. שחר חסון 24 dates to Aug 29, not the 16 the homepage showed). **One Show per date**, url `…/#<iso>` (since `show_id` strips the `?query` and the path repeats per date; ids stay stable). **Forced `standup`** like COMY. curl_cffi impersonation. Verified **48 date-shows / 8 artists** on 2026-06-22. |
 | `ticketmaster` | ✅ **built & verified** | `scrapers/ticketmaster.py`. Ticketmaster IL (ticketmaster.co.il) — Angular SPA, but the **sitemap** lists every event: `GET /wbtxapi/api/v1/siteMap/event` → `…/event/<code>/ALL/iw`. Each event PAGE is SSR: `<h1>` artist + one `.performance-listing` per date (`.date-box` `.day`+Hebrew `.month`, `.time`, `.performance-listing-venue`, "אזל…" chip = sold out). One Show per date, url `…/event/<code>/ALL/iw#<iso>`; year inferred; sold-out flagged. Transport: sitemap via plain `requests` (curl_cffi trips its HTTP/2), event pages via curl_cffi `impersonate="chrome"`. ~39 events → verified **18 date-shows / 13 artists** on 2026-06-25. |
 | (others) | not planned | **Cross-source dedup deferred:** a live check found 0 same-artist+same-date overlaps across barby/eventim/gray/kupat. Stand-up acts *can* span COMY / Comedy Bar / Kupat → a follower might get one alert per source for the same act; revisit dedup only if this proves noisy. Kupat's other linked sites (brennerock/amphi) are still NOT scraped. **`STANDUP_SOURCES`** (in `scan.py`) = `{comy, comedybar}` drives the forced-standup logic; add future stand-up-only sites there. |
@@ -93,7 +93,7 @@ Fetch with `curl_cffi` (`requests.get(url, impersonate="chrome")`) — plain `re
 - `web__eventim-co-il` = **all Eventim Israel** live shows (we chose this over zappa-only for max coverage). To narrow to just zappa-club, add `retail_partner=ZPE` — confirm it actually narrows before relying on it.
 
 ### Artist-name unification (`core/artist_names.py`)
-`clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/חוגג/השקת/לייב/מארח/מציג…), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim uses the API's clean `attractions` name directly. `show_id` is now keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
+`clean_artist(raw)` extracts the core artist from a marketing title (e.g. "טיפקס- מופע צהרים" → "טיפקס", "ג'ירפות - חוגגים…" → "ג'ירפות"). Splits on dashes/`|`/`:` adjacent to space or Hebrew (keeps "T-Puse"), cuts at description keywords (מופע/אורח/**ואורח·ואורחים/בהשתתפות/משתתפים/מזמין/פוגש/בליווי/feat**/חוגג/השקת/לייב/מארח/מציג…), strips dangling connectors after a cut (עם/את/של — "ברי סחרוף עם" → "ברי סחרוף"), drops venue/filler (בבארבי…), and preserves intra-word geresh (ג'ירפות, ג׳ימבו) + abbreviations (חו״ל). Scrapers set `Show.artist` = clean name, `Show.title` = full title (when richer). eventim now runs `clean_artist` + `looks_non_artist` on the API's `attractions` name too (guest residue and promo attractions used to enter raw). `show_id` is keyed on the per-source **URL** (stable, unique) so matinee/evening same-day shows don't collide.
 
 ### AI classification (Google Gemini, web-grounded — free; Workers AI fallback)
 The Worker's `/classify` endpoint turns each artist name into `{is_artist, name,
@@ -106,20 +106,36 @@ performer on the web, so e.g. bare "קובי מימון" → standup correctly) 
 (`cls4:<hash>`, successes only; titles it can't classify are **omitted**, not
 defaulted, so a quota hiccup never sticks a wrong label).
 - **Deterministic junk pre-filter (no quota):** `core.artist_names.looks_non_artist`
-  (word-boundary regex: הרצאות / הטבות / כנס / ועידה / אקספו / סדנה / הקרנה / מונדיאל /
-  שובר מתנה / leading וועד…) → `scan.mark_non_artists()` flags them `is_artist:false,
-  cat_v=CLS_VERSION` **before** the AI ever sees them. Careful cases proven safe:
-  "כנסיית השכל" (band) and "מבאך ועד הביטלס" are NOT hit; stand-up sources skipped.
+  (word-boundary regex: הרצאות / הטבה·הטבות / **עובדי·לעובדי / לקוחות·ללקוחות /
+  גמלאי / מנויי / leading הופעות־ל / ארגון / עמותת** / כנס / ועידה / אקספו / סדנה /
+  הקרנה / מונדיאל / שובר מתנה / במה פתוחה / מרתון סטנדאפ / פסטיבל / leading וועד…)
+  → `scan.mark_non_artists()` flags them `is_artist:false, cat_v=CLS_VERSION`
+  **before** the AI ever sees them. The same check runs INSIDE eventim (promo
+  "attractions" like "הטבה ללקוחות flycard" once collected 19 unrelated shows —
+  now it falls back to the event title, and junk-titled products are dropped) and
+  comy (recurring club nights: מרתון / במה פתוחה / open mic — like comedybar's
+  `_SKIP`). Careful cases proven safe against the full catalogue (see the
+  2026-07-10 sweep): "כנסיית השכל", "התקווה 6", "מבאך ועד הביטלס" are NOT hit;
+  stand-up sources skipped in mark_non_artists.
 - **Free-quota reality:** Gemini's free *grounded-search* allowance is small
   (~70 artists/day; `gemini-2.0-flash` had 0 free quota — 2.5-flash works). So
   `scan.classify_artists(cap=60)` upgrades the catalogue **incrementally** — it
   re-classifies only artists whose `cat_v` ≠ `CLS_VERSION` (in `scan.py`), keeping
-  the existing category until Gemini re-does it (**no regression**), and **brand-new
-  artists jump the queue** (no `cat_v` at all → classified in the same run, so the
-  daily summary can filter fresh junk). Bump `CLS_VERSION` (+ the `cls4:` Worker
-  cache prefix + the Worker's `CLS_VERSION` const) after a model/prompt change; the
-  scan checks the `__v` field `/classify` returns and **skips classification while
-  the Worker still runs an older version** (prevents stamping old-prompt results).
+  the existing category until Gemini re-does it (**no regression**). **Quota
+  budgeting (2026-07-10):** brand-new artists (no `cat_v`) classify EVERY run; the
+  stale backlog is retried only in `BACKLOG_HOURS` (Israel 7/13/20) — hourly
+  retries of the same 60 names used to burn the whole daily quota by morning,
+  leaving afternoon junk publicly visible. **Gemini errors now fall back to
+  Workers AI** for that batch (results tagged `f:true`, NOT KV-cached; the scan
+  applies their `is_artist`/category but does NOT stamp `cat_v`, so Gemini redoes
+  them properly later). Results are aligned by an echoed line-index `"i"` (pure
+  positional alignment poisoned the permanent cache when a line was skipped);
+  `is_artist` must be affirmatively `true`; unknown categories are retried, never
+  coerced to music. Bump `CLS_VERSION` (+ the `cls4:` cache prefix + the Worker's
+  const) after a model/prompt change; the scan checks the returned `__v` and
+  skips stamping while the Worker runs an older version — but still applies
+  `is_artist=false` results (junk-hiding is version-insensitive; a deploy gap
+  must not let fresh junk go public).
 - **Title context (v4):** each `/classify` request line is
   `"<display> ::: <sample show title> @ <venue>"` (sample = lexicographically first,
   from shows.json via `scan._classify_context`) so the AI judges the act from its
@@ -129,13 +145,20 @@ defaulted, so a quota hiccup never sticks a wrong label).
   part of the current name (so "…של תמיר בר" → "תמיר בר", "נגה ארז מארחת את…" →
   "נגה ארז"), never an expansion/rewrite. Display only — the follow `artist_key` is
   unchanged.
-- **Duplicate auto-merge (v4):** a shortened display colliding with another artist
-  ("מייקל הרפז" twice) is detected by `scan.propose_merges` (same normalized display
-  under 2+ keys; winner = the key that IS the normalized display, else the shortest)
-  and sent with `/notify` as `auto_merges`; the Worker's `recordAutoMerges` writes
-  them into the KV `overrides` as `merge_into` (cycle-guarded, marked `auto:true`).
-  Follows keep resolving via `mergeKey`, the Mini App hides losers live, and the
-  next scan collapses the catalogue entries (engine merge logic, unchanged).
+- **Duplicate auto-merge (v4, extended 2026-07-10):** three detectors feed ONE
+  channel (`/notify` `auto_merges` → the Worker's `recordAutoMerges` writes KV
+  `overrides.merge_into`, cycle-guarded, `auto:true`; follows resolve via
+  `mergeKey`; the next scan collapses the entries): (1) `scan.propose_merges` —
+  same normalized display under 2+ keys, PLUS a prefix pass (a longer key that
+  starts with an established ≥2-word key and has no live shows, the guest-title
+  residue class); (2) `engine.run_scan`'s `variant_merges` — a catalogue entry
+  whose shows all re-attributed to a shorter established artist (orphaned
+  variants used to linger forever and their followers silently lost alerts);
+  (3) **`data/curated_merges.json`** — hand-curated merges committed to the repo
+  (`scan.curated_merges()`), also unioned into the merges run_scan applies.
+  `engine._canonical_artist` requires the established prefix to be **≥2 words**
+  — the 1-word key "תמר" (a festival) used to hijack the shows of "תמר ריילי"
+  and "תמר יהלומי ויונתן קלימי" (fixed 2026-07-10; self-heals on rescan).
 - **The daily summary only reports real artists:** `scan.main()` re-loads
   artists.json AFTER classification and drops `is_artist:false` entries from both
   `new_artists` and `new_shows` before POSTing `/notify` — junk like
@@ -237,8 +260,35 @@ GitHub Actions (repo → Settings → Secrets and variables → Actions):
 - The repo of record is https://github.com/AYALSO/concert-alerts (public; Actions+Pages
   run from it). This folder was re-connected to it with `git init` on 2026-07-07.
 
+## 2026-07-10 full review + overhaul (multi-agent audit; see repo history)
+A full audit + fix pass landed together: the junk-regex/eventim/comy gates above,
+the ≥2-word prefix guard + 3-source auto-merge, quota budgeting + Workers-AI
+fallback, and a one-time catalogue cleanup (16 junk entries hidden incl. rotating
+club nights and the "תמר" festival; כשאמא באה הנה + יהודית כץ un-hidden; 26
+categories fixed — mostly Beit-Lessin plays standup→theater, live podcasts→
+lecture; 9 curated merges in `data/curated_merges.json`). Worker hardening:
+pushNewShows never aborts on one failed send (429 retry_after honored, 403 marks
+`sub.blocked`), same-artist multi-date alerts group into one message,
+/following + /upcoming resolve merges and overrides, URLs are HTML-escaped,
+"today" uses Asia/Jerusalem, the daily summary retro-filters junk hidden later
+in the day and only resets after a confirmed send, `initData` older than 24h is
+rejected, **admin auth requires the `ADMIN_CHAT_ID` secret** (KV `admin_chat` is
+only the summary destination — the old bootstrap let the first /id sender become
+admin), and `/api/overrides` POST carries forward stored `merge_into` entries
+the panel didn't see (un-merge = explicit `merge_into:null` tombstone).
+Mini App: renders instantly from inline data (fetches in parallel, baked
+overrides snapshot as fallback), the save button appears only when the selection
+differs from the server state and is BLOCKED while the follows GET failed (a
+full-replace save used to silently wipe all follows), geresh-insensitive search,
+clear-all confirm, live counter, a11y roles, Telegram theme support. Admin
+panel: saving is blocked if the overrides fetch failed (used to wipe every saved
+fix), swipe-close asks confirmation with pending edits, BackButton closes the
+sheet, one-tap 🚫 hide on rows, a "כפילויות?" tab of likely duplicate pairs that
+opens the merge flow pre-aimed, merge picker pre-seeded/badges hidden targets,
+"שינויים" also lists saved overrides (✏️).
+
 ## Next steps (optional)
-1. **Artist-list cleanup via Claude** (the planned cheap pass): drop non-artist events
-   (plays/festivals, "מי רצח את…") and perfect tricky names. Needs an Anthropic API key.
-2. Cross-source dedup only if real overlaps appear (a live check found none today).
-3. More sources only if they add dated, non-duplicate coverage.
+1. Cross-source dedup only if real overlaps appear (a live check found none).
+2. More sources only if they add dated, non-duplicate coverage.
+3. KV `subscribers` is one blob (read-modify-write) — if user count grows,
+   migrate to per-chat keys to remove the lost-update race.
