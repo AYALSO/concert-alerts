@@ -1459,16 +1459,6 @@
       "eventim"
     ]
   },
-  "הבלט הלאומי של רוסיה גורדייב": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "הבלט הלאומי של רוסיה - גורדייב",
-    "first_seen": "2026-06-20T20:16:09.404688+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "הגבעטרון": {
     "cat_v": 4,
     "category": "music",
@@ -1484,16 +1474,6 @@
     "category": "theater",
     "display": "הדסה",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הופעות ללקוחות מקס": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הופעות ללקוחות מקס",
-    "first_seen": "2026-07-08T11:00:44.645127+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -2379,8 +2359,11 @@
     ]
   },
   "ללכת שבי אחריה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "ללכת שבי אחריה",
     "first_seen": "2026-07-10T19:00:53.392912+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -2468,8 +2451,11 @@
     ]
   },
   "מוניקה סקס": {
+    "cat_v": 4,
+    "category": "music",
     "display": "מוניקה סקס",
     "first_seen": "2026-07-10T19:00:53.392676+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -2526,8 +2512,11 @@
     ]
   },
   "מחווה לאלטון גון ובילי גואל": {
+    "cat_v": 4,
+    "category": "music",
     "display": "מחווה לאלטון ג'ון ובילי ג'ואל",
     "first_seen": "2026-07-10T19:00:53.391082+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -2667,8 +2656,11 @@
     ]
   },
   "מפגש מאזינים": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "מפגש מאזינים",
     "first_seen": "2026-07-10T19:00:56.430724+00:00",
+    "is_artist": false,
     "sources": [
       "grayclub"
     ]
@@ -3152,16 +3144,6 @@
       "comedybar"
     ]
   },
-  "עובדי בנק לאומי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "עובדי בנק לאומי",
-    "first_seen": "2026-07-09T04:00:52.108951+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "עודד מנסטר": {
     "cat_v": 4,
     "category": "standup",
@@ -3390,16 +3372,6 @@
       "eventim"
     ]
   },
-  "פודקאסט רצח הסיפור של בלה קיש": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "פודקאסט רצח",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "פול טראנק": {
     "cat_v": 4,
     "category": "music",
@@ -3493,8 +3465,11 @@
     ]
   },
   "פרופ דן אריאלי ודר יעל דורון": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "פרופ' דן אריאלי וד\"ר יעל דורון",
     "first_seen": "2026-07-10T19:00:53.393470+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -3769,15 +3744,21 @@
     ]
   },
   "ריטה lets dance": {
-    "display": "ריטה Let`s Dance",
+    "cat_v": 4,
+    "category": "music",
+    "display": "ריטה",
     "first_seen": "2026-07-10T19:00:49.951842+00:00",
+    "is_artist": true,
     "sources": [
       "barby"
     ]
   },
   "ריטה ושירי מימון": {
+    "cat_v": 4,
+    "category": "music",
     "display": "ריטה ושירי מימון",
     "first_seen": "2026-07-10T19:01:11.980928+00:00",
+    "is_artist": true,
     "sources": [
       "kupat"
     ]
