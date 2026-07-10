@@ -1,0 +1,28 @@
+# Deploys the Cloudflare Worker automatically whenever worker/ changes on main.
+# Needs ONE repo secret: CLOUDFLARE_API_TOKEN (dash.cloudflare.com -> My Profile ->
+# API Tokens -> Create Token -> "Edit Cloudflare Workers" template). The Worker's
+# own secrets (BOT_TOKEN etc.) already live in Cloudflare and are untouched by deploys.
+name: deploy-worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+      - ".github/workflows/deploy-worker.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy with wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
