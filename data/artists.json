@@ -10,6 +10,16 @@
       "grayclub"
     ]
   },
+  "andalusi sessions 1": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Andalusi Sessions #1",
+    "first_seen": "2026-07-10T04:00:59.436728+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "axis rock argentino by latin power": {
     "cat_v": 4,
     "category": "music",
@@ -66,6 +76,16 @@
     "display": "Crochestra by Freedom Fighters & Meir Briskman",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "CUPON10",
+    "first_seen": "2026-07-10T04:00:54.821999+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -1495,7 +1515,8 @@
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "הילה רוח": {
@@ -2094,6 +2115,16 @@
     "is_artist": true,
     "sources": [
       "eventim",
+      "grayclub"
+    ]
+  },
+  "כנפיים x רונה קינן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רונה קינן",
+    "first_seen": "2026-07-10T04:00:59.439458+00:00",
+    "is_artist": true,
+    "sources": [
       "grayclub"
     ]
   },
