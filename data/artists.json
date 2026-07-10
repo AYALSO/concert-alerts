@@ -2118,16 +2118,6 @@
       "grayclub"
     ]
   },
-  "כנפיים x רונה קינן": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "רונה קינן",
-    "first_seen": "2026-07-10T04:00:59.439458+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "כספיון": {
     "cat_v": 4,
     "category": "theater",
@@ -3681,7 +3671,8 @@
     "first_seen": "2026-06-20T20:16:09.402696+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "רוני דואני": {
