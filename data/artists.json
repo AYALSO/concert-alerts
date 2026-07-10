@@ -192,6 +192,16 @@
       "ticketmaster"
     ]
   },
+  "impulso": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "IMPULSO",
+    "first_seen": "2026-07-10T19:00:53.388344+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "itraveljerusalem": {
     "cat_v": 4,
     "category": "music",
@@ -308,6 +318,16 @@
     "category": "music",
     "display": "VIVO",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "walkways": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Walkways",
+    "first_seen": "2026-07-10T19:00:53.390151+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -939,16 +959,6 @@
       "barby"
     ]
   },
-  "באלישג ויובי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "באלישג ויובי",
-    "first_seen": "2026-06-20T20:16:09.687941+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "בזי בי": {
     "cat_v": 4,
     "category": "music",
@@ -1189,7 +1199,8 @@
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "barby"
     ]
   },
   "גירפות": {
@@ -1222,16 +1233,6 @@
     "sources": [
       "eventim",
       "grayclub"
-    ]
-  },
-  "ג׳ימבו ג׳יי ותזמורת הרחוב": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "ג׳ימבו ג׳יי ותזמורת הרחוב",
-    "first_seen": "2026-07-07T20:00:46.668799+00:00",
-    "is_artist": true,
-    "sources": [
-      "barby"
     ]
   },
   "דב נבון": {
@@ -1335,6 +1336,16 @@
       "barby"
     ]
   },
+  "דליה גוטמן ושחר סגל": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "דליה גוטמן ושחר סגל",
+    "first_seen": "2026-07-10T19:00:53.389645+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דני סנדרסון": {
     "cat_v": 4,
     "category": "music",
@@ -1408,6 +1419,16 @@
       "grayclub"
     ]
   },
+  "ד״ר יעל דורון": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "ד״ר יעל דורון",
+    "first_seen": "2026-07-10T19:00:53.395760+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "האחים שטרית": {
     "cat_v": 4,
     "category": "music",
@@ -1423,6 +1444,16 @@
     "category": "theater",
     "display": "הבלט הישראלי",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הבלט הלאומי של רוסיה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "הבלט הלאומי של רוסיה",
+    "first_seen": "2026-07-10T19:00:53.394496+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -1463,16 +1494,6 @@
     "category": "music",
     "display": "הופעות ללקוחות מקס",
     "first_seen": "2026-07-08T11:00:44.645127+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "הטבה ללקוחות flycard": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הטבה ללקוחות FLYCARD",
-    "first_seen": "2026-06-21T06:09:08.467368+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -1496,6 +1517,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "הטיש הגדול": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "הטיש הגדול",
+    "first_seen": "2026-07-10T19:00:52.731262+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "היהודים": {
@@ -1567,6 +1598,16 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
+    ]
+  },
+  "המחווה לפיל קולינס sussudio": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "SUSSUDIO",
+    "first_seen": "2026-07-10T19:00:53.391276+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "המרתון הגדול": {
@@ -1680,15 +1721,6 @@
       "ticketmaster"
     ]
   },
-  "וועד הרופאים והאחיות הדסה": {
-    "cat_v": 4,
-    "display": "וועד הרופאים והאחיות - הדסה",
-    "first_seen": "2026-07-09T10:00:58.656747+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "זוכרים לרקוד": {
     "cat_v": 4,
     "category": "music",
@@ -1758,6 +1790,16 @@
     "sources": [
       "eventim",
       "grayclub"
+    ]
+  },
+  "חלוקת פרסים וקונצרט הזוכים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חלוקת פרסים וקונצרט הזוכים",
+    "first_seen": "2026-07-10T19:00:52.727688+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "חן מזרחי": {
@@ -1838,16 +1880,6 @@
     "is_artist": true,
     "sources": [
       "barby"
-    ]
-  },
-  "טו באב": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "ט\"ו באב",
-    "first_seen": "2026-06-30T13:00:39.082900+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "טוהר גדסי": {
@@ -2346,6 +2378,13 @@
       "kupat"
     ]
   },
+  "ללכת שבי אחריה": {
+    "display": "ללכת שבי אחריה",
+    "first_seen": "2026-07-10T19:00:53.392912+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "מאור כהן": {
     "cat_v": 4,
     "category": "music",
@@ -2428,6 +2467,13 @@
       "comedybar"
     ]
   },
+  "מוניקה סקס": {
+    "display": "מוניקה סקס",
+    "first_seen": "2026-07-10T19:00:53.392676+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "מופע הארנבות של דר קספר": {
     "cat_v": 4,
     "category": "music",
@@ -2446,6 +2492,16 @@
     "is_artist": true,
     "sources": [
       "kupat",
+      "comy"
+    ]
+  },
+  "מור חן": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "מור חן",
+    "first_seen": "2026-07-10T19:01:41.762276+00:00",
+    "is_artist": true,
+    "sources": [
       "comy"
     ]
   },
@@ -2469,6 +2525,13 @@
       "kupat"
     ]
   },
+  "מחווה לאלטון גון ובילי גואל": {
+    "display": "מחווה לאלטון ג'ון ובילי ג'ואל",
+    "first_seen": "2026-07-10T19:00:53.391082+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "מחווה לביטלס all you need is love": {
     "cat_v": 4,
     "category": "music",
@@ -2477,16 +2540,6 @@
     "is_artist": false,
     "sources": [
       "grayclub"
-    ]
-  },
-  "מחווה לקולדפליי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מחווה לקולדפליי",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "מחווה לקולנוע הישראלי": {
@@ -2571,16 +2624,6 @@
       "kupat"
     ]
   },
-  "מירי מסיקה x קרן פלס": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מירי מסיקה X קרן פלס",
-    "first_seen": "2026-06-20T20:16:36.336165+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
-    ]
-  },
   "מירית גליצקי": {
     "cat_v": 4,
     "category": "standup",
@@ -2623,12 +2666,9 @@
       "grayclub"
     ]
   },
-  "מפגש מאזינים של": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "מפגש מאזינים של",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
+  "מפגש מאזינים": {
+    "display": "מפגש מאזינים",
+    "first_seen": "2026-07-10T19:00:56.430724+00:00",
     "sources": [
       "grayclub"
     ]
@@ -2813,16 +2853,6 @@
     "is_artist": true,
     "sources": [
       "barby"
-    ]
-  },
-  "נועם חורב": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "נועם חורב",
-    "first_seen": "2026-06-20T20:16:55.744808+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
     ]
   },
   "נועם קליינשטיין": {
@@ -3031,16 +3061,6 @@
       "comy"
     ]
   },
-  "סינגולדה וחברים": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "סינגולדה",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "סינדרלה בלט על הקרח": {
     "cat_v": 4,
     "category": "theater",
@@ -3059,16 +3079,6 @@
     "is_artist": true,
     "sources": [
       "barby"
-    ]
-  },
-  "סיפור אהבה": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "סיפור אהבה",
-    "first_seen": "2026-07-01T14:01:22.574109+00:00",
-    "is_artist": true,
-    "sources": [
-      "comy"
     ]
   },
   "סיפור הפרברים": {
@@ -3147,7 +3157,7 @@
     "category": "music",
     "display": "עובדי בנק לאומי",
     "first_seen": "2026-07-09T04:00:52.108951+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -3286,16 +3296,6 @@
       "barby"
     ]
   },
-  "עמותת רובינשטיין": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "עמותת רובינשטיין",
-    "first_seen": "2026-06-20T20:16:08.890211+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "עמיר בניון": {
     "cat_v": 4,
     "category": "music",
@@ -3325,16 +3325,6 @@
     "is_artist": true,
     "sources": [
       "barby"
-    ]
-  },
-  "ערב עם עדן": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "עדן",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "ערן זרחוביץ": {
@@ -3384,6 +3374,17 @@
     "category": "music",
     "display": "פבלו רוזנברג",
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim",
+      "barby"
+    ]
+  },
+  "פודקאסט רצח": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "פודקאסט רצח",
+    "first_seen": "2026-07-10T19:00:53.390692+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -3461,16 +3462,6 @@
       "kupat"
     ]
   },
-  "פסטיבל ימי פלמנקו": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "פסטיבל ימי פלמנקו",
-    "first_seen": "2026-06-20T20:16:09.401663+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "פסטיבל לילות אהבה": {
     "cat_v": 4,
     "category": "music",
@@ -3501,6 +3492,13 @@
       "kupat"
     ]
   },
+  "פרופ דן אריאלי ודר יעל דורון": {
+    "display": "פרופ' דן אריאלי וד\"ר יעל דורון",
+    "first_seen": "2026-07-10T19:00:53.393470+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "ציפורים כולם": {
     "cat_v": 4,
     "category": "theater",
@@ -3516,6 +3514,16 @@
     "category": "theater",
     "display": "ציפורלה",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
+  "ציפורלה לילדים": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "ציפורלה לילדים",
+    "first_seen": "2026-07-10T19:01:44.814630+00:00",
     "is_artist": true,
     "sources": [
       "comy"
@@ -3760,6 +3768,20 @@
       "barby"
     ]
   },
+  "ריטה lets dance": {
+    "display": "ריטה Let`s Dance",
+    "first_seen": "2026-07-10T19:00:49.951842+00:00",
+    "sources": [
+      "barby"
+    ]
+  },
+  "ריטה ושירי מימון": {
+    "display": "ריטה ושירי מימון",
+    "first_seen": "2026-07-10T19:01:11.980928+00:00",
+    "sources": [
+      "kupat"
+    ]
+  },
   "רינת בר": {
     "cat_v": 4,
     "category": "music",
@@ -3786,6 +3808,16 @@
     "category": "music",
     "display": "רפי ביטון & קולות מן השמיים",
     "first_seen": "2026-07-07T12:00:46.336739+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "רפי פרסקי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רפי פרסקי",
+    "first_seen": "2026-07-10T19:00:53.390583+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -4006,16 +4038,6 @@
       "grayclub"
     ]
   },
-  "שלומי שבת ופבלו רוזנברג": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "שלומי שבת ופבלו רוזנברג",
-    "first_seen": "2026-07-06T12:00:46.940781+00:00",
-    "is_artist": true,
-    "sources": [
-      "barby"
-    ]
-  },
   "שליחי הבלוז": {
     "cat_v": 4,
     "category": "music",
@@ -4124,6 +4146,76 @@
     "display": "תזמורת המהפכה",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 27": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 27",
+    "first_seen": "2026-07-10T19:00:52.728088+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 28": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 28",
+    "first_seen": "2026-07-10T19:00:52.727823+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 25": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 25",
+    "first_seen": "2026-07-10T19:00:52.727579+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 26": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 26",
+    "first_seen": "2026-07-10T19:00:52.727445+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר קאמרי מקצה 23": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר קאמרי מקצה 23",
+    "first_seen": "2026-07-10T19:00:52.727305+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות ארתור רובינשטיין גמר קאמרי מקצה 24": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תחרות ארתור רובינשטיין גמר קאמרי מקצה 24",
+    "first_seen": "2026-07-10T19:00:52.727954+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תחרות הפלמנקו": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תחרות הפלמנקו",
+    "first_seen": "2026-07-10T19:00:52.732528+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
