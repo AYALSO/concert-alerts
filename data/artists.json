@@ -1479,16 +1479,6 @@
       "eventim"
     ]
   },
-  "הטבה ללקוחות מקס": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הטבה ללקוחות מקס",
-    "first_seen": "2026-07-07T09:00:45.049369+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "הטברנס": {
     "cat_v": 4,
     "category": "music",
@@ -2511,6 +2501,16 @@
       "kupat"
     ]
   },
+  "מחווה לאלה פיצגרלד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מחווה לאלה פיצג'רלד",
+    "first_seen": "2026-07-11T04:00:53.979266+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "מחווה לאלטון גון ובילי גואל": {
     "cat_v": 4,
     "category": "music",
@@ -2652,16 +2652,6 @@
     "is_artist": true,
     "sources": [
       "comy",
-      "grayclub"
-    ]
-  },
-  "מפגש מאזינים": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "מפגש מאזינים",
-    "first_seen": "2026-07-10T19:00:56.430724+00:00",
-    "is_artist": false,
-    "sources": [
       "grayclub"
     ]
   },
@@ -3700,6 +3690,16 @@
       "grayclub"
     ]
   },
+  "רוקוויל במחווה לגורג מייקל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רוקוויל",
+    "first_seen": "2026-07-11T04:00:53.977369+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "רוקפור": {
     "cat_v": 4,
     "category": "music",
@@ -4176,16 +4176,6 @@
     "category": "music",
     "display": "תחרות ארתור רובינשטיין גמר קאמרי מקצה 24",
     "first_seen": "2026-07-10T19:00:52.727954+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "תחרות הפלמנקו": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "תחרות הפלמנקו",
-    "first_seen": "2026-07-10T19:00:52.732528+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
