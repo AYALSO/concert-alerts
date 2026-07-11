@@ -4191,16 +4191,6 @@
       "barby"
     ]
   },
-  "תלמידי מחול": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "תלמידי מחול",
-    "first_seen": "2026-07-09T04:00:52.108707+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "תמיר בר": {
     "cat_v": 4,
     "category": "standup",
