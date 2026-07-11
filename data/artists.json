@@ -2,9 +2,9 @@
   "a night of dire straits": {
     "cat_v": 4,
     "category": "music",
-    "display": "Dire Straits",
+    "display": "A Night of Dire Straits",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim",
       "grayclub"
@@ -13,7 +13,7 @@
   "andalusi sessions 1": {
     "cat_v": 4,
     "category": "music",
-    "display": "Andalusi Sessions #1",
+    "display": "ריף כהן",
     "first_seen": "2026-07-10T04:00:59.436728+00:00",
     "is_artist": true,
     "sources": [
@@ -73,7 +73,7 @@
   "crochestra by freedom fighters meir briskman": {
     "cat_v": 4,
     "category": "music",
-    "display": "Crochestra by Freedom Fighters & Meir Briskman",
+    "display": "Crochestra",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
     "is_artist": true,
     "sources": [
@@ -2197,7 +2197,7 @@
     "category": "music",
     "display": "לי בירן X לורן פלד",
     "first_seen": "2026-06-20T20:17:03.327875+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "kupat"
     ]
@@ -2420,7 +2420,7 @@
   },
   "מה שקרה לנו": {
     "cat_v": 4,
-    "category": "lecture",
+    "category": "theater",
     "display": "מה שקרה לנו",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -2658,7 +2658,7 @@
   "מצבי רוח": {
     "cat_v": 4,
     "category": "music",
-    "display": "מצבי רוח",
+    "display": "תזמורת המהפכה",
     "first_seen": "2026-06-20T20:16:54.815843+00:00",
     "is_artist": true,
     "sources": [
@@ -2954,7 +2954,7 @@
   "ננסי ברנדס ואסנת שיר": {
     "cat_v": 4,
     "category": "standup",
-    "display": "ננסי ברנדס ואסנת שיר",
+    "display": "ננסי ברנדס ואסנת שיר-וישינסקי",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
     "is_artist": true,
     "sources": [
@@ -2964,7 +2964,7 @@
   },
   "נעם חורב": {
     "cat_v": 4,
-    "category": "lecture",
+    "category": "music",
     "display": "נעם חורב",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
     "is_artist": true,
@@ -3028,7 +3028,7 @@
     "category": "standup",
     "display": "סטנדאפ",
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -3738,7 +3738,7 @@
     "category": "music",
     "display": "ריטה ושירי מימון",
     "first_seen": "2026-07-10T19:01:11.980928+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "kupat"
     ]
@@ -4196,7 +4196,7 @@
     "category": "theater",
     "display": "תלמידי מחול",
     "first_seen": "2026-07-09T04:00:52.108707+00:00",
-    "is_artist": true,
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -4258,7 +4258,7 @@
   },
   "תקוה ואדיר": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "lecture",
     "display": "תקוה ואדיר",
     "first_seen": "2026-07-01T10:01:23.072580+00:00",
     "is_artist": true,
