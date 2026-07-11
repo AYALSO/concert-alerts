@@ -2655,16 +2655,6 @@
       "grayclub"
     ]
   },
-  "מצבי רוח": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תזמורת המהפכה",
-    "first_seen": "2026-06-20T20:16:54.815843+00:00",
-    "is_artist": true,
-    "sources": [
-      "kupat"
-    ]
-  },
   "מרגול": {
     "cat_v": 4,
     "category": "music",
@@ -4108,7 +4098,8 @@
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "kupat"
     ]
   },
   "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 27": {
