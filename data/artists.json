@@ -194,10 +194,10 @@
   },
   "impulso": {
     "cat_v": 4,
-    "category": "music",
+    "category": "theater",
     "display": "IMPULSO",
     "first_seen": "2026-07-10T19:00:53.388344+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -306,7 +306,7 @@
   "vento show": {
     "cat_v": 4,
     "category": "theater",
-    "display": "vento show",
+    "display": "VENTO SHOW",
     "first_seen": "2026-07-09T12:00:46.980630+00:00",
     "is_artist": true,
     "sources": [
@@ -830,7 +830,7 @@
     "category": "music",
     "display": "אסף אמדורסקי, שלומי שבן, יעל קראוס",
     "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -972,7 +972,7 @@
   "בחורים טובים בית לסין": {
     "cat_v": 4,
     "category": "theater",
-    "display": "בחורים טובים בית לסין",
+    "display": "בחורים טובים",
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
     "sources": [
@@ -1532,8 +1532,8 @@
   },
   "הכבש השישה עשר ושירים שלנו גם": {
     "cat_v": 4,
-    "category": "theater",
-    "display": "הכבש השישה עשר",
+    "category": "music",
+    "display": "הכבש השישה עשר ושירים שלנו גם",
     "first_seen": "2026-06-20T20:16:07.696518+00:00",
     "is_artist": true,
     "sources": [
@@ -2300,10 +2300,10 @@
   },
   "לילה 1 באפריל": {
     "cat_v": 4,
-    "category": "music",
+    "category": "theater",
     "display": "לילה 1 באפריל",
     "first_seen": "2026-06-20T20:16:07.325311+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "barby"
     ]
@@ -2350,7 +2350,7 @@
   },
   "ללכת שבי אחריה": {
     "cat_v": 4,
-    "category": "music",
+    "category": "lecture",
     "display": "ללכת שבי אחריה",
     "first_seen": "2026-07-10T19:00:53.392912+00:00",
     "is_artist": true,
@@ -2563,7 +2563,7 @@
   },
   "מייקל אזכרת קיץ": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "מייקל אזכרת קיץ",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -2840,7 +2840,7 @@
   "נועם קליינשטיין": {
     "cat_v": 4,
     "category": "music",
-    "display": "נועם קליינשטיין",
+    "display": "נועם קלינשטיין",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
     "sources": [
@@ -3323,7 +3323,7 @@
   },
   "פאות קדושות": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "פאות קדושות",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
@@ -3486,7 +3486,7 @@
   },
   "ציפורלה לילדים": {
     "cat_v": 4,
-    "category": "standup",
+    "category": "theater",
     "display": "ציפורלה לילדים",
     "first_seen": "2026-07-10T19:01:44.814630+00:00",
     "is_artist": true,
@@ -4094,7 +4094,7 @@
   "תום יער אופטימית זהירה": {
     "cat_v": 4,
     "category": "standup",
-    "display": "תום יער אופטימית זהירה",
+    "display": "תום יער",
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
     "sources": [
