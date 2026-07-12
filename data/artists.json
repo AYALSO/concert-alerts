@@ -110,6 +110,16 @@
       "ticketmaster"
     ]
   },
+  "dirty pop": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "DIRTY POP",
+    "first_seen": "2026-07-12T07:00:57.492312+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "disco train": {
     "cat_v": 4,
     "category": "music",
@@ -987,6 +997,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "בלוז אנד בוז": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בלוז אנד בוז",
+    "first_seen": "2026-07-12T07:00:57.494852+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "במה פתוחה בהנחיית דניאל כהן": {
