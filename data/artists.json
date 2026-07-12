@@ -80,16 +80,6 @@
       "eventim"
     ]
   },
-  "cupon10": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "CUPON10",
-    "first_seen": "2026-07-10T04:00:54.821999+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -118,16 +108,6 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
-    ]
-  },
-  "dirty pop": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "DIRTY POP",
-    "first_seen": "2026-06-20T20:16:12.409542+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "disco train": {
@@ -270,6 +250,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "the beatles symphony": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "THE BEATLES SYMPHONY",
+    "first_seen": "2026-07-12T04:00:48.028936+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "the black magic": {
@@ -1282,7 +1272,8 @@
     "first_seen": "2026-06-20T20:16:07.318720+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "grayclub"
     ]
   },
   "דודו פארוק": {
@@ -1324,6 +1315,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "דורי בן זאב וחברים מחווה לאלבום": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דורי בן זאב וחברים מחווה לאלבום",
+    "first_seen": "2026-07-12T04:00:50.160370+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "דיקלה": {
@@ -1924,6 +1925,16 @@
       "eventim"
     ]
   },
+  "יואב יצחק": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יואב יצחק",
+    "first_seen": "2026-07-12T04:00:50.158434+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "יובל דיין": {
     "cat_v": 4,
     "category": "music",
@@ -2130,6 +2141,16 @@
       "eventim"
     ]
   },
+  "כרמינה בוראנה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "כרמינה בוראנה",
+    "first_seen": "2026-07-12T04:00:48.024717+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "כשאמא באה הנה": {
     "cat_v": 4,
     "category": "music",
@@ -2316,6 +2337,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "לילות ספרד": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "לילות ספרד",
+    "first_seen": "2026-07-12T04:00:48.026314+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "ליעד ברוידא": {
