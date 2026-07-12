@@ -2073,7 +2073,8 @@
     "first_seen": "2026-06-30T13:00:39.083713+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "יסמין מועלם": {
@@ -4045,6 +4046,16 @@
     "sources": [
       "eventim",
       "ticketmaster"
+    ]
+  },
+  "שלומי סרנגה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלומי סרנגה",
+    "first_seen": "2026-07-12T15:00:50.970019+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "שלומי קוריאט": {
