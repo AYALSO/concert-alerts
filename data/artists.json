@@ -856,6 +856,16 @@
       "grayclub"
     ]
   },
+  "אסתר רדא x גימבו גיי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אסתר רדא X ג'ימבו ג'יי",
+    "first_seen": "2026-07-13T08:01:00.141892+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אף מילה לאמא": {
     "cat_v": 4,
     "category": "theater",
@@ -2778,6 +2788,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "משכנתא": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "משכנתא",
+    "first_seen": "2026-07-13T08:01:30.598732+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "מתן חסן": {
