@@ -1856,8 +1856,11 @@
     ]
   },
   "חצי גמר": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "חצי גמר",
     "first_seen": "2026-07-12T09:00:50.941295+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
