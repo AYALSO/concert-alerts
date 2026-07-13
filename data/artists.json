@@ -1304,7 +1304,8 @@
     "is_artist": true,
     "sources": [
       "barby",
-      "grayclub"
+      "grayclub",
+      "kupat"
     ]
   },
   "דודו פארוק": {
@@ -2661,6 +2662,16 @@
     "category": "music",
     "display": "מיכה שטרית",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "מיקה שלי": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "מיקה שלי",
+    "first_seen": "2026-07-13T13:01:01.014220+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
