@@ -4350,5 +4350,15 @@
     "sources": [
       "comy"
     ]
+  },
+  "תרקדי איתי": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תרקדי איתי",
+    "first_seen": "2026-07-13T12:01:27.600579+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
   }
 }
