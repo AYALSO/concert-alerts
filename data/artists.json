@@ -1513,6 +1513,13 @@
       "eventim"
     ]
   },
+  "הדג נחש": {
+    "display": "הדג נחש",
+    "first_seen": "2026-07-14T10:00:32.163139+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "הדסה": {
     "cat_v": 4,
     "category": "theater",
@@ -2256,6 +2263,13 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "לולה מארש": {
+    "display": "לולה מארש",
+    "first_seen": "2026-07-14T10:00:31.294239+00:00",
+    "sources": [
+      "barby"
     ]
   },
   "לי בירן x לורן פלד": {
