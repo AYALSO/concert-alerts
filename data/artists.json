@@ -3804,6 +3804,16 @@
       "kupat"
     ]
   },
+  "רוני דלומי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רוני דלומי",
+    "first_seen": "2026-07-14T12:00:30.099457+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "רוני קובן": {
     "cat_v": 4,
     "category": "lecture",
