@@ -1514,8 +1514,11 @@
     ]
   },
   "הדג נחש": {
+    "cat_v": 4,
+    "category": "music",
     "display": "הדג נחש",
     "first_seen": "2026-07-14T10:00:32.163139+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -2266,8 +2269,11 @@
     ]
   },
   "לולה מארש": {
+    "cat_v": 4,
+    "category": "music",
     "display": "לולה מארש",
     "first_seen": "2026-07-14T10:00:31.294239+00:00",
+    "is_artist": true,
     "sources": [
       "barby"
     ]
