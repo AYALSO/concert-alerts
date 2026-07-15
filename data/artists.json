@@ -232,6 +232,16 @@
       "grayclub"
     ]
   },
+  "moonlight": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Moonlight",
+    "first_seen": "2026-07-15T04:00:32.645613+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "open mic": {
     "cat_v": 4,
     "category": "standup",
