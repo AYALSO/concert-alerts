@@ -162,6 +162,16 @@
       "eventim"
     ]
   },
+  "flame שמונים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "FLAME שמונים",
+    "first_seen": "2026-07-15T09:00:41.925309+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "forever tango": {
     "cat_v": 4,
     "category": "theater",
@@ -1131,6 +1141,16 @@
       "eventim"
     ]
   },
+  "בשר וחלב": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "בשר וחלב",
+    "first_seen": "2026-07-15T09:01:15.206282+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "גבירתי הנאווה": {
     "cat_v": 4,
     "category": "theater",
@@ -1551,6 +1571,16 @@
     "is_artist": false,
     "sources": [
       "eventim"
+    ]
+  },
+  "החצר האחורית של גוני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "החצר האחורית של ג'וני",
+    "first_seen": "2026-07-15T09:00:41.925205+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "הטברנס": {
