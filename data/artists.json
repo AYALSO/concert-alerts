@@ -262,16 +262,6 @@
       "comy"
     ]
   },
-  "party": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "PARTY",
-    "first_seen": "2026-06-20T20:16:09.402696+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
@@ -2211,7 +2201,8 @@
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "ישי ריבו": {
@@ -3629,16 +3620,6 @@
     "is_artist": false,
     "sources": [
       "kupat"
-    ]
-  },
-  "פסטיבל מקסימיליאן": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "פסטיבל מקסימיליאן",
-    "first_seen": "2026-06-20T20:16:07.319716+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
     ]
   },
   "פסטיבל סאנסט": {
