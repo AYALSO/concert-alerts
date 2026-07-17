@@ -212,6 +212,16 @@
       "eventim"
     ]
   },
+  "ivri lider": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Ivri Lider",
+    "first_seen": "2026-07-17T16:03:04.271513+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "keren ann": {
     "cat_v": 4,
     "category": "music",
