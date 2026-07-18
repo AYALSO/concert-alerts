@@ -1784,16 +1784,6 @@
       "kupat"
     ]
   },
-  "הצדעה לביטלס": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הצדעה לביטלס",
-    "first_seen": "2026-06-20T20:16:12.401513+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "הראל סקעת": {
     "cat_v": 4,
     "category": "music",
@@ -2266,6 +2256,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "כרקוקלי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "כרקוקלי",
+    "first_seen": "2026-07-18T04:00:30.717524+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "כשאמא באה הנה": {
