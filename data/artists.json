@@ -825,6 +825,16 @@
       "grayclub"
     ]
   },
+  "אני פה בגלל אשתי": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "אני פה בגלל אשתי",
+    "first_seen": "2026-07-19T13:01:05.984072+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אנני": {
     "cat_v": 4,
     "category": "theater",
@@ -3197,6 +3207,16 @@
     "category": "music",
     "display": "נתנאל ששון",
     "first_seen": "2026-06-20T20:16:43.972417+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
+  "סאבלימינל והצל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סאבלימינל והצל",
+    "first_seen": "2026-07-19T13:01:16.005678+00:00",
     "is_artist": true,
     "sources": [
       "kupat"
