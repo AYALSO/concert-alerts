@@ -282,6 +282,16 @@
       "comy"
     ]
   },
+  "party": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Party",
+    "first_seen": "2026-07-19T06:01:08.269480+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
