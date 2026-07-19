@@ -2195,6 +2195,16 @@
       "comy"
     ]
   },
+  "יעקב אסרף": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יעקב אסרף",
+    "first_seen": "2026-07-19T10:01:04.022916+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "יפים אלכנסדרוב": {
     "cat_v": 4,
     "category": "music",
@@ -2296,6 +2306,16 @@
     "category": "music",
     "display": "לאה שבת",
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "לה טרוויאטה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "לה טרוויאטה",
+    "first_seen": "2026-07-19T10:01:03.787804+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
