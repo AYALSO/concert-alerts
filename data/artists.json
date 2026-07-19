@@ -3548,6 +3548,16 @@
       "barby"
     ]
   },
+  "עפרה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "עפרה",
+    "first_seen": "2026-07-19T14:01:12.685419+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "ערן זרחוביץ": {
     "cat_v": 4,
     "category": "standup",
