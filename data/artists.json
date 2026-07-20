@@ -1028,7 +1028,8 @@
     "first_seen": "2026-06-20T20:16:07.317722+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "eventim"
     ]
   },
   "בחורים טובים בית לסין": {
@@ -3137,6 +3138,16 @@
     "sources": [
       "eventim",
       "grayclub"
+    ]
+  },
+  "נכנסים לפינות": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "נכנסים לפינות",
+    "first_seen": "2026-07-20T12:01:52.501700+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "נלי תגר": {
