@@ -80,16 +80,6 @@
       "eventim"
     ]
   },
-  "cupon10": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "CUPON10",
-    "first_seen": "2026-07-19T04:01:07.038452+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -300,6 +290,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "the beatles symphony": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "THE BEATLES SYMPHONY",
+    "first_seen": "2026-07-20T04:01:04.599348+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "the black magic": {
@@ -692,25 +692,6 @@
     "sources": [
       "eventim",
       "grayclub"
-    ]
-  },
-  "אירוע הקרנה חגיגי לגמר הגדול של המונדיאל": {
-    "cat_v": 4,
-    "display": "אירוע הקרנה חגיגי לגמר הגדול של המונדיאל",
-    "first_seen": "2026-07-08T08:00:49.434312+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "אירוע הקרנה חגיגי לגמר הגדול של מונדיאל": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "אירוע הקרנה חגיגי לגמר הגדול של מונדיאל",
-    "first_seen": "2026-07-07T13:00:49.213766+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "איתי אנגל": {
