@@ -2333,6 +2333,16 @@
       "eventim"
     ]
   },
+  "להציל את רוית": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "להציל את רוית",
+    "first_seen": "2026-07-21T15:01:50.357626+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "להקת gipsy kings": {
     "cat_v": 4,
     "category": "music",
@@ -2864,6 +2874,16 @@
     "sources": [
       "comy",
       "grayclub"
+    ]
+  },
+  "מסיבת רוק ניינטיז בצהרים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מסיבת רוק ניינטיז בצהרים",
+    "first_seen": "2026-07-21T15:01:07.825223+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
     ]
   },
   "מרגול": {
