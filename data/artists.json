@@ -354,17 +354,10 @@
     ]
   },
   "voca people": {
+    "cat_v": 4,
+    "category": "theater",
     "display": "VOCA PEOPLE",
     "first_seen": "2026-07-21T07:01:08.560663+00:00",
-    "sources": [
-      "eventim"
-    ]
-  },
-  "voca people cosmic tour": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "VOCA PEOPLE",
-    "first_seen": "2026-07-16T07:01:04.866089+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
