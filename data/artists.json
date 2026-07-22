@@ -3686,6 +3686,16 @@
       "eventim"
     ]
   },
+  "פולקלוריסימו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "פולקלוריסימו",
+    "first_seen": "2026-07-22T12:01:15.151284+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "פורטיס": {
     "cat_v": 4,
     "category": "music",
