@@ -795,6 +795,16 @@
       "comy"
     ]
   },
+  "אליעד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אליעד",
+    "first_seen": "2026-07-22T09:01:09.707300+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אמדאוס": {
     "cat_v": 4,
     "category": "theater",
@@ -4380,6 +4390,16 @@
     "is_artist": false,
     "sources": [
       "barby"
+    ]
+  },
+  "שמעון בוסקילה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שמעון בוסקילה",
+    "first_seen": "2026-07-22T09:01:09.709911+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "שקרים קטנים": {
