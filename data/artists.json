@@ -725,6 +725,16 @@
       "kupat"
     ]
   },
+  "אלאפטריה אלאפטריו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אלאפטריה אלאפטריו",
+    "first_seen": "2026-07-22T05:01:09.991511+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אלדד שטרית": {
     "cat_v": 4,
     "category": "standup",
