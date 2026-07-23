@@ -1555,6 +1555,16 @@
       "grayclub"
     ]
   },
+  "דר יעל דורון וגלעד הורוביץ": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "ד\"ר יעל דורון וגלעד הורוביץ",
+    "first_seen": "2026-07-23T12:01:08.298242+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דראג בראנץ": {
     "cat_v": 4,
     "category": "theater",
@@ -3772,6 +3782,16 @@
     "category": "lecture",
     "display": "פרופ' דן אריאלי וד\"ר יעל דורון",
     "first_seen": "2026-07-10T19:00:53.393470+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "פרופ יורם יובל": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "פרופ' יורם יובל",
+    "first_seen": "2026-07-23T12:01:08.296950+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
