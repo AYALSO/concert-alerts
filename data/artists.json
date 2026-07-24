@@ -141,16 +141,6 @@
       "eventim"
     ]
   },
-  "distortion festival": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "DISTORTION FESTIVAL",
-    "first_seen": "2026-06-26T04:01:00.399218+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "echoes": {
     "cat_v": 4,
     "category": "music",
