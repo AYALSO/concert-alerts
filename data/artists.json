@@ -2258,6 +2258,16 @@
       "eventim"
     ]
   },
+  "ירמי עושה אלטון גון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ירמי עושה אלטון ג'ון",
+    "first_seen": "2026-07-26T04:01:15.351088+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "ירמי קפלן": {
     "cat_v": 4,
     "category": "music",
@@ -2976,7 +2986,8 @@
     "first_seen": "2026-06-20T20:16:08.892207+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "משינה": {
