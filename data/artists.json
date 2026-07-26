@@ -539,6 +539,16 @@
       "comy"
     ]
   },
+  "אופרה בקטנה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אופרה בקטנה",
+    "first_seen": "2026-07-26T09:01:13.542518+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אור לגויים": {
     "cat_v": 4,
     "category": "theater",
@@ -1753,6 +1763,16 @@
     "category": "music",
     "display": "SUSSUDIO",
     "first_seen": "2026-07-10T19:00:53.391276+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "המנדולינה של קפטן ויואלדי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "המנדולינה של קפטן ויואלדי",
+    "first_seen": "2026-07-26T09:01:13.295971+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
