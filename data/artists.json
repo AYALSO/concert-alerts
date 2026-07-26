@@ -1463,6 +1463,16 @@
       "grayclub"
     ]
   },
+  "דורי בן זאב משבלול עד לול": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דורי בן זאב",
+    "first_seen": "2026-07-26T12:01:13.066349+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דותן רביד": {
     "cat_v": 4,
     "category": "standup",
