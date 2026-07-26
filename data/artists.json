@@ -1021,6 +1021,16 @@
       "grayclub"
     ]
   },
+  "ארנה פארק": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "ארנה פארק",
+    "first_seen": "2026-07-26T13:01:27.718336+00:00",
+    "is_artist": false,
+    "sources": [
+      "kupat"
+    ]
+  },
   "ארקדי דוכין": {
     "cat_v": 4,
     "category": "music",
@@ -1453,13 +1463,14 @@
       "eventim"
     ]
   },
-  "דורי בן זאב וחברים מחווה לאלבום": {
+  "דורי בן זאב": {
     "cat_v": 4,
     "category": "music",
-    "display": "דורי בן זאב וחברים מחווה לאלבום",
-    "first_seen": "2026-07-12T04:00:50.160370+00:00",
-    "is_artist": false,
+    "display": "דורי בן זאב",
+    "first_seen": "2026-07-26T13:01:11.584898+00:00",
+    "is_artist": true,
     "sources": [
+      "eventim",
       "grayclub"
     ]
   },
