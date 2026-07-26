@@ -653,6 +653,16 @@
       "eventim"
     ]
   },
+  "אייל שחר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אייל שחר",
+    "first_seen": "2026-07-26T14:01:11.598309+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "איילה אינגדשט": {
     "cat_v": 4,
     "category": "music",
@@ -1472,16 +1482,6 @@
     "sources": [
       "eventim",
       "grayclub"
-    ]
-  },
-  "דורי בן זאב משבלול עד לול": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "דורי בן זאב",
-    "first_seen": "2026-07-26T12:01:13.066349+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
     ]
   },
   "דותן רביד": {
