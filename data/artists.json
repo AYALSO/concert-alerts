@@ -283,6 +283,16 @@
       "eventim"
     ]
   },
+  "richard clayderman": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Richard Clayderman",
+    "first_seen": "2026-07-26T18:01:14.040120+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
