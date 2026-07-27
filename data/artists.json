@@ -404,6 +404,16 @@
       "eventim"
     ]
   },
+  "weare": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "weAre",
+    "first_seen": "2026-07-27T07:01:23.523400+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אבו טבלה": {
     "cat_v": 4,
     "category": "standup",
