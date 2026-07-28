@@ -1194,6 +1194,16 @@
       "kupat"
     ]
   },
+  "בנצי הפיל": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "בנצי הפיל",
+    "first_seen": "2026-07-28T11:01:17.654099+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בעז שרעבי": {
     "cat_v": 4,
     "category": "music",
@@ -1634,6 +1644,16 @@
     "category": "music",
     "display": "האחים שטרית",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "הביצה שהתחפשה בקרקס": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "הביצה שהתחפשה בקרקס",
+    "first_seen": "2026-07-28T11:01:17.654163+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
