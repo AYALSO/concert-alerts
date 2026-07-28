@@ -1933,6 +1933,16 @@
       "ticketmaster"
     ]
   },
+  "ויתרתי וכוח וידאו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ויתרתי",
+    "first_seen": "2026-07-28T15:01:19.862985+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "זוכרים לרקוד": {
     "cat_v": 4,
     "category": "music",
