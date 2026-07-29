@@ -1701,16 +1701,6 @@
       "barby"
     ]
   },
-  "הדסה": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "הדסה",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "החצר האחורית של גוני": {
     "cat_v": 4,
     "category": "music",
@@ -1850,16 +1840,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "הערב הגדול של הרוק הישראלי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הערב הגדול של הרוק הישראלי",
-    "first_seen": "2026-06-20T20:16:16.097043+00:00",
-    "is_artist": false,
-    "sources": [
-      "kupat"
     ]
   },
   "הפיל הכחול": {
@@ -2414,6 +2394,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "כפיר עטיה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "כפיר עטיה",
+    "first_seen": "2026-07-29T04:01:26.836309+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "כרמינה בוראנה": {
@@ -3689,6 +3679,16 @@
       "eventim"
     ]
   },
+  "עינת שרוף": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עינת שרוף",
+    "first_seen": "2026-07-29T04:01:26.834365+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "עירן צנחני": {
     "cat_v": 4,
     "category": "music",
@@ -4169,6 +4169,16 @@
     "is_artist": true,
     "sources": [
       "eventim",
+      "grayclub"
+    ]
+  },
+  "רוקוויל פארטי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רוקוויל פארטי",
+    "first_seen": "2026-07-29T04:01:26.838477+00:00",
+    "is_artist": true,
+    "sources": [
       "grayclub"
     ]
   },
