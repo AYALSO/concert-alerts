@@ -1144,6 +1144,16 @@
       "grayclub"
     ]
   },
+  "בלט ירושלים": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "בלט ירושלים",
+    "first_seen": "2026-07-29T06:01:16.234408+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "במה פתוחה בהנחיית דניאל כהן": {
     "cat_v": 4,
     "category": "standup",
