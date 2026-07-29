@@ -1983,6 +1983,16 @@
       "grayclub"
     ]
   },
+  "חוגגים ראש השנה": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "חוגגים ראש השנה",
+    "first_seen": "2026-07-29T20:02:14.264627+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "חיים איפרגן": {
     "cat_v": 4,
     "category": "music",
