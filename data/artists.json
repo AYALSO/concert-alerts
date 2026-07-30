@@ -316,9 +316,11 @@
     ]
   },
   "the sultans": {
+    "cat_v": 4,
+    "category": "music",
     "display": "The SULTANS",
     "first_seen": "2026-07-30T04:01:11.233942+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "grayclub"
     ]
@@ -3935,20 +3937,13 @@
     ]
   },
   "פרופ דן אריאלי": {
-    "display": "פרופ' דן אריאלי",
-    "first_seen": "2026-07-30T04:01:11.235575+00:00",
-    "sources": [
-      "grayclub"
-    ]
-  },
-  "פרופ דן אריאלי ודר יעל דורון": {
     "cat_v": 4,
     "category": "lecture",
-    "display": "פרופ' דן אריאלי וד\"ר יעל דורון",
-    "first_seen": "2026-07-10T19:00:53.393470+00:00",
+    "display": "פרופ' דן אריאלי",
+    "first_seen": "2026-07-30T04:01:11.235575+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "grayclub"
     ]
   },
   "פרופ יורם יובל": {
