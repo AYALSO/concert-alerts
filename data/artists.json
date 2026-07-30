@@ -315,6 +315,14 @@
       "eventim"
     ]
   },
+  "the sultans": {
+    "display": "The SULTANS",
+    "first_seen": "2026-07-30T04:01:11.233942+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "tpuse the band": {
     "cat_v": 4,
     "category": "music",
@@ -2900,16 +2908,6 @@
       "grayclub"
     ]
   },
-  "מחווה לקולנוע הישראלי": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "מחווה לקולנוע הישראלי",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "מי רצח את אגנתה פאלסקוג": {
     "cat_v": 4,
     "category": "music",
@@ -3934,6 +3932,13 @@
     "is_artist": false,
     "sources": [
       "kupat"
+    ]
+  },
+  "פרופ דן אריאלי": {
+    "display": "פרופ' דן אריאלי",
+    "first_seen": "2026-07-30T04:01:11.235575+00:00",
+    "sources": [
+      "grayclub"
     ]
   },
   "פרופ דן אריאלי ודר יעל דורון": {
