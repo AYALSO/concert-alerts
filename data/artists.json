@@ -294,6 +294,16 @@
       "eventim"
     ]
   },
+  "shalom hanoch": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Shalom Hanoch",
+    "first_seen": "2026-08-02T18:01:28.730981+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
