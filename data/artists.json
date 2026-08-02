@@ -1973,16 +1973,6 @@
       "barby"
     ]
   },
-  "זלנקה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "זלנקה",
-    "first_seen": "2026-06-21T12:59:09.910703+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "ז׳וקה פרפיניאן גרופ joca perpignan group": {
     "cat_v": 4,
     "category": "music",
@@ -3223,6 +3213,16 @@
     "category": "music",
     "display": "נוגה פרידמן",
     "first_seen": "2026-06-20T20:16:12.409542+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
+  "נוי פדלון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נוי פדלון",
+    "first_seen": "2026-08-02T04:01:20.682657+00:00",
     "is_artist": true,
     "sources": [
       "grayclub"
