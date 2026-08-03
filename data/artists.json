@@ -877,6 +877,16 @@
       "comy"
     ]
   },
+  "אמיר דדון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אמיר דדון",
+    "first_seen": "2026-08-03T10:00:36.505599+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אמירם טובים": {
     "cat_v": 4,
     "category": "standup",
@@ -1070,6 +1080,16 @@
       "eventim",
       "kupat",
       "grayclub"
+    ]
+  },
+  "אריק סיני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אריק סיני",
+    "first_seen": "2026-08-03T10:00:37.520189+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "ארנה פארק": {
