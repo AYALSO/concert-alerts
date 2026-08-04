@@ -1616,6 +1616,16 @@
       "eventim"
     ]
   },
+  "דן אריאלי": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "דן אריאלי",
+    "first_seen": "2026-08-04T13:00:42.011560+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דני סנדרסון": {
     "cat_v": 4,
     "category": "music",
