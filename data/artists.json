@@ -304,6 +304,16 @@
       "ticketmaster"
     ]
   },
+  "sisters": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "SISTERS",
+    "first_seen": "2026-08-04T04:00:38.095747+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
