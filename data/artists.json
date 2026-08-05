@@ -91,6 +91,16 @@
       "eventim"
     ]
   },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "CUPON10",
+    "first_seen": "2026-08-05T04:00:35.341251+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -322,16 +332,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-07-21T14:01:08.922057+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "the black magic": {
@@ -2959,16 +2959,6 @@
     "is_artist": true,
     "sources": [
       "kupat"
-    ]
-  },
-  "מחווה לאלה פיצגרלד": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מחווה לאלה פיצג'רלד",
-    "first_seen": "2026-07-11T04:00:53.979266+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "מחווה לאלטון גון ובילי גואל": {
