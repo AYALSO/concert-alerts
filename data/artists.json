@@ -2694,6 +2694,16 @@
       "grayclub"
     ]
   },
+  "ליאור עמדי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ליאור עמדי",
+    "first_seen": "2026-08-05T17:01:28.912493+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "ליהי טולדנו": {
     "cat_v": 4,
     "category": "music",
