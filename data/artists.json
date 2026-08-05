@@ -355,6 +355,16 @@
       "grayclub"
     ]
   },
+  "tiny fingerz": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "TINY FINGERZ",
+    "first_seen": "2026-08-05T08:01:11.178624+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "tpuse the band": {
     "cat_v": 4,
     "category": "music",
