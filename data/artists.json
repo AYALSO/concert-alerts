@@ -131,6 +131,16 @@
       "grayclub"
     ]
   },
+  "disco paris": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "DISCO PARIS",
+    "first_seen": "2026-08-06T13:00:47.438480+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
   "disco train": {
     "cat_v": 4,
     "category": "music",
@@ -3864,6 +3874,16 @@
       "kupat"
     ]
   },
+  "עמיר לב": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עמיר לב",
+    "first_seen": "2026-08-06T13:00:47.441034+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "עמית ויינברג": {
     "cat_v": 4,
     "category": "standup",
@@ -4498,7 +4518,8 @@
     "first_seen": "2026-06-20T20:16:37.386145+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
+      "kupat",
+      "eventim"
     ]
   },
   "שונאים סיפור אהבה": {
