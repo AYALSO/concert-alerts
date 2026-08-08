@@ -1953,6 +1953,16 @@
       "eventim"
     ]
   },
+  "העבריות שרות 2": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "העבריות שרות 2",
+    "first_seen": "2026-08-08T04:01:23.834817+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "הפיל הכחול": {
     "cat_v": 4,
     "category": "music",
@@ -2267,7 +2277,8 @@
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "יהורם גאון": {
