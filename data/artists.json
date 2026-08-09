@@ -152,6 +152,16 @@
       "eventim"
     ]
   },
+  "drive in": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "DRIVE IN",
+    "first_seen": "2026-08-09T16:01:05.717405+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "echoes": {
     "cat_v": 4,
     "category": "music",
@@ -1625,6 +1635,16 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "דין מירושניקוב": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "דין מירושניקוב",
+    "first_seen": "2026-08-09T16:01:05.716819+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "דיקלה": {
