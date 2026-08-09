@@ -1112,6 +1112,16 @@
       "grayclub"
     ]
   },
+  "אריאלה ברוך": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אריאלה ברוך",
+    "first_seen": "2026-08-09T10:01:11.544957+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אריק סיני": {
     "cat_v": 4,
     "category": "music",
@@ -3134,6 +3144,16 @@
     "sources": [
       "comy",
       "grayclub"
+    ]
+  },
+  "מסיבת העשורים הגדולה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מסיבת העשורים הגדולה",
+    "first_seen": "2026-08-09T10:01:07.270515+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
     ]
   },
   "מסיבת כיתה 2": {
