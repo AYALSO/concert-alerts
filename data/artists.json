@@ -4346,6 +4346,16 @@
       "comedybar"
     ]
   },
+  "רועי בר נתן": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "רועי בר נתן",
+    "first_seen": "2026-08-09T07:01:10.006604+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "רוקוויל": {
     "cat_v": 4,
     "category": "music",
