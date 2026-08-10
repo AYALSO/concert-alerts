@@ -3481,19 +3481,12 @@
       "barby"
     ]
   },
-  "נועם קליינשטיין": {
+  "נועם קלינשטיין": {
     "cat_v": 4,
     "category": "music",
     "display": "נועם קלינשטיין",
-    "first_seen": "2026-06-20T20:16:09.404688+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "נועם קלינשטיין": {
-    "display": "נועם קלינשטיין",
     "first_seen": "2026-08-10T19:01:11.513184+00:00",
+    "is_artist": true,
     "sources": [
       "barby"
     ]
