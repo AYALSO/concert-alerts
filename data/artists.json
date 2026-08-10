@@ -485,6 +485,16 @@
       "eventim"
     ]
   },
+  "zaz limassol 2026": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ZAZ",
+    "first_seen": "2026-08-10T11:01:16.965133+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אבו טבלה": {
     "cat_v": 4,
     "category": "standup",
@@ -4786,16 +4796,6 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "barby"
-    ]
-  },
-  "שלומי שבן והפסנתר": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "שלומי שבן",
-    "first_seen": "2026-07-16T10:01:03.445551+00:00",
-    "is_artist": true,
-    "sources": [
       "barby"
     ]
   },
