@@ -1821,6 +1821,16 @@
       "eventim"
     ]
   },
+  "הבית של יעל": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "הבית של יעל",
+    "first_seen": "2026-08-10T10:01:11.611043+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "הבלט הישראלי": {
     "cat_v": 4,
     "category": "theater",
@@ -3512,16 +3522,6 @@
       "eventim"
     ]
   },
-  "ניו בורן ומרסדס בנד": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מרסדס בנד",
-    "first_seen": "2026-08-10T09:01:11.725543+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "נינט טייב": {
     "cat_v": 4,
     "category": "music",
@@ -4776,6 +4776,17 @@
     "sources": [
       "eventim",
       "grayclub"
+    ]
+  },
+  "שלומי שבן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלומי שבן",
+    "first_seen": "2026-08-10T10:01:10.857670+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim",
+      "barby"
     ]
   },
   "שלומי שבן והפסנתר": {
