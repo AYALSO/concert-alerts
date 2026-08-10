@@ -640,6 +640,16 @@
       "comy"
     ]
   },
+  "אודיה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אודיה",
+    "first_seen": "2026-08-10T13:02:28.433970+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "אופרה בקטנה": {
     "cat_v": 4,
     "category": "music",
@@ -845,6 +855,16 @@
     "sources": [
       "eventim",
       "kupat"
+    ]
+  },
+  "איתן רייטר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "איתן רייטר",
+    "first_seen": "2026-08-10T13:01:08.487283+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "אלאפטריה אלאפטריו": {
