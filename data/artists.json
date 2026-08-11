@@ -1365,6 +1365,16 @@
       "eventim"
     ]
   },
+  "בסליחה ובחסד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בסליחה ובחסד",
+    "first_seen": "2026-08-11T09:01:22.890991+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בעז שרעבי": {
     "cat_v": 4,
     "category": "music",
@@ -2255,6 +2265,16 @@
     "sources": [
       "eventim",
       "comy"
+    ]
+  },
+  "חנוכריסמס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חנוכריסמס",
+    "first_seen": "2026-08-11T09:01:22.892434+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "חני נחמיאס": {
@@ -3329,6 +3349,16 @@
       "grayclub"
     ]
   },
+  "משוברט ועד מתי כספי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "משוברט ועד מתי כספי",
+    "first_seen": "2026-08-11T09:01:22.892508+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "משינה": {
     "cat_v": 4,
     "category": "music",
@@ -4238,6 +4268,16 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "צלילי הקסם של הגליל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "צלילי הקסם של הגליל",
+    "first_seen": "2026-08-11T09:01:23.168756+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "צרלי וחצי": {
