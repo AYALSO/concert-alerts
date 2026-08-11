@@ -1983,16 +1983,6 @@
       "comy"
     ]
   },
-  "הלהקות חוזרות": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הלהקות חוזרות",
-    "first_seen": "2026-06-20T20:16:08.892207+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "המופע הגדול של שלישיית הנובים": {
     "cat_v": 4,
     "category": "theater",
@@ -3009,6 +2999,16 @@
       "eventim"
     ]
   },
+  "מבשרת ציון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מבשרת ציון",
+    "first_seen": "2026-08-11T04:01:04.299915+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מה קשור": {
     "cat_v": 4,
     "category": "standup",
@@ -3296,16 +3296,6 @@
     "sources": [
       "barby",
       "eventim"
-    ]
-  },
-  "מרתון סטנדאפ": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "מרתון סטנדאפ",
-    "first_seen": "2026-06-21T13:00:33.015166+00:00",
-    "is_artist": false,
-    "sources": [
-      "comy"
     ]
   },
   "משה אשכנזי": {
