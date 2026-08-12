@@ -4192,6 +4192,15 @@
       "kupat"
     ]
   },
+  "פסטיבל האהבה": {
+    "cat_v": 4,
+    "display": "פסטיבל האהבה",
+    "first_seen": "2026-08-12T17:02:30.472980+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "פסטיבל לילות אהבה": {
     "cat_v": 4,
     "category": "music",
