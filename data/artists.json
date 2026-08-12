@@ -121,16 +121,6 @@
       "ticketmaster"
     ]
   },
-  "dirty pop": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "DIRTY POP",
-    "first_seen": "2026-07-12T07:00:57.492312+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "disco paris": {
     "cat_v": 4,
     "category": "music",
@@ -1949,7 +1939,8 @@
     "first_seen": "2026-06-20T20:16:38.460020+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
+      "kupat",
+      "grayclub"
     ]
   },
   "היוצרים": {
