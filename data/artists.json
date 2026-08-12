@@ -3955,6 +3955,16 @@
       "grayclub"
     ]
   },
+  "עידן עמדי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עידן עמדי",
+    "first_seen": "2026-08-12T10:01:19.037470+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "עילי בוטנר": {
     "cat_v": 4,
     "category": "music",
