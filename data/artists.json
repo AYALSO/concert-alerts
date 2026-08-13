@@ -4204,6 +4204,15 @@
       "kupat"
     ]
   },
+  "פסטיבל האהבה": {
+    "cat_v": 4,
+    "display": "פסטיבל האהבה",
+    "first_seen": "2026-08-13T18:01:59.629665+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "פסטיבל לילות אהבה": {
     "cat_v": 4,
     "category": "music",
@@ -4785,6 +4794,16 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
+    ]
+  },
+  "שיר דוד גדסי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שיר דוד גדסי",
+    "first_seen": "2026-08-13T18:01:24.214348+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
     ]
   },
   "שיר לוי": {
