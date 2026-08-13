@@ -163,6 +163,16 @@
       "grayclub"
     ]
   },
+  "fever": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "FEVER",
+    "first_seen": "2026-08-13T09:01:11.527843+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "flame": {
     "cat_v": 4,
     "category": "music",
