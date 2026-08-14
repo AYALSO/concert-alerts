@@ -91,6 +91,16 @@
       "eventim"
     ]
   },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "CUPON10",
+    "first_seen": "2026-08-14T04:01:02.130084+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -342,16 +352,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-08-06T04:01:12.673236+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "the black magic": {
@@ -3018,7 +3018,8 @@
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "מבשרת ציון": {
@@ -3092,6 +3093,16 @@
     "is_artist": false,
     "sources": [
       "barby"
+    ]
+  },
+  "מופע המחווה לסגול כהה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מופע המחווה לסגול כהה",
+    "first_seen": "2026-08-14T04:01:04.551415+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "מור": {
@@ -4202,15 +4213,6 @@
     "is_artist": false,
     "sources": [
       "kupat"
-    ]
-  },
-  "פסטיבל האהבה": {
-    "cat_v": 4,
-    "display": "פסטיבל האהבה",
-    "first_seen": "2026-08-13T18:01:59.629665+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
     ]
   },
   "פסטיבל לילות אהבה": {
