@@ -2147,6 +2147,16 @@
       "grayclub"
     ]
   },
+  "ושמחת בחגייך": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "ושמחת בחגייך",
+    "first_seen": "2026-08-14T20:02:11.244665+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "זוכרים לרקוד": {
     "cat_v": 4,
     "category": "music",
