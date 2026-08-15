@@ -619,6 +619,16 @@
       "comy"
     ]
   },
+  "אדם שרון": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "אדם שרון",
+    "first_seen": "2026-08-15T20:01:23.311211+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "אהוד בנאי": {
     "cat_v": 4,
     "category": "music",
