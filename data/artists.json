@@ -503,7 +503,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "comy"
+      "comy",
+      "grayclub"
     ]
   },
   "אבי אבורומי": {
@@ -2266,6 +2267,16 @@
     "is_artist": false,
     "sources": [
       "eventim"
+    ]
+  },
+  "חן אהרוני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חן אהרוני",
+    "first_seen": "2026-08-16T04:00:36.844403+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "חן מזרחי": {
