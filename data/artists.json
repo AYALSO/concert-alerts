@@ -3289,6 +3289,16 @@
       "eventim"
     ]
   },
+  "מיקה משה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מיקה משה",
+    "first_seen": "2026-08-16T11:00:31.145216+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מיקה שלי": {
     "cat_v": 4,
     "category": "theater",
