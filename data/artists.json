@@ -294,6 +294,16 @@
       "eventim"
     ]
   },
+  "mor": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "MOR",
+    "first_seen": "2026-08-16T08:00:34.553347+00:00",
+    "is_artist": true,
+    "sources": [
+      "kupat"
+    ]
+  },
   "open mic": {
     "cat_v": 4,
     "category": "standup",
@@ -659,6 +669,16 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
+    ]
+  },
+  "אוהד מימרן": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "אוהד מימרן",
+    "first_seen": "2026-08-16T08:01:20.750443+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
     ]
   },
   "אופרה בקטנה": {
