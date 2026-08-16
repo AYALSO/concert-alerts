@@ -3681,6 +3681,16 @@
       "grayclub"
     ]
   },
+  "ניר כנען חוזר ל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ניר כנען",
+    "first_seen": "2026-08-16T10:00:29.852299+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "נישואים גרעיניים": {
     "cat_v": 4,
     "category": "theater",
