@@ -3526,6 +3526,16 @@
       "eventim"
     ]
   },
+  "נדב הנדלר": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "נדב הנדלר",
+    "first_seen": "2026-08-17T13:00:58.158659+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "נדב חנציס": {
     "cat_v": 4,
     "category": "music",
