@@ -2776,6 +2776,16 @@
       "eventim"
     ]
   },
+  "לאון שניידרובסקי": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "לאון שניידרובסקי",
+    "first_seen": "2026-08-17T15:00:46.501695+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "לה טרוויאטה": {
     "cat_v": 4,
     "category": "theater",
