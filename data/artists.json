@@ -5282,6 +5282,16 @@
       "kupat"
     ]
   },
+  "תמיר גל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תמיר גל",
+    "first_seen": "2026-08-18T11:00:41.824677+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "תמיר גרינברג": {
     "cat_v": 4,
     "category": "music",
