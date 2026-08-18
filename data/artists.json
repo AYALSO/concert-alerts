@@ -3845,6 +3845,16 @@
       "eventim"
     ]
   },
+  "סוכות": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סוכות",
+    "first_seen": "2026-08-18T04:02:02.826588+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "סטלוס ואורן חן": {
     "cat_v": 4,
     "category": "music",
