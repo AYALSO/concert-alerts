@@ -2249,6 +2249,16 @@
       "comedybar"
     ]
   },
+  "חוהמ סוכות": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חוה\"מ סוכות",
+    "first_seen": "2026-08-19T04:00:45.869616+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "חיים איפרגן": {
     "cat_v": 4,
     "category": "music",
@@ -5125,6 +5135,16 @@
     "category": "music",
     "display": "שראל",
     "first_seen": "2026-07-19T04:01:11.238829+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
+  "שרון חזיז": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שרון חזיז",
+    "first_seen": "2026-08-19T04:00:45.873276+00:00",
     "is_artist": true,
     "sources": [
       "grayclub"
