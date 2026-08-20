@@ -1720,6 +1720,16 @@
       "comedybar"
     ]
   },
+  "דיוואן הלב": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דיוואן הלב",
+    "first_seen": "2026-08-20T08:00:50.996598+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "דין מירושניקוב": {
     "cat_v": 4,
     "category": "lecture",
