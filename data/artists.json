@@ -3968,6 +3968,16 @@
       "kupat"
     ]
   },
+  "עדן גולן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עדן גולן",
+    "first_seen": "2026-08-20T09:00:42.256837+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "עדן חסון": {
     "cat_v": 4,
     "category": "music",
