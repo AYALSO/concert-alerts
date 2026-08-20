@@ -1346,16 +1346,6 @@
       "eventim"
     ]
   },
-  "במה פתוחה בהנחיית דניאל כהן": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "במה פתוחה בהנחיית דניאל כהן",
-    "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": false,
-    "sources": [
-      "comy"
-    ]
-  },
   "בן בן ברוך": {
     "cat_v": 4,
     "category": "standup",
@@ -4346,16 +4336,6 @@
     "category": "music",
     "display": "פסטיבל אושפיזין",
     "first_seen": "2026-07-07T09:00:58.144713+00:00",
-    "is_artist": false,
-    "sources": [
-      "kupat"
-    ]
-  },
-  "פסטיבל באר טוביה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "פסטיבל באר טוביה",
-    "first_seen": "2026-06-23T19:01:28.881206+00:00",
     "is_artist": false,
     "sources": [
       "kupat"
