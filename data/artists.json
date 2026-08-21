@@ -121,16 +121,6 @@
       "ticketmaster"
     ]
   },
-  "disco paris": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "DISCO PARIS",
-    "first_seen": "2026-08-06T13:00:47.438480+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
-    ]
-  },
   "disco train": {
     "cat_v": 4,
     "category": "music",
@@ -3371,16 +3361,6 @@
     "sources": [
       "comy",
       "grayclub"
-    ]
-  },
-  "מסיבת העשורים הגדולה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מסיבת העשורים הגדולה",
-    "first_seen": "2026-08-09T10:01:07.270515+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
     ]
   },
   "מסיבת כיתה 2": {
