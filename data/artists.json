@@ -1211,7 +1211,8 @@
     "first_seen": "2026-08-03T10:00:37.520189+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "ארנה פארק": {
@@ -2724,16 +2725,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "כפיר עטיה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "כפיר עטיה",
-    "first_seen": "2026-07-29T04:01:26.836309+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "כרמינה בוראנה": {
@@ -5063,6 +5054,16 @@
       "kupat"
     ]
   },
+  "שלמה יידוב": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלמה יידוב",
+    "first_seen": "2026-08-22T04:00:21.726014+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "שם טוב לוי": {
     "cat_v": 4,
     "category": "music",
@@ -5104,8 +5105,11 @@
     ]
   },
   "שנה טובה וחג שמח לכל בית ישראל": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "שנה טובה וחג שמח לכל בית ישראל",
     "first_seen": "2026-08-20T16:00:47.523054+00:00",
+    "is_artist": false,
     "sources": [
       "barby"
     ]
