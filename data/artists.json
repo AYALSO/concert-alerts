@@ -4713,6 +4713,16 @@
       "kupat"
     ]
   },
+  "ריקי גל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ריקי גל",
+    "first_seen": "2026-08-22T18:00:47.410466+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "רמי קלינשטיין": {
     "cat_v": 4,
     "category": "music",
