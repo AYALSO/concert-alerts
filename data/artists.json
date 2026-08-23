@@ -3180,6 +3180,16 @@
       "grayclub"
     ]
   },
+  "מופע סטנד אפ סוף שנה מטורף": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "מופע סטנד אפ סוף שנה מטורף",
+    "first_seen": "2026-08-23T12:00:45.648315+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "מור": {
     "cat_v": 4,
     "category": "music",
