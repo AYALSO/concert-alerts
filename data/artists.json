@@ -4207,6 +4207,16 @@
       "comy"
     ]
   },
+  "עמרי אסנהיים": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "עמרי אסנהיים",
+    "first_seen": "2026-08-23T13:00:19.900639+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "עמרי סמדר": {
     "cat_v": 4,
     "category": "music",
@@ -5356,6 +5366,16 @@
       "grayclub",
       "eventim",
       "kupat"
+    ]
+  },
+  "תמיר סטיינמן": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "תמיר סטיינמן",
+    "first_seen": "2026-08-23T13:00:19.900561+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "תמר": {
