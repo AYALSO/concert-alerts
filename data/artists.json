@@ -3302,6 +3302,16 @@
       "eventim"
     ]
   },
+  "מיקה קרני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מיקה קרני",
+    "first_seen": "2026-08-23T07:00:18.141941+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מיקה שלי": {
     "cat_v": 4,
     "category": "theater",
