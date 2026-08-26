@@ -344,16 +344,6 @@
       "grayclub"
     ]
   },
-  "tamar evening 1": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Tamar. Evening 1",
-    "first_seen": "2026-08-26T10:01:44.298034+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "the beatles symphony": {
     "cat_v": 4,
     "category": "music",
@@ -2017,6 +2007,16 @@
     "sources": [
       "kupat",
       "grayclub"
+    ]
+  },
+  "היווניה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "היווניה",
+    "first_seen": "2026-08-26T11:00:20.550679+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "היוצרים": {
