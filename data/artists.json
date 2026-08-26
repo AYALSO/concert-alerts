@@ -1606,6 +1606,16 @@
       "grayclub"
     ]
   },
+  "גע גע בקרקס המשוגע": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "גע גע בקרקס המשוגע",
+    "first_seen": "2026-08-26T13:00:21.453636+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דב נבון": {
     "cat_v": 4,
     "category": "standup",
