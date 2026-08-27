@@ -2262,6 +2262,16 @@
       "comedybar"
     ]
   },
+  "חוגגים שמחת תורה": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "חוגגים שמחת תורה",
+    "first_seen": "2026-08-27T09:00:52.585108+00:00",
+    "is_artist": true,
+    "sources": [
+      "comedybar"
+    ]
+  },
   "חוהמ סוכות": {
     "cat_v": 4,
     "category": "music",
@@ -4995,7 +5005,8 @@
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "שיער": {
