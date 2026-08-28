@@ -91,6 +91,16 @@
       "eventim"
     ]
   },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "CUPON10",
+    "first_seen": "2026-08-28T04:00:20.758126+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -342,16 +352,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-08-17T04:00:30.641001+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "the black magic": {
@@ -1304,16 +1304,6 @@
     "display": "בילי שוורץ",
     "first_seen": "2026-07-29T10:01:22.781373+00:00",
     "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "בין מילים לצלילים": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "בין מילים לצלילים",
-    "first_seen": "2026-08-27T11:00:30.949679+00:00",
-    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -3281,7 +3271,8 @@
     "first_seen": "2026-07-10T19:00:53.391082+00:00",
     "is_artist": false,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "מי רצח את אגנתה פאלסקוג": {
@@ -4124,16 +4115,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "עושים צחוק מרתון סטנד אפ": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "עושים צחוק מרתון סטנד אפ",
-    "first_seen": "2026-06-21T08:09:29.208713+00:00",
-    "is_artist": false,
-    "sources": [
-      "comy"
     ]
   },
   "עטר מיינר": {
