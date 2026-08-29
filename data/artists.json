@@ -3116,7 +3116,8 @@
     "first_seen": "2026-06-20T20:16:07.697516+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "מארק אליהו": {
