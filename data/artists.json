@@ -223,16 +223,6 @@
       "eventim"
     ]
   },
-  "itraveljerusalem": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "iTravelJerusalem",
-    "first_seen": "2026-07-05T07:00:44.594995+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "ivri lider": {
     "cat_v": 4,
     "category": "music",
@@ -515,6 +505,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "אבי ביטר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אבי ביטר",
+    "first_seen": "2026-08-29T04:00:21.557889+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "אבי נוסבאום": {
@@ -2231,16 +2231,6 @@
     "is_artist": true,
     "sources": [
       "comedybar"
-    ]
-  },
-  "זוכרים לרקוד": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "זוכרים לרקוד",
-    "first_seen": "2026-07-09T16:00:48.829799+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "זושא": {
@@ -5386,16 +5376,6 @@
     "category": "music",
     "display": "תל אביב חוזרת לניינטיז",
     "first_seen": "2026-06-20T20:16:07.322714+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
-    ]
-  },
-  "תל אביב חוזרת לשנות ה2000": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תל אביב חוזרת לשנות ה2000",
-    "first_seen": "2026-06-21T10:35:39.604732+00:00",
     "is_artist": false,
     "sources": [
       "barby"
