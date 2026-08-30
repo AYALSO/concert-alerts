@@ -91,16 +91,6 @@
       "eventim"
     ]
   },
-  "cupon10": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "CUPON10",
-    "first_seen": "2026-08-28T04:00:20.758126+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -342,6 +332,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "the beatles symphony": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "THE BEATLES SYMPHONY",
+    "first_seen": "2026-08-30T04:00:18.958264+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "the black magic": {
@@ -1318,6 +1318,16 @@
       "eventim"
     ]
   },
+  "בין מילים לצלילים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בין מילים לצלילים",
+    "first_seen": "2026-08-30T04:00:18.741224+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בלאקבירדס": {
     "cat_v": 4,
     "category": "music",
@@ -2179,6 +2189,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "הצדעה לביטלס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "הצדעה לביטלס",
+    "first_seen": "2026-08-30T04:00:21.550282+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "הראל סקעת": {
@@ -3942,6 +3962,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "סינטרה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סינטרה",
+    "first_seen": "2026-08-30T04:00:21.551836+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "סינרגיה": {
