@@ -3222,6 +3222,16 @@
       "grayclub"
     ]
   },
+  "מאשה והדב": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "מאשה והדב",
+    "first_seen": "2026-08-31T15:00:26.654969+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מגיקל בנד": {
     "cat_v": 4,
     "category": "music",
