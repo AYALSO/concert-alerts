@@ -3821,8 +3821,11 @@
     ]
   },
   "נור דרוייש": {
+    "cat_v": 4,
+    "category": "music",
     "display": "נור דרוייש",
     "first_seen": "2026-08-31T12:00:23.564760+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -4413,8 +4416,11 @@
     ]
   },
   "עמרי מור": {
+    "cat_v": 4,
+    "category": "music",
     "display": "עמרי מור",
     "first_seen": "2026-08-31T12:00:23.564450+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -4515,9 +4521,11 @@
     ]
   },
   "פולחן האביב של פאריד אל אטרש": {
+    "cat_v": 4,
+    "category": "theater",
     "display": "פולחן האביב של פאריד אל אטרש",
     "first_seen": "2026-08-31T12:00:23.565144+00:00",
-    "is_artist": false,
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -4708,8 +4716,11 @@
     ]
   },
   "קולולם": {
+    "cat_v": 4,
+    "category": "music",
     "display": "קולולם",
     "first_seen": "2026-08-31T12:00:28.035203+00:00",
+    "is_artist": false,
     "sources": [
       "grayclub"
     ]
@@ -5425,8 +5436,11 @@
     ]
   },
   "שרלי סבח גשר המיתרים": {
-    "display": "שרלי סבח גשר המיתרים",
+    "cat_v": 4,
+    "category": "music",
+    "display": "שרלי סבח",
     "first_seen": "2026-08-31T12:00:23.232419+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -5649,6 +5663,8 @@
     ]
   },
   "תרבות הצליל": {
+    "cat_v": 4,
+    "category": "music",
     "display": "תרבות הצליל",
     "first_seen": "2026-08-31T12:00:23.565036+00:00",
     "is_artist": false,
