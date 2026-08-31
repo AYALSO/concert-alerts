@@ -889,6 +889,16 @@
       "barby"
     ]
   },
+  "איתמר דוארי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "איתמר דוארי",
+    "first_seen": "2026-08-31T12:00:23.564371+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "איתן רייטר": {
     "cat_v": 4,
     "category": "music",
@@ -1265,6 +1275,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "באביס צרטוס וארטי קטימה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "באביס צרטוס וארטי קטימה",
+    "first_seen": "2026-08-31T12:00:23.232581+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "באסים בבגאז": {
@@ -1990,6 +2010,16 @@
       "barby"
     ]
   },
+  "הומאז לברי סחרוף גור וולנר וסאזלנד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "הומאז לברי סחרוף גור וולנר וסאזלנד",
+    "first_seen": "2026-08-31T12:00:23.564563+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "החצר האחורית של גוני": {
     "cat_v": 4,
     "category": "music",
@@ -2274,6 +2304,16 @@
       "grayclub"
     ]
   },
+  "חדש כקדם שירנו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חדש כקדם שירנו",
+    "first_seen": "2026-08-31T12:00:23.564844+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "חוגגים ראש השנה": {
     "cat_v": 4,
     "category": "standup",
@@ -2476,6 +2516,26 @@
     "is_artist": true,
     "sources": [
       "barby",
+      "eventim"
+    ]
+  },
+  "טריבני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "טריבני",
+    "first_seen": "2026-08-31T12:00:23.232486+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "טריו וסים עודה הדרך לאקסטזה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "טריו וסים עודה",
+    "first_seen": "2026-08-31T12:00:23.232324+00:00",
+    "is_artist": true,
+    "sources": [
       "eventim"
     ]
   },
@@ -3255,6 +3315,16 @@
       "grayclub"
     ]
   },
+  "מופע מחווה לאהובה עוזרי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מופע מחווה לאהובה עוזרי",
+    "first_seen": "2026-08-31T12:00:23.565294+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מופע סטנד אפ סוף שנה מטורף": {
     "cat_v": 4,
     "category": "standup",
@@ -3520,7 +3590,8 @@
     "first_seen": "2026-06-21T08:09:29.216829+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "eventim"
     ]
   },
   "משה כורסיה": {
@@ -3657,6 +3728,16 @@
       "grayclub"
     ]
   },
+  "נובה חדשה הדור הבא של המוזיקה האנדלוסית": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נובה חדשה הדור הבא של המוזיקה האנדלוסית",
+    "first_seen": "2026-08-31T12:00:23.564684+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "נוגה פרידמן": {
     "cat_v": 4,
     "category": "music",
@@ -3737,6 +3818,13 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "נור דרוייש": {
+    "display": "נור דרוייש",
+    "first_seen": "2026-08-31T12:00:23.564760+00:00",
+    "sources": [
+      "eventim"
     ]
   },
   "נורית גלרון": {
@@ -4324,6 +4412,13 @@
       "eventim"
     ]
   },
+  "עמרי מור": {
+    "display": "עמרי מור",
+    "first_seen": "2026-08-31T12:00:23.564450+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "עמרי סמדר": {
     "cat_v": 4,
     "category": "music",
@@ -4416,6 +4511,14 @@
     "is_artist": true,
     "sources": [
       "barby",
+      "eventim"
+    ]
+  },
+  "פולחן האביב של פאריד אל אטרש": {
+    "display": "פולחן האביב של פאריד אל אטרש",
+    "first_seen": "2026-08-31T12:00:23.565144+00:00",
+    "is_artist": false,
+    "sources": [
       "eventim"
     ]
   },
@@ -4602,6 +4705,13 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "קולולם": {
+    "display": "קולולם",
+    "first_seen": "2026-08-31T12:00:28.035203+00:00",
+    "sources": [
+      "grayclub"
     ]
   },
   "קוקו מאילת": {
@@ -5314,6 +5424,13 @@
       "kupat"
     ]
   },
+  "שרלי סבח גשר המיתרים": {
+    "display": "שרלי סבח גשר המיתרים",
+    "first_seen": "2026-08-31T12:00:23.232419+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "ששון שאולוב": {
     "cat_v": 4,
     "category": "music",
@@ -5529,6 +5646,14 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "תרבות הצליל": {
+    "display": "תרבות הצליל",
+    "first_seen": "2026-08-31T12:00:23.565036+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "תרקדי איתי": {
