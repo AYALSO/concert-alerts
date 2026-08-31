@@ -1511,6 +1511,16 @@
       "barby"
     ]
   },
+  "גור וולנר וסאזלנד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "גור וולנר וסאזלנד",
+    "first_seen": "2026-08-31T16:00:21.189303+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "גורי אלפי": {
     "cat_v": 4,
     "category": "standup",
@@ -2008,16 +2018,6 @@
     "sources": [
       "eventim",
       "barby"
-    ]
-  },
-  "הומאז לברי סחרוף גור וולנר וסאזלנד": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "הומאז לברי סחרוף גור וולנר וסאזלנד",
-    "first_seen": "2026-08-31T12:00:23.564563+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "החצר האחורית של גוני": {
@@ -2519,12 +2519,12 @@
       "eventim"
     ]
   },
-  "טריבני": {
+  "טריבני triveni": {
     "cat_v": 4,
     "category": "music",
     "display": "טריבני",
-    "first_seen": "2026-08-31T12:00:23.232486+00:00",
-    "is_artist": false,
+    "first_seen": "2026-08-31T16:00:21.188622+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -3325,16 +3325,6 @@
       "grayclub"
     ]
   },
-  "מופע מחווה לאהובה עוזרי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מופע מחווה לאהובה עוזרי",
-    "first_seen": "2026-08-31T12:00:23.565294+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "מופע סטנד אפ סוף שנה מטורף": {
     "cat_v": 4,
     "category": "standup",
@@ -3738,12 +3728,12 @@
       "grayclub"
     ]
   },
-  "נובה חדשה הדור הבא של המוזיקה האנדלוסית": {
+  "נוּבָּה חדשה": {
     "cat_v": 4,
     "category": "music",
-    "display": "נובה חדשה הדור הבא של המוזיקה האנדלוסית",
-    "first_seen": "2026-08-31T12:00:23.564684+00:00",
-    "is_artist": false,
+    "display": "נוּבָּה חדשה",
+    "first_seen": "2026-08-31T16:00:21.189209+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -3828,6 +3818,16 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "נור דרוויש": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נור דרוויש",
+    "first_seen": "2026-08-31T16:00:21.189002+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "נור דרוייש": {
@@ -4208,6 +4208,16 @@
       "comedybar"
     ]
   },
+  "עוד אמשיך לשיר ולנגן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עוד אמשיך לשיר ולנגן",
+    "first_seen": "2026-08-31T16:00:21.189477+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "עודד מנסטר": {
     "cat_v": 4,
     "category": "standup",
@@ -4257,6 +4267,16 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "עומרי מור": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עומרי מור",
+    "first_seen": "2026-08-31T16:00:21.188923+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "עופר ומאור": {
@@ -4627,6 +4647,16 @@
     "category": "lecture",
     "display": "פרופ' יורם יובל",
     "first_seen": "2026-07-23T12:01:08.296950+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "פרופ תייסיר אליאס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "פרופ' תייסיר אליאס",
+    "first_seen": "2026-08-31T16:00:21.189571+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -5670,16 +5700,6 @@
     "is_artist": true,
     "sources": [
       "comy"
-    ]
-  },
-  "תרבות הצליל": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תרבות הצליל",
-    "first_seen": "2026-08-31T12:00:23.565036+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "תרקדי איתי": {
