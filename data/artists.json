@@ -3778,6 +3778,16 @@
       "barby"
     ]
   },
+  "נוסטרדמוס": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "נוסטרדמוס",
+    "first_seen": "2026-09-01T13:00:31.753635+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "נועה יהודאי": {
     "cat_v": 4,
     "category": "standup",
