@@ -2314,11 +2314,11 @@
       "grayclub"
     ]
   },
-  "חדש כקדם שירנו": {
+  "חַדֵּשׁ כְּקֶדֶם שִׁירֵינוּ": {
     "cat_v": 4,
     "category": "music",
-    "display": "חדש כקדם שירנו",
-    "first_seen": "2026-08-31T12:00:23.564844+00:00",
+    "display": "חַדֵּשׁ כְּקֶדֶם שִׁירֵינוּ",
+    "first_seen": "2026-09-01T20:00:25.174114+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -2534,6 +2534,16 @@
     "category": "music",
     "display": "טריבני",
     "first_seen": "2026-08-31T16:00:21.188622+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "טריו וסים עודה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "טריו וסים עודה",
+    "first_seen": "2026-09-01T20:00:24.885768+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
