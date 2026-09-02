@@ -1721,6 +1721,16 @@
       "eventim"
     ]
   },
+  "דודו טסהגוני גרינווד jarak qaribak جارك قريبك": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דודו טסה&ג'וני גרינווד JARAK QARIBAK",
+    "first_seen": "2026-09-02T11:00:23.975122+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דודו פארוק": {
     "cat_v": 4,
     "category": "music",
@@ -2630,7 +2640,8 @@
     "first_seen": "2026-07-12T04:00:50.158434+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "יובל דיין": {
