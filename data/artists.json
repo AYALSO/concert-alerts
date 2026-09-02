@@ -1773,6 +1773,16 @@
       "grayclub"
     ]
   },
+  "דורין מנדל": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "דורין מנדל",
+    "first_seen": "2026-09-02T06:00:46.034952+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "דותן רביד": {
     "cat_v": 4,
     "category": "standup",
