@@ -3717,6 +3717,16 @@
       "comy"
     ]
   },
+  "משפחת ספיר": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "משפחת ספיר",
+    "first_seen": "2026-09-03T10:00:25.020443+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מתן חסן": {
     "cat_v": 4,
     "category": "music",
@@ -4227,6 +4237,16 @@
     "is_artist": false,
     "sources": [
       "kupat"
+    ]
+  },
+  "ספר הגונגל": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "ספר הג'ונגל",
+    "first_seen": "2026-09-03T10:00:25.020404+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "עברי לידר": {
