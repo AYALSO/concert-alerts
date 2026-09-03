@@ -4878,8 +4878,11 @@
     ]
   },
   "קטנטנות": {
+    "cat_v": 4,
+    "category": "theater",
     "display": "קטנטנות",
     "first_seen": "2026-09-03T20:00:24.166709+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
