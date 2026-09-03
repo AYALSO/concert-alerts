@@ -999,6 +999,16 @@
       "eventim"
     ]
   },
+  "אליקיר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אליקיר",
+    "first_seen": "2026-09-03T09:00:35.721952+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אמדאוס": {
     "cat_v": 4,
     "category": "theater",
@@ -1499,6 +1509,16 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "בת הים הקטנה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "בת הים הקטנה",
+    "first_seen": "2026-09-03T09:00:32.048933+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "גבירתי הנאווה": {
