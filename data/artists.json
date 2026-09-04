@@ -1358,16 +1358,6 @@
       "eventim"
     ]
   },
-  "בין מילים לצלילים": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "בין מילים לצלילים",
-    "first_seen": "2026-08-30T04:00:18.741224+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "בלאקבירדס": {
     "cat_v": 4,
     "category": "music",
@@ -5653,16 +5643,6 @@
     "category": "music",
     "display": "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 28",
     "first_seen": "2026-07-10T19:00:52.727823+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 25": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 25",
-    "first_seen": "2026-07-10T19:00:52.727579+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
