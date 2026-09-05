@@ -4907,6 +4907,16 @@
       "eventim"
     ]
   },
+  "קרניבנד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "קרניבנד",
+    "first_seen": "2026-09-05T04:00:35.933153+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "ראובן המלאך": {
     "cat_v": 4,
     "category": "music",
@@ -5653,16 +5663,6 @@
     "category": "music",
     "display": "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 26",
     "first_seen": "2026-07-10T19:00:52.727445+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "תחרות ארתור רובינשטיין גמר קאמרי מקצה 23": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תחרות ארתור רובינשטיין גמר קאמרי מקצה 23",
-    "first_seen": "2026-07-10T19:00:52.727305+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
