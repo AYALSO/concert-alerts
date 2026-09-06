@@ -681,6 +681,16 @@
       "ticketmaster"
     ]
   },
+  "אודליה אליעזרוב סבר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אודליה אליעזרוב סבר",
+    "first_seen": "2026-09-06T14:00:44.784884+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אוהד מימרן": {
     "cat_v": 4,
     "category": "standup",
