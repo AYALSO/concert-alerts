@@ -2303,6 +2303,16 @@
       "barby"
     ]
   },
+  "התזמורת האנדלוסית הישראלית": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "התזמורת האנדלוסית הישראלית",
+    "first_seen": "2026-09-06T12:00:42.862308+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "התקווה 6": {
     "cat_v": 4,
     "category": "music",
