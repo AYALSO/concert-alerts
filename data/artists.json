@@ -4327,7 +4327,8 @@
     "first_seen": "2026-07-12T11:00:46.902349+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "grayclub"
     ]
   },
   "עוזי פוקס": {
@@ -5653,26 +5654,6 @@
     "category": "music",
     "display": "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 28",
     "first_seen": "2026-07-10T19:00:52.727823+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 26": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תחרות ארתור רובינשטיין גמר קאמרטה מקצה 26",
-    "first_seen": "2026-07-10T19:00:52.727445+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "תחרות ארתור רובינשטיין גמר קאמרי מקצה 24": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תחרות ארתור רובינשטיין גמר קאמרי מקצה 24",
-    "first_seen": "2026-07-10T19:00:52.727954+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
