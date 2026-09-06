@@ -610,6 +610,16 @@
       "eventim"
     ]
   },
+  "אגדה חיה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אגדה חיה",
+    "first_seen": "2026-09-06T10:00:42.668914+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אדיר גץ": {
     "cat_v": 4,
     "category": "music",
