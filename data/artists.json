@@ -4611,6 +4611,16 @@
       "kupat"
     ]
   },
+  "פארידה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "פארידה",
+    "first_seen": "2026-09-06T09:00:43.856030+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "פבלו רוזנברג": {
     "cat_v": 4,
     "category": "music",
