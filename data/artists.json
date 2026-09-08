@@ -121,6 +121,16 @@
       "ticketmaster"
     ]
   },
+  "dirty pop": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "DIRTY POP",
+    "first_seen": "2026-09-08T04:00:44.371519+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "disco train": {
     "cat_v": 4,
     "category": "music",
@@ -5496,6 +5506,16 @@
       "barby"
     ]
   },
+  "שלומי שבת": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלומי שבת",
+    "first_seen": "2026-09-08T04:00:44.369628+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "שלומית אהרון": {
     "cat_v": 4,
     "category": "music",
@@ -5697,16 +5717,6 @@
     "sources": [
       "eventim",
       "kupat"
-    ]
-  },
-  "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 27": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 27",
-    "first_seen": "2026-07-10T19:00:52.728088+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "תחרות ארתור רובינשטיין גמר פילהרמונית מקצה 28": {
