@@ -4761,6 +4761,16 @@
       "kupat"
     ]
   },
+  "פס חמישי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "פס חמישי",
+    "first_seen": "2026-09-09T09:04:51.024865+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "פסטיבל אושפיזין": {
     "cat_v": 4,
     "category": "music",
@@ -5037,6 +5047,16 @@
       "grayclub"
     ]
   },
+  "רבקה מיכאלי": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "רבקה מיכאלי",
+    "first_seen": "2026-09-09T09:05:08.292931+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "רד בנד": {
     "cat_v": 4,
     "category": "music",
@@ -5075,7 +5095,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "ticketmaster"
     ]
   },
   "רוני דואני": {
