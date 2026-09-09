@@ -4771,6 +4771,16 @@
       "ticketmaster"
     ]
   },
+  "פס רביעי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "פס רביעי",
+    "first_seen": "2026-09-09T10:04:28.626746+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "פסטיבל אושפיזין": {
     "cat_v": 4,
     "category": "music",
@@ -5035,6 +5045,16 @@
     "sources": [
       "comy",
       "eventim"
+    ]
+  },
+  "רביעייה לאחרית הימים מאת אוליבייה מסייאן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רביעייה לאחרית הימים מאת אוליבייה מסייאן",
+    "first_seen": "2026-09-09T10:04:17.330585+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "רבקה זהר": {
@@ -5871,6 +5891,13 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "תתחצף ותענה מנגנים מתי כספי": {
+    "display": "תתחצף ותענה\" מנגנים מתי כספי",
+    "first_seen": "2026-09-09T10:04:27.865052+00:00",
+    "sources": [
+      "ticketmaster"
     ]
   }
 }
