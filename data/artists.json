@@ -5894,8 +5894,11 @@
     ]
   },
   "תתחצף ותענה מנגנים מתי כספי": {
-    "display": "תתחצף ותענה\" מנגנים מתי כספי",
+    "cat_v": 4,
+    "category": "music",
+    "display": "מנגנים מתי כספי",
     "first_seen": "2026-09-09T10:04:27.865052+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
