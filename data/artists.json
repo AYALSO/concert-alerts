@@ -4031,6 +4031,16 @@
       "eventim"
     ]
   },
+  "ניצן פינקו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ניצן פינקו",
+    "first_seen": "2026-09-09T15:00:42.378640+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "ניצני ודני": {
     "cat_v": 4,
     "category": "standup",
