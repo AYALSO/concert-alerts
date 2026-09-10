@@ -1193,8 +1193,11 @@
     ]
   },
   "אפוקליפסה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "אפוקליפסה",
     "first_seen": "2026-09-10T10:00:52.940110+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
