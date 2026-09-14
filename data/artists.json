@@ -214,8 +214,11 @@
     ]
   },
   "i am a tribe": {
+    "cat_v": 4,
+    "category": "music",
     "display": "I am a tribe",
     "first_seen": "2026-09-14T11:02:54.368227+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
