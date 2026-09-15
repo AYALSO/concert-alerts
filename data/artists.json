@@ -50,6 +50,16 @@
       "barby"
     ]
   },
+  "berry sakharof": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Berry Sakharof",
+    "first_seen": "2026-09-15T19:11:08.632554+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "brasil pais tropical by latin power": {
     "cat_v": 4,
     "category": "music",
