@@ -2353,8 +2353,11 @@
     ]
   },
   "השתקפויות": {
+    "cat_v": 4,
+    "category": "theater",
     "display": "השתקפויות",
     "first_seen": "2026-09-15T09:02:54.453460+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
