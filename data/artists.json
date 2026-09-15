@@ -1016,7 +1016,8 @@
     "first_seen": "2026-06-21T08:09:29.208713+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "eventim"
     ]
   },
   "אלי פיניש": {
@@ -2349,6 +2350,13 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "השתקפויות": {
+    "display": "השתקפויות",
+    "first_seen": "2026-09-15T09:02:54.453460+00:00",
+    "sources": [
+      "ticketmaster"
     ]
   },
   "התזמורת האנדלוסית הישראלית": {
