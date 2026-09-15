@@ -4239,6 +4239,16 @@
       "grayclub"
     ]
   },
+  "סוכות בסינמה סיטי": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "סוכות בסינמה סיטי",
+    "first_seen": "2026-09-15T15:01:15.802465+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "סטלוס ואורן חן": {
     "cat_v": 4,
     "category": "music",
