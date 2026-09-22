@@ -3487,6 +3487,16 @@
       "comedybar"
     ]
   },
+  "מוצרט vs בטהובן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מוצרט VS בטהובן",
+    "first_seen": "2026-09-22T12:01:51.167117+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מור": {
     "cat_v": 4,
     "category": "music",
