@@ -3704,6 +3704,16 @@
       "grayclub"
     ]
   },
+  "מסיבת העשורים הגדולה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מסיבת העשורים הגדולה",
+    "first_seen": "2026-09-23T10:01:26.919046+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
   "מסיבת כיתה 2": {
     "cat_v": 4,
     "category": "standup",
