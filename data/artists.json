@@ -2909,6 +2909,16 @@
       "eventim"
     ]
   },
+  "ילד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ילד",
+    "first_seen": "2026-09-23T13:01:39.514995+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "יסמין מועלם": {
     "cat_v": 4,
     "category": "music",
