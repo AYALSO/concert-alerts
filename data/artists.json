@@ -60,6 +60,16 @@
       "ticketmaster"
     ]
   },
+  "boy george": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Boy George",
+    "first_seen": "2026-09-23T08:05:19.751450+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "brasil pais tropical by latin power": {
     "cat_v": 4,
     "category": "music",
@@ -4287,7 +4297,8 @@
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": false,
     "sources": [
-      "comy"
+      "comy",
+      "ticketmaster"
     ]
   },
   "סינדרלה בלט על הקרח": {
