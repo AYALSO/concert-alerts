@@ -2400,7 +2400,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "ticketmaster"
+      "ticketmaster",
+      "barby"
     ]
   },
   "ויתרתי וכוח וידאו": {
@@ -3426,8 +3427,11 @@
     ]
   },
   "מגיקל מיסטרי טור": {
+    "cat_v": 4,
+    "category": "music",
     "display": "מג'יקל מיסטרי טור",
     "first_seen": "2026-09-24T09:01:30.093992+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -4336,6 +4340,16 @@
     "sources": [
       "comy",
       "ticketmaster"
+    ]
+  },
+  "סינדרלה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "סינדרלה",
+    "first_seen": "2026-09-24T10:01:26.878781+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "סינדרלה בלט על הקרח": {
