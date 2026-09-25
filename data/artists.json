@@ -1132,6 +1132,16 @@
       "eventim"
     ]
   },
+  "אנסמבל אקוט ירושלים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אנסמבל אקוט ירושלים",
+    "first_seen": "2026-09-25T14:01:42.771603+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אסולין": {
     "cat_v": 4,
     "category": "music",
@@ -1459,6 +1469,16 @@
       "eventim"
     ]
   },
+  "במה צעירה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "במה צעירה",
+    "first_seen": "2026-09-25T14:01:42.424990+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בן בן ברוך": {
     "cat_v": 4,
     "category": "standup",
@@ -1582,6 +1602,16 @@
       "eventim"
     ]
   },
+  "גאז מקומי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "גאז מקומי",
+    "first_seen": "2026-09-25T14:01:42.424836+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "גבירתי הנאווה": {
     "cat_v": 4,
     "category": "theater",
@@ -1658,6 +1688,16 @@
     "category": "music",
     "display": "גיא מזיג",
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "גיא פיגר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "גיא פיגר",
+    "first_seen": "2026-09-25T14:01:42.771639+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -2556,6 +2596,16 @@
     "sources": [
       "comy",
       "grayclub"
+    ]
+  },
+  "חן צימבליסטה ואנסמבל מפעל המוזיקה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חן צימבליסטה ואנסמבל מפעל המוזיקה",
+    "first_seen": "2026-09-25T14:01:42.424958+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "חנאל ומכבית": {
@@ -4331,6 +4381,16 @@
       "eventim"
     ]
   },
+  "סטאבט מאטר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סטאבט, מאטר",
+    "first_seen": "2026-09-25T14:01:42.771674+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "סטלוס ואורן חן": {
     "cat_v": 4,
     "category": "music",
@@ -5089,8 +5149,11 @@
     ]
   },
   "קונצרט בריכה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "קונצרט בריכה",
     "first_seen": "2026-09-25T13:01:40.077897+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -5557,6 +5620,16 @@
       "barby"
     ]
   },
+  "שיח גראח ומפעל המוזיקה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שיח גראח ומפעל המוזיקה",
+    "first_seen": "2026-09-25T14:01:42.771559+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "שיחות מהבגאז": {
     "cat_v": 4,
     "category": "lecture",
@@ -5797,8 +5870,11 @@
     ]
   },
   "שמחת תורה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "שמחת תורה",
     "first_seen": "2026-09-19T17:01:23.813604+00:00",
+    "is_artist": false,
     "sources": [
       "barby"
     ]
@@ -5912,6 +5988,16 @@
     "sources": [
       "eventim",
       "kupat"
+    ]
+  },
+  "תייסיר אליאס וסירין אליאס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תייסיר אליאס וסירין אליאס",
+    "first_seen": "2026-09-25T14:01:42.424898+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "תיסלם": {
