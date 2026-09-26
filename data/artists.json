@@ -1602,16 +1602,6 @@
       "eventim"
     ]
   },
-  "גאז מקומי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "גאז מקומי",
-    "first_seen": "2026-09-25T14:01:42.424836+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "גבירתי הנאווה": {
     "cat_v": 4,
     "category": "theater",
@@ -1791,6 +1781,13 @@
   "גרנד סלאם אתלטיקה ירושלים": {
     "display": "גרנד סלאם אתלטיקה ירושלים",
     "first_seen": "2026-09-09T08:01:15.938410+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
+  "ג׳אז מקומי": {
+    "display": "ג׳אז מקומי",
+    "first_seen": "2026-09-26T06:00:33.941781+00:00",
     "sources": [
       "eventim"
     ]
@@ -3764,12 +3761,12 @@
       "comy"
     ]
   },
-  "מלך האריות בהשראת המחזמר מלך האריות": {
+  "מלך האריות בהשראת המחזמר": {
     "cat_v": 4,
     "category": "theater",
-    "display": "מלך האריות בהשראת המחזמר מלך האריות",
-    "first_seen": "2026-09-25T13:01:40.077968+00:00",
-    "is_artist": false,
+    "display": "מלך האריות",
+    "first_seen": "2026-09-26T06:00:33.941725+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
@@ -5154,6 +5151,16 @@
     "display": "קונצרט בריכה",
     "first_seen": "2026-09-25T13:01:40.077897+00:00",
     "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "קונצרט גאלה נור דארוויש חן צימבליסטה orcheatra": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נור דארוויש חן צימבליסטה + Orcheatra",
+    "first_seen": "2026-09-26T06:00:34.216508+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
