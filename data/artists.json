@@ -1779,15 +1779,21 @@
     ]
   },
   "גרנד סלאם אתלטיקה ירושלים": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "גרנד סלאם אתלטיקה ירושלים",
     "first_seen": "2026-09-09T08:01:15.938410+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
   },
   "ג׳אז מקומי": {
+    "cat_v": 4,
+    "category": "music",
     "display": "ג׳אז מקומי",
     "first_seen": "2026-09-26T06:00:33.941781+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -5086,8 +5092,11 @@
     ]
   },
   "צעדת ראשוני ים המלח": {
+    "cat_v": 4,
+    "category": "lecture",
     "display": "צעדת ראשוני ים המלח",
     "first_seen": "2026-09-09T12:00:47.581073+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -6100,6 +6109,16 @@
       "ticketmaster",
       "kupat",
       "eventim"
+    ]
+  },
+  "תמר זריחה 4": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תמר. זריחה 4",
+    "first_seen": "2026-09-27T08:01:44.120565+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "תמר יהלומי ויונתן קלימי": {
