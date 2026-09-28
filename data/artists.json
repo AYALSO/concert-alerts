@@ -741,6 +741,16 @@
       "eventim"
     ]
   },
+  "אור גדול": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אור גדול",
+    "first_seen": "2026-09-28T13:00:25.952284+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אור לגויים": {
     "cat_v": 4,
     "category": "theater",
@@ -6138,6 +6148,16 @@
     "display": "תמר ריילי",
     "first_seen": "2026-06-25T13:00:56.493896+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "תפילות ושירים לחג המולד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תפילות ושירים לחג המולד",
+    "first_seen": "2026-09-28T13:00:26.327203+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
