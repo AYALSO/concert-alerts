@@ -223,16 +223,6 @@
       "kupat"
     ]
   },
-  "hall of fame": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Hall Of Fame",
-    "first_seen": "2026-08-02T09:01:33.440599+00:00",
-    "is_artist": false,
-    "sources": [
-      "kupat"
-    ]
-  },
   "i am a tribe": {
     "cat_v": 4,
     "category": "music",
