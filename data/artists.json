@@ -815,6 +815,16 @@
       "comy"
     ]
   },
+  "אחינועם": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אחינועם",
+    "first_seen": "2026-09-29T17:01:31.551856+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "אידיוט": {
     "cat_v": 4,
     "category": "music",
