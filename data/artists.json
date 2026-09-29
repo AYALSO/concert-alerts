@@ -111,6 +111,16 @@
       "eventim"
     ]
   },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "CUPON10",
+    "first_seen": "2026-09-29T04:00:33.699392+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -362,16 +372,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-08-30T04:00:18.958264+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "the black magic": {
@@ -5144,16 +5144,6 @@
       "eventim"
     ]
   },
-  "קולולם": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "קולולם",
-    "first_seen": "2026-08-31T12:00:28.035203+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "קונצרט בריכה": {
     "cat_v": 4,
     "category": "music",
@@ -6056,6 +6046,16 @@
       "barby"
     ]
   },
+  "תלמידי מחול": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תלמידי מחול",
+    "first_seen": "2026-09-29T04:00:33.699711+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "תמיר בר": {
     "cat_v": 4,
     "category": "standup",
@@ -6109,6 +6109,16 @@
       "ticketmaster",
       "kupat",
       "eventim"
+    ]
+  },
+  "תמר זריחה 1": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תמר. זריחה 1",
+    "first_seen": "2026-09-29T04:01:35.072869+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "תמר זריחה 2": {
