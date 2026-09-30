@@ -365,8 +365,11 @@
     ]
   },
   "tamar sunrise 4": {
-    "display": "Tamar. Sunrise 4",
+    "cat_v": 4,
+    "category": "music",
+    "display": "Tamar",
     "first_seen": "2026-09-30T10:01:30.694393+00:00",
+    "is_artist": true,
     "sources": [
       "ticketmaster"
     ]
@@ -6123,6 +6126,16 @@
     "category": "music",
     "display": "תמר. זריחה 2",
     "first_seen": "2026-09-27T13:01:26.563701+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
+  "תמר זריחה 4": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תמר. זריחה 4",
+    "first_seen": "2026-09-30T11:01:25.004251+00:00",
     "is_artist": false,
     "sources": [
       "ticketmaster"
