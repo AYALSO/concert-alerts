@@ -111,16 +111,6 @@
       "eventim"
     ]
   },
-  "cupon10": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "CUPON10",
-    "first_seen": "2026-09-29T04:00:33.699392+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -372,6 +362,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "the beatles symphony": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "THE BEATLES SYMPHONY",
+    "first_seen": "2026-09-30T04:00:47.851120+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "the black magic": {
@@ -4990,16 +4990,6 @@
       "ticketmaster"
     ]
   },
-  "פסטיבל אושפיזין": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "פסטיבל אושפיזין",
-    "first_seen": "2026-07-07T09:00:58.144713+00:00",
-    "is_artist": false,
-    "sources": [
-      "kupat"
-    ]
-  },
   "פסטיבל לילות אהבה": {
     "cat_v": 4,
     "category": "music",
@@ -6119,16 +6109,6 @@
       "ticketmaster",
       "kupat",
       "eventim"
-    ]
-  },
-  "תמר זריחה 1": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תמר. זריחה 1",
-    "first_seen": "2026-09-29T04:01:35.072869+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
     ]
   },
   "תמר זריחה 2": {
