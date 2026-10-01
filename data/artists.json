@@ -304,6 +304,16 @@
       "kupat"
     ]
   },
+  "msh01": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "MSH01",
+    "first_seen": "2026-10-01T11:09:39.929551+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "open mic": {
     "cat_v": 4,
     "category": "standup",
