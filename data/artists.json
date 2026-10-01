@@ -354,6 +354,16 @@
       "ticketmaster"
     ]
   },
+  "sinatra": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "SINATRA",
+    "first_seen": "2026-10-01T13:00:35.120413+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "sisters": {
     "cat_v": 4,
     "category": "music",
@@ -3487,7 +3497,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "ticketmaster"
+      "ticketmaster",
+      "barby"
     ]
   },
   "מארק אליהו": {
