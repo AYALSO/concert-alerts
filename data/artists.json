@@ -2295,6 +2295,16 @@
       "comy"
     ]
   },
+  "המופע הגדול של עידן מעדן": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "עידן מעדן",
+    "first_seen": "2026-10-01T10:00:28.517153+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "המופע הגדול של שלישיית הנובים": {
     "cat_v": 4,
     "category": "theater",
