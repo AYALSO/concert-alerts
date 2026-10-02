@@ -6144,18 +6144,6 @@
       "eventim"
     ]
   },
-  "תמר": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תמר",
-    "first_seen": "2026-06-25T16:49:10.208852+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster",
-      "kupat",
-      "eventim"
-    ]
-  },
   "תמר זריחה 4": {
     "cat_v": 4,
     "category": "music",
