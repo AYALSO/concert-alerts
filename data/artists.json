@@ -315,8 +315,11 @@
     ]
   },
   "msh03": {
+    "cat_v": 4,
+    "category": "music",
     "display": "MSH03",
     "first_seen": "2026-10-04T08:08:57.803148+00:00",
+    "is_artist": false,
     "sources": [
       "ticketmaster"
     ]
@@ -392,8 +395,11 @@
     ]
   },
   "solstars 2026": {
+    "cat_v": 4,
+    "category": "music",
     "display": "Solstars 2026",
     "first_seen": "2026-10-04T09:09:03.878605+00:00",
+    "is_artist": false,
     "sources": [
       "ticketmaster"
     ]
