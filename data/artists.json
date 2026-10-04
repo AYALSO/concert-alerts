@@ -314,16 +314,6 @@
       "kupat"
     ]
   },
-  "msh01": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "MSH01",
-    "first_seen": "2026-10-01T11:09:39.929551+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "msh03": {
     "display": "MSH03",
     "first_seen": "2026-10-04T08:08:57.803148+00:00",
@@ -389,6 +379,13 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "solstars 2026": {
+    "display": "Solstars 2026",
+    "first_seen": "2026-10-04T09:09:03.878605+00:00",
+    "sources": [
+      "ticketmaster"
     ]
   },
   "taiko life your heart your drum": {
