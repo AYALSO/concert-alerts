@@ -324,6 +324,13 @@
       "ticketmaster"
     ]
   },
+  "msh03": {
+    "display": "MSH03",
+    "first_seen": "2026-10-04T08:08:57.803148+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "open mic": {
     "cat_v": 4,
     "category": "standup",
