@@ -342,8 +342,11 @@
     ]
   },
   "queen symphony": {
+    "cat_v": 4,
+    "category": "music",
     "display": "Queen symphony",
     "first_seen": "2026-10-04T13:00:38.985895+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
