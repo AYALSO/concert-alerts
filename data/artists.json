@@ -224,8 +224,11 @@
     ]
   },
   "halloween": {
+    "cat_v": 4,
+    "category": "music",
     "display": "Halloween",
     "first_seen": "2026-10-05T07:00:29.806353+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
