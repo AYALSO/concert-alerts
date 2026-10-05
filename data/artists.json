@@ -223,6 +223,13 @@
       "kupat"
     ]
   },
+  "halloween": {
+    "display": "Halloween",
+    "first_seen": "2026-10-05T07:00:29.806353+00:00",
+    "sources": [
+      "eventim"
+    ]
+  },
   "hanan yovel": {
     "cat_v": 4,
     "category": "music",
