@@ -2292,7 +2292,8 @@
     "first_seen": "2026-06-20T20:16:12.401513+00:00",
     "is_artist": true,
     "sources": [
-      "grayclub"
+      "grayclub",
+      "eventim"
     ]
   },
   "הטיש הגדול": {
@@ -4782,6 +4783,13 @@
     "display": "עידן חביב",
     "first_seen": "2026-07-13T14:00:58.706544+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "עידן מעדן": {
+    "display": "עידן מעדן",
+    "first_seen": "2026-10-07T10:01:24.008277+00:00",
     "sources": [
       "eventim"
     ]
