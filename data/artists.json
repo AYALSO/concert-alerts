@@ -6103,6 +6103,16 @@
       "kupat"
     ]
   },
+  "תיאטרון בית לסין": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תיאטרון בית לסין",
+    "first_seen": "2026-10-08T13:01:17.174190+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "תייסיר אליאס וסירין אליאס": {
     "cat_v": 4,
     "category": "music",
