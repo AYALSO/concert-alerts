@@ -4476,6 +4476,16 @@
       "eventim"
     ]
   },
+  "סטייל מוזיקה אמנות": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סטייל. מוזיקה. אמנות",
+    "first_seen": "2026-10-11T10:01:05.725528+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
   "סטלוס ואורן חן": {
     "cat_v": 4,
     "category": "music",
