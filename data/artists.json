@@ -3748,6 +3748,16 @@
       "kupat"
     ]
   },
+  "מזמורים של אור": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מזמורים של אור",
+    "first_seen": "2026-10-12T11:01:07.767959+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מי רצח את אגנתה פאלסקוג": {
     "cat_v": 4,
     "category": "music",
