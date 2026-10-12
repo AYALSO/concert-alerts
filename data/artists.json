@@ -111,16 +111,6 @@
       "eventim"
     ]
   },
-  "cupon10": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "CUPON10",
-    "first_seen": "2026-10-07T04:01:15.001636+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -1816,7 +1806,8 @@
     "is_artist": true,
     "sources": [
       "grayclub",
-      "comy"
+      "comy",
+      "eventim"
     ]
   },
   "גיין בורדו": {
