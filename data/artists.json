@@ -233,6 +233,16 @@
       "barby"
     ]
   },
+  "gloria gaynor": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Gloria Gaynor",
+    "first_seen": "2026-10-13T17:01:06.752957+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "halloween": {
     "cat_v": 4,
     "category": "music",
