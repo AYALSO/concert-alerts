@@ -1930,7 +1930,8 @@
     "first_seen": "2026-06-22T17:27:50.887854+00:00",
     "is_artist": true,
     "sources": [
-      "kupat"
+      "kupat",
+      "eventim"
     ]
   },
   "דודו אהרון": {
@@ -4527,16 +4528,6 @@
     "is_artist": false,
     "sources": [
       "eventim"
-    ]
-  },
-  "סטייל מוזיקה אמנות": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "סטייל. מוזיקה. אמנות",
-    "first_seen": "2026-10-11T10:01:05.725528+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
     ]
   },
   "סטלוס ואורן חן": {
