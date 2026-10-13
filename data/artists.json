@@ -3194,6 +3194,16 @@
       "kupat"
     ]
   },
+  "ישראל אהרוני": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "ישראל אהרוני",
+    "first_seen": "2026-10-13T12:01:23.129679+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "ישראל קטורזה": {
     "cat_v": 4,
     "category": "standup",
@@ -5389,7 +5399,8 @@
     "first_seen": "2026-06-20T20:16:07.696518+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "רביטל ויטלזון יעקבס": {
