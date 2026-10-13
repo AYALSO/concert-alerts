@@ -936,6 +936,16 @@
       "grayclub"
     ]
   },
+  "אייטיז פוראבר עם ליאון רוזנברג": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אייטיז פוראבר עם ליאון רוזנברג",
+    "first_seen": "2026-10-13T04:01:21.074107+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אייל גולן": {
     "cat_v": 4,
     "category": "music",
@@ -2006,7 +2016,8 @@
     "first_seen": "2026-07-05T10:00:46.942991+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "דורי בן זאב": {
