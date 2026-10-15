@@ -4449,6 +4449,16 @@
       "comy"
     ]
   },
+  "נסרין": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נסרין",
+    "first_seen": "2026-10-15T08:08:32.216169+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "נסרין קדרי": {
     "cat_v": 4,
     "category": "music",
