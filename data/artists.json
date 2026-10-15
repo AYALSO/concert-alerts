@@ -70,16 +70,6 @@
       "ticketmaster"
     ]
   },
-  "brasil pais tropical by latin power": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Latin Power",
-    "first_seen": "2026-06-20T20:16:08.892207+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "bravo circus הרפתקאות היער האבוד": {
     "cat_v": 4,
     "category": "theater",
@@ -304,8 +294,11 @@
     ]
   },
   "latin power": {
+    "cat_v": 4,
+    "category": "music",
     "display": "Latin Power",
     "first_seen": "2026-10-15T13:01:15.261519+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
