@@ -364,6 +364,16 @@
       "kupat"
     ]
   },
+  "nasrin": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Nasrin",
+    "first_seen": "2026-10-16T06:09:06.666508+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "open mic": {
     "cat_v": 4,
     "category": "standup",
