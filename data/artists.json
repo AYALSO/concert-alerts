@@ -668,6 +668,16 @@
       "eventim"
     ]
   },
+  "אביב בכר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אביב בכר",
+    "first_seen": "2026-10-16T04:01:00.513779+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אביב גפן": {
     "cat_v": 4,
     "category": "music",
@@ -3603,6 +3613,16 @@
       "kupat"
     ]
   },
+  "מאיר אלפי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מאיר אלפי",
+    "first_seen": "2026-10-16T04:01:00.513689+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "מארינה מקסימיליאן": {
     "cat_v": 4,
     "category": "music",
@@ -5246,7 +5266,8 @@
     "first_seen": "2026-06-21T08:09:29.217091+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "grayclub"
     ]
   },
   "ציפורלה לילדים": {
