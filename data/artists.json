@@ -131,16 +131,6 @@
       "ticketmaster"
     ]
   },
-  "dirty pop": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "DIRTY POP",
-    "first_seen": "2026-09-08T04:00:44.371519+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "disco train": {
     "cat_v": 4,
     "category": "music",
