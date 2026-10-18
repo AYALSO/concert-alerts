@@ -629,6 +629,13 @@
       "eventim"
     ]
   },
+  "wild ride": {
+    "display": "WILD RIDE",
+    "first_seen": "2026-10-18T10:09:49.274398+00:00",
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "zaz limassol 2026": {
     "cat_v": 4,
     "category": "music",
