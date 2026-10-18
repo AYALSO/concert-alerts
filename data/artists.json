@@ -365,8 +365,11 @@
     ]
   },
   "mta74": {
+    "cat_v": 4,
+    "category": "music",
     "display": "MTA74",
     "first_seen": "2026-10-18T08:09:48.058274+00:00",
+    "is_artist": false,
     "sources": [
       "ticketmaster"
     ]
@@ -513,8 +516,11 @@
     ]
   },
   "three legends one stage": {
+    "cat_v": 4,
+    "category": "music",
     "display": "Three Legends. One Stage",
     "first_seen": "2026-10-18T09:10:30.391151+00:00",
+    "is_artist": false,
     "sources": [
       "ticketmaster"
     ]
