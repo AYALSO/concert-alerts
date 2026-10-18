@@ -926,6 +926,16 @@
       "comy"
     ]
   },
+  "אחד חלקי אחד 1": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אחד חלקי אחד",
+    "first_seen": "2026-10-18T04:00:30.698813+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אחינועם": {
     "cat_v": 4,
     "category": "music",
@@ -3828,16 +3838,6 @@
     "is_artist": false,
     "sources": [
       "eventim"
-    ]
-  },
-  "מי רצח את אגנתה פאלסקוג": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מי רצח את אגנתה פאלסקוג",
-    "first_seen": "2026-06-20T20:16:07.328265+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
     ]
   },
   "מייל שירות הלקוחות": {
