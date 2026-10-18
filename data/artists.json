@@ -2807,6 +2807,16 @@
       "grayclub"
     ]
   },
+  "חמישיית מיקה ריעני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חמישיית מיקה ריעני",
+    "first_seen": "2026-10-18T17:05:18.428537+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "חן אהרוני": {
     "cat_v": 4,
     "category": "music",
