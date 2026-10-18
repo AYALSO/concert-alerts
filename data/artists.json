@@ -163,6 +163,16 @@
       "grayclub"
     ]
   },
+  "eviatar banai": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Eviatar Banai",
+    "first_seen": "2026-10-18T06:09:56.244168+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "fever": {
     "cat_v": 4,
     "category": "music",
