@@ -2654,6 +2654,16 @@
       "ticketmaster"
     ]
   },
+  "התבלינים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "התבלינים",
+    "first_seen": "2026-10-19T09:00:25.630790+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "התזמורת האנדלוסית הישראלית": {
     "cat_v": 4,
     "category": "music",
