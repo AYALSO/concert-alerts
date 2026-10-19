@@ -223,16 +223,6 @@
       "kupat"
     ]
   },
-  "frank sinatra": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Frank Sinatra",
-    "first_seen": "2026-10-19T07:00:25.029172+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "gal de paz": {
     "cat_v": 4,
     "category": "music",
@@ -5344,6 +5334,13 @@
     "display": "פרופ' תייסיר אליאס",
     "first_seen": "2026-08-31T16:00:21.189571+00:00",
     "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "פרנק סינטרה": {
+    "display": "פרנק סינטרה",
+    "first_seen": "2026-10-19T15:00:59.475027+00:00",
     "sources": [
       "eventim"
     ]
