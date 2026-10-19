@@ -405,8 +405,11 @@
     ]
   },
   "orchetra oneblue flame": {
+    "cat_v": 4,
+    "category": "music",
     "display": "ORCHETRA ONE-BLUE FLAME",
     "first_seen": "2026-10-19T14:01:06.185069+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -5339,8 +5342,11 @@
     ]
   },
   "פרנק סינטרה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "פרנק סינטרה",
     "first_seen": "2026-10-19T15:00:59.475027+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -5407,8 +5413,11 @@
     ]
   },
   "צלילי אופרה": {
+    "cat_v": 4,
+    "category": "music",
     "display": "צלילי אופרה",
     "first_seen": "2026-10-19T14:01:05.872079+00:00",
+    "is_artist": false,
     "sources": [
       "eventim"
     ]
