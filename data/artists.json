@@ -1776,6 +1776,16 @@
       "kupat"
     ]
   },
+  "בצלצלי שמע": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בצלצלי שמע",
+    "first_seen": "2026-10-20T14:00:59.734242+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בר צברי": {
     "cat_v": 4,
     "category": "music",
@@ -5491,6 +5501,16 @@
     "category": "theater",
     "display": "קוולריה רוסטיקנה והליצנים",
     "first_seen": "2026-06-20T20:16:09.404688+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "קולות מן השמיים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "קולות מן השמיים",
+    "first_seen": "2026-10-20T14:00:59.734305+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
