@@ -3748,6 +3748,16 @@
       "grayclub"
     ]
   },
+  "מארש דונדורמה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מארש דונדורמה",
+    "first_seen": "2026-10-20T09:00:54.375526+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "מאשה והדב": {
     "cat_v": 4,
     "category": "theater",
