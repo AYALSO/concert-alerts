@@ -159,7 +159,8 @@
     "first_seen": "2026-08-09T16:01:05.717405+00:00",
     "is_artist": false,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "echoes": {
