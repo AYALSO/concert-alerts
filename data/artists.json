@@ -2789,6 +2789,16 @@
       "eventim"
     ]
   },
+  "חגית גינזבורג": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "חגית גינזבורג",
+    "first_seen": "2026-10-21T15:00:51.608734+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "חוגגים ראש השנה": {
     "cat_v": 4,
     "category": "standup",
