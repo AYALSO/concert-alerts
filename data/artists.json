@@ -435,6 +435,16 @@
       "eventim"
     ]
   },
+  "ravid plotnik": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Ravid Plotnik",
+    "first_seen": "2026-10-22T06:09:28.741780+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "richard clayderman": {
     "cat_v": 4,
     "category": "music",
