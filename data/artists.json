@@ -4118,6 +4118,16 @@
       "grayclub"
     ]
   },
+  "מסיבה של סקווישים": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "מסיבה של סקווישים",
+    "first_seen": "2026-10-22T10:10:00.479707+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "מסיבת העשורים הגדולה": {
     "cat_v": 4,
     "category": "music",
