@@ -1,4 +1,14 @@
 {
+  "27 לנצח גאם אנד גופלין": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "27 לנצח ג'אם אנד ג'ופלין",
+    "first_seen": "2026-10-23T04:00:51.536331+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "a night of dire straits": {
     "cat_v": 4,
     "category": "music",
@@ -393,6 +403,16 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
+    ]
+  },
+  "niki haris denny ilett all stars בריטניה ארהב": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Niki Haris & Denny Ilett All Stars",
+    "first_seen": "2026-10-23T04:00:51.536196+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "open mic": {
@@ -5546,6 +5566,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "קולולם": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "קולולם",
+    "first_seen": "2026-10-23T04:00:51.536434+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "קולות מן השמיים": {
