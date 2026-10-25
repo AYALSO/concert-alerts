@@ -254,16 +254,6 @@
       "eventim"
     ]
   },
-  "halloween": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Halloween",
-    "first_seen": "2026-10-05T07:00:29.806353+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "hanan yovel": {
     "cat_v": 4,
     "category": "music",
@@ -483,16 +473,6 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
-    ]
-  },
-  "sinatra": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "SINATRA",
-    "first_seen": "2026-10-01T13:00:35.120413+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "sisters": {
@@ -5516,16 +5496,6 @@
       "eventim"
     ]
   },
-  "צעדת ראשוני ים המלח": {
-    "cat_v": 4,
-    "category": "lecture",
-    "display": "צעדת ראשוני ים המלח",
-    "first_seen": "2026-09-09T12:00:47.581073+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "צרלי וחצי": {
     "cat_v": 4,
     "category": "theater",
@@ -6216,7 +6186,8 @@
     "first_seen": "2026-07-12T15:00:50.970019+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "שלומי קוריאט": {
