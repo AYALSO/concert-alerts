@@ -2697,8 +2697,11 @@
     ]
   },
   "הקברט שלא נדם": {
+    "cat_v": 4,
+    "category": "theater",
     "display": "הקברט שלא נדם",
     "first_seen": "2026-10-26T11:00:48.626630+00:00",
+    "is_artist": true,
     "sources": [
       "eventim"
     ]
