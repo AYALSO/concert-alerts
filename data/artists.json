@@ -344,6 +344,16 @@
       "grayclub"
     ]
   },
+  "madonna tribute show": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Madonna Tribute Show",
+    "first_seen": "2026-10-26T15:13:51.980230+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
   "malevo": {
     "cat_v": 4,
     "category": "theater",
