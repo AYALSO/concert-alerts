@@ -184,6 +184,16 @@
       "grayclub"
     ]
   },
+  "enrico macias": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ENRICO MACIAS",
+    "first_seen": "2026-10-26T09:00:48.561762+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "eviatar banai": {
     "cat_v": 4,
     "category": "music",
