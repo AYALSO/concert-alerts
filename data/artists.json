@@ -475,6 +475,16 @@
       "eventim"
     ]
   },
+  "shabbos night": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "Shabbos night",
+    "first_seen": "2026-10-26T11:01:03.742297+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "shalom hanoch": {
     "cat_v": 4,
     "category": "music",
@@ -2683,6 +2693,13 @@
     "is_artist": true,
     "sources": [
       "kupat",
+      "eventim"
+    ]
+  },
+  "הקברט שלא נדם": {
+    "display": "הקברט שלא נדם",
+    "first_seen": "2026-10-26T11:00:48.626630+00:00",
+    "sources": [
       "eventim"
     ]
   },
