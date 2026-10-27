@@ -2265,6 +2265,16 @@
       "eventim"
     ]
   },
+  "דנה ברגר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דנה ברגר",
+    "first_seen": "2026-10-27T05:00:51.897428+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "דני גוטפריד והמייסדים": {
     "cat_v": 4,
     "category": "music",
@@ -3291,6 +3301,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "יוצאים למסיבה flame": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "FLAME",
+    "first_seen": "2026-10-27T05:00:51.897537+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "יושי": {
