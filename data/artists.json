@@ -245,6 +245,16 @@
       "kupat"
     ]
   },
+  "funky": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "FUNKY",
+    "first_seen": "2026-10-28T07:00:49.010362+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "gal de paz": {
     "cat_v": 4,
     "category": "music",
