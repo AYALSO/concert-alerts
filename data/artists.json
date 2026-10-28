@@ -914,6 +914,16 @@
       "comedybar"
     ]
   },
+  "אדר גולד ואוהד שרגאי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אדר גולד ואוהד שרגאי",
+    "first_seen": "2026-10-28T14:00:51.915055+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אהוד בנאי": {
     "cat_v": 4,
     "category": "music",
