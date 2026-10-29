@@ -2626,6 +2626,16 @@
       "ticketmaster"
     ]
   },
+  "המחווה למדונה מבית רוקוויל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "המחווה למדונה מבית רוקוויל",
+    "first_seen": "2026-10-29T05:01:06.067000+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "המחווה לפיל קולינס sussudio": {
     "cat_v": 4,
     "category": "music",
@@ -3146,6 +3156,16 @@
     "sources": [
       "grayclub",
       "eventim"
+    ]
+  },
+  "יאסו טיים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יאסו טיים",
+    "first_seen": "2026-10-29T05:01:06.067235+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "יהודה אליאס שר ומארח": {
@@ -5609,16 +5629,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "קולולם": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "קולולם",
-    "first_seen": "2026-10-23T04:00:51.536434+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "קולות מן השמיים": {
