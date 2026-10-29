@@ -2543,16 +2543,6 @@
       "eventim"
     ]
   },
-  "החורף של ויולדי גיא פיגר וחברים 28 מיתרים ופסנתר": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "גיא פיגר",
-    "first_seen": "2026-10-29T12:00:59.818377+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "החצר האחורית של גוני": {
     "cat_v": 4,
     "category": "music",
@@ -5979,7 +5969,8 @@
     "first_seen": "2026-06-20T20:16:08.108417+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "ריטה": {
