@@ -204,6 +204,16 @@
       "eventim"
     ]
   },
+  "ethiopian jazz אבטה בריהון אולג בוגוד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אבטה בריהון",
+    "first_seen": "2026-10-29T12:00:59.818268+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "eviatar banai": {
     "cat_v": 4,
     "category": "music",
@@ -2533,6 +2543,16 @@
       "eventim"
     ]
   },
+  "החורף של ויולדי גיא פיגר וחברים 28 מיתרים ופסנתר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "גיא פיגר",
+    "first_seen": "2026-10-29T12:00:59.818377+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "החצר האחורית של גוני": {
     "cat_v": 4,
     "category": "music",
@@ -3950,16 +3970,6 @@
     "sources": [
       "comy",
       "grayclub"
-    ]
-  },
-  "מוזיקה מהשכונות": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מוזיקה מהשכונות",
-    "first_seen": "2026-10-19T13:01:03.617098+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "מוחמד נעמה": {
@@ -5712,6 +5722,16 @@
       "comy"
     ]
   },
+  "קלאסי אוריינטלי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "קלאסי אוריינטלי",
+    "first_seen": "2026-10-29T12:00:59.818668+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "קרולינה": {
     "cat_v": 4,
     "category": "music",
@@ -6412,6 +6432,16 @@
     "category": "music",
     "display": "שמעון בוסקילה",
     "first_seen": "2026-07-22T09:01:09.709911+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "שפי אורן בך": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שפי אורן בך",
+    "first_seen": "2026-10-29T12:00:59.818534+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
