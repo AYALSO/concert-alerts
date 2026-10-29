@@ -101,6 +101,16 @@
       "grayclub"
     ]
   },
+  "celtic throne": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "Celtic Throne",
+    "first_seen": "2026-10-29T11:03:53.846838+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "crochestra by freedom fighters meir briskman": {
     "cat_v": 4,
     "category": "music",
@@ -283,6 +293,16 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
+    ]
+  },
+  "harmony המרכז למוזיקה ירושלים אנסמבל מגניפיקט נוער מוסיקלי בישראל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Harmony המרכז למוזיקה ירושלים, אנסמבל מגניפיקט, נוער מוסיקלי בישראל",
+    "first_seen": "2026-10-29T11:01:07.132081+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "i am a tribe": {
@@ -1762,16 +1782,6 @@
     "display": "בלט ירושלים",
     "first_seen": "2026-07-29T06:01:16.234408+00:00",
     "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "במה צעירה": {
-    "cat_v": 4,
-    "category": "theater",
-    "display": "במה צעירה",
-    "first_seen": "2026-09-25T14:01:42.424990+00:00",
-    "is_artist": false,
     "sources": [
       "eventim"
     ]
@@ -3312,6 +3322,16 @@
       "eventim"
     ]
   },
+  "יונתן אבישי ומאיו שבירו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יונתן אבישי ומאיו שבירו",
+    "first_seen": "2026-10-29T11:01:07.131957+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "יונתן ברק": {
     "cat_v": 4,
     "category": "standup",
@@ -4019,6 +4039,16 @@
     "category": "music",
     "display": "מוצרט VS בטהובן",
     "first_seen": "2026-09-22T12:01:51.167117+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "מוצרט ויוסופוב": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מוצרט ויוסופוב",
+    "first_seen": "2026-10-29T11:01:07.606064+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
@@ -5503,16 +5533,6 @@
     "category": "music",
     "display": "פרנק סינטרה",
     "first_seen": "2026-10-19T15:00:59.475027+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
-  "צאפל גאז": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "צ'אפל ג'אז",
-    "first_seen": "2026-10-19T13:01:03.310102+00:00",
     "is_artist": false,
     "sources": [
       "eventim"
