@@ -30,16 +30,6 @@
       "barby"
     ]
   },
-  "andalusi sessions 1": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "ריף כהן",
-    "first_seen": "2026-07-10T04:00:59.436728+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "axis rock argentino by latin power": {
     "cat_v": 4,
     "category": "music",
@@ -5996,8 +5986,11 @@
     ]
   },
   "ריף כהן": {
+    "cat_v": 4,
+    "category": "music",
     "display": "ריף כהן",
     "first_seen": "2026-10-30T05:01:04.441402+00:00",
+    "is_artist": true,
     "sources": [
       "grayclub"
     ]
