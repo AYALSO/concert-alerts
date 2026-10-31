@@ -4727,6 +4727,16 @@
       "comy"
     ]
   },
+  "ננסי ברנדס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ננסי ברנדס",
+    "first_seen": "2026-10-31T05:00:47.676316+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "ננסי ברנדס ואסנת שיר": {
     "cat_v": 4,
     "category": "standup",
@@ -6574,16 +6584,6 @@
     "category": "music",
     "display": "תל אביב חוזרת לניינטיז",
     "first_seen": "2026-06-20T20:16:07.322714+00:00",
-    "is_artist": false,
-    "sources": [
-      "barby"
-    ]
-  },
-  "תל אביב חוזרת לשנות ה2000": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "תל אביב חוזרת לשנות ה2000",
-    "first_seen": "2026-09-07T10:00:42.260985+00:00",
     "is_artist": false,
     "sources": [
       "barby"
