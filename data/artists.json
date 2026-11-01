@@ -1518,16 +1518,6 @@
       "ticketmaster"
     ]
   },
-  "אסף אמדורסקי שלומי שבן יעל קראוס שרים החלונות הגבוהים": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "אסף אמדורסקי, שלומי שבן, יעל קראוס",
-    "first_seen": "2026-06-20T20:16:09.403691+00:00",
-    "is_artist": true,
-    "sources": [
-      "eventim"
-    ]
-  },
   "אסף יצחקי": {
     "cat_v": 4,
     "category": "standup",
@@ -3764,7 +3754,8 @@
     "first_seen": "2026-06-23T11:01:10.229488+00:00",
     "is_artist": true,
     "sources": [
-      "barby"
+      "barby",
+      "ticketmaster"
     ]
   },
   "לילה 1 באפריל": {
@@ -4525,7 +4516,8 @@
     "is_artist": true,
     "sources": [
       "barby",
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "נוסטרדמוס": {
