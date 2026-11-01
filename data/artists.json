@@ -1695,6 +1695,16 @@
       "barby"
     ]
   },
+  "בא לשכונה בחור חדש": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בא לשכונה בחור חדש",
+    "first_seen": "2026-11-01T13:00:47.120691+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "באביס צרטוס וארטי קטימה": {
     "cat_v": 4,
     "category": "music",
