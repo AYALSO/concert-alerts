@@ -4447,6 +4447,16 @@
       "eventim"
     ]
   },
+  "נדב דגון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נדב דגון",
+    "first_seen": "2026-11-01T17:00:43.757680+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "נדב הנדלר": {
     "cat_v": 4,
     "category": "standup",
