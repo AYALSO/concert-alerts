@@ -234,6 +234,16 @@
       "grayclub"
     ]
   },
+  "fierbe del sábado por la noche": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "Fierbe del sábado por la noche",
+    "first_seen": "2026-11-01T15:01:11.182014+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "flame": {
     "cat_v": 4,
     "category": "music",
@@ -1496,6 +1506,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "אסף אמדורסקי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אסף אמדורסקי",
+    "first_seen": "2026-11-01T15:09:35.083528+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "אסף אמדורסקי שלומי שבן יעל קראוס שרים החלונות הגבוהים": {
