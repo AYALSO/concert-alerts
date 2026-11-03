@@ -9,6 +9,26 @@
       "grayclub"
     ]
   },
+  "4pass קלאסי ישראלי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "4PASS קלאסי ישראלי",
+    "first_seen": "2026-11-03T09:11:53.323568+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
+  "4pass רוקנרול": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "4PASS רוקנ'רול",
+    "first_seen": "2026-11-03T09:12:04.368811+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "a night of dire straits": {
     "cat_v": 4,
     "category": "music",
@@ -423,26 +443,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "minipass קלאסי ישראלי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "miniPASS קלאסי ישראלי",
-    "first_seen": "2026-11-02T14:12:18.006675+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
-  "minipass רוק׳נרול": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "miniPASS רוק׳נרול",
-    "first_seen": "2026-11-02T14:12:29.187305+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
     ]
   },
   "moonlight": {
