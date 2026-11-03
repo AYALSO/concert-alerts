@@ -1026,6 +1026,16 @@
       "comedybar"
     ]
   },
+  "אופיר מיארה": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "אופיר מיארה",
+    "first_seen": "2026-11-03T11:01:53.025801+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "אופרה בקטנה": {
     "cat_v": 4,
     "category": "music",
