@@ -355,16 +355,6 @@
       "ticketmaster"
     ]
   },
-  "im a guitar and piano": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "I'm a guitar and piano",
-    "first_seen": "2026-11-03T14:11:22.635834+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "impulso": {
     "cat_v": 4,
     "category": "theater",
@@ -1506,6 +1496,16 @@
     "is_artist": true,
     "sources": [
       "grayclub"
+    ]
+  },
+  "אני גיטרה ופסנתר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אני גיטרה ופסנתר",
+    "first_seen": "2026-11-03T15:10:24.025670+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "אני פה בגלל אשתי": {
