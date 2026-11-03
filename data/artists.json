@@ -586,6 +586,16 @@
       "ticketmaster"
     ]
   },
+  "squirt": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "SQUIRT",
+    "first_seen": "2026-11-03T13:01:21.500839+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "taiko life your heart your drum": {
     "cat_v": 4,
     "category": "music",
@@ -1024,6 +1034,16 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "אולן אולארציק": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אולן אולארצ'יק",
+    "first_seen": "2026-11-03T13:01:21.501144+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "אופיר מיארה": {
@@ -1518,6 +1538,16 @@
       "eventim"
     ]
   },
+  "אנסמבל מורן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אנסמבל מורן",
+    "first_seen": "2026-11-03T13:01:21.501248+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "אסולין": {
     "cat_v": 4,
     "category": "music",
@@ -1926,16 +1956,6 @@
     "sources": [
       "grayclub",
       "kupat"
-    ]
-  },
-  "בצלצלי שמע": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "בצלצלי שמע",
-    "first_seen": "2026-10-20T14:00:59.734242+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "בר צברי": {
@@ -4890,6 +4910,16 @@
       "kupat"
     ]
   },
+  "סאנה ואן אלסט": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "סאנה ואן אלסט",
+    "first_seen": "2026-11-03T13:01:21.769639+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "סגיב כהן": {
     "cat_v": 4,
     "category": "music",
@@ -5317,6 +5347,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "עלמה קול נשי ישראלי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "עלמה קול נשי ישראלי",
+    "first_seen": "2026-11-03T13:01:21.500909+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
     ]
   },
   "עמיר בניון": {
