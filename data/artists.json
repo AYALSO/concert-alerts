@@ -355,6 +355,16 @@
       "ticketmaster"
     ]
   },
+  "im a guitar and piano": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "I'm a guitar and piano",
+    "first_seen": "2026-11-03T14:11:22.635834+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "impulso": {
     "cat_v": 4,
     "category": "theater",
@@ -1498,16 +1508,6 @@
       "grayclub"
     ]
   },
-  "אני גיטרה ופסנתר": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "אני גיטרה ופסנתר",
-    "first_seen": "2026-11-02T20:10:27.304757+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "אני פה בגלל אשתי": {
     "cat_v": 4,
     "category": "theater",
@@ -1533,6 +1533,16 @@
     "category": "music",
     "display": "אנסמבל אקוט ירושלים",
     "first_seen": "2026-09-25T14:01:42.771603+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
+  "אנסמבל זמרי המדריגל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אנסמבל זמרי המדריגל",
+    "first_seen": "2026-11-03T14:01:08.778647+00:00",
     "is_artist": true,
     "sources": [
       "eventim"
@@ -3576,6 +3586,16 @@
     "is_artist": true,
     "sources": [
       "eventim",
+      "comy"
+    ]
+  },
+  "יתוש בראש": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "יתוש בראש",
+    "first_seen": "2026-11-03T14:01:50.747129+00:00",
+    "is_artist": true,
+    "sources": [
       "comy"
     ]
   },
@@ -5639,6 +5659,16 @@
       "eventim"
     ]
   },
+  "פריסילה מלכת המדבר": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "פריסילה מלכת המדבר",
+    "first_seen": "2026-11-03T14:01:50.143502+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "פרנק סינטרה": {
     "cat_v": 4,
     "category": "music",
@@ -5801,6 +5831,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "קזבלן": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "קזבלן",
+    "first_seen": "2026-11-03T14:01:51.073519+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
     ]
   },
   "קטנטנות": {
