@@ -2737,16 +2737,6 @@
       "ticketmaster"
     ]
   },
-  "המחווה למדונה מבית רוקוויל": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "המחווה למדונה מבית רוקוויל",
-    "first_seen": "2026-10-29T05:01:06.067000+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
-    ]
-  },
   "המחווה לפיל קולינס sussudio": {
     "cat_v": 4,
     "category": "music",
@@ -6569,7 +6559,8 @@
     "first_seen": "2026-06-20T20:16:08.890211+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "שמוליק בודגוב": {
