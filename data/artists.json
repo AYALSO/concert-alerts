@@ -486,16 +486,6 @@
       "ticketmaster"
     ]
   },
-  "night pass": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "Night Pass",
-    "first_seen": "2026-11-05T19:02:08.526023+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "niki haris denny ilett all stars בריטניה ארהב": {
     "cat_v": 4,
     "category": "music",
@@ -3815,6 +3805,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "ליאת בנאי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ליאת בנאי",
+    "first_seen": "2026-11-06T05:01:10.447456+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "ליהי טולדנו": {
