@@ -566,6 +566,16 @@
       "ticketmaster"
     ]
   },
+  "showtime": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ShowTime",
+    "first_seen": "2026-11-07T05:01:11.027806+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "sisters": {
     "cat_v": 4,
     "category": "music",
@@ -2632,6 +2642,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "החצר האחורית": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "החצר האחורית",
+    "first_seen": "2026-11-07T05:01:11.027754+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "החצר האחורית של גוני": {
