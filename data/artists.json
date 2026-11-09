@@ -2491,6 +2491,16 @@
       "grayclub"
     ]
   },
+  "דקלון": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "דקלון",
+    "first_seen": "2026-11-09T13:00:43.522859+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "דר אייל דורון": {
     "cat_v": 4,
     "category": "lecture",
@@ -4144,16 +4154,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "מופע מחווה לדקלון וצלילי הכרם": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מופע מחווה לדקלון וצלילי הכרם",
-    "first_seen": "2026-11-09T10:00:43.519940+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "מופע סטנד אפ סוף שנה מטורף": {
