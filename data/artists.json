@@ -4352,6 +4352,16 @@
       "comy"
     ]
   },
+  "מלחמת אחים": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "מלחמת אחים",
+    "first_seen": "2026-11-09T18:01:13.305473+00:00",
+    "is_artist": true,
+    "sources": [
+      "comy"
+    ]
+  },
   "מלך האריות בהשראת המחזמר": {
     "cat_v": 4,
     "category": "theater",
