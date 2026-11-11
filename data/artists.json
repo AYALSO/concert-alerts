@@ -4301,6 +4301,16 @@
       "grayclub"
     ]
   },
+  "מיכל גרין": {
+    "cat_v": 4,
+    "category": "lecture",
+    "display": "מיכל גרין",
+    "first_seen": "2026-11-11T09:07:06.377598+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "מיקה משה": {
     "cat_v": 4,
     "category": "music",
