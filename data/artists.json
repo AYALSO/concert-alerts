@@ -799,6 +799,16 @@
       "ticketmaster"
     ]
   },
+  "zafio": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "Zafio",
+    "first_seen": "2026-11-11T18:01:40.623249+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "zaz limassol 2026": {
     "cat_v": 4,
     "category": "music",
