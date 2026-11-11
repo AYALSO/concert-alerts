@@ -131,6 +131,16 @@
       "eventim"
     ]
   },
+  "cupon10": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "CUPON10",
+    "first_seen": "2026-11-11T05:00:46.715400+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "darco": {
     "cat_v": 4,
     "category": "music",
@@ -624,16 +634,6 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
-    ]
-  },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-10-12T04:01:24.466543+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "the black magic": {
@@ -2446,7 +2446,8 @@
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "דניאל וייס": {
@@ -3859,6 +3860,16 @@
       "grayclub"
     ]
   },
+  "לייב אייד live aid": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "לייב אייד Live Aid",
+    "first_seen": "2026-11-11T05:00:49.829900+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "לייזה ודניאלה עושות פאנל": {
     "cat_v": 4,
     "category": "lecture",
@@ -4226,16 +4237,6 @@
     "is_artist": true,
     "sources": [
       "kupat"
-    ]
-  },
-  "מזמורים של אור": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מזמורים של אור",
-    "first_seen": "2026-10-12T11:01:07.767959+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "מייל שירות הלקוחות": {
