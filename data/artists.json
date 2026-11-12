@@ -517,6 +517,16 @@
       "eventim"
     ]
   },
+  "pass": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "PASS",
+    "first_seen": "2026-11-12T21:01:23.193186+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "queen symphony": {
     "cat_v": 4,
     "category": "music",
