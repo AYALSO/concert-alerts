@@ -5349,7 +5349,8 @@
     "first_seen": "2026-08-31T16:00:21.188923+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "ticketmaster"
     ]
   },
   "עופר ומאור": {
