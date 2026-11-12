@@ -841,6 +841,16 @@
       "grayclub"
     ]
   },
+  "אבטה בריהון ופרויקט אדיס קן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אבטה בריהון ופרויקט אדיס קן",
+    "first_seen": "2026-11-12T15:02:05.776242+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "אבי אבורומי": {
     "cat_v": 4,
     "category": "music",
@@ -4433,6 +4443,16 @@
     "is_artist": true,
     "sources": [
       "comy"
+    ]
+  },
+  "מנגנים מתי כספי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מנגנים מתי כספי",
+    "first_seen": "2026-11-12T15:02:17.497764+00:00",
+    "is_artist": false,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "מני עוזרי": {
