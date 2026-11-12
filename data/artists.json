@@ -637,6 +637,16 @@
       "ticketmaster"
     ]
   },
+  "the beatles symphony": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "THE BEATLES SYMPHONY",
+    "first_seen": "2026-11-12T05:00:45.631074+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "the black magic": {
     "cat_v": 4,
     "category": "music",
@@ -2878,7 +2888,8 @@
     "is_artist": true,
     "sources": [
       "kupat",
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "הקברט שלא נדם": {
@@ -4248,6 +4259,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "מזמורים של אור": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מזמורים של אור",
+    "first_seen": "2026-11-12T05:00:45.323348+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "מייל שירות הלקוחות": {
@@ -5742,16 +5763,6 @@
     "is_artist": true,
     "sources": [
       "comy"
-    ]
-  },
-  "פרנק סינטרה": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "פרנק סינטרה",
-    "first_seen": "2026-10-19T15:00:59.475027+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "ציון 3": {
