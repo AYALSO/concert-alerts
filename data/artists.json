@@ -3477,6 +3477,16 @@
       "eventim"
     ]
   },
+  "יונתן אבישי אנסמבל": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יונתן אבישי אנסמבל",
+    "first_seen": "2026-11-12T16:01:56.442396+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "יונתן אבישי ומאיו שבירו": {
     "cat_v": 4,
     "category": "music",
@@ -6827,6 +6837,16 @@
     "sources": [
       "eventim",
       "kupat"
+    ]
+  },
+  "תזמורת ירושלים מזרח ומערב ומאסטרו תום כהן": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "תזמורת ירושלים מזרח ומערב ומאסטרו תום כהן",
+    "first_seen": "2026-11-12T16:01:44.416722+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "תיאטרון בית לסין": {
