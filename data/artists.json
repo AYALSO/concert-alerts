@@ -2161,7 +2161,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "grayclub"
+      "grayclub",
+      "ticketmaster"
     ]
   },
   "גיורא זינגר": {
@@ -6645,6 +6646,16 @@
     "sources": [
       "eventim",
       "grayclub"
+    ]
+  },
+  "שלישיית אמיר ברסלר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלישיית אמיר ברסלר",
+    "first_seen": "2026-11-12T19:01:40.721141+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "שלישיית מה קשור": {
