@@ -6124,6 +6124,16 @@
       "ticketmaster"
     ]
   },
+  "רביעיית אלברט בגר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "רביעיית אלברט בגר",
+    "first_seen": "2026-11-13T17:01:36.967805+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "רבקה זהר": {
     "cat_v": 4,
     "category": "music",
