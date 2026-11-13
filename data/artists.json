@@ -517,16 +517,6 @@
       "eventim"
     ]
   },
-  "pass": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "PASS",
-    "first_seen": "2026-11-12T21:01:23.193186+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
-    ]
-  },
   "queen symphony": {
     "cat_v": 4,
     "category": "music",
@@ -585,16 +575,6 @@
     "is_artist": true,
     "sources": [
       "ticketmaster"
-    ]
-  },
-  "showtime": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "ShowTime",
-    "first_seen": "2026-11-07T05:01:11.027806+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "sisters": {
@@ -2260,6 +2240,16 @@
       "eventim"
     ]
   },
+  "ג׳קו אייזנברג": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ג׳קו אייזנברג",
+    "first_seen": "2026-11-13T05:00:34.506427+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "דב נבון": {
     "cat_v": 4,
     "category": "standup",
@@ -3054,16 +3044,6 @@
     "is_artist": true,
     "sources": [
       "grayclub"
-    ]
-  },
-  "חַדֵּשׁ כְּקֶדֶם שִׁירֵינוּ": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "חַדֵּשׁ כְּקֶדֶם שִׁירֵינוּ",
-    "first_seen": "2026-09-01T20:00:25.174114+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
     ]
   },
   "חגית גינזבורג": {
@@ -4464,16 +4444,6 @@
     "is_artist": true,
     "sources": [
       "comy"
-    ]
-  },
-  "מנגנים מתי כספי": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "מנגנים מתי כספי",
-    "first_seen": "2026-11-12T15:02:17.497764+00:00",
-    "is_artist": false,
-    "sources": [
-      "ticketmaster"
     ]
   },
   "מני עוזרי": {
