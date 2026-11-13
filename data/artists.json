@@ -3675,6 +3675,16 @@
       "ticketmaster"
     ]
   },
+  "כיתת אמן מאיה דוניץ": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מאיה דוניץ",
+    "first_seen": "2026-11-13T11:01:03.255480+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "כנסיית השכל": {
     "cat_v": 4,
     "category": "music",
