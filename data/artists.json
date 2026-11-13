@@ -3665,6 +3665,16 @@
       "ticketmaster"
     ]
   },
+  "כיתת אמן יונתן אבישי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יונתן אבישי",
+    "first_seen": "2026-11-13T09:01:02.892018+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "כנסיית השכל": {
     "cat_v": 4,
     "category": "music",
