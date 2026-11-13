@@ -2219,6 +2219,16 @@
       "comy"
     ]
   },
+  "גל דה פז": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "גל דה פז",
+    "first_seen": "2026-11-13T16:01:31.016888+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "גליקיריה": {
     "cat_v": 4,
     "category": "music",
@@ -5055,6 +5065,16 @@
     "is_artist": false,
     "sources": [
       "eventim"
+    ]
+  },
+  "נרקיס רעם": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "נרקיס רעם",
+    "first_seen": "2026-11-13T16:02:24.479421+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "נתי לוי": {
