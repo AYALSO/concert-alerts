@@ -4497,6 +4497,16 @@
       "comy"
     ]
   },
+  "מני בגר": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מני בגר",
+    "first_seen": "2026-11-14T05:00:36.654460+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "מני עוזרי": {
     "cat_v": 4,
     "category": "standup",
