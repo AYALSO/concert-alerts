@@ -1938,6 +1938,16 @@
       "eventim"
     ]
   },
+  "בלקן ביט בוקס": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "בלקן ביט בוקס",
+    "first_seen": "2026-11-14T14:01:37.604627+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "בן בן ברוך": {
     "cat_v": 4,
     "category": "standup",
