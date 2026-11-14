@@ -3550,6 +3550,16 @@
       "eventim"
     ]
   },
+  "יוסי פיין וחברים": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "יוסי פיין",
+    "first_seen": "2026-11-14T11:01:23.029724+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
+    ]
+  },
   "יושי": {
     "cat_v": 4,
     "category": "music",
@@ -6727,6 +6737,16 @@
     "is_artist": true,
     "sources": [
       "barby"
+    ]
+  },
+  "שלישיית סתיו אחאי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שלישיית סתיו אחאי",
+    "first_seen": "2026-11-14T11:01:33.552924+00:00",
+    "is_artist": true,
+    "sources": [
+      "ticketmaster"
     ]
   },
   "שלישיית שרון מנסור": {
