@@ -956,6 +956,16 @@
       "ticketmaster"
     ]
   },
+  "אבנר גדסי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אבנר גדסי",
+    "first_seen": "2026-11-15T06:00:53.315654+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "אבנר מדר": {
     "cat_v": 4,
     "category": "lecture",
@@ -5981,6 +5991,16 @@
     "is_artist": true,
     "sources": [
       "eventim"
+    ]
+  },
+  "קולולם": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "קולולם",
+    "first_seen": "2026-11-15T06:00:53.315837+00:00",
+    "is_artist": false,
+    "sources": [
+      "grayclub"
     ]
   },
   "קולות מן השמיים": {
