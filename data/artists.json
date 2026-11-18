@@ -1538,6 +1538,16 @@
       "comy"
     ]
   },
+  "אמדורסקי אלקטרוני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "אמדורסקי אלקטרוני",
+    "first_seen": "2026-11-18T10:00:15.691267+00:00",
+    "is_artist": true,
+    "sources": [
+      "barby"
+    ]
+  },
   "אמיר דדון": {
     "cat_v": 4,
     "category": "music",
@@ -6701,7 +6711,8 @@
     "first_seen": "2026-06-20T20:16:08.891208+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "barby"
     ]
   },
   "שירז אברהם": {
