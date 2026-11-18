@@ -4102,7 +4102,8 @@
     "first_seen": "2026-06-24T14:01:35.963071+00:00",
     "is_artist": true,
     "sources": [
-      "comy"
+      "comy",
+      "grayclub"
     ]
   },
   "לירן דנינו": {
@@ -4392,16 +4393,6 @@
     "is_artist": false,
     "sources": [
       "eventim"
-    ]
-  },
-  "מחוץ למסך עם לירון אופיר": {
-    "cat_v": 4,
-    "category": "standup",
-    "display": "לירון אופיר",
-    "first_seen": "2026-11-18T08:00:22.144091+00:00",
-    "is_artist": true,
-    "sources": [
-      "grayclub"
     ]
   },
   "מייל שירות הלקוחות": {
