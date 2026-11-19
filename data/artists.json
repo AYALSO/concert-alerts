@@ -7067,6 +7067,16 @@
       "eventim"
     ]
   },
+  "תיאטרון היידישפיל": {
+    "cat_v": 4,
+    "category": "theater",
+    "display": "תיאטרון היידישפיל",
+    "first_seen": "2026-11-19T11:00:26.695902+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "תייסיר אליאס וסירין אליאס": {
     "cat_v": 4,
     "category": "music",
