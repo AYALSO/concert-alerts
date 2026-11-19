@@ -627,16 +627,6 @@
       "ticketmaster"
     ]
   },
-  "the beatles symphony": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "THE BEATLES SYMPHONY",
-    "first_seen": "2026-11-12T05:00:45.631074+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "the black magic": {
     "cat_v": 4,
     "category": "music",
@@ -3744,6 +3734,16 @@
     "sources": [
       "eventim",
       "comy"
+    ]
+  },
+  "ישראליות בנשמה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ישראליות בנשמה",
+    "first_seen": "2026-11-19T05:00:32.173438+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "יתוש בראש": {
