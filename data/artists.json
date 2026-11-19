@@ -3116,6 +3116,16 @@
       "grayclub"
     ]
   },
+  "חגיגות השנה החדשה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "חגיגות השנה החדשה",
+    "first_seen": "2026-11-19T10:00:30.077230+00:00",
+    "is_artist": false,
+    "sources": [
+      "barby"
+    ]
+  },
   "חגית גינזבורג": {
     "cat_v": 4,
     "category": "standup",
