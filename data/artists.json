@@ -5022,6 +5022,16 @@
       "barby"
     ]
   },
+  "ניב דמירל חוזר לגריי": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ניב דמירל",
+    "first_seen": "2026-11-20T05:00:32.058005+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "נינט טייב": {
     "cat_v": 4,
     "category": "music",
@@ -6411,7 +6421,8 @@
     "is_artist": true,
     "sources": [
       "eventim",
-      "barby"
+      "barby",
+      "grayclub"
     ]
   },
   "רותם אבוהב": {
