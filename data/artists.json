@@ -2190,7 +2190,8 @@
     "first_seen": "2026-06-20T20:16:08.469046+00:00",
     "is_artist": true,
     "sources": [
-      "eventim"
+      "eventim",
+      "grayclub"
     ]
   },
   "גיא פיגר": {
@@ -6093,16 +6094,6 @@
     "is_artist": true,
     "sources": [
       "eventim"
-    ]
-  },
-  "קולולם": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "קולולם",
-    "first_seen": "2026-11-15T06:00:53.315837+00:00",
-    "is_artist": false,
-    "sources": [
-      "grayclub"
     ]
   },
   "קולות מן השמיים": {
