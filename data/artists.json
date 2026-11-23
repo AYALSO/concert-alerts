@@ -4622,6 +4622,18 @@
       "barby"
     ]
   },
+  "מסיבת כיתה": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "מסיבת כיתה",
+    "first_seen": "2026-11-23T14:01:04.448029+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim",
+      "comy",
+      "grayclub"
+    ]
+  },
   "מסיבת כיתה 2": {
     "cat_v": 4,
     "category": "standup",
