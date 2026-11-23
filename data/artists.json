@@ -1988,6 +1988,16 @@
       "ticketmaster"
     ]
   },
+  "במה אחת שני": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "במה אחת, שני",
+    "first_seen": "2026-11-23T13:01:00.223214+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
+    ]
+  },
   "בן בן ברוך": {
     "cat_v": 4,
     "category": "standup",
