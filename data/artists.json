@@ -3426,6 +3426,16 @@
       "eventim"
     ]
   },
+  "יאיר יעקבי": {
+    "cat_v": 4,
+    "category": "standup",
+    "display": "יאיר יעקבי",
+    "first_seen": "2026-11-25T05:00:35.240110+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
+    ]
+  },
   "יאסו טיים": {
     "cat_v": 4,
     "category": "music",
@@ -4435,6 +4445,16 @@
     "is_artist": true,
     "sources": [
       "kupat"
+    ]
+  },
+  "מזמורים של אור": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "מזמורים של אור",
+    "first_seen": "2026-11-25T05:00:33.884494+00:00",
+    "is_artist": false,
+    "sources": [
+      "eventim"
     ]
   },
   "מייל שירות הלקוחות": {
@@ -6664,6 +6684,16 @@
     "is_artist": true,
     "sources": [
       "comedybar"
+    ]
+  },
+  "שי גבסו": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "שי גבסו",
+    "first_seen": "2026-11-25T05:00:35.232997+00:00",
+    "is_artist": true,
+    "sources": [
+      "grayclub"
     ]
   },
   "שי המבר": {
