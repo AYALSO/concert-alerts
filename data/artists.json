@@ -2902,6 +2902,16 @@
       "eventim"
     ]
   },
+  "המנפטה": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "המנפטה",
+    "first_seen": "2026-11-26T14:00:18.410422+00:00",
+    "is_artist": true,
+    "sources": [
+      "eventim"
+    ]
+  },
   "המרתון הגדול": {
     "cat_v": 4,
     "category": "standup",
