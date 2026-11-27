@@ -295,16 +295,6 @@
       "kupat"
     ]
   },
-  "funky": {
-    "cat_v": 4,
-    "category": "music",
-    "display": "FUNKY",
-    "first_seen": "2026-10-28T07:00:49.010362+00:00",
-    "is_artist": false,
-    "sources": [
-      "eventim"
-    ]
-  },
   "gal de paz": {
     "cat_v": 4,
     "category": "music",
@@ -1842,6 +1832,16 @@
     "is_artist": true,
     "sources": [
       "eventim",
+      "grayclub"
+    ]
+  },
+  "ארלין גולד": {
+    "cat_v": 4,
+    "category": "music",
+    "display": "ארלין גולד",
+    "first_seen": "2026-11-27T05:00:21.826616+00:00",
+    "is_artist": true,
+    "sources": [
       "grayclub"
     ]
   },
